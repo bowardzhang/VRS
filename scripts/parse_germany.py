@@ -27,6 +27,12 @@ DATA_DIR = REPO_ROOT / "data" / "Germany"
 PROCESSED_DIR = DATA_DIR / "processed"
 SITE_DATA_DIR = REPO_ROOT / "docs" / "data"
 
+# Supplementary monthly powertrain series (BEV / diesel / plug-in hybrid /
+# petrol) that predates the full workbooks we hold locally. It lets the site
+# draw a multi-year powertrain trend even for months whose FZ 10.1 workbook is
+# not present in ``data/Germany``. Full workbooks always take precedence.
+POWERTRAIN_CSV = DATA_DIR / "kba_monthly_powertrain.csv"
+
 SHEET_NAME = "FZ 10.1"
 FILE_RE = re.compile(r"fz10_(\d{4})_(\d{2})\.xlsx$", re.IGNORECASE)
 
@@ -162,6 +168,47 @@ def _n(x):
     return int(x) if float(x).is_integer() else x
 
 
+def merge_powertrain_history(monthly_summary: list[dict]) -> list[dict]:
+    """Add trend-only months from the supplementary powertrain CSV.
+
+    Months already produced from a full FZ 10.1 workbook are kept as-is (they
+    carry brand / model detail); months present only in the CSV are appended as
+    lightweight entries so the powertrain trend can span several years. Returns
+    the combined list sorted chronologically.
+    """
+    if not POWERTRAIN_CSV.exists():
+        return sorted(monthly_summary, key=lambda mo: (mo["year"], mo["month"]))
+
+    covered = {(mo["year"], mo["month"]) for mo in monthly_summary}
+    with POWERTRAIN_CSV.open(encoding="utf-8") as fh:
+        for rec in csv.DictReader(fh):
+            year, month = int(rec["year"]), int(rec["month"])
+            if (year, month) in covered:
+                continue
+
+            def _int(key):
+                val = rec.get(key)
+                return int(val) if val not in (None, "") else None
+
+            monthly_summary.append(
+                {
+                    "year": year,
+                    "month": month,
+                    "label": f"{MONTH_NAMES[month - 1]} {year}",
+                    "total": None,
+                    "total_ytd": None,
+                    "bev": _int("bev"),
+                    "diesel": _int("diesel"),
+                    "plugin_hybrid": _int("plugin_hybrid"),
+                    "petrol": _int("petrol"),
+                    "hybrid_incl_plugin": None,
+                    "top_brands": [],
+                    "top_models": [],
+                }
+            )
+    return sorted(monthly_summary, key=lambda mo: (mo["year"], mo["month"]))
+
+
 def build_site_json(months: list[dict]) -> dict:
     """Assemble the compact summary the static site renders."""
     months.sort(key=lambda mo: (mo["year"], mo["month"]))
@@ -205,6 +252,17 @@ def build_site_json(months: list[dict]) -> dict:
         ]
 
         grand = total_row["metrics"] if total_row else None
+
+        # Pure-petrol registrations are not a column of their own in FZ 10.1;
+        # derive them so the powertrain trend has a consistent petrol series:
+        # petrol = total - diesel - (all hybrids incl. plug-in) - bev.
+        petrol = None
+        if grand:
+            parts = [grand[k]["month"] for k in
+                     ("total", "diesel", "hybrid_incl_plugin", "bev")]
+            if all(p is not None for p in parts):
+                petrol = parts[0] - parts[1] - parts[2] - parts[3]
+
         monthly_summary.append(
             {
                 "year": mo["year"],
@@ -215,13 +273,21 @@ def build_site_json(months: list[dict]) -> dict:
                 "bev": _n(grand["bev"]["month"]) if grand else None,
                 "diesel": _n(grand["diesel"]["month"]) if grand else None,
                 "plugin_hybrid": _n(grand["plugin_hybrid"]["month"]) if grand else None,
+                "petrol": _n(petrol),
                 "hybrid_incl_plugin": _n(grand["hybrid_incl_plugin"]["month"]) if grand else None,
                 "top_brands": top_brands,
                 "top_models": top_models_out,
             }
         )
 
-    latest = monthly_summary[-1] if monthly_summary else None
+    monthly_summary = merge_powertrain_history(monthly_summary)
+
+    # The latest fully-detailed month (with brand / model rankings) drives the
+    # headline sections; trend-only months from the supplementary series never
+    # become "latest".
+    latest = next(
+        (mo for mo in reversed(monthly_summary) if mo.get("top_brands")), None
+    )
     return {
         "country": "Germany",
         "source": "Kraftfahrt-Bundesamt (KBA), table FZ 10.1",

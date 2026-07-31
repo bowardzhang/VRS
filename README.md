@@ -27,6 +27,24 @@ Three small, dependency-light scripts, each runnable on its own:
 | `scripts/parse_germany.py`    | Parse every workbook into a tidy CSV + a compact JSON summary. |
 | `scripts/build_site.py`       | Bake the JSON into `docs/index.html` so the page is fully self-contained. |
 
+### Historical powertrain series
+
+`data/Germany/kba_monthly_powertrain.csv` holds a longer monthly series of new
+registrations by drivetrain (BEV, diesel, plug-in hybrid and petrol),
+**January 2021 – June 2026**. These are the official KBA FZ 10 figures — the
+`source_url` column points at each month's workbook — assembled from the
+open-source [`hboisgibault/ev-tracker`](https://github.com/hboisgibault/ev-tracker)
+project, which parses the same KBA workbooks, while a direct KBA download is
+unavailable in this environment (see the network note below). The June 2026
+values were cross-checked against the locally held `fz10_2026_06.xlsx` and match
+exactly.
+
+`parse_germany.py` merges this series into the site so the *powertrain-mix-over-
+time* chart spans several years; any month that also has a full FZ 10.1 workbook
+locally uses the richer workbook figures (and keeps its brand / model detail).
+As full workbooks are downloaded, they automatically take precedence over the
+supplementary rows.
+
 ## Usage
 
 ```bash
@@ -52,8 +70,9 @@ no external assets, light/dark aware). It shows, for the latest month:
 - headline registrations (month + year-to-date), BEV share and diesel share;
 - top brands and top model series (ranked bar charts);
 - powertrain penetration (BEV, hybrid, plug-in hybrid, diesel);
-- a monthly trend line, which appears automatically once two or more months of
-  data are present.
+- a **powertrain-mix-over-time** chart — one line per drivetrain (BEV, petrol,
+  diesel, plug-in hybrid) across every month available, which appears
+  automatically once two or more months of data are present.
 
 Serve it with GitHub Pages (set Pages source to `/docs`) or open the file
 directly. Rebuild after adding new months with steps 2–3 above.

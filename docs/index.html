@@ -118,8 +118,12 @@
   svg.trend { width: 100%; height: 260px; display: block; overflow: visible; }
   .trend-axis text { fill: var(--muted); font-size: 11px; }
   .trend-grid line { stroke: var(--grid); stroke-width: 1; }
-  .trend-line { fill: none; stroke: var(--s1); stroke-width: 2; }
-  .trend-dot { fill: var(--surface); stroke: var(--s1); stroke-width: 2; }
+  .trend-line { fill: none; stroke-width: 2; }
+  .trend-dot { fill: var(--surface); stroke-width: 1.5; }
+  .s-bev    { stroke: var(--s3); }   .s-bev.trend-dot    { fill: var(--s3); }
+  .s-petrol { stroke: var(--s2); }   .s-petrol.trend-dot { fill: var(--s2); }
+  .s-diesel { stroke: var(--s1); }   .s-diesel.trend-dot { fill: var(--s1); }
+  .s-phev   { stroke: var(--s4); }   .s-phev.trend-dot   { fill: var(--s4); }
   .tip {
     position: absolute; pointer-events: none; opacity: 0; transition: opacity .1s;
     background: var(--ink); color: var(--surface); font-size: 12px; padding: 6px 9px;
@@ -169,12 +173,13 @@
   </section>
 
   <section class="card" id="trendCard">
-    <h2>Monthly registrations over time</h2>
+    <h2>Powertrain mix over time</h2>
     <p class="note" id="trendNote"></p>
     <div class="trend-wrap">
-      <svg class="trend" id="trend" role="img" aria-label="Monthly total registrations"></svg>
+      <svg class="trend" id="trend" role="img" aria-label="Monthly new registrations by powertrain"></svg>
       <div class="tip" id="trendTip"></div>
     </div>
+    <div class="legend" id="trendLegend"></div>
   </section>
 
   <details class="table">
@@ -194,6 +199,916 @@
   "metric": "New passenger-car registrations (Neuzulassungen)",
   "months": [
     {
+      "year": 2021,
+      "month": 1,
+      "label": "January 2021",
+      "total": null,
+      "total_ytd": null,
+      "bev": 16315,
+      "diesel": 44327,
+      "plugin_hybrid": 20588,
+      "petrol": 63663,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2021,
+      "month": 2,
+      "label": "February 2021",
+      "total": null,
+      "total_ytd": null,
+      "bev": 18278,
+      "diesel": 49318,
+      "plugin_hybrid": 21879,
+      "petrol": 74049,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2021,
+      "month": 3,
+      "label": "March 2021",
+      "total": null,
+      "total_ytd": null,
+      "bev": 30101,
+      "diesel": 64518,
+      "plugin_hybrid": 35580,
+      "petrol": 116510,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2021,
+      "month": 4,
+      "label": "April 2021",
+      "total": null,
+      "total_ytd": null,
+      "bev": 23816,
+      "diesel": 50195,
+      "plugin_hybrid": 26988,
+      "petrol": 91545,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2021,
+      "month": 5,
+      "label": "May 2021",
+      "total": null,
+      "total_ytd": null,
+      "bev": 26786,
+      "diesel": 51456,
+      "plugin_hybrid": 27222,
+      "petrol": 88026,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2021,
+      "month": 6,
+      "label": "June 2021",
+      "total": null,
+      "total_ytd": null,
+      "bev": 33420,
+      "diesel": 54677,
+      "plugin_hybrid": 31314,
+      "petrol": 109491,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2021,
+      "month": 7,
+      "label": "July 2021",
+      "total": null,
+      "total_ytd": null,
+      "bev": 25464,
+      "diesel": 46660,
+      "plugin_hybrid": 30154,
+      "petrol": 94474,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2021,
+      "month": 8,
+      "label": "August 2021",
+      "total": null,
+      "total_ytd": null,
+      "bev": 28860,
+      "diesel": 34171,
+      "plugin_hybrid": 24497,
+      "petrol": 69556,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2021,
+      "month": 9,
+      "label": "September 2021",
+      "total": null,
+      "total_ytd": null,
+      "bev": 33655,
+      "diesel": 31336,
+      "plugin_hybrid": 22842,
+      "petrol": 71822,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2021,
+      "month": 10,
+      "label": "October 2021",
+      "total": null,
+      "total_ytd": null,
+      "bev": 30560,
+      "diesel": 30890,
+      "plugin_hybrid": 23734,
+      "petrol": 65906,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2021,
+      "month": 11,
+      "label": "November 2021",
+      "total": null,
+      "total_ytd": null,
+      "bev": 40270,
+      "diesel": 31252,
+      "plugin_hybrid": 27899,
+      "petrol": 67485,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2021,
+      "month": 12,
+      "label": "December 2021",
+      "total": null,
+      "total_ytd": null,
+      "bev": 48436,
+      "diesel": 35646,
+      "plugin_hybrid": 32752,
+      "petrol": 74610,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2022,
+      "month": 1,
+      "label": "January 2022",
+      "total": null,
+      "total_ytd": null,
+      "bev": 20892,
+      "diesel": 39713,
+      "plugin_hybrid": 18900,
+      "petrol": 69381,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "label": "February 2022",
+      "total": null,
+      "total_ytd": null,
+      "bev": 28306,
+      "diesel": 41471,
+      "plugin_hybrid": 21583,
+      "petrol": 71262,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "label": "March 2022",
+      "total": null,
+      "total_ytd": null,
+      "bev": 34474,
+      "diesel": 45069,
+      "plugin_hybrid": 27288,
+      "petrol": 86074,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "label": "April 2022",
+      "total": null,
+      "total_ytd": null,
+      "bev": 22175,
+      "diesel": 35289,
+      "plugin_hybrid": 21697,
+      "petrol": 66014,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "label": "May 2022",
+      "total": null,
+      "total_ytd": null,
+      "bev": 29182,
+      "diesel": 42000,
+      "plugin_hybrid": 23209,
+      "petrol": 75358,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "label": "June 2022",
+      "total": null,
+      "total_ytd": null,
+      "bev": 32234,
+      "diesel": 42495,
+      "plugin_hybrid": 26203,
+      "petrol": 84466,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "label": "July 2022",
+      "total": null,
+      "total_ytd": null,
+      "bev": 28815,
+      "diesel": 41386,
+      "plugin_hybrid": 23712,
+      "petrol": 75748,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "label": "August 2022",
+      "total": null,
+      "total_ytd": null,
+      "bev": 32006,
+      "diesel": 36332,
+      "plugin_hybrid": 24719,
+      "petrol": 71010,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "label": "September 2022",
+      "total": null,
+      "total_ytd": null,
+      "bev": 44389,
+      "diesel": 38159,
+      "plugin_hybrid": 28336,
+      "petrol": 73835,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "label": "October 2022",
+      "total": null,
+      "total_ytd": null,
+      "bev": 35781,
+      "diesel": 36554,
+      "plugin_hybrid": 32064,
+      "petrol": 67774,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "label": "November 2022",
+      "total": null,
+      "total_ytd": null,
+      "bev": 57980,
+      "diesel": 39881,
+      "plugin_hybrid": 44581,
+      "petrol": 74373,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "label": "December 2022",
+      "total": null,
+      "total_ytd": null,
+      "bev": 104325,
+      "diesel": 33925,
+      "plugin_hybrid": 69801,
+      "petrol": 65908,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2023,
+      "month": 1,
+      "label": "January 2023",
+      "total": null,
+      "total_ytd": null,
+      "bev": 18136,
+      "diesel": 39230,
+      "plugin_hybrid": 8853,
+      "petrol": 71109,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "label": "February 2023",
+      "total": null,
+      "total_ytd": null,
+      "bev": 32475,
+      "diesel": 38433,
+      "plugin_hybrid": 11916,
+      "petrol": 76322,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "label": "March 2023",
+      "total": null,
+      "total_ytd": null,
+      "bev": 44125,
+      "diesel": 48597,
+      "plugin_hybrid": 16776,
+      "petrol": 104610,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "label": "April 2023",
+      "total": null,
+      "total_ytd": null,
+      "bev": 29740,
+      "diesel": 36138,
+      "plugin_hybrid": 11787,
+      "petrol": 77601,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "label": "May 2023",
+      "total": null,
+      "total_ytd": null,
+      "bev": 42780,
+      "diesel": 43505,
+      "plugin_hybrid": 13803,
+      "petrol": 89036,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "label": "June 2023",
+      "total": null,
+      "total_ytd": null,
+      "bev": 52988,
+      "diesel": 46860,
+      "plugin_hybrid": 15930,
+      "petrol": 102042,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "label": "July 2023",
+      "total": null,
+      "total_ytd": null,
+      "bev": 48682,
+      "diesel": 42496,
+      "plugin_hybrid": 14345,
+      "petrol": 84616,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "label": "August 2023",
+      "total": null,
+      "total_ytd": null,
+      "bev": 86649,
+      "diesel": 39668,
+      "plugin_hybrid": 14552,
+      "petrol": 76704,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "label": "September 2023",
+      "total": null,
+      "total_ytd": null,
+      "bev": 31714,
+      "diesel": 39900,
+      "plugin_hybrid": 15383,
+      "petrol": 79710,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "label": "October 2023",
+      "total": null,
+      "total_ytd": null,
+      "bev": 37334,
+      "diesel": 34881,
+      "plugin_hybrid": 16361,
+      "petrol": 72808,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "label": "November 2023",
+      "total": null,
+      "total_ytd": null,
+      "bev": 44942,
+      "diesel": 39470,
+      "plugin_hybrid": 18124,
+      "petrol": 82702,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "label": "December 2023",
+      "total": null,
+      "total_ytd": null,
+      "bev": 54654,
+      "diesel": 37403,
+      "plugin_hybrid": 17894,
+      "petrol": 76245,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "label": "January 2024",
+      "total": null,
+      "total_ytd": null,
+      "bev": 22474,
+      "diesel": 40936,
+      "plugin_hybrid": 14394,
+      "petrol": 83647,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "label": "February 2024",
+      "total": null,
+      "total_ytd": null,
+      "bev": 27479,
+      "diesel": 42153,
+      "plugin_hybrid": 14575,
+      "petrol": 78389,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "label": "March 2024",
+      "total": null,
+      "total_ytd": null,
+      "bev": 31384,
+      "diesel": 48365,
+      "plugin_hybrid": 16016,
+      "petrol": 101046,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "label": "April 2024",
+      "total": null,
+      "total_ytd": null,
+      "bev": 29668,
+      "diesel": 46317,
+      "plugin_hybrid": 15135,
+      "petrol": 91935,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "label": "May 2024",
+      "total": null,
+      "total_ytd": null,
+      "bev": 29708,
+      "diesel": 44893,
+      "plugin_hybrid": 14038,
+      "petrol": 90373,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "label": "June 2024",
+      "total": null,
+      "total_ytd": null,
+      "bev": 43412,
+      "diesel": 52688,
+      "plugin_hybrid": 15391,
+      "petrol": 113259,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "label": "July 2024",
+      "total": null,
+      "total_ytd": null,
+      "bev": 30762,
+      "diesel": 43107,
+      "plugin_hybrid": 14811,
+      "petrol": 84524,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2024,
+      "month": 8,
+      "label": "August 2024",
+      "total": null,
+      "total_ytd": null,
+      "bev": 27024,
+      "diesel": 29974,
+      "plugin_hybrid": 13565,
+      "petrol": 70980,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "label": "September 2024",
+      "total": null,
+      "total_ytd": null,
+      "bev": 34479,
+      "diesel": 31115,
+      "plugin_hybrid": 14936,
+      "petrol": 67821,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "label": "October 2024",
+      "total": null,
+      "total_ytd": null,
+      "bev": 35491,
+      "diesel": 36172,
+      "plugin_hybrid": 19337,
+      "petrol": 75320,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "label": "November 2024",
+      "total": null,
+      "total_ytd": null,
+      "bev": 35167,
+      "diesel": 36510,
+      "plugin_hybrid": 20604,
+      "petrol": 78313,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "label": "December 2024",
+      "total": null,
+      "total_ytd": null,
+      "bev": 33561,
+      "diesel": 31031,
+      "plugin_hybrid": 19103,
+      "petrol": 70456,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "label": "January 2025",
+      "total": null,
+      "total_ytd": null,
+      "bev": 34498,
+      "diesel": 32956,
+      "plugin_hybrid": 17712,
+      "petrol": 63222,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "label": "February 2025",
+      "total": null,
+      "total_ytd": null,
+      "bev": 35949,
+      "diesel": 32116,
+      "plugin_hybrid": 19534,
+      "petrol": 57682,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "label": "March 2025",
+      "total": null,
+      "total_ytd": null,
+      "bev": 42521,
+      "diesel": 37890,
+      "plugin_hybrid": 26553,
+      "petrol": 71673,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2025,
+      "month": 4,
+      "label": "April 2025",
+      "total": null,
+      "total_ytd": null,
+      "bev": 45535,
+      "diesel": 37649,
+      "plugin_hybrid": 24317,
+      "petrol": 67848,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "label": "May 2025",
+      "total": null,
+      "total_ytd": null,
+      "bev": 43060,
+      "diesel": 35106,
+      "plugin_hybrid": 25181,
+      "petrol": 68960,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "label": "June 2025",
+      "total": null,
+      "total_ytd": null,
+      "bev": 47163,
+      "diesel": 35665,
+      "plugin_hybrid": 25608,
+      "petrol": 74425,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "label": "July 2025",
+      "total": null,
+      "total_ytd": null,
+      "bev": 48614,
+      "diesel": 40529,
+      "plugin_hybrid": 27197,
+      "petrol": 73290,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "label": "August 2025",
+      "total": null,
+      "total_ytd": null,
+      "bev": 39367,
+      "diesel": 27219,
+      "plugin_hybrid": 23973,
+      "petrol": 58065,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "label": "September 2025",
+      "total": null,
+      "total_ytd": null,
+      "bev": 45495,
+      "diesel": 28871,
+      "plugin_hybrid": 27685,
+      "petrol": 63950,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "label": "October 2025",
+      "total": null,
+      "total_ytd": null,
+      "bev": 52425,
+      "diesel": 30462,
+      "plugin_hybrid": 30946,
+      "petrol": 65648,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "label": "November 2025",
+      "total": null,
+      "total_ytd": null,
+      "bev": 55741,
+      "diesel": 29471,
+      "plugin_hybrid": 32433,
+      "petrol": 62110,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "label": "December 2025",
+      "total": null,
+      "total_ytd": null,
+      "bev": 54774,
+      "diesel": 27088,
+      "plugin_hybrid": 30259,
+      "petrol": 63045,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2026,
+      "month": 1,
+      "label": "January 2026",
+      "total": null,
+      "total_ytd": null,
+      "bev": 42692,
+      "diesel": 27309,
+      "plugin_hybrid": 21790,
+      "petrol": 43984,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2026,
+      "month": 2,
+      "label": "February 2026",
+      "total": null,
+      "total_ytd": null,
+      "bev": 46275,
+      "diesel": 31338,
+      "plugin_hybrid": 24328,
+      "petrol": 48811,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "label": "March 2026",
+      "total": null,
+      "total_ytd": null,
+      "bev": 70663,
+      "diesel": 37664,
+      "plugin_hybrid": 29996,
+      "petrol": 67988,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2026,
+      "month": 4,
+      "label": "April 2026",
+      "total": null,
+      "total_ytd": null,
+      "bev": 64350,
+      "diesel": 32437,
+      "plugin_hybrid": 27546,
+      "petrol": 54623,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
+      "year": 2026,
+      "month": 5,
+      "label": "May 2026",
+      "total": null,
+      "total_ytd": null,
+      "bev": 59969,
+      "diesel": 30547,
+      "plugin_hybrid": 27921,
+      "petrol": 53466,
+      "hybrid_incl_plugin": null,
+      "top_brands": [],
+      "top_models": []
+    },
+    {
       "year": 2026,
       "month": 6,
       "label": "June 2026",
@@ -202,6 +1117,7 @@
       "bev": 84057,
       "diesel": 33862,
       "plugin_hybrid": 32212,
+      "petrol": 62932,
       "hybrid_incl_plugin": 115527,
       "top_brands": [
         {
@@ -413,6 +1329,7 @@
     "bev": 84057,
     "diesel": 33862,
     "plugin_hybrid": 32212,
+    "petrol": 62932,
     "hybrid_incl_plugin": 115527,
     "top_brands": [
       {
@@ -697,16 +1614,30 @@
       document.getElementById("trendCard").style.display = "none";
       return;
     }
-    note.textContent = "Total new passenger-car registrations per month.";
+    var series = [
+      { key: "bev", name: "BEV", cls: "s-bev" },
+      { key: "petrol", name: "Petrol", cls: "s-petrol" },
+      { key: "diesel", name: "Diesel", cls: "s-diesel" },
+      { key: "plugin_hybrid", name: "Plug-in hybrid", cls: "s-phev" }
+    ].filter(function (s) {
+      return months.some(function (mo) { return mo[s.key] != null; });
+    });
+    note.textContent = "New passenger-car registrations per month by drivetrain, " +
+      months[0].label + " – " + months[months.length - 1].label + ".";
+
     var W = svg.clientWidth || 900, H = 260, m = { t: 16, r: 16, b: 28, l: 56 };
     var iw = W - m.l - m.r, ih = H - m.t - m.b;
-    var vals = months.map(function (mo) { return mo.total || 0; });
-    var maxV = Math.max.apply(null, vals) * 1.08;
+    var allVals = [];
+    series.forEach(function (s) {
+      months.forEach(function (mo) { if (mo[s.key] != null) allVals.push(mo[s.key]); });
+    });
+    var maxV = (Math.max.apply(null, allVals) || 1) * 1.08;
     var x = function (i) { return m.l + (months.length === 1 ? iw / 2 : iw * i / (months.length - 1)); };
     var y = function (v) { return m.t + ih - ih * v / maxV; };
     var ns = "http://www.w3.org/2000/svg";
     function el(t, a) { var e = document.createElementNS(ns, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
     svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+
     var g = el("g", { class: "trend-grid" });
     for (var t = 0; t <= 4; t++) {
       var gv = maxV * t / 4, gy = y(gv);
@@ -716,25 +1647,40 @@
       svg.appendChild(tx);
     }
     svg.appendChild(g);
-    var d = months.map(function (mo, i) { return (i ? "L" : "M") + x(i) + " " + y(mo.total || 0); }).join(" ");
-    svg.appendChild(el("path", { class: "trend-line", d: d }));
+
     var tip = document.getElementById("trendTip");
-    months.forEach(function (mo, i) {
-      var dot = el("circle", { class: "trend-dot", cx: x(i), cy: y(mo.total || 0), r: 4.5 });
-      dot.style.cursor = "pointer";
-      dot.addEventListener("mouseenter", function () {
-        tip.style.opacity = 1; tip.style.left = x(i) + "px"; tip.style.top = y(mo.total || 0) + "px";
-        tip.textContent = mo.label + ": " + fmt(mo.total);
+    series.forEach(function (s) {
+      var d = months.map(function (mo, i) {
+        return (i ? "L" : "M") + x(i) + " " + y(mo[s.key] || 0);
+      }).join(" ");
+      svg.appendChild(el("path", { class: "trend-line " + s.cls, d: d }));
+      months.forEach(function (mo, i) {
+        if (mo[s.key] == null) return;
+        var cx = x(i), cy = y(mo[s.key]);
+        var dot = el("circle", { class: "trend-dot " + s.cls, cx: cx, cy: cy, r: 3 });
+        dot.style.cursor = "pointer";
+        dot.addEventListener("mouseenter", function () {
+          tip.style.opacity = 1; tip.style.left = cx + "px"; tip.style.top = cy + "px";
+          tip.textContent = mo.label + " · " + s.name + ": " + fmt(mo[s.key]);
+        });
+        dot.addEventListener("mouseleave", function () { tip.style.opacity = 0; });
+        svg.appendChild(dot);
       });
-      dot.addEventListener("mouseleave", function () { tip.style.opacity = 0; });
-      svg.appendChild(dot);
-      if (months.length <= 14) {
+    });
+
+    if (months.length <= 14) {
+      months.forEach(function (mo, i) {
         var lx = el("text", { x: x(i), y: H - 8, "text-anchor": "middle" });
         lx.setAttribute("class", "trend-axis");
         lx.textContent = mo.label.replace(/ (\d{4})$/, "’" + "$1".slice(2));
         svg.appendChild(lx);
-      }
-    });
+      });
+    }
+
+    document.getElementById("trendLegend").innerHTML = series.map(function (s) {
+      var color = { "s-bev": "--s3", "s-petrol": "--s2", "s-diesel": "--s1", "s-phev": "--s4" }[s.cls];
+      return '<span><i class="swatch" style="background:var(' + color + ')"></i>' + s.name + '</span>';
+    }).join("");
   })();
 
   // ---- data table ----
