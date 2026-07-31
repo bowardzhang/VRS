@@ -1,0 +1,428 @@
+{
+  "country": "Germany",
+  "source": "Kraftfahrt-Bundesamt (KBA), table FZ 10.1",
+  "source_url": "https://www.kba.de/DE/Statistik/Produktkatalog/produkte/Fahrzeuge/fz10/fz10_gentab.html",
+  "metric": "New passenger-car registrations (Neuzulassungen)",
+  "months": [
+    {
+      "year": 2026,
+      "month": 6,
+      "label": "June 2026",
+      "total": 296378,
+      "total_ytd": 1484393,
+      "bev": 84057,
+      "diesel": 33862,
+      "plugin_hybrid": 32212,
+      "hybrid_incl_plugin": 115527,
+      "top_brands": [
+        {
+          "brand": "VW",
+          "total": 51058,
+          "bev": 8711,
+          "diesel": 10427,
+          "plugin_hybrid": 4973
+        },
+        {
+          "brand": "BMW",
+          "total": 26119,
+          "bev": 7705,
+          "diesel": 428,
+          "plugin_hybrid": 3224
+        },
+        {
+          "brand": "SKODA",
+          "total": 24963,
+          "bev": 6709,
+          "diesel": 5348,
+          "plugin_hybrid": 1751
+        },
+        {
+          "brand": "MERCEDES",
+          "total": 23728,
+          "bev": 5930,
+          "diesel": 4089,
+          "plugin_hybrid": 3297
+        },
+        {
+          "brand": "AUDI",
+          "total": 19097,
+          "bev": 4904,
+          "diesel": 887,
+          "plugin_hybrid": 4412
+        },
+        {
+          "brand": "SEAT",
+          "total": 17472,
+          "bev": 4571,
+          "diesel": 851,
+          "plugin_hybrid": 2318
+        },
+        {
+          "brand": "OPEL",
+          "total": 13097,
+          "bev": 2355,
+          "diesel": 1986,
+          "plugin_hybrid": 235
+        },
+        {
+          "brand": "FORD",
+          "total": 9693,
+          "bev": 2723,
+          "diesel": 2703,
+          "plugin_hybrid": 1736
+        },
+        {
+          "brand": "DACIA",
+          "total": 9454,
+          "bev": 1702,
+          "diesel": null,
+          "plugin_hybrid": null
+        },
+        {
+          "brand": "HYUNDAI",
+          "total": 8520,
+          "bev": 2900,
+          "diesel": null,
+          "plugin_hybrid": 444
+        },
+        {
+          "brand": "RENAULT",
+          "total": 8113,
+          "bev": 3190,
+          "diesel": 374,
+          "plugin_hybrid": 138
+        },
+        {
+          "brand": "TESLA",
+          "total": 7768,
+          "bev": 7768,
+          "diesel": null,
+          "plugin_hybrid": null
+        },
+        {
+          "brand": "FIAT",
+          "total": 6433,
+          "bev": 1629,
+          "diesel": 2804,
+          "plugin_hybrid": null
+        },
+        {
+          "brand": "BYD",
+          "total": 6259,
+          "bev": 2329,
+          "diesel": null,
+          "plugin_hybrid": 3930
+        },
+        {
+          "brand": "TOYOTA",
+          "total": 6072,
+          "bev": 985,
+          "diesel": 336,
+          "plugin_hybrid": 389
+        }
+      ],
+      "top_models": [
+        {
+          "brand": "VW",
+          "model": "GOLF",
+          "total": 8117,
+          "bev": null
+        },
+        {
+          "brand": "VW",
+          "model": "T-ROC",
+          "total": 6808,
+          "bev": null
+        },
+        {
+          "brand": "TESLA",
+          "model": "MODEL Y",
+          "total": 6023,
+          "bev": 6023
+        },
+        {
+          "brand": "VW",
+          "model": "TIGUAN",
+          "total": 5511,
+          "bev": null
+        },
+        {
+          "brand": "BMW",
+          "model": "X1",
+          "total": 5388,
+          "bev": 2628
+        },
+        {
+          "brand": "MINI",
+          "model": "MINI",
+          "total": 4936,
+          "bev": 2327
+        },
+        {
+          "brand": "MERCEDES",
+          "model": "GLK, GLC",
+          "total": 4716,
+          "bev": 1250
+        },
+        {
+          "brand": "SKODA",
+          "model": "OCTAVIA",
+          "total": 4713,
+          "bev": null
+        },
+        {
+          "brand": "AUDI",
+          "model": "A6",
+          "total": 4655,
+          "bev": 2274
+        },
+        {
+          "brand": "BMW",
+          "model": "X3",
+          "total": 4516,
+          "bev": 1688
+        },
+        {
+          "brand": "OPEL",
+          "model": "CORSA",
+          "total": 4233,
+          "bev": 797
+        },
+        {
+          "brand": "VW",
+          "model": "T-CROSS",
+          "total": 3991,
+          "bev": null
+        },
+        {
+          "brand": "AUDI",
+          "model": "A5",
+          "total": 3647,
+          "bev": null
+        },
+        {
+          "brand": "VW",
+          "model": "ID.3",
+          "total": 3514,
+          "bev": 3514
+        },
+        {
+          "brand": "VW",
+          "model": "TRANSPORTER",
+          "total": 3493,
+          "bev": 168
+        }
+      ]
+    }
+  ],
+  "latest": {
+    "year": 2026,
+    "month": 6,
+    "label": "June 2026",
+    "total": 296378,
+    "total_ytd": 1484393,
+    "bev": 84057,
+    "diesel": 33862,
+    "plugin_hybrid": 32212,
+    "hybrid_incl_plugin": 115527,
+    "top_brands": [
+      {
+        "brand": "VW",
+        "total": 51058,
+        "bev": 8711,
+        "diesel": 10427,
+        "plugin_hybrid": 4973
+      },
+      {
+        "brand": "BMW",
+        "total": 26119,
+        "bev": 7705,
+        "diesel": 428,
+        "plugin_hybrid": 3224
+      },
+      {
+        "brand": "SKODA",
+        "total": 24963,
+        "bev": 6709,
+        "diesel": 5348,
+        "plugin_hybrid": 1751
+      },
+      {
+        "brand": "MERCEDES",
+        "total": 23728,
+        "bev": 5930,
+        "diesel": 4089,
+        "plugin_hybrid": 3297
+      },
+      {
+        "brand": "AUDI",
+        "total": 19097,
+        "bev": 4904,
+        "diesel": 887,
+        "plugin_hybrid": 4412
+      },
+      {
+        "brand": "SEAT",
+        "total": 17472,
+        "bev": 4571,
+        "diesel": 851,
+        "plugin_hybrid": 2318
+      },
+      {
+        "brand": "OPEL",
+        "total": 13097,
+        "bev": 2355,
+        "diesel": 1986,
+        "plugin_hybrid": 235
+      },
+      {
+        "brand": "FORD",
+        "total": 9693,
+        "bev": 2723,
+        "diesel": 2703,
+        "plugin_hybrid": 1736
+      },
+      {
+        "brand": "DACIA",
+        "total": 9454,
+        "bev": 1702,
+        "diesel": null,
+        "plugin_hybrid": null
+      },
+      {
+        "brand": "HYUNDAI",
+        "total": 8520,
+        "bev": 2900,
+        "diesel": null,
+        "plugin_hybrid": 444
+      },
+      {
+        "brand": "RENAULT",
+        "total": 8113,
+        "bev": 3190,
+        "diesel": 374,
+        "plugin_hybrid": 138
+      },
+      {
+        "brand": "TESLA",
+        "total": 7768,
+        "bev": 7768,
+        "diesel": null,
+        "plugin_hybrid": null
+      },
+      {
+        "brand": "FIAT",
+        "total": 6433,
+        "bev": 1629,
+        "diesel": 2804,
+        "plugin_hybrid": null
+      },
+      {
+        "brand": "BYD",
+        "total": 6259,
+        "bev": 2329,
+        "diesel": null,
+        "plugin_hybrid": 3930
+      },
+      {
+        "brand": "TOYOTA",
+        "total": 6072,
+        "bev": 985,
+        "diesel": 336,
+        "plugin_hybrid": 389
+      }
+    ],
+    "top_models": [
+      {
+        "brand": "VW",
+        "model": "GOLF",
+        "total": 8117,
+        "bev": null
+      },
+      {
+        "brand": "VW",
+        "model": "T-ROC",
+        "total": 6808,
+        "bev": null
+      },
+      {
+        "brand": "TESLA",
+        "model": "MODEL Y",
+        "total": 6023,
+        "bev": 6023
+      },
+      {
+        "brand": "VW",
+        "model": "TIGUAN",
+        "total": 5511,
+        "bev": null
+      },
+      {
+        "brand": "BMW",
+        "model": "X1",
+        "total": 5388,
+        "bev": 2628
+      },
+      {
+        "brand": "MINI",
+        "model": "MINI",
+        "total": 4936,
+        "bev": 2327
+      },
+      {
+        "brand": "MERCEDES",
+        "model": "GLK, GLC",
+        "total": 4716,
+        "bev": 1250
+      },
+      {
+        "brand": "SKODA",
+        "model": "OCTAVIA",
+        "total": 4713,
+        "bev": null
+      },
+      {
+        "brand": "AUDI",
+        "model": "A6",
+        "total": 4655,
+        "bev": 2274
+      },
+      {
+        "brand": "BMW",
+        "model": "X3",
+        "total": 4516,
+        "bev": 1688
+      },
+      {
+        "brand": "OPEL",
+        "model": "CORSA",
+        "total": 4233,
+        "bev": 797
+      },
+      {
+        "brand": "VW",
+        "model": "T-CROSS",
+        "total": 3991,
+        "bev": null
+      },
+      {
+        "brand": "AUDI",
+        "model": "A5",
+        "total": 3647,
+        "bev": null
+      },
+      {
+        "brand": "VW",
+        "model": "ID.3",
+        "total": 3514,
+        "bev": 3514
+      },
+      {
+        "brand": "VW",
+        "model": "TRANSPORTER",
+        "total": 3493,
+        "bev": 168
+      }
+    ]
+  }
+}
