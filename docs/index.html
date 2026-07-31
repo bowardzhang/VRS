@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Germany — New Vehicle Registrations</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --page:        #f9f9f7;
+    --surface:     #fcfcfb;
+    --ink:         #0b0b0b;
+    --ink-2:       #52514e;
+    --muted:       #898781;
+    --grid:        #e1e0d9;
+    --axis:        #c3c2b7;
+    --border:      rgba(11,11,11,0.10);
+    --s1:          #2a78d6;  /* blue   */
+    --s2:          #eb6834;  /* orange */
+    --s3:          #1baf7a;  /* aqua   */
+    --s4:          #eda100;  /* yellow */
+    --good:        #006300;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page:    #0d0d0d;
+      --surface: #1a1a19;
+      --ink:     #ffffff;
+      --ink-2:   #c3c2b7;
+      --muted:   #898781;
+      --grid:    #2c2c2a;
+      --axis:    #383835;
+      --border:  rgba(255,255,255,0.10);
+      --s1:      #3987e5;
+      --s2:      #d95926;
+      --s3:      #199e70;
+      --s4:      #c98500;
+      --good:    #0ca30c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page:    #0d0d0d;
+    --surface: #1a1a19;
+    --ink:     #ffffff;
+    --ink-2:   #c3c2b7;
+    --muted:   #898781;
+    --grid:    #2c2c2a;
+    --axis:    #383835;
+    --border:  rgba(255,255,255,0.10);
+    --s1:      #3987e5;
+    --s2:      #d95926;
+    --s3:      #199e70;
+    --s4:      #c98500;
+    --good:    #0ca30c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 32px 20px 80px; }
+  header.site { margin-bottom: 8px; }
+  .eyebrow { font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+  h1 { font-size: clamp(26px, 4vw, 36px); margin: 0 0 6px; letter-spacing: -0.01em; }
+  .sub { color: var(--ink-2); margin: 0; font-size: 15px; }
+  .sub a { color: var(--s1); text-decoration: none; }
+  .sub a:hover { text-decoration: underline; }
+
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 28px 0 8px; }
+  @media (max-width: 720px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+  .kpi {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .kpi .label { font-size: 12.5px; color: var(--ink-2); margin: 0 0 8px; }
+  .kpi .value { font-size: 28px; font-weight: 650; letter-spacing: -0.01em; }
+  .kpi .value small { font-size: 15px; font-weight: 500; color: var(--muted); }
+  .kpi .foot { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  section.card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 22px 24px; margin-top: 20px;
+  }
+  section.card h2 { font-size: 18px; margin: 0 0 2px; letter-spacing: -0.01em; }
+  section.card .note { font-size: 13px; color: var(--muted); margin: 0 0 18px; }
+
+  .bars { display: flex; flex-direction: column; gap: 9px; }
+  .bar-row { display: grid; grid-template-columns: 150px 1fr; align-items: center; gap: 12px; }
+  @media (max-width: 560px) { .bar-row { grid-template-columns: 110px 1fr; } }
+  .bar-name { font-size: 13px; color: var(--ink-2); text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bar-track { position: relative; height: 22px; }
+  .bar-fill {
+    height: 100%; border-radius: 4px; min-width: 2px;
+    display: flex; align-items: center; justify-content: flex-end;
+    overflow: hidden; transition: filter .12s;
+  }
+  .bar-track:hover .bar-fill { filter: brightness(1.06); }
+  .bar-val-in {
+    color: #fff; font-size: 12px; font-variant-numeric: tabular-nums;
+    padding-right: 8px; white-space: nowrap;
+  }
+  .bar-val {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    font-size: 12px; font-variant-numeric: tabular-nums; color: var(--ink);
+    padding-left: 8px; white-space: nowrap;
+  }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; font-size: 12.5px; color: var(--ink-2); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+
+  /* trend */
+  .trend-wrap { position: relative; }
+  svg.trend { width: 100%; height: 260px; display: block; overflow: visible; }
+  .trend-axis text { fill: var(--muted); font-size: 11px; }
+  .trend-grid line { stroke: var(--grid); stroke-width: 1; }
+  .trend-line { fill: none; stroke: var(--s1); stroke-width: 2; }
+  .trend-dot { fill: var(--surface); stroke: var(--s1); stroke-width: 2; }
+  .tip {
+    position: absolute; pointer-events: none; opacity: 0; transition: opacity .1s;
+    background: var(--ink); color: var(--surface); font-size: 12px; padding: 6px 9px;
+    border-radius: 7px; white-space: nowrap; transform: translate(-50%, -130%); z-index: 5;
+  }
+
+  details.table { margin-top: 20px; }
+  details.table summary { cursor: pointer; font-size: 14px; color: var(--s1); }
+  table { border-collapse: collapse; width: 100%; margin-top: 12px; font-size: 13px; }
+  th, td { text-align: right; padding: 6px 10px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; font-variant-numeric: normal; }
+  th { color: var(--ink-2); font-weight: 600; }
+
+  footer.site { margin-top: 40px; font-size: 12.5px; color: var(--muted); }
+  footer.site a { color: var(--s1); text-decoration: none; }
+  .toggle { position: fixed; top: 14px; right: 14px; background: var(--surface); border: 1px solid var(--border);
+    color: var(--ink-2); border-radius: 8px; padding: 6px 10px; font-size: 12px; cursor: pointer; }
+</style>
+</head>
+<body>
+<button class="toggle" id="themeToggle" aria-label="Toggle theme">◐ Theme</button>
+<div class="wrap">
+  <header class="site">
+    <p class="eyebrow">Vehicle Registration Statistics</p>
+    <h1>Germany — New Passenger-Car Registrations</h1>
+    <p class="sub" id="subtitle"></p>
+  </header>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section class="card">
+    <h2>Top brands</h2>
+    <p class="note" id="brandsNote"></p>
+    <div class="bars" id="brandBars"></div>
+  </section>
+
+  <section class="card">
+    <h2>Top model series</h2>
+    <p class="note" id="modelsNote"></p>
+    <div class="bars" id="modelBars"></div>
+  </section>
+
+  <section class="card">
+    <h2>Powertrain penetration</h2>
+    <p class="note">Share of the month's new registrations. Categories overlap where a car qualifies for more than one (e.g. plug-in hybrids count within hybrids), so they are shown as independent penetration rates, not a stacked whole.</p>
+    <div class="bars" id="fuelBars"></div>
+  </section>
+
+  <section class="card" id="trendCard">
+    <h2>Monthly registrations over time</h2>
+    <p class="note" id="trendNote"></p>
+    <div class="trend-wrap">
+      <svg class="trend" id="trend" role="img" aria-label="Monthly total registrations"></svg>
+      <div class="tip" id="trendTip"></div>
+    </div>
+  </section>
+
+  <details class="table">
+    <summary>View data table — top brands (latest month)</summary>
+    <div id="tableWrap"></div>
+  </details>
+
+  <footer class="site">
+    <p id="footerText"></p>
+  </footer>
+</div>
+
+<script id="germany-data" type="application/json">{
+  "country": "Germany",
+  "source": "Kraftfahrt-Bundesamt (KBA), table FZ 10.1",
+  "source_url": "https://www.kba.de/DE/Statistik/Produktkatalog/produkte/Fahrzeuge/fz10/fz10_gentab.html",
+  "metric": "New passenger-car registrations (Neuzulassungen)",
+  "months": [
+    {
+      "year": 2026,
+      "month": 6,
+      "label": "June 2026",
+      "total": 296378,
+      "total_ytd": 1484393,
+      "bev": 84057,
+      "diesel": 33862,
+      "plugin_hybrid": 32212,
+      "hybrid_incl_plugin": 115527,
+      "top_brands": [
+        {
+          "brand": "VW",
+          "total": 51058,
+          "bev": 8711,
+          "diesel": 10427,
+          "plugin_hybrid": 4973
+        },
+        {
+          "brand": "BMW",
+          "total": 26119,
+          "bev": 7705,
+          "diesel": 428,
+          "plugin_hybrid": 3224
+        },
+        {
+          "brand": "SKODA",
+          "total": 24963,
+          "bev": 6709,
+          "diesel": 5348,
+          "plugin_hybrid": 1751
+        },
+        {
+          "brand": "MERCEDES",
+          "total": 23728,
+          "bev": 5930,
+          "diesel": 4089,
+          "plugin_hybrid": 3297
+        },
+        {
+          "brand": "AUDI",
+          "total": 19097,
+          "bev": 4904,
+          "diesel": 887,
+          "plugin_hybrid": 4412
+        },
+        {
+          "brand": "SEAT",
+          "total": 17472,
+          "bev": 4571,
+          "diesel": 851,
+          "plugin_hybrid": 2318
+        },
+        {
+          "brand": "OPEL",
+          "total": 13097,
+          "bev": 2355,
+          "diesel": 1986,
+          "plugin_hybrid": 235
+        },
+        {
+          "brand": "FORD",
+          "total": 9693,
+          "bev": 2723,
+          "diesel": 2703,
+          "plugin_hybrid": 1736
+        },
+        {
+          "brand": "DACIA",
+          "total": 9454,
+          "bev": 1702,
+          "diesel": null,
+          "plugin_hybrid": null
+        },
+        {
+          "brand": "HYUNDAI",
+          "total": 8520,
+          "bev": 2900,
+          "diesel": null,
+          "plugin_hybrid": 444
+        },
+        {
+          "brand": "RENAULT",
+          "total": 8113,
+          "bev": 3190,
+          "diesel": 374,
+          "plugin_hybrid": 138
+        },
+        {
+          "brand": "TESLA",
+          "total": 7768,
+          "bev": 7768,
+          "diesel": null,
+          "plugin_hybrid": null
+        },
+        {
+          "brand": "FIAT",
+          "total": 6433,
+          "bev": 1629,
+          "diesel": 2804,
+          "plugin_hybrid": null
+        },
+        {
+          "brand": "BYD",
+          "total": 6259,
+          "bev": 2329,
+          "diesel": null,
+          "plugin_hybrid": 3930
+        },
+        {
+          "brand": "TOYOTA",
+          "total": 6072,
+          "bev": 985,
+          "diesel": 336,
+          "plugin_hybrid": 389
+        }
+      ],
+      "top_models": [
+        {
+          "brand": "VW",
+          "model": "GOLF",
+          "total": 8117,
+          "bev": null
+        },
+        {
+          "brand": "VW",
+          "model": "T-ROC",
+          "total": 6808,
+          "bev": null
+        },
+        {
+          "brand": "TESLA",
+          "model": "MODEL Y",
+          "total": 6023,
+          "bev": 6023
+        },
+        {
+          "brand": "VW",
+          "model": "TIGUAN",
+          "total": 5511,
+          "bev": null
+        },
+        {
+          "brand": "BMW",
+          "model": "X1",
+          "total": 5388,
+          "bev": 2628
+        },
+        {
+          "brand": "MINI",
+          "model": "MINI",
+          "total": 4936,
+          "bev": 2327
+        },
+        {
+          "brand": "MERCEDES",
+          "model": "GLK, GLC",
+          "total": 4716,
+          "bev": 1250
+        },
+        {
+          "brand": "SKODA",
+          "model": "OCTAVIA",
+          "total": 4713,
+          "bev": null
+        },
+        {
+          "brand": "AUDI",
+          "model": "A6",
+          "total": 4655,
+          "bev": 2274
+        },
+        {
+          "brand": "BMW",
+          "model": "X3",
+          "total": 4516,
+          "bev": 1688
+        },
+        {
+          "brand": "OPEL",
+          "model": "CORSA",
+          "total": 4233,
+          "bev": 797
+        },
+        {
+          "brand": "VW",
+          "model": "T-CROSS",
+          "total": 3991,
+          "bev": null
+        },
+        {
+          "brand": "AUDI",
+          "model": "A5",
+          "total": 3647,
+          "bev": null
+        },
+        {
+          "brand": "VW",
+          "model": "ID.3",
+          "total": 3514,
+          "bev": 3514
+        },
+        {
+          "brand": "VW",
+          "model": "TRANSPORTER",
+          "total": 3493,
+          "bev": 168
+        }
+      ]
+    }
+  ],
+  "latest": {
+    "year": 2026,
+    "month": 6,
+    "label": "June 2026",
+    "total": 296378,
+    "total_ytd": 1484393,
+    "bev": 84057,
+    "diesel": 33862,
+    "plugin_hybrid": 32212,
+    "hybrid_incl_plugin": 115527,
+    "top_brands": [
+      {
+        "brand": "VW",
+        "total": 51058,
+        "bev": 8711,
+        "diesel": 10427,
+        "plugin_hybrid": 4973
+      },
+      {
+        "brand": "BMW",
+        "total": 26119,
+        "bev": 7705,
+        "diesel": 428,
+        "plugin_hybrid": 3224
+      },
+      {
+        "brand": "SKODA",
+        "total": 24963,
+        "bev": 6709,
+        "diesel": 5348,
+        "plugin_hybrid": 1751
+      },
+      {
+        "brand": "MERCEDES",
+        "total": 23728,
+        "bev": 5930,
+        "diesel": 4089,
+        "plugin_hybrid": 3297
+      },
+      {
+        "brand": "AUDI",
+        "total": 19097,
+        "bev": 4904,
+        "diesel": 887,
+        "plugin_hybrid": 4412
+      },
+      {
+        "brand": "SEAT",
+        "total": 17472,
+        "bev": 4571,
+        "diesel": 851,
+        "plugin_hybrid": 2318
+      },
+      {
+        "brand": "OPEL",
+        "total": 13097,
+        "bev": 2355,
+        "diesel": 1986,
+        "plugin_hybrid": 235
+      },
+      {
+        "brand": "FORD",
+        "total": 9693,
+        "bev": 2723,
+        "diesel": 2703,
+        "plugin_hybrid": 1736
+      },
+      {
+        "brand": "DACIA",
+        "total": 9454,
+        "bev": 1702,
+        "diesel": null,
+        "plugin_hybrid": null
+      },
+      {
+        "brand": "HYUNDAI",
+        "total": 8520,
+        "bev": 2900,
+        "diesel": null,
+        "plugin_hybrid": 444
+      },
+      {
+        "brand": "RENAULT",
+        "total": 8113,
+        "bev": 3190,
+        "diesel": 374,
+        "plugin_hybrid": 138
+      },
+      {
+        "brand": "TESLA",
+        "total": 7768,
+        "bev": 7768,
+        "diesel": null,
+        "plugin_hybrid": null
+      },
+      {
+        "brand": "FIAT",
+        "total": 6433,
+        "bev": 1629,
+        "diesel": 2804,
+        "plugin_hybrid": null
+      },
+      {
+        "brand": "BYD",
+        "total": 6259,
+        "bev": 2329,
+        "diesel": null,
+        "plugin_hybrid": 3930
+      },
+      {
+        "brand": "TOYOTA",
+        "total": 6072,
+        "bev": 985,
+        "diesel": 336,
+        "plugin_hybrid": 389
+      }
+    ],
+    "top_models": [
+      {
+        "brand": "VW",
+        "model": "GOLF",
+        "total": 8117,
+        "bev": null
+      },
+      {
+        "brand": "VW",
+        "model": "T-ROC",
+        "total": 6808,
+        "bev": null
+      },
+      {
+        "brand": "TESLA",
+        "model": "MODEL Y",
+        "total": 6023,
+        "bev": 6023
+      },
+      {
+        "brand": "VW",
+        "model": "TIGUAN",
+        "total": 5511,
+        "bev": null
+      },
+      {
+        "brand": "BMW",
+        "model": "X1",
+        "total": 5388,
+        "bev": 2628
+      },
+      {
+        "brand": "MINI",
+        "model": "MINI",
+        "total": 4936,
+        "bev": 2327
+      },
+      {
+        "brand": "MERCEDES",
+        "model": "GLK, GLC",
+        "total": 4716,
+        "bev": 1250
+      },
+      {
+        "brand": "SKODA",
+        "model": "OCTAVIA",
+        "total": 4713,
+        "bev": null
+      },
+      {
+        "brand": "AUDI",
+        "model": "A6",
+        "total": 4655,
+        "bev": 2274
+      },
+      {
+        "brand": "BMW",
+        "model": "X3",
+        "total": 4516,
+        "bev": 1688
+      },
+      {
+        "brand": "OPEL",
+        "model": "CORSA",
+        "total": 4233,
+        "bev": 797
+      },
+      {
+        "brand": "VW",
+        "model": "T-CROSS",
+        "total": 3991,
+        "bev": null
+      },
+      {
+        "brand": "AUDI",
+        "model": "A5",
+        "total": 3647,
+        "bev": null
+      },
+      {
+        "brand": "VW",
+        "model": "ID.3",
+        "total": 3514,
+        "bev": 3514
+      },
+      {
+        "brand": "VW",
+        "model": "TRANSPORTER",
+        "total": 3493,
+        "bev": 168
+      }
+    ]
+  }
+}</script>
+<script>
+(function () {
+  "use strict";
+  var DATA;
+  try {
+    DATA = JSON.parse(document.getElementById("germany-data").textContent);
+  } catch (e) {
+    document.getElementById("subtitle").textContent = "No data available yet.";
+    return;
+  }
+  var months = DATA.months || [];
+  var latest = DATA.latest;
+  var fmt = function (n) { return n == null ? "–" : n.toLocaleString("en-US"); };
+  var pct = function (part, whole) { return whole ? (100 * part / whole) : 0; };
+
+  // ---- subtitle ----
+  document.getElementById("subtitle").innerHTML =
+    "Monthly new-registration statistics by brand and model. Source: " +
+    '<a href="' + DATA.source_url + '" target="_blank" rel="noopener">' + DATA.source + "</a>.";
+
+  if (!latest) return;
+
+  // ---- KPIs ----
+  var kpiDefs = [
+    { label: latest.label + " — total registrations", value: fmt(latest.total) },
+    { label: "Year to date", value: fmt(latest.total_ytd) },
+    { label: "Battery-electric (BEV) share", value: pct(latest.bev, latest.total).toFixed(1) + "%", foot: fmt(latest.bev) + " cars" },
+    { label: "Diesel share", value: pct(latest.diesel, latest.total).toFixed(1) + "%", foot: fmt(latest.diesel) + " cars" }
+  ];
+  document.getElementById("kpis").innerHTML = kpiDefs.map(function (k) {
+    return '<div class="kpi"><p class="label">' + k.label + '</p>' +
+      '<div class="value">' + k.value + '</div>' +
+      (k.foot ? '<div class="foot">' + k.foot + '</div>' : '') + '</div>';
+  }).join("");
+
+  // ---- horizontal bar helper ----
+  function renderBars(el, rows, opts) {
+    var max = Math.max.apply(null, rows.map(function (r) { return r.value || 0; })) || 1;
+    el.innerHTML = rows.map(function (r) {
+      var w = Math.max(2, (100 * (r.value || 0) / max));
+      var color = r.color || "var(--s1)";
+      var inside = w > 24;
+      var label = opts && opts.percent ? (r.value.toFixed(1) + "%") : fmt(r.value);
+      // Inside labels ride the fill's right edge (white on color); short bars
+      // get an outside label anchored just past the fill (ink on surface).
+      var fill = '<div class="bar-fill" style="width:' + w + '%;background:' + color + '">' +
+        (inside ? '<span class="bar-val-in">' + label + '</span>' : '') + '</div>';
+      var outside = inside ? '' :
+        '<span class="bar-val" style="left:' + w + '%">' + label + '</span>';
+      return '<div class="bar-row">' +
+        '<div class="bar-name" title="' + r.name + '">' + r.name + '</div>' +
+        '<div class="bar-track">' + fill + outside + '</div></div>';
+    }).join("");
+  }
+
+  // ---- top brands ----
+  document.getElementById("brandsNote").textContent = latest.label + " — passenger cars registered, by brand.";
+  renderBars(document.getElementById("brandBars"),
+    latest.top_brands.map(function (b) { return { name: b.brand, value: b.total }; }));
+
+  // ---- top models ----
+  document.getElementById("modelsNote").textContent = latest.label + " — passenger cars registered, by model series.";
+  renderBars(document.getElementById("modelBars"),
+    latest.top_models.map(function (m) { return { name: m.brand + " " + m.model, value: m.total }; }));
+
+  // ---- powertrain penetration ----
+  var fuelRows = [
+    { name: "Battery-electric", value: pct(latest.bev, latest.total), color: "var(--s1)" },
+    { name: "Hybrid (incl. PHEV)", value: pct(latest.hybrid_incl_plugin, latest.total), color: "var(--s3)" },
+    { name: "Plug-in hybrid", value: pct(latest.plugin_hybrid, latest.total), color: "var(--s2)" },
+    { name: "Diesel", value: pct(latest.diesel, latest.total), color: "var(--s4)" }
+  ];
+  renderBars(document.getElementById("fuelBars"), fuelRows, { percent: true });
+
+  // ---- monthly trend ----
+  (function () {
+    var note = document.getElementById("trendNote");
+    var svg = document.getElementById("trend");
+    if (months.length < 2) {
+      document.getElementById("trendCard").style.display = "none";
+      return;
+    }
+    note.textContent = "Total new passenger-car registrations per month.";
+    var W = svg.clientWidth || 900, H = 260, m = { t: 16, r: 16, b: 28, l: 56 };
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    var vals = months.map(function (mo) { return mo.total || 0; });
+    var maxV = Math.max.apply(null, vals) * 1.08;
+    var x = function (i) { return m.l + (months.length === 1 ? iw / 2 : iw * i / (months.length - 1)); };
+    var y = function (v) { return m.t + ih - ih * v / maxV; };
+    var ns = "http://www.w3.org/2000/svg";
+    function el(t, a) { var e = document.createElementNS(ns, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    var g = el("g", { class: "trend-grid" });
+    for (var t = 0; t <= 4; t++) {
+      var gv = maxV * t / 4, gy = y(gv);
+      g.appendChild(el("line", { x1: m.l, x2: W - m.r, y1: gy, y2: gy }));
+      var tx = el("text", { x: m.l - 8, y: gy + 4, "text-anchor": "end" });
+      tx.setAttribute("class", "trend-axis"); tx.textContent = Math.round(gv / 1000) + "k";
+      svg.appendChild(tx);
+    }
+    svg.appendChild(g);
+    var d = months.map(function (mo, i) { return (i ? "L" : "M") + x(i) + " " + y(mo.total || 0); }).join(" ");
+    svg.appendChild(el("path", { class: "trend-line", d: d }));
+    var tip = document.getElementById("trendTip");
+    months.forEach(function (mo, i) {
+      var dot = el("circle", { class: "trend-dot", cx: x(i), cy: y(mo.total || 0), r: 4.5 });
+      dot.style.cursor = "pointer";
+      dot.addEventListener("mouseenter", function () {
+        tip.style.opacity = 1; tip.style.left = x(i) + "px"; tip.style.top = y(mo.total || 0) + "px";
+        tip.textContent = mo.label + ": " + fmt(mo.total);
+      });
+      dot.addEventListener("mouseleave", function () { tip.style.opacity = 0; });
+      svg.appendChild(dot);
+      if (months.length <= 14) {
+        var lx = el("text", { x: x(i), y: H - 8, "text-anchor": "middle" });
+        lx.setAttribute("class", "trend-axis");
+        lx.textContent = mo.label.replace(/ (\d{4})$/, "’" + "$1".slice(2));
+        svg.appendChild(lx);
+      }
+    });
+  })();
+
+  // ---- data table ----
+  var t = ['<table><thead><tr><th>#</th><th>Brand</th><th>Total</th><th>BEV</th><th>Diesel</th><th>Plug-in hybrid</th></tr></thead><tbody>'];
+  latest.top_brands.forEach(function (b, i) {
+    t.push('<tr><td>' + (i + 1) + '</td><td>' + b.brand + '</td><td>' + fmt(b.total) +
+      '</td><td>' + fmt(b.bev) + '</td><td>' + fmt(b.diesel) + '</td><td>' + fmt(b.plugin_hybrid) + '</td></tr>');
+  });
+  t.push('</tbody></table>');
+  document.getElementById("tableWrap").innerHTML = t.join("");
+
+  document.getElementById("footerText").innerHTML =
+    "Data: " + DATA.source + ". Metric: " + DATA.metric + ". " +
+    "Figures are official KBA new-registration counts. Generated from workbook table FZ 10.1.";
+
+  // ---- theme toggle ----
+  document.getElementById("themeToggle").addEventListener("click", function () {
+    var cur = document.documentElement.getAttribute("data-theme");
+    var next = cur === "dark" ? "light" : (cur === "light" ? "dark" :
+      (matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark"));
+    document.documentElement.setAttribute("data-theme", next);
+  });
+})();
+</script>
+</body>
+</html>

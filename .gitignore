@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node (only used for local screenshot tooling, never committed)
+node_modules/
+package.json
+package-lock.json
+
+# OS / editor
+.DS_Store
