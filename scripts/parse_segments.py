@@ -71,6 +71,19 @@ def _label(row, upto: int = 4) -> str:
     return " ".join(parts)
 
 
+def _first_number(row) -> float | None:
+    """First numeric cell in a row — the Insgesamt (monthly total) column.
+
+    FZ 11 prefixes an extra segment column, so the total is not at a fixed index;
+    on a segment subtotal row the first number is the segment's monthly total.
+    """
+    for c in row:
+        v = _num(c)
+        if v is not None:
+            return v
+    return None
+
+
 def parse_fz11(path: Path, *, dump: bool = False) -> dict[str, float]:
     """Return {segment label: monthly total} for one FZ 11 workbook."""
     wb = openpyxl.load_workbook(path, data_only=True, read_only=True)
@@ -78,35 +91,22 @@ def parse_fz11(path: Path, *, dump: bool = False) -> dict[str, float]:
     rows = [list(r) for r in ws.iter_rows(values_only=True)]
     wb.close()
 
-    # Locate the header row + the "Insgesamt" (monthly total) column.
-    total_col = header_idx = None
-    for i, row in enumerate(rows[:20]):
-        for j, c in enumerate(row):
-            if isinstance(c, str) and "insgesamt" in c.lower():
-                total_col, header_idx = j, i
-                break
-        if total_col is not None:
-            break
-
     if dump:
-        print(f"[segments] sheet='{ws.title}' rows={len(rows)} "
-              f"header_idx={header_idx} total_col={total_col}", file=sys.stderr)
+        print(f"[segments] sheet='{ws.title}' rows={len(rows)}", file=sys.stderr)
         for i, row in enumerate(rows[:28]):
             lab = _label(row, 6)
             if lab:
-                tv = row[total_col] if (total_col is not None and total_col < len(row)) else None
-                print(f"[segments]   r{i}: '{lab[:48]}' | total={tv}", file=sys.stderr)
+                print(f"[segments]   r{i}: '{lab[:48]}' | first_num={_first_number(row)}",
+                      file=sys.stderr)
 
     segs: dict[str, float] = {}
-    if total_col is None:
-        return segs
-    for row in rows[(header_idx or 0) + 1:]:
+    for row in rows:
         label = _label(row).upper()
         if not label or GRAND_TOTAL in label:
             continue
         if label.endswith("ZUSAMMEN"):
             seg = label[: -len("ZUSAMMEN")].strip()
-            val = _num(row[total_col]) if total_col < len(row) else None
+            val = _first_number(row)
             if seg and val is not None:
                 segs[seg] = val
     return segs
