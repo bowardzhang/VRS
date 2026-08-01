@@ -47,18 +47,26 @@ except ImportError:  # pragma: no cover
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "Germany"
 
-# KBA download location for the FZ 10 monthly workbooks. The ``v`` (version)
-# query parameter changes per publication and cannot be guessed reliably, so we
-# first *discover* the real link from the month's landing page (see
-# ``discover_xlsx_url``) and only fall back to probing a few version values.
+# KBA monthly tables this script can fetch (code -> folder / file prefix):
+#   fz10  Neuzulassungen nach Marken und Modellreihen  (brand / model)
+#   fz11  Neuzulassungen nach Segmenten und Modellreihen (body segment)
+TABLES = {
+    "fz10": ("FZ10", "fz10"),
+    "fz11": ("FZ11", "fz11"),
+}
+
+# Download URL for a month's workbook. The ``v`` (version) query parameter
+# changes per publication and cannot be guessed reliably, so we first *discover*
+# the real link from the month's landing page (see ``discover_xlsx_url``) and
+# only fall back to probing a few version values.
 BASE_URL = (
-    "https://www.kba.de/SharedDocs/Downloads/DE/Statistik/Fahrzeuge/FZ10/"
-    "fz10_{year}_{month:02d}.xlsx"
+    "https://www.kba.de/SharedDocs/Downloads/DE/Statistik/Fahrzeuge/{folder}/"
+    "{prefix}_{year}_{month:02d}.xlsx"
 )
 # The landing (.html) page for a month embeds the correct download URL.
 LANDING_URL = (
-    "https://www.kba.de/SharedDocs/Downloads/DE/Statistik/Fahrzeuge/FZ10/"
-    "fz10_{year}_{month:02d}.html"
+    "https://www.kba.de/SharedDocs/Downloads/DE/Statistik/Fahrzeuge/{folder}/"
+    "{prefix}_{year}_{month:02d}.html"
 )
 VERSION_CANDIDATES = ["", "?__blob=publicationFile"] + [
     f"?__blob=publicationFile&v={v}" for v in range(1, 13)
@@ -101,15 +109,15 @@ def parse_month(value: str) -> date:
         ) from exc
 
 
-def discover_xlsx_url(year: int, month: int) -> str | None:
+def discover_xlsx_url(year: int, month: int, folder: str, prefix: str) -> str | None:
     """Find the real .xlsx download URL from the month's landing page.
 
     KBA's workbook links carry an unpredictable ``?__blob=publicationFile&v=N``
     version parameter. The landing (.html) page for the month embeds the correct
-    link, so we fetch it and extract the ``fz10_<year>_<month>.xlsx`` href.
+    link, so we fetch it and extract the ``<prefix>_<year>_<month>.xlsx`` href.
     Returns an absolute URL, or ``None`` if the page or link is unavailable.
     """
-    landing = LANDING_URL.format(year=year, month=month)
+    landing = LANDING_URL.format(folder=folder, prefix=prefix, year=year, month=month)
     try:
         resp = requests.get(landing, headers=HEADERS, timeout=60)
     except requests.RequestException as exc:
@@ -122,7 +130,7 @@ def discover_xlsx_url(year: int, month: int) -> str | None:
         return None
 
     pattern = re.compile(
-        rf"([^\"'\s]*fz10_{year}_{month:02d}\.xlsx(?:\?[^\"'\s]*)?)",
+        rf"([^\"'\s]*{prefix}_{year}_{month:02d}\.xlsx(?:\?[^\"'\s]*)?)",
         re.IGNORECASE,
     )
     match = pattern.search(resp.text)
@@ -131,19 +139,20 @@ def discover_xlsx_url(year: int, month: int) -> str | None:
     return urljoin(landing, match.group(1))
 
 
-def download_month(year: int, month: int, *, force: bool = False) -> bool:
-    """Download one month's FZ 10.1 workbook. Return True on success/skip."""
-    out_path = OUT_DIR / f"fz10_{year}_{month:02d}.xlsx"
+def download_month(year: int, month: int, *, table: str = "fz10", force: bool = False) -> bool:
+    """Download one month's workbook for ``table``. Return True on success/skip."""
+    folder, prefix = TABLES[table]
+    out_path = OUT_DIR / f"{prefix}_{year}_{month:02d}.xlsx"
     if out_path.exists() and not force:
         print(f"[skip] {out_path.name} already exists")
         return True
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    base = BASE_URL.format(year=year, month=month)
+    base = BASE_URL.format(folder=folder, prefix=prefix, year=year, month=month)
 
     # Try the discovered URL first, then fall back to probing version params.
     candidates: list[str] = []
-    discovered = discover_xlsx_url(year, month)
+    discovered = discover_xlsx_url(year, month, folder, prefix)
     if discovered:
         candidates.append(discovered)
     candidates.extend(base + suffix for suffix in VERSION_CANDIDATES)
@@ -179,6 +188,10 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--force", action="store_true", help="Re-download existing files")
     parser.add_argument(
+        "--table", choices=sorted(TABLES), default="fz10",
+        help="Which KBA table to fetch: fz10 (brands/models) or fz11 (segments)",
+    )
+    parser.add_argument(
         "--allow-missing", action="store_true",
         help="Exit 0 even if some months are unavailable (e.g. not yet published)",
     )
@@ -200,9 +213,9 @@ def main(argv: list[str] | None = None) -> int:
 
     ok = 0
     for year, month in months:
-        if download_month(year, month, force=args.force):
+        if download_month(year, month, table=args.table, force=args.force):
             ok += 1
-    print(f"\nDone: {ok}/{len(months)} month(s) available in {OUT_DIR}")
+    print(f"\nDone: {ok}/{len(months)} {args.table} month(s) available in {OUT_DIR}")
     if args.allow_missing:
         return 0
     return 0 if ok == len(months) else 1

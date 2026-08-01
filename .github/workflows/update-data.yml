@@ -40,13 +40,16 @@ jobs:
         # Scheduled runs fetch the trailing 3 months (skipping ones already on
         # disk); manual runs can pass a larger window for a backfill.
         # --allow-missing keeps the job green when a month is not yet published.
+        # FZ 10 = brands/models/powertrain, FZ 11 = body segments.
         run: |
           MONTHS="${{ github.event.inputs.months || '3' }}"
-          python scripts/download_germany.py --last "$MONTHS" --allow-missing
+          python scripts/download_germany.py --table fz10 --last "$MONTHS" --allow-missing
+          python scripts/download_germany.py --table fz11 --last "$MONTHS" --allow-missing
 
       - name: Parse workbooks and rebuild site
         run: |
           python scripts/parse_germany.py
+          python scripts/parse_segments.py
           python scripts/build_site.py
 
       - name: Commit updated data and site

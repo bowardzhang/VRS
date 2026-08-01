@@ -239,9 +239,13 @@
 
   <section class="card" id="segmentCard">
     <h2>Registrations by body segment</h2>
-    <p class="note">Sedan / SUV / MPV / sports-car breakdowns are not part of table
-      FZ 10.1 (which is by brand and model series). They are published in KBA table
-      <strong>FZ 11 (Segmente)</strong> — a planned addition to this pipeline.</p>
+    <p class="note" id="segmentNote"></p>
+    <div class="trend-wrap" id="segmentWrap">
+      <svg class="trend" id="segmentChart" role="img" aria-label="Monthly new registrations by body segment"></svg>
+      <div class="tip" id="segmentTip"></div>
+    </div>
+    <div class="legend" id="segmentLegend"></div>
+    <p class="chart-note-sm" id="segmentSrc"></p>
   </section>
 
   <details class="table">
@@ -9226,6 +9230,31 @@
       "Monthly registrations by manufacturer country of origin (stacked), " + ot.labels[0] + " – " + ot.labels[ot.labels.length - 1] + ".";
     if (!stackedArea(document.getElementById("originChart"), document.getElementById("originTip"), document.getElementById("originLegend"), ot, { topDown: true }))
       document.getElementById("originCard").style.display = "none";
+  })();
+
+  // ---- body segment (line) ----
+  (function () {
+    var st = DATA.segment_trends;
+    var wrap = document.getElementById("segmentWrap");
+    var legend = document.getElementById("segmentLegend");
+    var src = document.getElementById("segmentSrc");
+    if (!st || !st.series || !st.series.length) {
+      // No FZ 11 data yet — keep the section as an explanatory placeholder.
+      wrap.style.display = "none"; legend.style.display = "none"; src.style.display = "none";
+      document.getElementById("segmentNote").innerHTML =
+        "Body-shape breakdowns (sedan/hatch, SUV, MPV/van, sports) come from KBA " +
+        "table <strong>FZ 11 (Segmente)</strong>. No FZ 11 workbooks have been " +
+        "downloaded yet — the monthly job will populate this chart automatically.";
+      return;
+    }
+    document.getElementById("segmentNote").textContent =
+      "New passenger-car registrations per month by body shape, " +
+      st.labels[0] + " – " + st.labels[st.labels.length - 1] + ".";
+    src.innerHTML = "Source: KBA table <strong>FZ 11 (Segmente)</strong>. KBA size/segment " +
+      "classes are grouped into body shapes (all size classes → sedan &amp; hatch; " +
+      "SUVs + Geländewagen → SUV; Mini-/Großraum-Vans → MPV &amp; van; Sportwagen → sports).";
+    if (!lineChart(document.getElementById("segmentChart"), document.getElementById("segmentTip"), legend, st))
+      document.getElementById("segmentCard").style.display = "none";
   })();
 
   // ---- data table ----
