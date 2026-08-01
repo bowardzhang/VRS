@@ -92,14 +92,21 @@ five mutually-exclusive drivetrains with per-slice year-over-year change.
 
 ### Deep-dive sub-pages
 
-The **manufacturer-origin** chart title links to a secondary analysis page.
-`docs/analysis-china.html` drills into **Chinese-origin marques**: monthly
-registrations, market-share trend, per-brand trends, and the top Chinese brands
-and model series (with logos and year-over-year change). Its data comes from the
-`china` block that `parse_germany.py` (`build_origin_analysis`) adds to
-`germany.json`; `build_site.py` bakes `germany.json` + `data/brand_logos.json`
-into every page in its `PAGES` list, so sub-pages stay self-contained and update
-on the same monthly schedule.
+Two chart titles on the homepage link to secondary analysis pages:
+
+- **`docs/analysis-china.html`** (from the *manufacturer-origin* chart) drills
+  into **Chinese-origin marques**: monthly registrations, market-share trend,
+  per-brand trends, and the top Chinese brands and model series. Data: the
+  `china` block from `build_origin_analysis()`.
+- **`docs/analysis-ev.html`** (from the *powertrain* chart) drills into
+  **electrified drivetrains** — BEV, hybrid and plug-in hybrid: per-category
+  count and market-share trends, and the top model series in each category.
+  Data: the `ev` block from `build_ev_analysis()`.
+
+Both add their block to `germany.json`, show logos + year-over-year change, and
+are baked self-contained by `build_site.py` (which injects `germany.json` +
+`data/brand_logos.json` into every page in its `PAGES` list), so the sub-pages
+update on the same monthly schedule as the homepage.
 
 Brand- and origin-level charts span the months backed by a full workbook; the
 powertrain chart also uses the supplementary series, so it reaches back to 2021.

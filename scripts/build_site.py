@@ -22,7 +22,7 @@ JSON_PATH = DOCS / "data" / "germany.json"
 LOGOS_PATH = DOCS / "data" / "brand_logos.json"
 
 # Pages to bake into. The main page must exist; secondary pages are optional.
-PAGES = ["index.html", "analysis-china.html"]
+PAGES = ["index.html", "analysis-china.html", "analysis-ev.html"]
 
 BLOCKS = {
     "germany-data": JSON_PATH,

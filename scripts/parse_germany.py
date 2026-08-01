@@ -386,6 +386,88 @@ def build_origin_analysis(months: list[dict], origin: str) -> dict | None:
     }
 
 
+def build_ev_analysis(months: list[dict]) -> dict | None:
+    """Deep-dive series for electrified drivetrains (BEV / hybrid / plug-in
+    hybrid): monthly counts, market shares, and top model series per category."""
+    detailed = sorted(months, key=lambda mo: (mo["year"], mo["month"]))
+    if not detailed:
+        return None
+    # (metric key in FZ 10.1, display name, colour) — matches the homepage.
+    cats = [
+        ("bev", "BEV", "--s3"),
+        ("hybrid_excl_plugin", "Hybrid", "--s5"),
+        ("plugin_hybrid", "Plug-in hybrid", "--s4"),
+    ]
+    labels, ym, totals = [], [], []
+    grand = {c[0]: [] for c in cats}
+    per_model_period = {c[0]: {} for c in cats}
+    per_model_month = {c[0]: [] for c in cats}
+
+    for mo in detailed:
+        y, m = mo["year"], mo["month"]
+        labels.append(f"{MONTH_NAMES[m - 1]} {y}")
+        ym.append((y, m))
+        total_row = next(
+            (r for r in mo["rows"] if r["brand"].upper() == GRAND_TOTAL_KEY), None)
+        totals.append(_n(total_row["metrics"]["total"]["month"]) if total_row else None)
+        for key, _, _ in cats:
+            grand[key].append(_n(total_row["metrics"][key]["month"]) if total_row else None)
+            mm = {}
+            for r in mo["rows"]:
+                if r["kind"] == "model":
+                    v = r["metrics"][key]["month"]
+                    if v:
+                        k = (r["brand"].strip().upper(), r["model"].strip().upper())
+                        mm[k] = v
+                        per_model_period[key][k] = per_model_period[key].get(k, 0) + v
+            per_model_month[key].append(mm)
+
+    last = len(labels) - 1
+
+    def prior(i):
+        y, m = ym[i]
+        return ym.index((y - 1, m)) if (y - 1, m) in ym else None
+
+    def yoy_of(monthly, k, i):
+        j = prior(i)
+        return _yoy(monthly[i].get(k), monthly[j].get(k)) if j is not None else None
+
+    trend_series, share_series, tops, kpis = [], [], {}, {}
+    for key, name, cv in cats:
+        trend_series.append({"name": name, "colorVar": cv, "values": grand[key]})
+        share_series.append({"name": name, "colorVar": cv, "values": [
+            round(g / t * 100, 2) if (g is not None and t) else None
+            for g, t in zip(grand[key], totals)]})
+        ranked = sorted(per_model_period[key], key=lambda k: per_model_period[key][k],
+                        reverse=True)[:12]
+        tops[name] = [
+            {"brand": k[0], "model": k[1], "total": _n(per_model_period[key][k]),
+             "latest": _n(per_model_month[key][last].get(k)),
+             "yoy": yoy_of(per_model_month[key], k, last), "colorVar": cv}
+            for k in ranked
+        ]
+        pj = prior(last)
+        kpis[name] = {
+            "latest": grand[key][last],
+            "share": (round(grand[key][last] / totals[last] * 100, 1)
+                      if totals[last] and grand[key][last] is not None else None),
+            "yoy": _yoy(grand[key][last], grand[key][pj]) if pj is not None else None,
+            "colorVar": cv,
+        }
+
+    elec = sum(grand[k][last] or 0 for k, _, _ in cats)
+    return {
+        "labels": labels,
+        "trends": {"labels": labels, "series": trend_series},
+        "share_trends": {"labels": labels, "series": share_series},
+        "top": tops,
+        "kpis": kpis,
+        "categories": [c[1] for c in cats],
+        "latest_label": labels[last],
+        "electrified_share": (round(elec / totals[last] * 100, 1) if totals[last] else None),
+    }
+
+
 def build_dimension_series(months: list[dict]) -> dict:
     """Multi-month series for the brand and country-of-origin dimensions.
 
@@ -587,6 +669,7 @@ def build_site_json(months: list[dict]) -> dict:
         "brand_trends": dims["brand_trends"],
         "origin_trends": dims["origin_trends"],
         "china": build_origin_analysis(months, "China"),
+        "ev": build_ev_analysis(months),
     }
 
 
