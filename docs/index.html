@@ -19,6 +19,10 @@
     --s2:          #eb6834;  /* orange */
     --s3:          #1baf7a;  /* aqua   */
     --s4:          #eda100;  /* yellow */
+    --s5:          #e87ba4;  /* magenta */
+    --s6:          #008300;  /* green */
+    --s7:          #4a3aa7;  /* violet */
+    --s8:          #e34948;  /* red */
     --good:        #006300;
   }
   @media (prefers-color-scheme: dark) {
@@ -35,6 +39,10 @@
       --s2:      #d95926;
       --s3:      #199e70;
       --s4:      #c98500;
+      --s5:      #d55181;
+      --s6:      #008300;
+      --s7:      #9085e9;
+      --s8:      #e66767;
       --good:    #0ca30c;
     }
   }
@@ -51,6 +59,10 @@
     --s2:      #d95926;
     --s3:      #199e70;
     --s4:      #c98500;
+    --s5:      #d55181;
+    --s6:      #008300;
+    --s7:      #9085e9;
+    --s8:      #e66767;
     --good:    #0ca30c;
   }
   * { box-sizing: border-box; }
@@ -87,6 +99,8 @@
   }
   section.card h2 { font-size: 18px; margin: 0 0 2px; letter-spacing: -0.01em; }
   section.card .note { font-size: 13px; color: var(--muted); margin: 0 0 18px; }
+  .section-head { font-size: 15px; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--muted); margin: 40px 0 -4px; font-weight: 600; }
 
   .bars { display: flex; flex-direction: column; gap: 9px; }
   .bar-row { display: grid; grid-template-columns: 150px 1fr; align-items: center; gap: 12px; }
@@ -113,22 +127,25 @@
   .legend span { display: inline-flex; align-items: center; gap: 6px; }
   .swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
 
-  /* trend */
+  /* charts */
   .trend-wrap { position: relative; }
-  svg.trend { width: 100%; height: 260px; display: block; overflow: visible; }
+  svg.trend { width: 100%; height: 280px; display: block; overflow: visible; }
   .trend-axis text { fill: var(--muted); font-size: 11px; }
   .trend-grid line { stroke: var(--grid); stroke-width: 1; }
   .trend-line { fill: none; stroke-width: 2; }
   .trend-dot { fill: var(--surface); stroke-width: 1.5; }
-  .s-bev    { stroke: var(--s3); }   .s-bev.trend-dot    { fill: var(--s3); }
-  .s-petrol { stroke: var(--s2); }   .s-petrol.trend-dot { fill: var(--s2); }
-  .s-diesel { stroke: var(--s1); }   .s-diesel.trend-dot { fill: var(--s1); }
-  .s-phev   { stroke: var(--s4); }   .s-phev.trend-dot   { fill: var(--s4); }
+  .area-band { stroke: var(--surface); stroke-width: 1.5; }
+  .crosshair { stroke: var(--axis); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0; }
   .tip {
-    position: absolute; pointer-events: none; opacity: 0; transition: opacity .1s;
-    background: var(--ink); color: var(--surface); font-size: 12px; padding: 6px 9px;
-    border-radius: 7px; white-space: nowrap; transform: translate(-50%, -130%); z-index: 5;
+    position: absolute; pointer-events: none; opacity: 0; transition: opacity .08s;
+    background: var(--ink); color: var(--surface); font-size: 12px; padding: 7px 10px;
+    border-radius: 7px; white-space: nowrap; transform: translate(-50%, -125%); z-index: 5;
+    box-shadow: 0 4px 14px rgba(0,0,0,.18); line-height: 1.5;
   }
+  .tip .tt-row { display: flex; align-items: center; gap: 7px; }
+  .tip .tt-sw { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+  .tip .tt-head { font-weight: 600; margin-bottom: 3px; }
+  .chart-note-sm { font-size: 12px; color: var(--muted); margin-top: 12px; }
 
   details.table { margin-top: 20px; }
   details.table summary { cursor: pointer; font-size: 14px; color: var(--s1); }
@@ -172,14 +189,46 @@
     <div class="bars" id="fuelBars"></div>
   </section>
 
+  <h2 class="section-head">Trends over time</h2>
+
+  <section class="card" id="brandCard">
+    <h2>Registrations by brand</h2>
+    <p class="note" id="brandTrendNote"></p>
+    <div class="trend-wrap">
+      <svg class="trend" id="brandChart" role="img" aria-label="Monthly new registrations by brand"></svg>
+      <div class="tip" id="brandTip"></div>
+    </div>
+    <div class="legend" id="brandLegend"></div>
+  </section>
+
+  <section class="card" id="originCard">
+    <h2>Registrations by manufacturer origin</h2>
+    <p class="note" id="originNote"></p>
+    <div class="trend-wrap">
+      <svg class="trend" id="originChart" role="img" aria-label="Monthly new registrations by country of origin"></svg>
+      <div class="tip" id="originTip"></div>
+    </div>
+    <div class="legend" id="originLegend"></div>
+    <p class="chart-note-sm">Grouped by the marque’s country of origin (the car’s
+      nationality), not the current owner group — e.g. VW-owned Škoda counts as
+      Czechia, Geely-owned Volvo as Sweden. SAIC’s MG is counted as China.</p>
+  </section>
+
   <section class="card" id="trendCard">
-    <h2>Powertrain mix over time</h2>
+    <h2>Registrations by powertrain</h2>
     <p class="note" id="trendNote"></p>
     <div class="trend-wrap">
       <svg class="trend" id="trend" role="img" aria-label="Monthly new registrations by powertrain"></svg>
       <div class="tip" id="trendTip"></div>
     </div>
     <div class="legend" id="trendLegend"></div>
+  </section>
+
+  <section class="card" id="segmentCard">
+    <h2>Registrations by body segment</h2>
+    <p class="note">Sedan / SUV / MPV / sports-car breakdowns are not part of table
+      FZ 10.1 (which is by brand and model series). They are published in KBA table
+      <strong>FZ 11 (Segmente)</strong> — a planned addition to this pipeline.</p>
   </section>
 
   <details class="table">
@@ -655,6 +704,7 @@
       "bev": 31714,
       "diesel": 39900,
       "plugin_hybrid": 15383,
+      "hybrid": 57795,
       "petrol": 79710,
       "hybrid_incl_plugin": 73178,
       "top_brands": [
@@ -866,6 +916,7 @@
       "bev": 37334,
       "diesel": 34881,
       "plugin_hybrid": 16361,
+      "hybrid": 57575,
       "petrol": 72808,
       "hybrid_incl_plugin": 73936,
       "top_brands": [
@@ -1077,6 +1128,7 @@
       "bev": 44942,
       "diesel": 39470,
       "plugin_hybrid": 18124,
+      "hybrid": 60463,
       "petrol": 82702,
       "hybrid_incl_plugin": 78587,
       "top_brands": [
@@ -1288,6 +1340,7 @@
       "bev": 54654,
       "diesel": 37403,
       "plugin_hybrid": 17894,
+      "hybrid": 55687,
       "petrol": 76245,
       "hybrid_incl_plugin": 73581,
       "top_brands": [
@@ -1499,6 +1552,7 @@
       "bev": 22474,
       "diesel": 40936,
       "plugin_hybrid": 14394,
+      "hybrid": 52102,
       "petrol": 83647,
       "hybrid_incl_plugin": 66496,
       "top_brands": [
@@ -1710,6 +1764,7 @@
       "bev": 27479,
       "diesel": 42153,
       "plugin_hybrid": 14575,
+      "hybrid": 54792,
       "petrol": 78389,
       "hybrid_incl_plugin": 69367,
       "top_brands": [
@@ -1921,6 +1976,7 @@
       "bev": 31384,
       "diesel": 48365,
       "plugin_hybrid": 16016,
+      "hybrid": 67033,
       "petrol": 101046,
       "hybrid_incl_plugin": 83049,
       "top_brands": [
@@ -2132,6 +2188,7 @@
       "bev": 29668,
       "diesel": 46317,
       "plugin_hybrid": 15135,
+      "hybrid": 60047,
       "petrol": 91935,
       "hybrid_incl_plugin": 75182,
       "top_brands": [
@@ -2343,6 +2400,7 @@
       "bev": 29708,
       "diesel": 44893,
       "plugin_hybrid": 14038,
+      "hybrid": 57413,
       "petrol": 90373,
       "hybrid_incl_plugin": 71451,
       "top_brands": [
@@ -2554,6 +2612,7 @@
       "bev": 43412,
       "diesel": 52688,
       "plugin_hybrid": 15391,
+      "hybrid": 72579,
       "petrol": 113259,
       "hybrid_incl_plugin": 87970,
       "top_brands": [
@@ -2765,6 +2824,7 @@
       "bev": 30762,
       "diesel": 43107,
       "plugin_hybrid": 14811,
+      "hybrid": 65059,
       "petrol": 84524,
       "hybrid_incl_plugin": 79870,
       "top_brands": [
@@ -2976,6 +3036,7 @@
       "bev": 27024,
       "diesel": 29974,
       "plugin_hybrid": 13565,
+      "hybrid": 55779,
       "petrol": 70980,
       "hybrid_incl_plugin": 69344,
       "top_brands": [
@@ -3187,6 +3248,7 @@
       "bev": 34479,
       "diesel": 31115,
       "plugin_hybrid": 14936,
+      "hybrid": 60497,
       "petrol": 67821,
       "hybrid_incl_plugin": 75433,
       "top_brands": [
@@ -3398,6 +3460,7 @@
       "bev": 35491,
       "diesel": 36172,
       "plugin_hybrid": 19337,
+      "hybrid": 65672,
       "petrol": 75320,
       "hybrid_incl_plugin": 85009,
       "top_brands": [
@@ -3609,6 +3672,7 @@
       "bev": 35167,
       "diesel": 36510,
       "plugin_hybrid": 20604,
+      "hybrid": 73950,
       "petrol": 78313,
       "hybrid_incl_plugin": 94554,
       "top_brands": [
@@ -3820,6 +3884,7 @@
       "bev": 33561,
       "diesel": 31031,
       "plugin_hybrid": 19103,
+      "hybrid": 70570,
       "petrol": 70456,
       "hybrid_incl_plugin": 89673,
       "top_brands": [
@@ -4031,6 +4096,7 @@
       "bev": 34498,
       "diesel": 32956,
       "plugin_hybrid": 17712,
+      "hybrid": 59252,
       "petrol": 63222,
       "hybrid_incl_plugin": 76964,
       "top_brands": [
@@ -4242,6 +4308,7 @@
       "bev": 35949,
       "diesel": 32116,
       "plugin_hybrid": 19534,
+      "hybrid": 58153,
       "petrol": 57682,
       "hybrid_incl_plugin": 77687,
       "top_brands": [
@@ -4453,6 +4520,7 @@
       "bev": 42521,
       "diesel": 37890,
       "plugin_hybrid": 26553,
+      "hybrid": 74860,
       "petrol": 71673,
       "hybrid_incl_plugin": 101413,
       "top_brands": [
@@ -4664,6 +4732,7 @@
       "bev": 45535,
       "diesel": 37649,
       "plugin_hybrid": 24317,
+      "hybrid": 67379,
       "petrol": 67848,
       "hybrid_incl_plugin": 91696,
       "top_brands": [
@@ -4875,6 +4944,7 @@
       "bev": 43060,
       "diesel": 35106,
       "plugin_hybrid": 25181,
+      "hybrid": 66990,
       "petrol": 68960,
       "hybrid_incl_plugin": 92171,
       "top_brands": [
@@ -5086,6 +5156,7 @@
       "bev": 47163,
       "diesel": 35665,
       "plugin_hybrid": 25608,
+      "hybrid": 73332,
       "petrol": 74425,
       "hybrid_incl_plugin": 98940,
       "top_brands": [
@@ -5297,6 +5368,7 @@
       "bev": 48614,
       "diesel": 40529,
       "plugin_hybrid": 27197,
+      "hybrid": 75172,
       "petrol": 73290,
       "hybrid_incl_plugin": 102369,
       "top_brands": [
@@ -5508,6 +5580,7 @@
       "bev": 39367,
       "diesel": 27219,
       "plugin_hybrid": 23973,
+      "hybrid": 58605,
       "petrol": 58065,
       "hybrid_incl_plugin": 82578,
       "top_brands": [
@@ -5719,6 +5792,7 @@
       "bev": 45495,
       "diesel": 28871,
       "plugin_hybrid": 27685,
+      "hybrid": 69527,
       "petrol": 63950,
       "hybrid_incl_plugin": 97212,
       "top_brands": [
@@ -5930,6 +6004,7 @@
       "bev": 52425,
       "diesel": 30462,
       "plugin_hybrid": 30946,
+      "hybrid": 70652,
       "petrol": 65648,
       "hybrid_incl_plugin": 101598,
       "top_brands": [
@@ -6141,6 +6216,7 @@
       "bev": 55741,
       "diesel": 29471,
       "plugin_hybrid": 32433,
+      "hybrid": 70916,
       "petrol": 62110,
       "hybrid_incl_plugin": 103349,
       "top_brands": [
@@ -6352,6 +6428,7 @@
       "bev": 54774,
       "diesel": 27088,
       "plugin_hybrid": 30259,
+      "hybrid": 71273,
       "petrol": 63045,
       "hybrid_incl_plugin": 101532,
       "top_brands": [
@@ -6563,6 +6640,7 @@
       "bev": 42692,
       "diesel": 27309,
       "plugin_hybrid": 21790,
+      "hybrid": 58206,
       "petrol": 43984,
       "hybrid_incl_plugin": 79996,
       "top_brands": [
@@ -6774,6 +6852,7 @@
       "bev": 46275,
       "diesel": 31338,
       "plugin_hybrid": 24328,
+      "hybrid": 60510,
       "petrol": 48811,
       "hybrid_incl_plugin": 84838,
       "top_brands": [
@@ -6985,6 +7064,7 @@
       "bev": 70663,
       "diesel": 37664,
       "plugin_hybrid": 29996,
+      "hybrid": 87850,
       "petrol": 67988,
       "hybrid_incl_plugin": 117846,
       "top_brands": [
@@ -7196,6 +7276,7 @@
       "bev": 64350,
       "diesel": 32437,
       "plugin_hybrid": 27546,
+      "hybrid": 70207,
       "petrol": 54623,
       "hybrid_incl_plugin": 97753,
       "top_brands": [
@@ -7407,6 +7488,7 @@
       "bev": 59969,
       "diesel": 30547,
       "plugin_hybrid": 27921,
+      "hybrid": 67545,
       "petrol": 53466,
       "hybrid_incl_plugin": 95466,
       "top_brands": [
@@ -7618,6 +7700,7 @@
       "bev": 84057,
       "diesel": 33862,
       "plugin_hybrid": 32212,
+      "hybrid": 83315,
       "petrol": 62932,
       "hybrid_incl_plugin": 115527,
       "top_brands": [
@@ -7830,6 +7913,7 @@
     "bev": 84057,
     "diesel": 33862,
     "plugin_hybrid": 32212,
+    "hybrid": 83315,
     "petrol": 62932,
     "hybrid_incl_plugin": 115527,
     "top_brands": [
@@ -8031,6 +8115,749 @@
         "bev": 168
       }
     ]
+  },
+  "brand_trends": {
+    "labels": [
+      "September 2023",
+      "October 2023",
+      "November 2023",
+      "December 2023",
+      "January 2024",
+      "February 2024",
+      "March 2024",
+      "April 2024",
+      "May 2024",
+      "June 2024",
+      "July 2024",
+      "August 2024",
+      "September 2024",
+      "October 2024",
+      "November 2024",
+      "December 2024",
+      "January 2025",
+      "February 2025",
+      "March 2025",
+      "April 2025",
+      "May 2025",
+      "June 2025",
+      "July 2025",
+      "August 2025",
+      "September 2025",
+      "October 2025",
+      "November 2025",
+      "December 2025",
+      "January 2026",
+      "February 2026",
+      "March 2026",
+      "April 2026",
+      "May 2026",
+      "June 2026"
+    ],
+    "series": [
+      {
+        "name": "VW",
+        "values": [
+          42044,
+          34806,
+          47279,
+          45166,
+          41548,
+          40361,
+          48180,
+          50739,
+          47636,
+          60754,
+          41388,
+          35359,
+          38914,
+          43942,
+          47610,
+          40457,
+          46381,
+          41037,
+          50935,
+          49393,
+          50048,
+          48204,
+          51938,
+          37467,
+          45225,
+          48274,
+          47854,
+          44040,
+          38282,
+          40174,
+          52556,
+          46101,
+          45576,
+          51058
+        ]
+      },
+      {
+        "name": "MERCEDES",
+        "values": [
+          21125,
+          22117,
+          24446,
+          19946,
+          21323,
+          20070,
+          21706,
+          22557,
+          19832,
+          21359,
+          23015,
+          19437,
+          18385,
+          23226,
+          25869,
+          21109,
+          19727,
+          18792,
+          22057,
+          22196,
+          21788,
+          22404,
+          24648,
+          19148,
+          20338,
+          24225,
+          24827,
+          20265,
+          18454,
+          16931,
+          23710,
+          23291,
+          19846,
+          23728
+        ]
+      },
+      {
+        "name": "BMW",
+        "values": [
+          17720,
+          18062,
+          21981,
+          23883,
+          16087,
+          16096,
+          21366,
+          21626,
+          18568,
+          20947,
+          21179,
+          16140,
+          17851,
+          18955,
+          22464,
+          21607,
+          16228,
+          17079,
+          20857,
+          22540,
+          20354,
+          22026,
+          24523,
+          18605,
+          19388,
+          23563,
+          24373,
+          24176,
+          17105,
+          17134,
+          24308,
+          22435,
+          19665,
+          26119
+        ]
+      },
+      {
+        "name": "SKODA",
+        "values": [
+          12765,
+          13955,
+          15836,
+          14352,
+          16686,
+          15848,
+          16322,
+          15487,
+          17486,
+          22419,
+          18898,
+          14451,
+          17212,
+          17986,
+          18448,
+          14350,
+          16526,
+          15041,
+          18547,
+          18891,
+          19776,
+          20215,
+          23379,
+          14472,
+          18872,
+          22225,
+          20577,
+          17951,
+          18550,
+          19034,
+          24854,
+          21192,
+          19625,
+          24963
+        ]
+      },
+      {
+        "name": "AUDI",
+        "values": [
+          17902,
+          20612,
+          21603,
+          19881,
+          15439,
+          14274,
+          17200,
+          18620,
+          18233,
+          20398,
+          19436,
+          13550,
+          14938,
+          16522,
+          17445,
+          16262,
+          14645,
+          15891,
+          17608,
+          15509,
+          17764,
+          16314,
+          17172,
+          15344,
+          15728,
+          19091,
+          19102,
+          21694,
+          14054,
+          15519,
+          22013,
+          18451,
+          17288,
+          19097
+        ]
+      },
+      {
+        "name": "SEAT",
+        "values": [
+          11522,
+          9384,
+          11237,
+          12409,
+          10070,
+          11761,
+          14253,
+          12201,
+          16036,
+          19105,
+          12477,
+          10597,
+          10852,
+          11767,
+          11747,
+          11468,
+          13846,
+          12789,
+          17209,
+          13670,
+          13011,
+          13333,
+          13310,
+          12725,
+          13247,
+          13246,
+          13413,
+          12767,
+          9716,
+          11367,
+          16360,
+          11771,
+          12408,
+          17472
+        ]
+      },
+      {
+        "name": "OPEL",
+        "values": [
+          14068,
+          11345,
+          12571,
+          12742,
+          12631,
+          11571,
+          12958,
+          9513,
+          13455,
+          17107,
+          12381,
+          12142,
+          11185,
+          13240,
+          11625,
+          10025,
+          6930,
+          7645,
+          9581,
+          11486,
+          10462,
+          15369,
+          14551,
+          10940,
+          12324,
+          13345,
+          11398,
+          12158,
+          8829,
+          11038,
+          13697,
+          12241,
+          11501,
+          13097
+        ]
+      },
+      {
+        "name": "FORD",
+        "values": [
+          9292,
+          8827,
+          8500,
+          7703,
+          7378,
+          7699,
+          10603,
+          8279,
+          7791,
+          9463,
+          8917,
+          8418,
+          8473,
+          7845,
+          7927,
+          6761,
+          7668,
+          9398,
+          8752,
+          9534,
+          8793,
+          9014,
+          11524,
+          9310,
+          9065,
+          8321,
+          9011,
+          7909,
+          6820,
+          7574,
+          9511,
+          7768,
+          6889,
+          9693
+        ]
+      }
+    ]
+  },
+  "origin_trends": {
+    "labels": [
+      "September 2023",
+      "October 2023",
+      "November 2023",
+      "December 2023",
+      "January 2024",
+      "February 2024",
+      "March 2024",
+      "April 2024",
+      "May 2024",
+      "June 2024",
+      "July 2024",
+      "August 2024",
+      "September 2024",
+      "October 2024",
+      "November 2024",
+      "December 2024",
+      "January 2025",
+      "February 2025",
+      "March 2025",
+      "April 2025",
+      "May 2025",
+      "June 2025",
+      "July 2025",
+      "August 2025",
+      "September 2025",
+      "October 2025",
+      "November 2025",
+      "December 2025",
+      "January 2026",
+      "February 2026",
+      "March 2026",
+      "April 2026",
+      "May 2026",
+      "June 2026"
+    ],
+    "series": [
+      {
+        "name": "Germany",
+        "values": [
+          116042,
+          110678,
+          131617,
+          125281,
+          112089,
+          107978,
+          127116,
+          128842,
+          122351,
+          144957,
+          120095,
+          99278,
+          104104,
+          119659,
+          128627,
+          112652,
+          106894,
+          103162,
+          124673,
+          124678,
+          123577,
+          127447,
+          136235,
+          103783,
+          115802,
+          131606,
+          130248,
+          124776,
+          100263,
+          103828,
+          139902,
+          125940,
+          117081,
+          136767
+        ]
+      },
+      {
+        "name": "France",
+        "values": [
+          18367,
+          17684,
+          18527,
+          20983,
+          19164,
+          17022,
+          23548,
+          20781,
+          20253,
+          29889,
+          19353,
+          16240,
+          16492,
+          22591,
+          22818,
+          22135,
+          18448,
+          17714,
+          23713,
+          19487,
+          18900,
+          23322,
+          20919,
+          17856,
+          19739,
+          20358,
+          21128,
+          21800,
+          14715,
+          17505,
+          24246,
+          21175,
+          21747,
+          28692
+        ]
+      },
+      {
+        "name": "Japan",
+        "values": [
+          19764,
+          17394,
+          17343,
+          17467,
+          16852,
+          18389,
+          28761,
+          19734,
+          16226,
+          22516,
+          19182,
+          17041,
+          19134,
+          20531,
+          21503,
+          21938,
+          14292,
+          15645,
+          23871,
+          17383,
+          17464,
+          21138,
+          17820,
+          14991,
+          19785,
+          16290,
+          17650,
+          21723,
+          11818,
+          14541,
+          24283,
+          15176,
+          13767,
+          19757
+        ]
+      },
+      {
+        "name": "Czechia",
+        "values": [
+          12765,
+          13955,
+          15836,
+          14352,
+          16686,
+          15848,
+          16322,
+          15487,
+          17486,
+          22419,
+          18898,
+          14451,
+          17212,
+          17986,
+          18448,
+          14350,
+          16526,
+          15041,
+          18547,
+          18891,
+          19776,
+          20215,
+          23379,
+          14472,
+          18872,
+          22225,
+          20577,
+          17951,
+          18550,
+          19034,
+          24854,
+          21192,
+          19625,
+          24963
+        ]
+      },
+      {
+        "name": "South Korea",
+        "values": [
+          12668,
+          15304,
+          15226,
+          14447,
+          11497,
+          12797,
+          16311,
+          15857,
+          14118,
+          16055,
+          15645,
+          13478,
+          11855,
+          12666,
+          13128,
+          13800,
+          11463,
+          10765,
+          12807,
+          14401,
+          14087,
+          14422,
+          15694,
+          12411,
+          12965,
+          13662,
+          12773,
+          11761,
+          10250,
+          11726,
+          16746,
+          14658,
+          12538,
+          14684
+        ]
+      },
+      {
+        "name": "Spain",
+        "values": [
+          11522,
+          9384,
+          11237,
+          12409,
+          10070,
+          11761,
+          14253,
+          12201,
+          16036,
+          19105,
+          12477,
+          10597,
+          10852,
+          11767,
+          11747,
+          11468,
+          13846,
+          12789,
+          17209,
+          13670,
+          13011,
+          13333,
+          13310,
+          12725,
+          13247,
+          13246,
+          13413,
+          12767,
+          9716,
+          11367,
+          16360,
+          11771,
+          12408,
+          17472
+        ]
+      },
+      {
+        "name": "USA",
+        "values": [
+          14928,
+          13705,
+          15129,
+          13745,
+          11718,
+          14720,
+          15587,
+          10985,
+          10745,
+          15347,
+          12265,
+          11517,
+          13192,
+          10599,
+          11366,
+          11754,
+          9976,
+          11958,
+          12202,
+          11417,
+          11157,
+          12238,
+          13859,
+          11714,
+          13343,
+          9835,
+          11559,
+          10752,
+          8917,
+          10613,
+          20100,
+          11871,
+          12992,
+          18651
+        ]
+      },
+      {
+        "name": "China",
+        "values": [
+          1539,
+          3105,
+          2528,
+          3765,
+          1157,
+          2275,
+          2074,
+          1807,
+          3229,
+          5981,
+          2392,
+          1134,
+          1167,
+          2130,
+          1810,
+          2820,
+          2488,
+          2452,
+          3584,
+          4032,
+          5087,
+          5975,
+          4311,
+          4493,
+          7170,
+          7544,
+          8085,
+          8491,
+          5209,
+          6849,
+          8281,
+          9971,
+          11660,
+          14377
+        ]
+      },
+      {
+        "name": "Other",
+        "values": [
+          15825,
+          16821,
+          17122,
+          18629,
+          13413,
+          15600,
+          18849,
+          16322,
+          15101,
+          20071,
+          16762,
+          12520,
+          14065,
+          13252,
+          14014,
+          12859,
+          12635,
+          12798,
+          15820,
+          17798,
+          15362,
+          17197,
+          18112,
+          13376,
+          13652,
+          14527,
+          14225,
+          15316,
+          13710,
+          15144,
+          18174,
+          16323,
+          16537,
+          19822
+        ]
+      }
+    ]
   }
 }</script>
 <script>
@@ -8107,81 +8934,183 @@
   ];
   renderBars(document.getElementById("fuelBars"), fuelRows, { percent: true });
 
-  // ---- monthly trend ----
-  (function () {
-    var note = document.getElementById("trendNote");
-    var svg = document.getElementById("trend");
-    if (months.length < 2) {
-      document.getElementById("trendCard").style.display = "none";
-      return;
-    }
-    var series = [
-      { key: "bev", name: "BEV", cls: "s-bev" },
-      { key: "petrol", name: "Petrol", cls: "s-petrol" },
-      { key: "diesel", name: "Diesel", cls: "s-diesel" },
-      { key: "plugin_hybrid", name: "Plug-in hybrid", cls: "s-phev" }
-    ].filter(function (s) {
-      return months.some(function (mo) { return mo[s.key] != null; });
-    });
-    note.textContent = "New passenger-car registrations per month by drivetrain, " +
-      months[0].label + " – " + months[months.length - 1].label + ".";
-
-    var W = svg.clientWidth || 900, H = 260, m = { t: 16, r: 16, b: 28, l: 56 };
-    var iw = W - m.l - m.r, ih = H - m.t - m.b;
-    var allVals = [];
-    series.forEach(function (s) {
-      months.forEach(function (mo) { if (mo[s.key] != null) allVals.push(mo[s.key]); });
-    });
-    var maxV = (Math.max.apply(null, allVals) || 1) * 1.08;
-    var x = function (i) { return m.l + (months.length === 1 ? iw / 2 : iw * i / (months.length - 1)); };
-    var y = function (v) { return m.t + ih - ih * v / maxV; };
-    var ns = "http://www.w3.org/2000/svg";
-    function el(t, a) { var e = document.createElementNS(ns, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
-    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
-
-    var g = el("g", { class: "trend-grid" });
+  // ================= reusable time-series charts =================
+  var NS = "http://www.w3.org/2000/svg";
+  function svgEl(t, a) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
+  var PALETTE = ["--s1", "--s2", "--s3", "--s4", "--s5", "--s6", "--s7", "--s8"];
+  function colorVar(s, i) {
+    if (s.colorVar) return s.colorVar;
+    if (s.name === "Other") return "--muted";
+    return PALETTE[i % PALETTE.length];
+  }
+  function yTicks(svg, m, W, ih, maxV, y) {
+    var g = svgEl("g", { class: "trend-grid" });
     for (var t = 0; t <= 4; t++) {
       var gv = maxV * t / 4, gy = y(gv);
-      g.appendChild(el("line", { x1: m.l, x2: W - m.r, y1: gy, y2: gy }));
-      var tx = el("text", { x: m.l - 8, y: gy + 4, "text-anchor": "end" });
-      tx.setAttribute("class", "trend-axis"); tx.textContent = Math.round(gv / 1000) + "k";
+      g.appendChild(svgEl("line", { x1: m.l, x2: W - m.r, y1: gy, y2: gy }));
+      var tx = svgEl("text", { x: m.l - 8, y: gy + 4, "text-anchor": "end" });
+      tx.setAttribute("class", "trend-axis");
+      tx.textContent = gv >= 1000 ? Math.round(gv / 1000) + "k" : Math.round(gv);
       svg.appendChild(tx);
     }
     svg.appendChild(g);
-
-    var tip = document.getElementById("trendTip");
-    series.forEach(function (s) {
-      var d = months.map(function (mo, i) {
-        return (i ? "L" : "M") + x(i) + " " + y(mo[s.key] || 0);
-      }).join(" ");
-      svg.appendChild(el("path", { class: "trend-line " + s.cls, d: d }));
-      months.forEach(function (mo, i) {
-        if (mo[s.key] == null) return;
-        var cx = x(i), cy = y(mo[s.key]);
-        var dot = el("circle", { class: "trend-dot " + s.cls, cx: cx, cy: cy, r: 3 });
-        dot.style.cursor = "pointer";
-        dot.addEventListener("mouseenter", function () {
-          tip.style.opacity = 1; tip.style.left = cx + "px"; tip.style.top = cy + "px";
-          tip.textContent = mo.label + " · " + s.name + ": " + fmt(mo[s.key]);
-        });
-        dot.addEventListener("mouseleave", function () { tip.style.opacity = 0; });
-        svg.appendChild(dot);
-      });
-    });
-
-    if (months.length <= 14) {
-      months.forEach(function (mo, i) {
-        var lx = el("text", { x: x(i), y: H - 8, "text-anchor": "middle" });
-        lx.setAttribute("class", "trend-axis");
-        lx.textContent = mo.label.replace(/ (\d{4})$/, "’" + "$1".slice(2));
+  }
+  function xTicks(svg, labels, H, x) {
+    labels.forEach(function (lab, i) {
+      if (i === 0 || / January /.test(" " + lab + " ")) {
+        var yr = (lab.match(/(\d{4})/) || [])[1] || lab;
+        var lx = svgEl("text", { x: x(i), y: H - 8, "text-anchor": "middle" });
+        lx.setAttribute("class", "trend-axis"); lx.textContent = yr;
         svg.appendChild(lx);
-      });
-    }
-
-    document.getElementById("trendLegend").innerHTML = series.map(function (s) {
-      var color = { "s-bev": "--s3", "s-petrol": "--s2", "s-diesel": "--s1", "s-phev": "--s4" }[s.cls];
-      return '<span><i class="swatch" style="background:var(' + color + ')"></i>' + s.name + '</span>';
+      }
+    });
+  }
+  function legendHTML(el, series) {
+    el.innerHTML = series.map(function (s, i) {
+      return '<span><i class="swatch" style="background:var(' + colorVar(s, i) + ')"></i>' + s.name + '</span>';
     }).join("");
+  }
+  function tipHTML(head, rows) {
+    return '<div class="tt-head">' + head + '</div>' + rows.map(function (r) {
+      return '<div class="tt-row"><i class="tt-sw" style="background:var(' + r.cv + ')"></i>' +
+        r.name + ': ' + fmt(r.val) + '</div>';
+    }).join("");
+  }
+  function nearestIndex(svg, evt, m, iw, n, W) {
+    var r = svg.getBoundingClientRect();
+    var px = (evt.clientX - r.left) * (W / r.width);
+    var i = Math.round((px - m.l) / iw * (n - 1));
+    return i < 0 ? 0 : (i > n - 1 ? n - 1 : i);
+  }
+
+  function lineChart(svg, tip, legendEl, data) {
+    var labels = data.labels, series = data.series;
+    if (!labels || labels.length < 2 || !series.length) return false;
+    var W = svg.clientWidth || 900, H = 280, m = { t: 16, r: 16, b: 28, l: 52 };
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    var maxV = 0;
+    series.forEach(function (s) { s.values.forEach(function (v) { if (v != null && v > maxV) maxV = v; }); });
+    maxV = (maxV || 1) * 1.08;
+    var x = function (i) { return m.l + iw * i / (labels.length - 1); };
+    var y = function (v) { return m.t + ih - ih * v / maxV; };
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    yTicks(svg, m, W, ih, maxV, y);
+    series.forEach(function (s, si) {
+      var cv = colorVar(s, si), started = false, d = "";
+      s.values.forEach(function (v, i) {
+        if (v == null) { started = false; return; }
+        d += (started ? "L" : "M") + x(i) + " " + y(v) + " "; started = true;
+      });
+      svg.appendChild(svgEl("path", { class: "trend-line", d: d, style: "stroke:var(" + cv + ")" }));
+    });
+    xTicks(svg, labels, H, x);
+    var cross = svgEl("line", { class: "crosshair", y1: m.t, y2: m.t + ih }); svg.appendChild(cross);
+    var dots = svgEl("g", {}); svg.appendChild(dots);
+    var hit = svgEl("rect", { x: m.l, y: m.t, width: iw, height: ih, fill: "transparent" });
+    hit.style.cursor = "crosshair";
+    hit.addEventListener("mousemove", function (evt) {
+      var i = nearestIndex(svg, evt, m, iw, labels.length, W);
+      cross.setAttribute("x1", x(i)); cross.setAttribute("x2", x(i)); cross.style.opacity = 1;
+      while (dots.firstChild) dots.removeChild(dots.firstChild);
+      var rows = [], py = evt ? (evt.clientY - svg.getBoundingClientRect().top) * (H / svg.getBoundingClientRect().height) : m.t;
+      series.forEach(function (s, si) {
+        var v = s.values[i]; if (v == null) return;
+        var cv = colorVar(s, si);
+        dots.appendChild(svgEl("circle", { class: "trend-dot", cx: x(i), cy: y(v), r: 3.5, style: "stroke:var(" + cv + ");fill:var(" + cv + ")" }));
+        rows.push({ name: s.name, val: v, cv: cv });
+      });
+      rows.sort(function (a, b) { return b.val - a.val; });
+      tip.innerHTML = tipHTML(labels[i], rows);
+      tip.style.opacity = 1; tip.style.left = x(i) + "px"; tip.style.top = py + "px";
+    });
+    hit.addEventListener("mouseleave", function () {
+      cross.style.opacity = 0; tip.style.opacity = 0; while (dots.firstChild) dots.removeChild(dots.firstChild);
+    });
+    svg.appendChild(hit);
+    legendHTML(legendEl, series);
+    return true;
+  }
+
+  function stackedArea(svg, tip, legendEl, data) {
+    var labels = data.labels, series = data.series;
+    if (!labels || labels.length < 2 || !series.length) return false;
+    var W = svg.clientWidth || 900, H = 280, m = { t: 16, r: 16, b: 28, l: 52 };
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    var totals = labels.map(function (_, i) {
+      return series.reduce(function (a, s) { return a + (s.values[i] || 0); }, 0);
+    });
+    var maxV = (Math.max.apply(null, totals) || 1) * 1.05;
+    var x = function (i) { return m.l + iw * i / (labels.length - 1); };
+    var y = function (v) { return m.t + ih - ih * v / maxV; };
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    yTicks(svg, m, W, ih, maxV, y);
+    var cum = labels.map(function () { return 0; });
+    series.forEach(function (s, si) {
+      var cv = colorVar(s, si), top = [], bot = [];
+      s.values.forEach(function (v, i) {
+        var lower = cum[i], upper = lower + (v || 0);
+        bot.push([x(i), y(lower)]); top.push([x(i), y(upper)]); cum[i] = upper;
+      });
+      var d = "M" + top.map(function (p) { return p[0] + " " + p[1]; }).join(" L");
+      for (var i = bot.length - 1; i >= 0; i--) d += " L" + bot[i][0] + " " + bot[i][1];
+      d += " Z";
+      svg.appendChild(svgEl("path", { class: "area-band", d: d, style: "fill:var(" + cv + ")" }));
+    });
+    xTicks(svg, labels, H, x);
+    var cross = svgEl("line", { class: "crosshair", y1: m.t, y2: m.t + ih }); svg.appendChild(cross);
+    var hit = svgEl("rect", { x: m.l, y: m.t, width: iw, height: ih, fill: "transparent" });
+    hit.style.cursor = "crosshair";
+    hit.addEventListener("mousemove", function (evt) {
+      var i = nearestIndex(svg, evt, m, iw, labels.length, W);
+      cross.setAttribute("x1", x(i)); cross.setAttribute("x2", x(i)); cross.style.opacity = 1;
+      var rows = series.map(function (s, si) { return { name: s.name, val: s.values[i] || 0, cv: colorVar(s, si) }; });
+      rows.sort(function (a, b) { return b.val - a.val; });
+      tip.innerHTML = tipHTML(labels[i] + " · total " + fmt(totals[i]), rows);
+      tip.style.opacity = 1; tip.style.left = x(i) + "px"; tip.style.top = m.t + "px";
+    });
+    hit.addEventListener("mouseleave", function () { cross.style.opacity = 0; tip.style.opacity = 0; });
+    svg.appendChild(hit);
+    legendHTML(legendEl, series);
+    return true;
+  }
+
+  // ---- powertrain over time (line) ----
+  (function () {
+    var defs = [
+      { name: "Petrol", colorVar: "--s2", key: "petrol" },
+      { name: "Diesel", colorVar: "--s1", key: "diesel" },
+      { name: "BEV", colorVar: "--s3", key: "bev" },
+      { name: "Plug-in hybrid", colorVar: "--s4", key: "plugin_hybrid" },
+      { name: "Hybrid", colorVar: "--s5", key: "hybrid" }
+    ];
+    var series = defs.map(function (s) {
+      return { name: s.name, colorVar: s.colorVar, values: months.map(function (mo) { return mo[s.key] == null ? null : mo[s.key]; }) };
+    }).filter(function (s) { return s.values.some(function (v) { return v != null; }); });
+    var labels = months.map(function (mo) { return mo.label; });
+    document.getElementById("trendNote").textContent =
+      "New passenger-car registrations per month by drivetrain, " + labels[0] + " – " + labels[labels.length - 1] + ".";
+    if (!lineChart(document.getElementById("trend"), document.getElementById("trendTip"), document.getElementById("trendLegend"), { labels: labels, series: series }))
+      document.getElementById("trendCard").style.display = "none";
+  })();
+
+  // ---- brand trends (line) ----
+  (function () {
+    var bt = DATA.brand_trends;
+    if (!bt) { document.getElementById("brandCard").style.display = "none"; return; }
+    document.getElementById("brandTrendNote").textContent =
+      "Monthly registrations for the largest brands, " + bt.labels[0] + " – " + bt.labels[bt.labels.length - 1] + ".";
+    if (!lineChart(document.getElementById("brandChart"), document.getElementById("brandTip"), document.getElementById("brandLegend"), bt))
+      document.getElementById("brandCard").style.display = "none";
+  })();
+
+  // ---- manufacturer origin (stacked area) ----
+  (function () {
+    var ot = DATA.origin_trends;
+    if (!ot) { document.getElementById("originCard").style.display = "none"; return; }
+    document.getElementById("originNote").textContent =
+      "Monthly registrations by manufacturer country of origin (stacked), " + ot.labels[0] + " – " + ot.labels[ot.labels.length - 1] + ".";
+    if (!stackedArea(document.getElementById("originChart"), document.getElementById("originTip"), document.getElementById("originLegend"), ot))
+      document.getElementById("originCard").style.display = "none";
   })();
 
   // ---- data table ----

@@ -189,6 +189,128 @@ def _n(x):
     return int(x) if float(x).is_integer() else x
 
 
+# Country of origin by marque (the car's nationality, i.e. where the brand is
+# from — not the current owner group; VW-owned Škoda stays Czech, Geely-owned
+# Volvo stays Swedish). Brands not listed fall into "Other".
+BRAND_ORIGIN: dict[str, str] = {
+    # Germany
+    "VW": "Germany", "MERCEDES": "Germany", "BMW": "Germany", "AUDI": "Germany",
+    "OPEL": "Germany", "PORSCHE": "Germany", "SMART": "Germany", "MAN": "Germany",
+    "ALPINA": "Germany", "BORGWARD": "Germany",
+    # Czechia / Spain (VW group marques, kept at marque origin)
+    "SKODA": "Czechia", "SEAT": "Spain", "CUPRA": "Spain",
+    # France
+    "RENAULT": "France", "PEUGEOT": "France", "CITROEN": "France", "DS": "France",
+    "ALPINE": "France", "DACIA": "France",
+    # Italy
+    "FIAT": "Italy", "ALFA ROMEO": "Italy", "FERRARI": "Italy", "MASERATI": "Italy",
+    "LANCIA": "Italy", "ABARTH": "Italy", "IVECO": "Italy",
+    # Sweden
+    "VOLVO": "Sweden", "POLESTAR": "Sweden",
+    # United Kingdom
+    "MINI": "United Kingdom", "LAND ROVER": "United Kingdom", "JAGUAR": "United Kingdom",
+    "BENTLEY": "United Kingdom", "ROLLS ROYCE": "United Kingdom", "LOTUS": "United Kingdom",
+    "ASTON MARTIN": "United Kingdom", "MORGAN": "United Kingdom", "INEOS": "United Kingdom",
+    "MG": "China", "MG ROEWE": "China",  # SAIC-owned; treated as China below
+    # USA
+    "FORD": "USA", "TESLA": "USA", "JEEP": "USA", "CADILLAC": "USA",
+    "CHEVROLET": "USA", "LUCID": "USA", "FISKER": "USA",
+    # Japan
+    "TOYOTA": "Japan", "MAZDA": "Japan", "NISSAN": "Japan", "SUZUKI": "Japan",
+    "MITSUBISHI": "Japan", "HONDA": "Japan", "LEXUS": "Japan", "SUBARU": "Japan",
+    "INFINITI": "Japan",
+    # South Korea
+    "HYUNDAI": "South Korea", "KIA": "South Korea", "GENESIS": "South Korea",
+    "SSANGYONG": "South Korea", "KGM": "South Korea",
+    # China
+    "BYD": "China", "LEAPMOTOR": "China", "GWM": "China", "XPENG": "China",
+    "LYNK & CO": "China", "NIO": "China", "GEELY": "China", "JAECOO": "China",
+    "ZEEKR": "China", "MAXUS": "China", "OMODA": "China", "DEEPAL": "China",
+    "CHERY": "China", "AIWAYS": "China", "DONGFENG": "China", "HONGQI": "China",
+    "SERES": "China", "WEY": "China", "ORA": "China", "DFSK": "China",
+}
+
+# Groups always shown in the origin chart when present (the rest fold to "Other").
+PREFERRED_ORIGINS = ["Germany", "China", "USA"]
+MAX_BRAND_SERIES = 8
+MAX_ORIGIN_SERIES = 8
+
+
+def _brand_month_totals(month: dict) -> dict[str, float]:
+    """{brand: monthly total} from a workbook month's brand-subtotal rows."""
+    out: dict[str, float] = {}
+    for r in month["rows"]:
+        if r["kind"] == "brand_total":
+            val = r["metrics"]["total"]["month"]
+            if val is not None:
+                out[r["brand"].strip().upper()] = val
+    return out
+
+
+def build_dimension_series(months: list[dict]) -> dict:
+    """Multi-month series for the brand and country-of-origin dimensions.
+
+    Only the months backed by a full FZ 10.1 workbook carry brand detail, so
+    these series span those months (the powertrain trend, which also uses the
+    supplementary CSV, is handled separately).
+    """
+    detailed = sorted(months, key=lambda mo: (mo["year"], mo["month"]))
+    if not detailed:
+        return {"brand_trends": None, "origin_trends": None}
+
+    labels = [f"{MONTH_NAMES[mo['month'] - 1]} {mo['year']}" for mo in detailed]
+    per_month = [_brand_month_totals(mo) for mo in detailed]
+
+    # ---- brand trends: the biggest brands over the whole period ----
+    brand_total: dict[str, float] = {}
+    for totals in per_month:
+        for brand, val in totals.items():
+            brand_total[brand] = brand_total.get(brand, 0) + val
+    top_brands = [b for b, _ in sorted(
+        brand_total.items(), key=lambda kv: kv[1], reverse=True)][:MAX_BRAND_SERIES]
+    brand_series = [
+        {"name": b, "values": [_n(m.get(b)) for m in per_month]}
+        for b in top_brands
+    ]
+
+    # ---- origin trends: registrations aggregated by marque nationality ----
+    origin_month: list[dict[str, float]] = []
+    origin_total: dict[str, float] = {}
+    for totals in per_month:
+        agg: dict[str, float] = {}
+        for brand, val in totals.items():
+            origin = BRAND_ORIGIN.get(brand, "Other")
+            agg[origin] = agg.get(origin, 0) + val
+            origin_total[origin] = origin_total.get(origin, 0) + val
+        origin_month.append(agg)
+
+    ranked = [o for o, _ in sorted(
+        origin_total.items(), key=lambda kv: kv[1], reverse=True) if o != "Other"]
+    named = [o for o in PREFERRED_ORIGINS if o in origin_total]
+    for o in ranked:
+        if len(named) >= MAX_ORIGIN_SERIES:
+            break
+        if o not in named:
+            named.append(o)
+    # Stable, largest-first ordering for a readable stack.
+    named.sort(key=lambda o: origin_total[o], reverse=True)
+
+    origin_series = [
+        {"name": o, "values": [_n(m.get(o)) for m in origin_month]}
+        for o in named
+    ]
+    other_vals = [
+        _n(sum(v for k, v in m.items() if k not in named)) for m in origin_month
+    ]
+    if any(v for v in other_vals):
+        origin_series.append({"name": "Other", "values": other_vals})
+
+    return {
+        "brand_trends": {"labels": labels, "series": brand_series},
+        "origin_trends": {"labels": labels, "series": origin_series},
+    }
+
+
 def merge_powertrain_history(monthly_summary: list[dict]) -> list[dict]:
     """Add trend-only months from the supplementary powertrain CSV.
 
@@ -294,6 +416,8 @@ def build_site_json(months: list[dict]) -> dict:
                 "bev": _n(grand["bev"]["month"]) if grand else None,
                 "diesel": _n(grand["diesel"]["month"]) if grand else None,
                 "plugin_hybrid": _n(grand["plugin_hybrid"]["month"]) if grand else None,
+                # Full (non-plug-in) hybrids — only available from workbooks.
+                "hybrid": _n(grand["hybrid_excl_plugin"]["month"]) if grand else None,
                 "petrol": _n(petrol),
                 "hybrid_incl_plugin": _n(grand["hybrid_incl_plugin"]["month"]) if grand else None,
                 "top_brands": top_brands,
@@ -309,6 +433,7 @@ def build_site_json(months: list[dict]) -> dict:
     latest = next(
         (mo for mo in reversed(monthly_summary) if mo.get("top_brands")), None
     )
+    dims = build_dimension_series(months)
     return {
         "country": "Germany",
         "source": "Kraftfahrt-Bundesamt (KBA), table FZ 10.1",
@@ -319,6 +444,8 @@ def build_site_json(months: list[dict]) -> dict:
         "metric": "New passenger-car registrations (Neuzulassungen)",
         "months": monthly_summary,
         "latest": latest,
+        "brand_trends": dims["brand_trends"],
+        "origin_trends": dims["origin_trends"],
     }
 
 

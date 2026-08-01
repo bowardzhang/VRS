@@ -65,17 +65,30 @@ python scripts/build_site.py
 ## The website
 
 `docs/index.html` is a **self-contained** static page (data baked in — no fetch,
-no external assets, light/dark aware). It shows, for the latest month:
+no external assets, light/dark aware, interactive tooltips).
 
-- headline registrations (month + year-to-date), BEV share and diesel share;
-- top brands and top model series (ranked bar charts);
-- powertrain penetration (BEV, hybrid, plug-in hybrid, diesel);
-- a **powertrain-mix-over-time** chart — one line per drivetrain (BEV, petrol,
-  diesel, plug-in hybrid) across every month available, which appears
-  automatically once two or more months of data are present.
+**Latest month** — headline registrations (month + year-to-date), BEV/diesel
+share, top brands and top model series (ranked bar charts), and powertrain
+penetration.
 
-Serve it with GitHub Pages (set Pages source to `/docs`) or open the file
-directly. Rebuild after adding new months with steps 2–3 above.
+**Trends over time** — interactive multi-year charts (crosshair + tooltip),
+built from every month of detail available:
+
+- **by brand** — monthly registrations for the largest brands (multi-line);
+- **by manufacturer origin** — monthly registrations grouped by the marque's
+  country of origin (Germany, China, USA, Japan, South Korea, France, Czechia,
+  Spain, …), shown as a stacked area;
+- **by powertrain** — one line per drivetrain (petrol, diesel, BEV, plug-in
+  hybrid, hybrid);
+- **by body segment** — placeholder; sedan/SUV/MPV/sports splits live in KBA
+  table **FZ 11 (Segmente)**, a planned addition (FZ 10.1 has no segment field).
+
+Brand- and origin-level charts span the months backed by a full workbook; the
+powertrain chart also uses the supplementary series, so it reaches back to 2021.
+
+Serve it with GitHub Pages (Pages source `/docs`, or the included Actions
+workflow) or open the file directly. Rebuild after adding new months with steps
+2–3 above.
 
 ## Automated updates (GitHub Actions)
 
