@@ -9461,9 +9461,16 @@
   (function () {
     var ot = DATA.origin_trends;
     if (!ot) { document.getElementById("originCard").style.display = "none"; return; }
+    // Pin the gray "Other" bucket to the end so the legend and the stacked bands
+    // stay in the same order (Other is the last/bottom band and the last legend
+    // entry), whatever order the data arrives in.
+    var series = ot.series.slice().sort(function (a, b) {
+      return (a.name === "Other") - (b.name === "Other");
+    });
+    var data = { labels: ot.labels, series: series };
     document.getElementById("originNote").textContent =
       "Monthly registrations by manufacturer country of origin (stacked), " + ot.labels[0] + " – " + ot.labels[ot.labels.length - 1] + ".";
-    if (!stackedArea(document.getElementById("originChart"), document.getElementById("originTip"), document.getElementById("originLegend"), ot, { topDown: true }))
+    if (!stackedArea(document.getElementById("originChart"), document.getElementById("originTip"), document.getElementById("originLegend"), data, { topDown: true }))
       document.getElementById("originCard").style.display = "none";
   })();
 
