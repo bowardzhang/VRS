@@ -6,13 +6,13 @@ segment's monthly total, maps the KBA segments to body-shape categories
 (sedan/hatch, SUV, MPV/van, sports, other) and augments
 ``docs/data/germany.json`` with a ``segment_trends`` block for the static site.
 
-FZ 11 uses the same column template as FZ 10.1, so we reuse
-``parse_germany.parse_workbook`` (its ``_pick_sheet`` selects the FZ 11 sheet
-because it is the only non-cover sheet). Run this after ``parse_germany.py`` and
-before ``build_site.py``.
+FZ 11 has a narrower column layout than FZ 10.1, so this parser does not reuse
+``parse_germany.parse_workbook``: it locates the "Insgesamt" (total) column from
+the header and reads the segment subtotal rows (label ending "ZUSAMMEN"). Run it
+after ``parse_germany.py`` and before ``build_site.py``.
 
-Diagnostics are printed to stderr so the exact segment labels are visible in CI
-logs; any segment label that does not map to a category is reported as a WARN.
+Rich diagnostics are printed to stderr (chosen sheet, header, and the leading
+rows of the newest workbook) so the exact structure is visible in CI logs.
 """
 from __future__ import annotations
 
@@ -21,12 +21,9 @@ import re
 import sys
 from pathlib import Path
 
-from parse_germany import (
-    MONTH_NAMES,
-    GRAND_TOTAL_KEY,
-    parse_workbook,
-    _n,
-)
+import openpyxl
+
+from parse_germany import MONTH_NAMES, _pick_sheet, _num, _n
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / "data" / "Germany"
@@ -55,8 +52,9 @@ SEGMENT_CATEGORY: list[tuple[str, str]] = [
     ("WOHNMOBILE", "Other"),
     ("SONSTIGE", "Other"),
 ]
-# Display order (largest / most relevant first) and colours for the site.
 CATEGORY_ORDER = ["Sedan & hatch", "SUV", "MPV & van", "Sports", "Other"]
+
+GRAND_TOTAL = "NEUZULASSUNGEN INSGESAMT"
 
 
 def categorise(label: str) -> str | None:
@@ -67,34 +65,51 @@ def categorise(label: str) -> str | None:
     return None
 
 
-def segment_totals(rows: list[dict]) -> dict[str, float]:
-    """{segment label: monthly total} from one FZ 11 workbook's parsed rows.
+def _label(row, upto: int = 4) -> str:
+    """Join the leading string cells of a row into one label."""
+    parts = [str(c).strip() for c in row[:upto] if isinstance(c, str) and c.strip()]
+    return " ".join(parts)
 
-    Prefers the segment subtotal rows (label ending 'ZUSAMMEN'); if the workbook
-    has none, falls back to summing the model rows under each segment header.
-    """
-    subtotals: dict[str, float] = {}
-    summed: dict[str, float] = {}
-    current: str | None = None
-    for r in rows:
-        brand = (r["brand"] or "").strip()
-        up = brand.upper()
-        total = r["metrics"]["total"]["month"]
-        if up == GRAND_TOTAL_KEY:
+
+def parse_fz11(path: Path, *, dump: bool = False) -> dict[str, float]:
+    """Return {segment label: monthly total} for one FZ 11 workbook."""
+    wb = openpyxl.load_workbook(path, data_only=True, read_only=True)
+    ws = _pick_sheet(wb)
+    rows = [list(r) for r in ws.iter_rows(values_only=True)]
+    wb.close()
+
+    # Locate the header row + the "Insgesamt" (monthly total) column.
+    total_col = header_idx = None
+    for i, row in enumerate(rows[:20]):
+        for j, c in enumerate(row):
+            if isinstance(c, str) and "insgesamt" in c.lower():
+                total_col, header_idx = j, i
+                break
+        if total_col is not None:
+            break
+
+    if dump:
+        print(f"[segments] sheet='{ws.title}' rows={len(rows)} "
+              f"header_idx={header_idx} total_col={total_col}", file=sys.stderr)
+        for i, row in enumerate(rows[:28]):
+            lab = _label(row, 6)
+            if lab:
+                tv = row[total_col] if (total_col is not None and total_col < len(row)) else None
+                print(f"[segments]   r{i}: '{lab[:48]}' | total={tv}", file=sys.stderr)
+
+    segs: dict[str, float] = {}
+    if total_col is None:
+        return segs
+    for row in rows[(header_idx or 0) + 1:]:
+        label = _label(row).upper()
+        if not label or GRAND_TOTAL in label:
             continue
-        if r["kind"] == "brand_total" and total is not None:
-            subtotals[brand[:-len("ZUSAMMEN")].strip() or brand] = total
-            current = None
-        elif up.endswith("ZUSAMMEN") and total is not None:  # aggregate e.g. SONSTIGE
-            subtotals[brand[:-len("ZUSAMMEN")].strip() or brand] = total
-        elif r["kind"] == "model":
-            seg = current if current else brand
-            if brand and r["model"]:  # a segment header carries its first model
-                current = brand
-                seg = brand
-            if total is not None and seg:
-                summed[seg] = summed.get(seg, 0) + total
-    return subtotals if len(subtotals) >= 3 else summed
+        if label.endswith("ZUSAMMEN"):
+            seg = label[: -len("ZUSAMMEN")].strip()
+            val = _num(row[total_col]) if total_col < len(row) else None
+            if seg and val is not None:
+                segs[seg] = val
+    return segs
 
 
 def main() -> int:
@@ -107,29 +122,29 @@ def main() -> int:
         return 1
 
     month_cats: list[dict] = []
-    for path in files:
+    for idx, path in enumerate(files):
         m = FILE_RE.search(path.name)
         if not m:
             continue
         year, month = int(m.group(1)), int(m.group(2))
         try:
-            _, _, rows = parse_workbook(path)
+            segs = parse_fz11(path, dump=(idx == len(files) - 1))
         except Exception as exc:  # noqa: BLE001
             print(f"[segments] ERROR parsing {path.name}: {exc}", file=sys.stderr)
             continue
-        segs = segment_totals(rows)
-        print(f"[segments] {path.name}: {len(segs)} segments -> "
-              f"{sorted(segs)}", file=sys.stderr)
+        print(f"[segments] {path.name}: {len(segs)} segments -> {sorted(segs)}",
+              file=sys.stderr)
 
         cats: dict[str, float] = {}
         for label, total in segs.items():
             cat = categorise(label)
             if cat is None:
-                print(f"[segments] WARN unmapped segment '{label}' "
-                      f"({path.name})", file=sys.stderr)
+                print(f"[segments] WARN unmapped segment '{label}' ({path.name})",
+                      file=sys.stderr)
                 cat = "Other"
             cats[cat] = cats.get(cat, 0) + total
-        month_cats.append({"year": year, "month": month, "cats": cats})
+        if cats:
+            month_cats.append({"year": year, "month": month, "cats": cats})
 
     if not month_cats:
         print("[segments] no segments parsed; leaving germany.json unchanged")
