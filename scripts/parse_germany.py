@@ -302,6 +302,90 @@ def attach_yoy(latest: dict | None, months: list[dict]) -> None:
         mo["yoy"] = _yoy(mo.get("total"), prev_models.get(key))
 
 
+def build_origin_analysis(months: list[dict], origin: str) -> dict | None:
+    """Deep-dive series for one country of origin (e.g. China): monthly count,
+    market share, per-brand trends, and top brands / models — for a sub-page."""
+    brands = {b for b, c in BRAND_ORIGIN.items() if c == origin}
+    detailed = sorted(months, key=lambda mo: (mo["year"], mo["month"]))
+    if not detailed or not brands:
+        return None
+
+    labels, ym = [], []
+    count, market, share = [], [], []
+    brand_month: list[dict[str, float]] = []
+    model_month: list[dict[tuple[str, str], float]] = []
+    brand_period: dict[str, float] = {}
+    model_period: dict[tuple[str, str], float] = {}
+
+    for mo in detailed:
+        y, m = mo["year"], mo["month"]
+        labels.append(f"{MONTH_NAMES[m - 1]} {y}")
+        ym.append((y, m))
+        totals = _brand_month_totals(mo)
+        total_row = next(
+            (r for r in mo["rows"] if r["brand"].upper() == GRAND_TOTAL_KEY), None)
+        mtot = total_row["metrics"]["total"]["month"] if total_row else None
+        cb = {b: v for b, v in totals.items() if b in brands}
+        ctot = sum(cb.values())
+        brand_month.append(cb)
+        for b, v in cb.items():
+            brand_period[b] = brand_period.get(b, 0) + v
+        count.append(_n(ctot))
+        market.append(_n(mtot))
+        share.append(round(ctot / mtot * 100, 2) if mtot else None)
+        mm = {k: v for k, v in _model_month_totals(mo).items() if k[0] in brands}
+        model_month.append(mm)
+        for k, v in mm.items():
+            model_period[k] = model_period.get(k, 0) + v
+
+    last = len(labels) - 1
+
+    def prior_index(i):
+        y, m = ym[i]
+        return ym.index((y - 1, m)) if (y - 1, m) in ym else None
+
+    def yoy_of(monthly, key, i):
+        j = prior_index(i)
+        return _yoy(monthly[i].get(key), monthly[j].get(key)) if j is not None else None
+
+    ranked_brands = sorted(brand_period, key=lambda b: brand_period[b], reverse=True)
+    brand_series = [
+        {"name": b, "values": [_n(bm.get(b)) for bm in brand_month]}
+        for b in ranked_brands[:8]
+    ]
+    top_brands = [
+        {"brand": b, "total": _n(brand_period[b]),
+         "latest": _n(brand_month[last].get(b)), "yoy": yoy_of(brand_month, b, last)}
+        for b in ranked_brands[:12]
+    ]
+    ranked_models = sorted(model_period, key=lambda k: model_period[k], reverse=True)
+    top_models = [
+        {"brand": k[0], "model": k[1], "total": _n(model_period[k]),
+         "latest": _n(model_month[last].get(k)), "yoy": yoy_of(model_month, k, last)}
+        for k in ranked_models[:12]
+    ]
+
+    pj = prior_index(last)
+    return {
+        "origin": origin,
+        "labels": labels,
+        "count": count,
+        "share": share,
+        "market_total": market,
+        "brand_series": {"labels": labels, "series": brand_series},
+        "top_brands": top_brands,
+        "top_models": top_models,
+        "brand_count": len(brand_period),
+        "latest_label": labels[last],
+        "latest_count": count[last],
+        "latest_share": share[last],
+        "count_yoy": _yoy(count[last], count[pj]) if pj is not None else None,
+        "share_change": (round(share[last] - share[pj], 2)
+                         if pj is not None and share[last] is not None
+                         and share[pj] is not None else None),
+    }
+
+
 def build_dimension_series(months: list[dict]) -> dict:
     """Multi-month series for the brand and country-of-origin dimensions.
 
@@ -502,6 +586,7 @@ def build_site_json(months: list[dict]) -> dict:
         "latest": latest,
         "brand_trends": dims["brand_trends"],
         "origin_trends": dims["origin_trends"],
+        "china": build_origin_analysis(months, "China"),
     }
 
 

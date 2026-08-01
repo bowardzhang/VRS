@@ -87,7 +87,19 @@ built from every month of detail available:
 The latest-month brand and model charts also show **year-over-year** change vs
 the same month a year earlier, each brand/model marked with its logo (open-source
 brand icons where available, a colored monogram otherwise). The page defaults to
-the light theme.
+the light theme. The latest-month powertrain split is shown as a **pie** of the
+five mutually-exclusive drivetrains with per-slice year-over-year change.
+
+### Deep-dive sub-pages
+
+The **manufacturer-origin** chart title links to a secondary analysis page.
+`docs/analysis-china.html` drills into **Chinese-origin marques**: monthly
+registrations, market-share trend, per-brand trends, and the top Chinese brands
+and model series (with logos and year-over-year change). Its data comes from the
+`china` block that `parse_germany.py` (`build_origin_analysis`) adds to
+`germany.json`; `build_site.py` bakes `germany.json` + `data/brand_logos.json`
+into every page in its `PAGES` list, so sub-pages stay self-contained and update
+on the same monthly schedule.
 
 Brand- and origin-level charts span the months backed by a full workbook; the
 powertrain chart also uses the supplementary series, so it reaches back to 2021.
