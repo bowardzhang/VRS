@@ -34,7 +34,8 @@ SITE_DATA_DIR = REPO_ROOT / "docs" / "data"
 POWERTRAIN_CSV = DATA_DIR / "kba_monthly_powertrain.csv"
 
 SHEET_NAME = "FZ 10.1"
-FILE_RE = re.compile(r"fz10_(\d{4})_(\d{2})\.xlsx$", re.IGNORECASE)
+# Accepts fz10_* (brands/models) and fz11_* (segments) — both share the layout.
+FILE_RE = re.compile(r"fz\d+_(\d{4})_(\d{2})\.xlsx$", re.IGNORECASE)
 
 # Column of the *monthly* value for each drivetrain group. The next two
 # columns hold the year-to-date value and the share (%). See row 8/9 headers.
