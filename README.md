@@ -80,8 +80,14 @@ built from every month of detail available:
   Spain, …), shown as a stacked area;
 - **by powertrain** — one line per drivetrain (petrol, diesel, BEV, plug-in
   hybrid, hybrid);
-- **by body segment** — placeholder; sedan/SUV/MPV/sports splits live in KBA
-  table **FZ 11 (Segmente)**, a planned addition (FZ 10.1 has no segment field).
+- **by body segment** — one line per body shape (sedan & hatch, SUV, MPV & van,
+  sports, other), from KBA table **FZ 11 (Segmente)** parsed by
+  `scripts/parse_segments.py` (KBA size/segment classes grouped into shapes).
+
+The latest-month brand and model charts also show **year-over-year** change vs
+the same month a year earlier, each brand/model marked with its logo (open-source
+brand icons where available, a colored monogram otherwise). The page defaults to
+the light theme.
 
 Brand- and origin-level charts span the months backed by a full workbook; the
 powertrain chart also uses the supplementary series, so it reaches back to 2021.
