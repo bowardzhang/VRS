@@ -81,6 +81,27 @@ def _num(value) -> float | None:
         return None
 
 
+# The data sheet is usually named "FZ 10.1", but the exact label varies across
+# publications ("FZ 10.1 ", "FZ10.1", "FZ 10.1_neu", …). Match it loosely and
+# skip obvious cover/notes sheets.
+_SHEET_RE = re.compile(r"fz\s*10[._ ]*1", re.IGNORECASE)
+_SKIP_SHEET_RE = re.compile(r"deckblatt|impressum|inhalt|erläuterung|hinweise", re.IGNORECASE)
+
+
+def _pick_sheet(wb) -> "openpyxl.worksheet.worksheet.Worksheet":
+    """Return the FZ 10.1 data sheet, tolerating naming variations."""
+    names = wb.sheetnames
+    if SHEET_NAME in names:
+        return wb[SHEET_NAME]
+    for name in names:
+        if _SHEET_RE.search(name):
+            return wb[name]
+    for name in names:
+        if not _SKIP_SHEET_RE.search(name):
+            return wb[name]
+    return wb[names[0]]
+
+
 def parse_workbook(path: Path) -> tuple[int, int, list[dict]]:
     """Return (year, month, rows) for one FZ 10.1 workbook."""
     m = FILE_RE.search(path.name)
@@ -89,7 +110,7 @@ def parse_workbook(path: Path) -> tuple[int, int, list[dict]]:
     year, month = int(m.group(1)), int(m.group(2))
 
     wb = openpyxl.load_workbook(path, data_only=True, read_only=True)
-    ws = wb[SHEET_NAME]
+    ws = _pick_sheet(wb)
 
     rows: list[dict] = []
     current_brand: str | None = None
