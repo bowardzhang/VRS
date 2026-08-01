@@ -136,6 +136,20 @@
     padding-left: 8px; white-space: nowrap;
   }
 
+  /* pie */
+  .pie-layout { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+  .pie-wrap { position: relative; flex: 0 0 auto; }
+  svg#fuelPie { width: 200px; height: 200px; display: block; }
+  .pie-slice { stroke: var(--surface); stroke-width: 2; transition: opacity .12s; cursor: pointer; }
+  .pie-slice:hover { opacity: .85; }
+  .pie-lab { fill: #fff; font-size: 9px; font-weight: 600; text-anchor: middle; pointer-events: none; }
+  .pie-legend { flex: 1 1 260px; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
+  .pie-legend .row { display: grid; grid-template-columns: 12px 1fr auto auto; align-items: baseline; gap: 10px; font-size: 13px; }
+  .pie-legend .sw { width: 11px; height: 11px; border-radius: 3px; align-self: center; }
+  .pie-legend .nm { color: var(--ink-2); }
+  .pie-legend .amt { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .pie-legend .yy { font-variant-numeric: tabular-nums; font-size: 12px; min-width: 62px; text-align: right; }
+
   .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; font-size: 12.5px; color: var(--ink-2); }
   .legend span { display: inline-flex; align-items: center; gap: 6px; }
   .swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
@@ -197,9 +211,15 @@
   </section>
 
   <section class="card">
-    <h2>Powertrain penetration</h2>
-    <p class="note">Share of the month's new registrations. Categories overlap where a car qualifies for more than one (e.g. plug-in hybrids count within hybrids), so they are shown as independent penetration rates, not a stacked whole.</p>
-    <div class="bars" id="fuelBars"></div>
+    <h2>Powertrain mix</h2>
+    <p class="note" id="fuelNote"></p>
+    <div class="pie-layout">
+      <div class="pie-wrap">
+        <svg id="fuelPie" viewBox="0 0 200 200" role="img" aria-label="Powertrain mix (share of the month's registrations)"></svg>
+        <div class="tip" id="fuelTip"></div>
+      </div>
+      <div class="pie-legend" id="fuelLegend"></div>
+    </div>
   </section>
 
   <h2 class="section-head">Trends over time</h2>
@@ -7951,7 +7971,10 @@
       ],
       "total_yoy": 15.7,
       "bev_yoy": 78.2,
-      "diesel_yoy": -5.1
+      "diesel_yoy": -5.1,
+      "petrol_yoy": -15.4,
+      "plugin_hybrid_yoy": 25.8,
+      "hybrid_yoy": 13.6
     }
   ],
   "latest": {
@@ -8197,7 +8220,10 @@
     ],
     "total_yoy": 15.7,
     "bev_yoy": 78.2,
-    "diesel_yoy": -5.1
+    "diesel_yoy": -5.1,
+    "petrol_yoy": -15.4,
+    "plugin_hybrid_yoy": 25.8,
+    "hybrid_yoy": 13.6
   },
   "brand_trends": {
     "labels": [
@@ -9274,18 +9300,65 @@
     latest.top_models.map(function (m) { return { name: m.brand + " " + m.model, value: m.total, yoy: m.yoy, brand: m.brand }; }),
     { logo: true, yoy: true });
 
-  // ---- powertrain penetration ----
-  var fuelRows = [
-    { name: "Battery-electric", value: pct(latest.bev, latest.total), color: "var(--s1)" },
-    { name: "Hybrid (incl. PHEV)", value: pct(latest.hybrid_incl_plugin, latest.total), color: "var(--s3)" },
-    { name: "Plug-in hybrid", value: pct(latest.plugin_hybrid, latest.total), color: "var(--s2)" },
-    { name: "Diesel", value: pct(latest.diesel, latest.total), color: "var(--s4)" }
-  ];
-  renderBars(document.getElementById("fuelBars"), fuelRows, { percent: true });
+  // ---- powertrain mix (pie, with YoY) ----
+  (function () {
+    // Mutually-exclusive drivetrains that sum to the month's total, so a pie is
+    // a valid part-of-whole view. Colours match the powertrain trend chart.
+    var slices = [
+      { name: "Petrol", value: latest.petrol, yoy: latest.petrol_yoy, cv: "--s2" },
+      { name: "Diesel", value: latest.diesel, yoy: latest.diesel_yoy, cv: "--s1" },
+      { name: "BEV", value: latest.bev, yoy: latest.bev_yoy, cv: "--s3" },
+      { name: "Plug-in hybrid", value: latest.plugin_hybrid, yoy: latest.plugin_hybrid_yoy, cv: "--s4" },
+      { name: "Hybrid", value: latest.hybrid, yoy: latest.hybrid_yoy, cv: "--s5" }
+    ].filter(function (s) { return s.value != null; });
+    var total = slices.reduce(function (a, s) { return a + s.value; }, 0) || 1;
+    document.getElementById("fuelNote").textContent =
+      latest.label + " — share of new registrations by drivetrain, with year-over-year change. Categories are mutually exclusive and sum to 100%.";
+
+    var svg = document.getElementById("fuelPie");
+    var cx = 100, cy = 100, r = 92;
+    function pt(ang) { return [cx + r * Math.cos(ang), cy + r * Math.sin(ang)]; }
+    var a0 = -Math.PI / 2;
+    slices.forEach(function (s) {
+      var frac = s.value / total, a1 = a0 + frac * 2 * Math.PI;
+      var large = frac > 0.5 ? 1 : 0;
+      var p0 = pt(a0), p1 = pt(a1);
+      var d = "M" + cx + " " + cy + " L" + p0[0].toFixed(2) + " " + p0[1].toFixed(2) +
+        " A" + r + " " + r + " 0 " + large + " 1 " + p1[0].toFixed(2) + " " + p1[1].toFixed(2) + " Z";
+      var path = svgEl("path", { class: "pie-slice", d: d, style: "fill:var(" + s.cv + ")" });
+      path.addEventListener("mouseenter", function () {
+        var tip = document.getElementById("fuelTip");
+        tip.innerHTML = '<div class="tt-head">' + s.name + "</div>" +
+          '<div class="tt-row">' + fmt(s.value) + " · " + (100 * frac).toFixed(1) + "%</div>" +
+          '<div class="tt-row">YoY: ' + (s.yoy == null ? "–" : (s.yoy > 0 ? "+" : "") + s.yoy.toFixed(1) + "%") + "</div>";
+        var mid = (a0 + a1) / 2, lp = [cx + r * 0.6 * Math.cos(mid), cy + r * 0.6 * Math.sin(mid)];
+        tip.style.opacity = 1; tip.style.left = lp[0] + "px"; tip.style.top = lp[1] + "px";
+      });
+      path.addEventListener("mouseleave", function () { document.getElementById("fuelTip").style.opacity = 0; });
+      svg.appendChild(path);
+      if (frac >= 0.06) {
+        var mid = (a0 + a1) / 2, lp = [cx + r * 0.62 * Math.cos(mid), cy + r * 0.62 * Math.sin(mid)];
+        var lab = svgEl("text", { class: "pie-lab", x: lp[0].toFixed(1), y: (lp[1] + 3).toFixed(1) });
+        lab.textContent = (100 * frac).toFixed(0) + "%";
+        svg.appendChild(lab);
+      }
+      a0 = a1;
+    });
+
+    document.getElementById("fuelLegend").innerHTML = slices.map(function (s) {
+      var y = s.yoy, cls = y == null ? "flat" : (y > 0 ? "up" : (y < 0 ? "down" : "flat"));
+      var ar = y == null ? "–" : (y > 0 ? "▲ +" : (y < 0 ? "▼ " : "")) + Math.abs(y).toFixed(1) + "%";
+      return '<div class="row">' +
+        '<i class="sw" style="background:var(' + s.cv + ')"></i>' +
+        '<span class="nm">' + s.name + "</span>" +
+        '<span class="amt">' + fmt(s.value) + " · " + (100 * s.value / total).toFixed(1) + "%</span>" +
+        '<span class="yy ' + cls + '">' + ar + "</span></div>";
+    }).join("");
+  })();
 
   // ================= reusable time-series charts =================
   var NS = "http://www.w3.org/2000/svg";
-  function svgEl(t, a) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
+  function svgEl(t, a) { var e = document.createElementNS("http://www.w3.org/2000/svg", t); for (var k in a) e.setAttribute(k, a[k]); return e; }
   var PALETTE = ["--s1", "--s2", "--s3", "--s4", "--s5", "--s6", "--s7", "--s8"];
   function colorVar(s, i) {
     if (s.colorVar) return s.colorVar;
@@ -9419,6 +9492,8 @@
       cross.setAttribute("x1", x(i)); cross.setAttribute("x2", x(i)); cross.style.opacity = 1;
       var rows = series.map(function (s, si) { return { name: s.name, val: s.values[i] || 0, cv: colorVar(s, si) }; });
       rows.sort(function (a, b) { return b.val - a.val; });
+      // Keep "Other" pinned at the bottom of the tooltip (matches legend + stack).
+      rows.sort(function (a, b) { return (a.name === "Other") - (b.name === "Other"); });
       tip.innerHTML = tipHTML(labels[i] + " · total " + fmt(totals[i]), rows);
       tip.style.opacity = 1; tip.style.left = x(i) + "px"; tip.style.top = m.t + "px";
     });

@@ -7691,7 +7691,10 @@
       ],
       "total_yoy": 15.7,
       "bev_yoy": 78.2,
-      "diesel_yoy": -5.1
+      "diesel_yoy": -5.1,
+      "petrol_yoy": -15.4,
+      "plugin_hybrid_yoy": 25.8,
+      "hybrid_yoy": 13.6
     }
   ],
   "latest": {
@@ -7937,7 +7940,10 @@
     ],
     "total_yoy": 15.7,
     "bev_yoy": 78.2,
-    "diesel_yoy": -5.1
+    "diesel_yoy": -5.1,
+    "petrol_yoy": -15.4,
+    "plugin_hybrid_yoy": 25.8,
+    "hybrid_yoy": 13.6
   },
   "brand_trends": {
     "labels": [

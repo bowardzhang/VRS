@@ -289,6 +289,12 @@ def attach_yoy(latest: dict | None, months: list[dict]) -> None:
         latest["total_yoy"] = _yoy(latest.get("total"), prev_grand["total"]["month"])
         latest["bev_yoy"] = _yoy(latest.get("bev"), prev_grand["bev"]["month"])
         latest["diesel_yoy"] = _yoy(latest.get("diesel"), prev_grand["diesel"]["month"])
+        # Prior-year pure petrol, mirroring the derivation used for the pie chart.
+        p = [prev_grand[k]["month"] for k in ("total", "diesel", "hybrid_incl_plugin", "bev")]
+        prev_petrol = p[0] - p[1] - p[2] - p[3] if all(v is not None for v in p) else None
+        latest["petrol_yoy"] = _yoy(latest.get("petrol"), prev_petrol)
+        latest["plugin_hybrid_yoy"] = _yoy(latest.get("plugin_hybrid"), prev_grand["plugin_hybrid"]["month"])
+        latest["hybrid_yoy"] = _yoy(latest.get("hybrid"), prev_grand["hybrid_excl_plugin"]["month"])
     for b in latest.get("top_brands", []):
         b["yoy"] = _yoy(b.get("total"), prev_brands.get(b["brand"].strip().upper()))
     for mo in latest.get("top_models", []):
