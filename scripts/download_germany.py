@@ -33,9 +33,11 @@ Notes
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from datetime import date
 from pathlib import Path
+from urllib.parse import urljoin
 
 try:
     import requests
@@ -46,13 +48,20 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "Germany"
 
 # KBA download location for the FZ 10 monthly workbooks. The ``v`` (version)
-# query parameter changes per publication; we probe a small range of values.
+# query parameter changes per publication and cannot be guessed reliably, so we
+# first *discover* the real link from the month's landing page (see
+# ``discover_xlsx_url``) and only fall back to probing a few version values.
 BASE_URL = (
     "https://www.kba.de/SharedDocs/Downloads/DE/Statistik/Fahrzeuge/FZ10/"
     "fz10_{year}_{month:02d}.xlsx"
 )
+# The landing (.html) page for a month embeds the correct download URL.
+LANDING_URL = (
+    "https://www.kba.de/SharedDocs/Downloads/DE/Statistik/Fahrzeuge/FZ10/"
+    "fz10_{year}_{month:02d}.html"
+)
 VERSION_CANDIDATES = ["", "?__blob=publicationFile"] + [
-    f"?__blob=publicationFile&v={v}" for v in range(1, 8)
+    f"?__blob=publicationFile&v={v}" for v in range(1, 13)
 ]
 
 HEADERS = {
@@ -92,6 +101,36 @@ def parse_month(value: str) -> date:
         ) from exc
 
 
+def discover_xlsx_url(year: int, month: int) -> str | None:
+    """Find the real .xlsx download URL from the month's landing page.
+
+    KBA's workbook links carry an unpredictable ``?__blob=publicationFile&v=N``
+    version parameter. The landing (.html) page for the month embeds the correct
+    link, so we fetch it and extract the ``fz10_<year>_<month>.xlsx`` href.
+    Returns an absolute URL, or ``None`` if the page or link is unavailable.
+    """
+    landing = LANDING_URL.format(year=year, month=month)
+    try:
+        resp = requests.get(landing, headers=HEADERS, timeout=60)
+    except requests.RequestException as exc:
+        print(f"[warn] landing {landing} -> {exc}")
+        return None
+    if resp.status_code == 403:
+        print(f"[deny] {landing} -> HTTP 403 (host blocked by network policy).")
+        return None
+    if resp.status_code != 200:
+        return None
+
+    pattern = re.compile(
+        rf"([^\"'\s]*fz10_{year}_{month:02d}\.xlsx(?:\?[^\"'\s]*)?)",
+        re.IGNORECASE,
+    )
+    match = pattern.search(resp.text)
+    if not match:
+        return None
+    return urljoin(landing, match.group(1))
+
+
 def download_month(year: int, month: int, *, force: bool = False) -> bool:
     """Download one month's FZ 10.1 workbook. Return True on success/skip."""
     out_path = OUT_DIR / f"fz10_{year}_{month:02d}.xlsx"
@@ -102,8 +141,14 @@ def download_month(year: int, month: int, *, force: bool = False) -> bool:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     base = BASE_URL.format(year=year, month=month)
 
-    for suffix in VERSION_CANDIDATES:
-        url = base + suffix
+    # Try the discovered URL first, then fall back to probing version params.
+    candidates: list[str] = []
+    discovered = discover_xlsx_url(year, month)
+    if discovered:
+        candidates.append(discovered)
+    candidates.extend(base + suffix for suffix in VERSION_CANDIDATES)
+
+    for url in candidates:
         try:
             resp = requests.get(url, headers=HEADERS, timeout=60)
         except requests.RequestException as exc:
@@ -128,21 +173,29 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--month", type=parse_month, help="Single month YYYY-MM")
     parser.add_argument("--from", dest="from_", type=parse_month, help="Range start YYYY-MM")
     parser.add_argument("--to", type=parse_month, help="Range end YYYY-MM")
-    parser.add_argument("--last", type=int, help="Download the last N months up to --to")
+    parser.add_argument(
+        "--last", type=int,
+        help="Download the last N months up to --to (defaults --to to this month)",
+    )
     parser.add_argument("--force", action="store_true", help="Re-download existing files")
+    parser.add_argument(
+        "--allow-missing", action="store_true",
+        help="Exit 0 even if some months are unavailable (e.g. not yet published)",
+    )
     args = parser.parse_args(argv)
 
     if args.month:
         months = [(args.month.year, args.month.month)]
-    elif args.to and args.last:
-        end = args.to
+    elif args.last:
+        # --to defaults to the current month, so `--last N` needs no date maths.
+        end = args.to or date.today().replace(day=1)
         start_index = end.year * 12 + (end.month - 1) - (args.last - 1)
         start = date(start_index // 12, start_index % 12 + 1, 1)
         months = list(month_iter(start, end))
     elif args.from_ and args.to:
         months = list(month_iter(args.from_, args.to))
     else:
-        parser.error("Specify --month, or --from/--to, or --to/--last")
+        parser.error("Specify --month, or --from/--to, or --last (with optional --to)")
         return 2
 
     ok = 0
@@ -150,6 +203,8 @@ def main(argv: list[str] | None = None) -> int:
         if download_month(year, month, force=args.force):
             ok += 1
     print(f"\nDone: {ok}/{len(months)} month(s) available in {OUT_DIR}")
+    if args.allow_missing:
+        return 0
     return 0 if ok == len(months) else 1
 
 

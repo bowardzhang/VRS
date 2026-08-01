@@ -77,12 +77,32 @@ no external assets, light/dark aware). It shows, for the latest month:
 Serve it with GitHub Pages (set Pages source to `/docs`) or open the file
 directly. Rebuild after adding new months with steps 2–3 above.
 
+## Automated updates (GitHub Actions)
+
+Two workflows keep the published site current with no manual work:
+
+| Workflow | Trigger | What it does |
+|----------|---------|--------------|
+| `.github/workflows/update-data.yml` | Monthly (cron, 8th at 06:00 UTC) + manual | Downloads the latest KBA workbooks, re-parses, rebuilds the page, and commits `data/Germany` + `docs`. |
+| `.github/workflows/pages.yml`       | On `docs/**` push, after a data update, or manual | Publishes `docs/` to GitHub Pages. |
+
+GitHub's runners have open internet access, so they can reach `www.kba.de`
+directly (unlike a locked-down local/sandbox environment). The downloader finds
+each month's real `.xlsx` link from its KBA landing page, so it is not affected
+by the unpredictable `?__blob=publicationFile&v=N` version parameter.
+
+**Initial 3-year backfill:** run the *Update KBA registration data* workflow
+manually (Actions tab → Run workflow) with **months = `36`**. The monthly
+schedule then fetches the trailing three months each run (skipping files already
+present) so newly published and late-revised months are picked up automatically.
+
 ## Network note (KBA host)
 
 KBA serves the workbooks from `www.kba.de`. In sandboxed/CI environments with an
 egress allow-list, that host must be permitted or the download fails with an
 HTTP 403 at the proxy. Allow-list changes generally take effect only in a
-**newly started** session/environment, not one already running.
+**newly started** session/environment, not one already running. GitHub Actions
+runners are not subject to this restriction (see *Automated updates* above).
 
 ## Data source & licence
 

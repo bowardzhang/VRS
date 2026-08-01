@@ -1,0 +1,62 @@
+name: Update KBA registration data
+
+on:
+  # Monthly, on the 8th at 06:00 UTC — KBA publishes the previous month's
+  # FZ 10 workbook within the first days of each month, so this leaves margin.
+  schedule:
+    - cron: "0 6 8 * *"
+  # Manual runs: use a large "months" value (e.g. 36) for the initial backfill.
+  workflow_dispatch:
+    inputs:
+      months:
+        description: "Number of trailing months to (re)fetch"
+        required: false
+        default: "3"
+
+# Needed to commit the refreshed data/site back to the repository.
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download latest KBA workbooks
+        # Scheduled runs fetch the trailing 3 months (skipping ones already on
+        # disk); manual runs can pass a larger window for a backfill.
+        # --allow-missing keeps the job green when a month is not yet published.
+        run: |
+          MONTHS="${{ github.event.inputs.months || '3' }}"
+          python scripts/download_germany.py --last "$MONTHS" --allow-missing
+
+      - name: Parse workbooks and rebuild site
+        run: |
+          python scripts/parse_germany.py
+          python scripts/build_site.py
+
+      - name: Commit updated data and site
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/Germany docs
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore(data): refresh KBA registration data and site"
+            git push
+          fi
