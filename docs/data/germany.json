@@ -7466,105 +7466,120 @@
           "total": 51058,
           "bev": 8711,
           "diesel": 10427,
-          "plugin_hybrid": 4973
+          "plugin_hybrid": 4973,
+          "yoy": 5.9
         },
         {
           "brand": "BMW",
           "total": 26119,
           "bev": 7705,
           "diesel": 428,
-          "plugin_hybrid": 3224
+          "plugin_hybrid": 3224,
+          "yoy": 18.6
         },
         {
           "brand": "SKODA",
           "total": 24963,
           "bev": 6709,
           "diesel": 5348,
-          "plugin_hybrid": 1751
+          "plugin_hybrid": 1751,
+          "yoy": 23.5
         },
         {
           "brand": "MERCEDES",
           "total": 23728,
           "bev": 5930,
           "diesel": 4089,
-          "plugin_hybrid": 3297
+          "plugin_hybrid": 3297,
+          "yoy": 5.9
         },
         {
           "brand": "AUDI",
           "total": 19097,
           "bev": 4904,
           "diesel": 887,
-          "plugin_hybrid": 4412
+          "plugin_hybrid": 4412,
+          "yoy": 17.1
         },
         {
           "brand": "SEAT",
           "total": 17472,
           "bev": 4571,
           "diesel": 851,
-          "plugin_hybrid": 2318
+          "plugin_hybrid": 2318,
+          "yoy": 31.0
         },
         {
           "brand": "OPEL",
           "total": 13097,
           "bev": 2355,
           "diesel": 1986,
-          "plugin_hybrid": 235
+          "plugin_hybrid": 235,
+          "yoy": -14.8
         },
         {
           "brand": "FORD",
           "total": 9693,
           "bev": 2723,
           "diesel": 2703,
-          "plugin_hybrid": 1736
+          "plugin_hybrid": 1736,
+          "yoy": 7.5
         },
         {
           "brand": "DACIA",
           "total": 9454,
           "bev": 1702,
           "diesel": null,
-          "plugin_hybrid": null
+          "plugin_hybrid": null,
+          "yoy": 22.1
         },
         {
           "brand": "HYUNDAI",
           "total": 8520,
           "bev": 2900,
           "diesel": null,
-          "plugin_hybrid": 444
+          "plugin_hybrid": 444,
+          "yoy": -5.2
         },
         {
           "brand": "RENAULT",
           "total": 8113,
           "bev": 3190,
           "diesel": 374,
-          "plugin_hybrid": 138
+          "plugin_hybrid": 138,
+          "yoy": 30.8
         },
         {
           "brand": "TESLA",
           "total": 7768,
           "bev": 7768,
           "diesel": null,
-          "plugin_hybrid": null
+          "plugin_hybrid": null,
+          "yoy": 317.6
         },
         {
           "brand": "FIAT",
           "total": 6433,
           "bev": 1629,
           "diesel": 2804,
-          "plugin_hybrid": null
+          "plugin_hybrid": null,
+          "yoy": 20.5
         },
         {
           "brand": "BYD",
           "total": 6259,
           "bev": 2329,
           "diesel": null,
-          "plugin_hybrid": 3930
+          "plugin_hybrid": 3930,
+          "yoy": 273.7
         },
         {
           "brand": "TOYOTA",
           "total": 6072,
           "bev": 985,
           "diesel": 336,
-          "plugin_hybrid": 389
+          "plugin_hybrid": 389,
+          "yoy": -20.5
         }
       ],
       "top_models": [
@@ -7572,93 +7587,111 @@
           "brand": "VW",
           "model": "GOLF",
           "total": 8117,
-          "bev": null
+          "bev": null,
+          "yoy": 10.4
         },
         {
           "brand": "VW",
           "model": "T-ROC",
           "total": 6808,
-          "bev": null
+          "bev": null,
+          "yoy": 1.8
         },
         {
           "brand": "TESLA",
           "model": "MODEL Y",
           "total": 6023,
-          "bev": 6023
+          "bev": 6023,
+          "yoy": 361.9
         },
         {
           "brand": "VW",
           "model": "TIGUAN",
           "total": 5511,
-          "bev": null
+          "bev": null,
+          "yoy": 18.1
         },
         {
           "brand": "BMW",
           "model": "X1",
           "total": 5388,
-          "bev": 2628
+          "bev": 2628,
+          "yoy": 18.5
         },
         {
           "brand": "MINI",
           "model": "MINI",
           "total": 4936,
-          "bev": 2327
+          "bev": 2327,
+          "yoy": 59.7
         },
         {
           "brand": "MERCEDES",
           "model": "GLK, GLC",
           "total": 4716,
-          "bev": 1250
+          "bev": 1250,
+          "yoy": 67.8
         },
         {
           "brand": "SKODA",
           "model": "OCTAVIA",
           "total": 4713,
-          "bev": null
+          "bev": null,
+          "yoy": 22.4
         },
         {
           "brand": "AUDI",
           "model": "A6",
           "total": 4655,
-          "bev": 2274
+          "bev": 2274,
+          "yoy": 54.1
         },
         {
           "brand": "BMW",
           "model": "X3",
           "total": 4516,
-          "bev": 1688
+          "bev": 1688,
+          "yoy": 111.7
         },
         {
           "brand": "OPEL",
           "model": "CORSA",
           "total": 4233,
-          "bev": 797
+          "bev": 797,
+          "yoy": -30.9
         },
         {
           "brand": "VW",
           "model": "T-CROSS",
           "total": 3991,
-          "bev": null
+          "bev": null,
+          "yoy": 30.7
         },
         {
           "brand": "AUDI",
           "model": "A5",
           "total": 3647,
-          "bev": null
+          "bev": null,
+          "yoy": 61.8
         },
         {
           "brand": "VW",
           "model": "ID.3",
           "total": 3514,
-          "bev": 3514
+          "bev": 3514,
+          "yoy": 39.4
         },
         {
           "brand": "VW",
           "model": "TRANSPORTER",
           "total": 3493,
-          "bev": 168
+          "bev": 168,
+          "yoy": 16.4
         }
-      ]
+      ],
+      "total_yoy": 15.7,
+      "bev_yoy": 78.2,
+      "diesel_yoy": -5.1
     }
   ],
   "latest": {
@@ -7679,105 +7712,120 @@
         "total": 51058,
         "bev": 8711,
         "diesel": 10427,
-        "plugin_hybrid": 4973
+        "plugin_hybrid": 4973,
+        "yoy": 5.9
       },
       {
         "brand": "BMW",
         "total": 26119,
         "bev": 7705,
         "diesel": 428,
-        "plugin_hybrid": 3224
+        "plugin_hybrid": 3224,
+        "yoy": 18.6
       },
       {
         "brand": "SKODA",
         "total": 24963,
         "bev": 6709,
         "diesel": 5348,
-        "plugin_hybrid": 1751
+        "plugin_hybrid": 1751,
+        "yoy": 23.5
       },
       {
         "brand": "MERCEDES",
         "total": 23728,
         "bev": 5930,
         "diesel": 4089,
-        "plugin_hybrid": 3297
+        "plugin_hybrid": 3297,
+        "yoy": 5.9
       },
       {
         "brand": "AUDI",
         "total": 19097,
         "bev": 4904,
         "diesel": 887,
-        "plugin_hybrid": 4412
+        "plugin_hybrid": 4412,
+        "yoy": 17.1
       },
       {
         "brand": "SEAT",
         "total": 17472,
         "bev": 4571,
         "diesel": 851,
-        "plugin_hybrid": 2318
+        "plugin_hybrid": 2318,
+        "yoy": 31.0
       },
       {
         "brand": "OPEL",
         "total": 13097,
         "bev": 2355,
         "diesel": 1986,
-        "plugin_hybrid": 235
+        "plugin_hybrid": 235,
+        "yoy": -14.8
       },
       {
         "brand": "FORD",
         "total": 9693,
         "bev": 2723,
         "diesel": 2703,
-        "plugin_hybrid": 1736
+        "plugin_hybrid": 1736,
+        "yoy": 7.5
       },
       {
         "brand": "DACIA",
         "total": 9454,
         "bev": 1702,
         "diesel": null,
-        "plugin_hybrid": null
+        "plugin_hybrid": null,
+        "yoy": 22.1
       },
       {
         "brand": "HYUNDAI",
         "total": 8520,
         "bev": 2900,
         "diesel": null,
-        "plugin_hybrid": 444
+        "plugin_hybrid": 444,
+        "yoy": -5.2
       },
       {
         "brand": "RENAULT",
         "total": 8113,
         "bev": 3190,
         "diesel": 374,
-        "plugin_hybrid": 138
+        "plugin_hybrid": 138,
+        "yoy": 30.8
       },
       {
         "brand": "TESLA",
         "total": 7768,
         "bev": 7768,
         "diesel": null,
-        "plugin_hybrid": null
+        "plugin_hybrid": null,
+        "yoy": 317.6
       },
       {
         "brand": "FIAT",
         "total": 6433,
         "bev": 1629,
         "diesel": 2804,
-        "plugin_hybrid": null
+        "plugin_hybrid": null,
+        "yoy": 20.5
       },
       {
         "brand": "BYD",
         "total": 6259,
         "bev": 2329,
         "diesel": null,
-        "plugin_hybrid": 3930
+        "plugin_hybrid": 3930,
+        "yoy": 273.7
       },
       {
         "brand": "TOYOTA",
         "total": 6072,
         "bev": 985,
         "diesel": 336,
-        "plugin_hybrid": 389
+        "plugin_hybrid": 389,
+        "yoy": -20.5
       }
     ],
     "top_models": [
@@ -7785,93 +7833,111 @@
         "brand": "VW",
         "model": "GOLF",
         "total": 8117,
-        "bev": null
+        "bev": null,
+        "yoy": 10.4
       },
       {
         "brand": "VW",
         "model": "T-ROC",
         "total": 6808,
-        "bev": null
+        "bev": null,
+        "yoy": 1.8
       },
       {
         "brand": "TESLA",
         "model": "MODEL Y",
         "total": 6023,
-        "bev": 6023
+        "bev": 6023,
+        "yoy": 361.9
       },
       {
         "brand": "VW",
         "model": "TIGUAN",
         "total": 5511,
-        "bev": null
+        "bev": null,
+        "yoy": 18.1
       },
       {
         "brand": "BMW",
         "model": "X1",
         "total": 5388,
-        "bev": 2628
+        "bev": 2628,
+        "yoy": 18.5
       },
       {
         "brand": "MINI",
         "model": "MINI",
         "total": 4936,
-        "bev": 2327
+        "bev": 2327,
+        "yoy": 59.7
       },
       {
         "brand": "MERCEDES",
         "model": "GLK, GLC",
         "total": 4716,
-        "bev": 1250
+        "bev": 1250,
+        "yoy": 67.8
       },
       {
         "brand": "SKODA",
         "model": "OCTAVIA",
         "total": 4713,
-        "bev": null
+        "bev": null,
+        "yoy": 22.4
       },
       {
         "brand": "AUDI",
         "model": "A6",
         "total": 4655,
-        "bev": 2274
+        "bev": 2274,
+        "yoy": 54.1
       },
       {
         "brand": "BMW",
         "model": "X3",
         "total": 4516,
-        "bev": 1688
+        "bev": 1688,
+        "yoy": 111.7
       },
       {
         "brand": "OPEL",
         "model": "CORSA",
         "total": 4233,
-        "bev": 797
+        "bev": 797,
+        "yoy": -30.9
       },
       {
         "brand": "VW",
         "model": "T-CROSS",
         "total": 3991,
-        "bev": null
+        "bev": null,
+        "yoy": 30.7
       },
       {
         "brand": "AUDI",
         "model": "A5",
         "total": 3647,
-        "bev": null
+        "bev": null,
+        "yoy": 61.8
       },
       {
         "brand": "VW",
         "model": "ID.3",
         "total": 3514,
-        "bev": 3514
+        "bev": 3514,
+        "yoy": 39.4
       },
       {
         "brand": "VW",
         "model": "TRANSPORTER",
         "total": 3493,
-        "bev": 168
+        "bev": 168,
+        "yoy": 16.4
       }
-    ]
+    ],
+    "total_yoy": 15.7,
+    "bev_yoy": 78.2,
+    "diesel_yoy": -5.1
   },
   "brand_trends": {
     "labels": [

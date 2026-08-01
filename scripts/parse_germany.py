@@ -247,6 +247,54 @@ def _brand_month_totals(month: dict) -> dict[str, float]:
     return out
 
 
+def _model_month_totals(month: dict) -> dict[tuple[str, str], float]:
+    """{(brand, model): monthly total} from a workbook month's model rows."""
+    out: dict[tuple[str, str], float] = {}
+    for r in month["rows"]:
+        if r["kind"] == "model":
+            val = r["metrics"]["total"]["month"]
+            if val is not None:
+                out[(r["brand"].strip().upper(), r["model"].strip().upper())] = val
+    return out
+
+
+def _yoy(cur, prev):
+    """Year-over-year percentage change, rounded to 0.1; None if not computable."""
+    if cur is None or prev in (None, 0):
+        return None
+    return round((cur - prev) / prev * 100, 1)
+
+
+def attach_yoy(latest: dict | None, months: list[dict]) -> None:
+    """Add year-over-year growth (vs the same month one year earlier) to the
+    latest month's headline totals, top brands and top models — in place."""
+    if not latest:
+        return
+    prev = next(
+        (mo for mo in months
+         if mo["year"] == latest["year"] - 1 and mo["month"] == latest["month"]),
+        None,
+    )
+    if not prev:
+        return
+
+    prev_brands = _brand_month_totals(prev)
+    prev_models = _model_month_totals(prev)
+    prev_grand = next(
+        (r["metrics"] for r in prev["rows"]
+         if r["brand"].upper() == GRAND_TOTAL_KEY), None
+    )
+    if prev_grand:
+        latest["total_yoy"] = _yoy(latest.get("total"), prev_grand["total"]["month"])
+        latest["bev_yoy"] = _yoy(latest.get("bev"), prev_grand["bev"]["month"])
+        latest["diesel_yoy"] = _yoy(latest.get("diesel"), prev_grand["diesel"]["month"])
+    for b in latest.get("top_brands", []):
+        b["yoy"] = _yoy(b.get("total"), prev_brands.get(b["brand"].strip().upper()))
+    for mo in latest.get("top_models", []):
+        key = (mo["brand"].strip().upper(), mo["model"].strip().upper())
+        mo["yoy"] = _yoy(mo.get("total"), prev_models.get(key))
+
+
 def build_dimension_series(months: list[dict]) -> dict:
     """Multi-month series for the brand and country-of-origin dimensions.
 
@@ -433,6 +481,7 @@ def build_site_json(months: list[dict]) -> dict:
     latest = next(
         (mo for mo in reversed(monthly_summary) if mo.get("top_brands")), None
     )
+    attach_yoy(latest, months)
     dims = build_dimension_series(months)
     return {
         "country": "Germany",
