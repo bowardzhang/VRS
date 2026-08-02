@@ -97,11 +97,46 @@ def load_monthly_counts() -> list[tuple[int, int, str, str, int]]:
     return out
 
 
-def _soc_bucket(rec: dict | None) -> str:
+# Dimension definitions: each maps a spec field -> supplier bucket, with a
+# weight (registration base) and display metadata. The output shape is uniform
+# so a single secondary-page template can render any of them.
+DIMENSIONS = [
+    {"key": "soc", "field": "soc_brand", "weight": "total", "order": SOC_ORDER,
+     "title": "Cockpit SoC", "cn": "座舱域控芯片", "series": True,
+     "base": "all registrations", "confidence": "better-sourced",
+     "blurb": "In-vehicle infotainment / cockpit domain-controller (车机) compute silicon."},
+    {"key": "adas", "field": "adas_soc", "weight": "total", "order": ADAS_ORDER,
+     "title": "ADAS / perception SoC", "cn": "智驾感知芯片", "series": True,
+     "base": "all registrations", "confidence": "directional estimate",
+     "blurb": "Front-camera / driver-assistance perception processor."},
+    {"key": "radar", "field": "radar_tier1", "weight": "total", "order": RADAR_ORDER,
+     "title": "Front-radar Tier-1", "cn": "前向毫米波雷达", "series": False,
+     "base": "all registrations", "confidence": "directional estimate",
+     "blurb": "Front radar module supplier (ACC / AEB)."},
+    {"key": "power", "field": "power_semi", "weight": "bev", "order": POWER_ORDER,
+     "title": "EV inverter power-semi", "cn": "电驱功率半导体", "series": False,
+     "base": "BEV registrations", "confidence": "directional estimate",
+     "blurb": "Traction-inverter power module (SiC / IGBT), among battery-electric cars."},
+    {"key": "lidar", "field": "__lidar__", "weight": "total", "order": None,
+     "title": "LiDAR", "cn": "激光雷达", "series": False,
+     "base": "all registrations", "confidence": "better-sourced",
+     "penetration": True,
+     "blurb": "LiDAR fitment (standard-config estimate) and its supplier."},
+]
+
+
+def _bucket(rec, field):
     if rec is None:
         return "Unclassified"
-    val = (rec.get("soc_brand") or "").strip()
-    return val or "Unclassified"
+    if field == "__lidar__":
+        li = (rec.get("lidar") or "").strip()
+        if li in ("yes", "optional"):
+            return (rec.get("lidar_brand") or "Unknown").strip() or "Unknown"
+        return "No LiDAR"
+    return (rec.get(field) or "").strip() or "Unclassified"
+
+
+NON_SUPPLIER = {"Unclassified", "No LiDAR"}
 
 
 def build_suppliers(specs: dict, counts: list) -> dict:
@@ -110,125 +145,100 @@ def build_suppliers(specs: dict, counts: list) -> dict:
     idx = {ym: i for i, ym in enumerate(months)}
     n = len(months)
 
-    # Per-vendor, per-month registration tallies for each supplier dimension.
-    # A dimension maps a spec field -> vendor bucket; "" / missing -> Unclassified.
-    soc_by_month: dict[str, list[int]] = defaultdict(lambda: [0] * n)
-    adas_by_month: dict[str, list[int]] = defaultdict(lambda: [0] * n)
-    radar_by_month: dict[str, list[int]] = defaultdict(lambda: [0] * n)
-    power_by_month: dict[str, list[int]] = defaultdict(lambda: [0] * n)  # BEV-weighted
-    dc_by_month = {k: [0] * n for k in ("yes", "partial", "no", "Unclassified")}
-    lidar_by_month = {k: [0] * n for k in ("yes", "optional", "no", "Unclassified")}
     total_by_month = [0] * n
     bev_by_month = [0] * n
 
-    # Per-model rollup for the detail table (whole-window totals).
-    model_totals: dict[tuple[str, str], int] = defaultdict(int)
-
-    def bucket(rec, field):
-        if rec is None:
-            return "Unclassified"
-        return (rec.get(field) or "").strip() or "Unclassified"
+    # Per dimension: month series, and per-supplier per-model whole-window totals.
+    by_month: dict[str, dict[str, list[int]]] = {
+        d["key"]: defaultdict(lambda: [0] * n) for d in DIMENSIONS
+    }
+    model_wt: dict[str, dict[str, dict]] = {
+        d["key"]: defaultdict(lambda: defaultdict(int)) for d in DIMENSIONS
+    }
 
     for y, m, brand, model, cnt, bev in counts:
         i = idx[(y, m)]
         rec = specs.get((brand, model))
         total_by_month[i] += cnt
         bev_by_month[i] += bev
-        model_totals[(brand, model)] += cnt
-
-        soc_by_month[bucket(rec, "soc_brand")][i] += cnt
-        adas_by_month[bucket(rec, "adas_soc")][i] += cnt
-        radar_by_month[bucket(rec, "radar_tier1")][i] += cnt
-        power_by_month[bucket(rec, "power_semi")][i] += bev  # weight by BEV regs
-
-        dc = bucket(rec, "domain_controller")
-        dc = dc if dc in dc_by_month else "Unclassified"
-        dc_by_month[dc][i] += cnt
-
-        li = bucket(rec, "lidar")
-        li = li if li in lidar_by_month else "Unclassified"
-        lidar_by_month[li][i] += cnt
+        for d in DIMENSIONS:
+            w = bev if d["weight"] == "bev" else cnt
+            if w <= 0:
+                continue
+            b = _bucket(rec, d["field"])
+            by_month[d["key"]][b][i] += w
+            model_wt[d["key"]][b][(brand, model)] += w
 
     grand_total = sum(total_by_month)
     bev_total = sum(bev_by_month)
-    classified_total = grand_total - sum(soc_by_month.get("Unclassified", [0] * n))
 
-    def dimension(by_month, base_by_month, base_total, order=None):
-        """Whole-window shares + monthly mix series for one supplier dimension."""
-        window = {k: sum(v) for k, v in by_month.items()}
-        classified = base_total - window.get("Unclassified", 0)
+    def base_for(d):
+        return (bev_by_month, bev_total) if d["weight"] == "bev" else (total_by_month, grand_total)
+
+    dims_out = []
+    for d in DIMENSIONS:
+        bm = by_month[d["key"]]
+        base_by_month, base_total = base_for(d)
+        window = {k: sum(v) for k, v in bm.items()}
+        non_supplier = sum(window.get(k, 0) for k in NON_SUPPLIER)
+        classified = base_total - non_supplier
+        # per-supplier share + top models
         share = []
         for name in sorted(window, key=lambda b: (-window[b], b)):
             tot = window[name]
+            top = sorted(model_wt[d["key"]][name].items(), key=lambda kv: -kv[1])[:6]
             share.append({
                 "brand": name,
                 "total": tot,
                 "share_all": round(100 * tot / base_total, 2) if base_total else 0,
                 "share_classified": (
                     round(100 * tot / classified, 2)
-                    if classified and name != "Unclassified" else None
+                    if classified and name not in NON_SUPPLIER else None
                 ),
-            })
-        ordered = [b for b in (order or SOC_ORDER) if b in by_month]
-        ordered += [b for b in window if b not in ordered]
-        series = [
-            {
-                "name": name,
-                "counts": by_month[name],
-                "share": [
-                    round(100 * by_month[name][i] / base_by_month[i], 2)
-                    if base_by_month[i] else 0
-                    for i in range(n)
+                "is_supplier": name not in NON_SUPPLIER,
+                "top_models": [
+                    {"brand": b, "model": mo, "total": w} for (b, mo), w in top
                 ],
+            })
+        # monthly mix series (only where useful)
+        series = []
+        if d.get("series"):
+            order = d["order"] or SOC_ORDER
+            ordered = [b for b in order if b in bm] + [b for b in window if b not in (order or [])]
+            series = [
+                {
+                    "name": name,
+                    "share": [
+                        round(100 * bm[name][i] / base_by_month[i], 2)
+                        if base_by_month[i] else 0 for i in range(n)
+                    ],
+                }
+                for name in ordered
+            ]
+        # penetration line (fitment rate) for LiDAR-style adoption dimensions
+        penetration = None
+        if d.get("penetration"):
+            equipped = [0] * n
+            for name, arr in bm.items():
+                if name not in NON_SUPPLIER:
+                    for i in range(n):
+                        equipped[i] += arr[i]
+            penetration = {
+                "labels": labels,
+                "pct": [round(100 * equipped[i] / base_by_month[i], 3)
+                        if base_by_month[i] else 0 for i in range(n)],
             }
-            for name in ordered
-        ]
-        return {
-            "share": share, "series": series,
+
+        dims_out.append({
+            "key": d["key"], "title": d["title"], "cn": d["cn"],
+            "base": d["base"], "confidence": d["confidence"], "blurb": d["blurb"],
+            "base_total": base_total,
             "classified": classified,
             "coverage_pct": round(100 * classified / base_total, 1) if base_total else 0,
-        }
-
-    soc = dimension(soc_by_month, total_by_month, grand_total)
-    soc_share, soc_series = soc["share"], soc["series"]
-    adas = dimension(adas_by_month, total_by_month, grand_total, ADAS_ORDER)
-    radar = dimension(radar_by_month, total_by_month, grand_total, RADAR_ORDER)
-    power = dimension(power_by_month, bev_by_month, bev_total, POWER_ORDER)
-
-    # ---- Domain-controller adoption (share with a cockpit domain controller) ----
-    dc_adoption = [
-        round(100 * dc_by_month["yes"][i] / total_by_month[i], 2)
-        if total_by_month[i] else 0
-        for i in range(n)
-    ]
-    dc_window = {k: sum(v) for k, v in dc_by_month.items()}
-
-    # ---- LiDAR penetration ----
-    lidar_window = {k: sum(v) for k, v in lidar_by_month.items()}
-    lidar_pen = [
-        round(100 * (lidar_by_month["yes"][i] + lidar_by_month["optional"][i])
-              / total_by_month[i], 3)
-        if total_by_month[i] else 0
-        for i in range(n)
-    ]
-
-    # ---- Detail table: top models with their estimated config ----
-    top = sorted(model_totals.items(), key=lambda kv: -kv[1])[:60]
-    detail = []
-    for (brand, model), tot in top:
-        rec = specs.get((brand, model))
-        detail.append({
-            "brand": brand,
-            "model": model,
-            "total": tot,
-            "domain_controller": (rec.get("domain_controller") if rec else None),
-            "soc_brand": _soc_bucket(rec) if rec else "Unclassified",
-            "soc_family": (rec.get("soc_family") if rec else None) or "",
-            "lidar": (rec.get("lidar") if rec else None),
-            "adas_soc": (rec.get("adas_soc") if rec else None) or "Unclassified",
-            "power_semi": (rec.get("power_semi") if rec else None) or "Unclassified",
-            "radar_tier1": (rec.get("radar_tier1") if rec else None) or "Unclassified",
-            "confidence": (rec.get("confidence") if rec else None),
+            "labels": labels,
+            "share": share,
+            "series": series,
+            "penetration": penetration,
         })
 
     return {
@@ -243,19 +253,8 @@ def build_suppliers(specs: dict, counts: list) -> dict:
         "labels": labels,
         "total_registrations": grand_total,
         "bev_registrations": bev_total,
-        "classified_registrations": classified_total,
-        "coverage_pct": round(100 * classified_total / grand_total, 1) if grand_total else 0,
-        "soc_share": soc_share,
-        "soc_series": soc_series,
-        "adas": {"share": adas["share"], "series": adas["series"],
-                 "coverage_pct": adas["coverage_pct"]},
-        "radar": {"share": radar["share"], "series": radar["series"],
-                  "coverage_pct": radar["coverage_pct"]},
-        "power_semi": {"share": power["share"], "series": power["series"],
-                       "coverage_pct": power["coverage_pct"], "base": "BEV registrations"},
-        "dc_adoption": {"labels": labels, "pct": dc_adoption, "window": dc_window},
-        "lidar": {"labels": labels, "pct": lidar_pen, "window": lidar_window},
-        "top_models": detail,
+        "coverage_pct": next(dd["coverage_pct"] for dd in dims_out if dd["key"] == "soc"),
+        "dimensions": dims_out,
     }
 
 

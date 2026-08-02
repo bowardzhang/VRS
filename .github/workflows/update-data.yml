@@ -51,6 +51,7 @@ jobs:
           python scripts/parse_germany.py
           python scripts/parse_segments.py
           python scripts/parse_suppliers.py
+          python scripts/build_supplier_pages.py
           python scripts/build_site.py
 
       - name: Commit updated data and site
