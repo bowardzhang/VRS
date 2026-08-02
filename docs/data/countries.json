@@ -5,179 +5,68 @@
     "flag": "🇩🇪",
     "source": "Kraftfahrt-Bundesamt (KBA), table FZ 10.1",
     "source_url": "https://www.kba.de/DE/Statistik/Produktkatalog/produkte/Fahrzeuge/fz10/fz10_gentab.html",
-    "window": "Sep 2023 – Jun 2026",
-    "months": [
+    "granularity": "quarterly",
+    "has_brands": true,
+    "brand_window_label": "since Sep 2023",
+    "window": "Q4 2023 – Q2 2026",
+    "quarters": [
       {
-        "ym": "2023-09",
-        "label": "Sep 2023",
-        "total": 224502
+        "q": "2023-Q4",
+        "label": "Q4 2023",
+        "total": 706543
       },
       {
-        "ym": "2023-10",
-        "label": "Oct 2023",
-        "total": 218959
+        "q": "2024-Q1",
+        "label": "Q1 2024",
+        "total": 694785
       },
       {
-        "ym": "2023-11",
-        "label": "Nov 2023",
-        "total": 245701
+        "q": "2024-Q2",
+        "label": "Q2 2024",
+        "total": 776856
       },
       {
-        "ym": "2023-12",
-        "label": "Dec 2023",
-        "total": 241883
+        "q": "2024-Q3",
+        "label": "Q3 2024",
+        "total": 644433
       },
       {
-        "ym": "2024-01",
-        "label": "Jan 2024",
-        "total": 213553
+        "q": "2024-Q4",
+        "label": "Q4 2024",
+        "total": 701257
       },
       {
-        "ym": "2024-02",
-        "label": "Feb 2024",
-        "total": 217388
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 664571
       },
       {
-        "ym": "2024-03",
-        "label": "Mar 2024",
-        "total": 263844
+        "q": "2025-Q2",
+        "label": "Q2 2025",
+        "total": 738218
       },
       {
-        "ym": "2024-04",
-        "label": "Apr 2024",
-        "total": 243102
+        "q": "2025-Q3",
+        "label": "Q3 2025",
+        "total": 707559
       },
       {
-        "ym": "2024-05",
-        "label": "May 2024",
-        "total": 236425
+        "q": "2025-Q4",
+        "label": "Q4 2025",
+        "total": 747243
       },
       {
-        "ym": "2024-06",
-        "label": "Jun 2024",
-        "total": 297329
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 699404
       },
       {
-        "ym": "2024-07",
-        "label": "Jul 2024",
-        "total": 238263
-      },
-      {
-        "ym": "2024-08",
-        "label": "Aug 2024",
-        "total": 197322
-      },
-      {
-        "ym": "2024-09",
-        "label": "Sep 2024",
-        "total": 208848
-      },
-      {
-        "ym": "2024-10",
-        "label": "Oct 2024",
-        "total": 231992
-      },
-      {
-        "ym": "2024-11",
-        "label": "Nov 2024",
-        "total": 244544
-      },
-      {
-        "ym": "2024-12",
-        "label": "Dec 2024",
-        "total": 224721
-      },
-      {
-        "ym": "2025-01",
-        "label": "Jan 2025",
-        "total": 207640
-      },
-      {
-        "ym": "2025-02",
-        "label": "Feb 2025",
-        "total": 203434
-      },
-      {
-        "ym": "2025-03",
-        "label": "Mar 2025",
-        "total": 253497
-      },
-      {
-        "ym": "2025-04",
-        "label": "Apr 2025",
-        "total": 242728
-      },
-      {
-        "ym": "2025-05",
-        "label": "May 2025",
-        "total": 239297
-      },
-      {
-        "ym": "2025-06",
-        "label": "Jun 2025",
-        "total": 256193
-      },
-      {
-        "ym": "2025-07",
-        "label": "Jul 2025",
-        "total": 264802
-      },
-      {
-        "ym": "2025-08",
-        "label": "Aug 2025",
-        "total": 207229
-      },
-      {
-        "ym": "2025-09",
-        "label": "Sep 2025",
-        "total": 235528
-      },
-      {
-        "ym": "2025-10",
-        "label": "Oct 2025",
-        "total": 250133
-      },
-      {
-        "ym": "2025-11",
-        "label": "Nov 2025",
-        "total": 250671
-      },
-      {
-        "ym": "2025-12",
-        "label": "Dec 2025",
-        "total": 246439
-      },
-      {
-        "ym": "2026-01",
-        "label": "Jan 2026",
-        "total": 193981
-      },
-      {
-        "ym": "2026-02",
-        "label": "Feb 2026",
-        "total": 211262
-      },
-      {
-        "ym": "2026-03",
-        "label": "Mar 2026",
-        "total": 294161
-      },
-      {
-        "ym": "2026-04",
-        "label": "Apr 2026",
-        "total": 249163
-      },
-      {
-        "ym": "2026-05",
-        "label": "May 2026",
-        "total": 239448
-      },
-      {
-        "ym": "2026-06",
-        "label": "Jun 2026",
-        "total": 296378
+        "q": "2026-Q2",
+        "label": "Q2 2026",
+        "total": 784989
       }
     ],
+    "total": 7865858,
     "brand_totals": [
       {
         "brand": "VW",
@@ -521,8 +410,7 @@
         "origin": "Other",
         "total": 4164
       }
-    ],
-    "total": 8090360
+    ]
   },
   {
     "code": "NL",
@@ -530,179 +418,163 @@
     "flag": "🇳🇱",
     "source": "RDW open data (Socrata dataset m9d7-ebf2)",
     "source_url": "https://opendata.rdw.nl/",
-    "window": "Sep 2023 – Jun 2026",
-    "months": [
+    "granularity": "quarterly",
+    "has_brands": true,
+    "brand_window_label": "since Sep 2023",
+    "window": "Q1 2019 – Q2 2026",
+    "quarters": [
       {
-        "ym": "2023-09",
-        "label": "Sep 2023",
-        "total": 37035
+        "q": "2019-Q1",
+        "label": "Q1 2019",
+        "total": 152851
       },
       {
-        "ym": "2023-10",
-        "label": "Oct 2023",
-        "total": 34473
+        "q": "2019-Q2",
+        "label": "Q2 2019",
+        "total": 152206
       },
       {
-        "ym": "2023-11",
-        "label": "Nov 2023",
-        "total": 34639
+        "q": "2019-Q3",
+        "label": "Q3 2019",
+        "total": 134298
       },
       {
-        "ym": "2023-12",
-        "label": "Dec 2023",
-        "total": 32408
+        "q": "2019-Q4",
+        "label": "Q4 2019",
+        "total": 142280
       },
       {
-        "ym": "2024-01",
-        "label": "Jan 2024",
-        "total": 42635
+        "q": "2020-Q1",
+        "label": "Q1 2020",
+        "total": 141263
       },
       {
-        "ym": "2024-02",
-        "label": "Feb 2024",
-        "total": 38092
+        "q": "2020-Q2",
+        "label": "Q2 2020",
+        "total": 83528
       },
       {
-        "ym": "2024-03",
-        "label": "Mar 2024",
-        "total": 47201
+        "q": "2020-Q3",
+        "label": "Q3 2020",
+        "total": 135282
       },
       {
-        "ym": "2024-04",
-        "label": "Apr 2024",
-        "total": 36305
+        "q": "2020-Q4",
+        "label": "Q4 2020",
+        "total": 160010
       },
       {
-        "ym": "2024-05",
-        "label": "May 2024",
-        "total": 35978
+        "q": "2021-Q1",
+        "label": "Q1 2021",
+        "total": 139134
       },
       {
-        "ym": "2024-06",
-        "label": "Jun 2024",
-        "total": 42902
+        "q": "2021-Q2",
+        "label": "Q2 2021",
+        "total": 144779
       },
       {
-        "ym": "2024-07",
-        "label": "Jul 2024",
-        "total": 31914
+        "q": "2021-Q3",
+        "label": "Q3 2021",
+        "total": 117824
       },
       {
-        "ym": "2024-08",
-        "label": "Aug 2024",
-        "total": 31681
+        "q": "2021-Q4",
+        "label": "Q4 2021",
+        "total": 127376
       },
       {
-        "ym": "2024-09",
-        "label": "Sep 2024",
-        "total": 35305
+        "q": "2022-Q1",
+        "label": "Q1 2022",
+        "total": 125696
       },
       {
-        "ym": "2024-10",
-        "label": "Oct 2024",
-        "total": 36962
+        "q": "2022-Q2",
+        "label": "Q2 2022",
+        "total": 120566
       },
       {
-        "ym": "2024-11",
-        "label": "Nov 2024",
-        "total": 38790
+        "q": "2022-Q3",
+        "label": "Q3 2022",
+        "total": 106746
       },
       {
-        "ym": "2024-12",
-        "label": "Dec 2024",
-        "total": 41063
+        "q": "2022-Q4",
+        "label": "Q4 2022",
+        "total": 130633
       },
       {
-        "ym": "2025-01",
-        "label": "Jan 2025",
-        "total": 38673
+        "q": "2023-Q1",
+        "label": "Q1 2023",
+        "total": 134204
       },
       {
-        "ym": "2025-02",
-        "label": "Feb 2025",
-        "total": 34149
+        "q": "2023-Q2",
+        "label": "Q2 2023",
+        "total": 134957
       },
       {
-        "ym": "2025-03",
-        "label": "Mar 2025",
-        "total": 39434
+        "q": "2023-Q3",
+        "label": "Q3 2023",
+        "total": 107670
       },
       {
-        "ym": "2025-04",
-        "label": "Apr 2025",
-        "total": 34105
+        "q": "2023-Q4",
+        "label": "Q4 2023",
+        "total": 101520
       },
       {
-        "ym": "2025-05",
-        "label": "May 2025",
-        "total": 36457
+        "q": "2024-Q1",
+        "label": "Q1 2024",
+        "total": 127928
       },
       {
-        "ym": "2025-06",
-        "label": "Jun 2025",
-        "total": 40734
+        "q": "2024-Q2",
+        "label": "Q2 2024",
+        "total": 115185
       },
       {
-        "ym": "2025-07",
-        "label": "Jul 2025",
-        "total": 33055
+        "q": "2024-Q3",
+        "label": "Q3 2024",
+        "total": 98900
       },
       {
-        "ym": "2025-08",
-        "label": "Aug 2025",
-        "total": 28931
+        "q": "2024-Q4",
+        "label": "Q4 2024",
+        "total": 116815
       },
       {
-        "ym": "2025-09",
-        "label": "Sep 2025",
-        "total": 35187
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 112256
       },
       {
-        "ym": "2025-10",
-        "label": "Oct 2025",
-        "total": 37164
+        "q": "2025-Q2",
+        "label": "Q2 2025",
+        "total": 111296
       },
       {
-        "ym": "2025-11",
-        "label": "Nov 2025",
-        "total": 36494
+        "q": "2025-Q3",
+        "label": "Q3 2025",
+        "total": 97173
       },
       {
-        "ym": "2025-12",
-        "label": "Dec 2025",
-        "total": 49315
+        "q": "2025-Q4",
+        "label": "Q4 2025",
+        "total": 122973
       },
       {
-        "ym": "2026-01",
-        "label": "Jan 2026",
-        "total": 29435
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 85568
       },
       {
-        "ym": "2026-02",
-        "label": "Feb 2026",
-        "total": 23578
-      },
-      {
-        "ym": "2026-03",
-        "label": "Mar 2026",
-        "total": 32555
-      },
-      {
-        "ym": "2026-04",
-        "label": "Apr 2026",
-        "total": 26488
-      },
-      {
-        "ym": "2026-05",
-        "label": "May 2026",
-        "total": 30335
-      },
-      {
-        "ym": "2026-06",
-        "label": "Jun 2026",
-        "total": 39073
+        "q": "2026-Q2",
+        "label": "Q2 2026",
+        "total": 95896
       }
     ],
+    "total": 3676813,
     "brand_totals": [
       {
         "brand": "KIA",
@@ -1594,8 +1466,7 @@
         "origin": "Other",
         "total": 10317
       }
-    ],
-    "total": 1222545
+    ]
   },
   {
     "code": "FI",
@@ -1603,179 +1474,163 @@
     "flag": "🇫🇮",
     "source": "Traficom / Statistics Finland (PxWeb open data)",
     "source_url": "https://trafi2.stat.fi/PXWeb/pxweb/en/TraFi/",
-    "window": "Sep 2023 – Jun 2026",
-    "months": [
+    "granularity": "quarterly",
+    "has_brands": true,
+    "brand_window_label": "since Sep 2023",
+    "window": "Q1 2019 – Q2 2026",
+    "quarters": [
       {
-        "ym": "2023-09",
-        "label": "Sep 2023",
-        "total": 7384
+        "q": "2019-Q1",
+        "label": "Q1 2019",
+        "total": 28738
       },
       {
-        "ym": "2023-10",
-        "label": "Oct 2023",
-        "total": 6310
+        "q": "2019-Q2",
+        "label": "Q2 2019",
+        "total": 30494
       },
       {
-        "ym": "2023-11",
-        "label": "Nov 2023",
-        "total": 6593
+        "q": "2019-Q3",
+        "label": "Q3 2019",
+        "total": 27204
       },
       {
-        "ym": "2023-12",
-        "label": "Dec 2023",
-        "total": 5750
+        "q": "2019-Q4",
+        "label": "Q4 2019",
+        "total": 26056
       },
       {
-        "ym": "2024-01",
-        "label": "Jan 2024",
-        "total": 6493
+        "q": "2020-Q1",
+        "label": "Q1 2020",
+        "total": 27822
       },
       {
-        "ym": "2024-02",
-        "label": "Feb 2024",
-        "total": 5276
+        "q": "2020-Q2",
+        "label": "Q2 2020",
+        "total": 18429
       },
       {
-        "ym": "2024-03",
-        "label": "Mar 2024",
-        "total": 6385
+        "q": "2020-Q3",
+        "label": "Q3 2020",
+        "total": 25412
       },
       {
-        "ym": "2024-04",
-        "label": "Apr 2024",
-        "total": 6011
+        "q": "2020-Q4",
+        "label": "Q4 2020",
+        "total": 22774
       },
       {
-        "ym": "2024-05",
-        "label": "May 2024",
-        "total": 7552
+        "q": "2021-Q1",
+        "label": "Q1 2021",
+        "total": 27425
       },
       {
-        "ym": "2024-06",
-        "label": "Jun 2024",
-        "total": 6573
+        "q": "2021-Q2",
+        "label": "Q2 2021",
+        "total": 27738
       },
       {
-        "ym": "2024-07",
-        "label": "Jul 2024",
-        "total": 5036
+        "q": "2021-Q3",
+        "label": "Q3 2021",
+        "total": 21178
       },
       {
-        "ym": "2024-08",
-        "label": "Aug 2024",
-        "total": 6390
+        "q": "2021-Q4",
+        "label": "Q4 2021",
+        "total": 19503
       },
       {
-        "ym": "2024-09",
-        "label": "Sep 2024",
-        "total": 4556
+        "q": "2022-Q1",
+        "label": "Q1 2022",
+        "total": 21404
       },
       {
-        "ym": "2024-10",
-        "label": "Oct 2024",
-        "total": 5829
+        "q": "2022-Q2",
+        "label": "Q2 2022",
+        "total": 21200
       },
       {
-        "ym": "2024-11",
-        "label": "Nov 2024",
-        "total": 6268
+        "q": "2022-Q3",
+        "label": "Q3 2022",
+        "total": 19087
       },
       {
-        "ym": "2024-12",
-        "label": "Dec 2024",
-        "total": 6240
+        "q": "2022-Q4",
+        "label": "Q4 2022",
+        "total": 18561
       },
       {
-        "ym": "2025-01",
-        "label": "Jan 2025",
-        "total": 5663
+        "q": "2023-Q1",
+        "label": "Q1 2023",
+        "total": 20702
       },
       {
-        "ym": "2025-02",
-        "label": "Feb 2025",
-        "total": 4702
+        "q": "2023-Q2",
+        "label": "Q2 2023",
+        "total": 25426
       },
       {
-        "ym": "2025-03",
-        "label": "Mar 2025",
-        "total": 6085
+        "q": "2023-Q3",
+        "label": "Q3 2023",
+        "total": 21333
       },
       {
-        "ym": "2025-04",
-        "label": "Apr 2025",
-        "total": 6133
+        "q": "2023-Q4",
+        "label": "Q4 2023",
+        "total": 18653
       },
       {
-        "ym": "2025-05",
-        "label": "May 2025",
-        "total": 6701
+        "q": "2024-Q1",
+        "label": "Q1 2024",
+        "total": 18154
       },
       {
-        "ym": "2025-06",
-        "label": "Jun 2025",
-        "total": 7293
+        "q": "2024-Q2",
+        "label": "Q2 2024",
+        "total": 20136
       },
       {
-        "ym": "2025-07",
-        "label": "Jul 2025",
-        "total": 5286
+        "q": "2024-Q3",
+        "label": "Q3 2024",
+        "total": 15982
       },
       {
-        "ym": "2025-08",
-        "label": "Aug 2025",
-        "total": 5147
+        "q": "2024-Q4",
+        "label": "Q4 2024",
+        "total": 18337
       },
       {
-        "ym": "2025-09",
-        "label": "Sep 2025",
-        "total": 5900
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 16450
       },
       {
-        "ym": "2025-10",
-        "label": "Oct 2025",
-        "total": 6096
+        "q": "2025-Q2",
+        "label": "Q2 2025",
+        "total": 20127
       },
       {
-        "ym": "2025-11",
-        "label": "Nov 2025",
-        "total": 6104
+        "q": "2025-Q3",
+        "label": "Q3 2025",
+        "total": 16333
       },
       {
-        "ym": "2025-12",
-        "label": "Dec 2025",
-        "total": 5502
+        "q": "2025-Q4",
+        "label": "Q4 2025",
+        "total": 17702
       },
       {
-        "ym": "2026-01",
-        "label": "Jan 2026",
-        "total": 5374
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 16888
       },
       {
-        "ym": "2026-02",
-        "label": "Feb 2026",
-        "total": 4820
-      },
-      {
-        "ym": "2026-03",
-        "label": "Mar 2026",
-        "total": 6694
-      },
-      {
-        "ym": "2026-04",
-        "label": "Apr 2026",
-        "total": 5598
-      },
-      {
-        "ym": "2026-05",
-        "label": "May 2026",
-        "total": 6666
-      },
-      {
-        "ym": "2026-06",
-        "label": "Jun 2026",
-        "total": 7433
+        "q": "2026-Q2",
+        "label": "Q2 2026",
+        "total": 19697
       }
     ],
+    "total": 648945,
     "brand_totals": [
       {
         "brand": "TOYOTA",
@@ -1942,10 +1797,6 @@
         "total": 74
       },
       {
-        "brand": "OTHER",
-        "total": 44
-      },
-      {
         "brand": "FERRARI",
         "total": 42
       },
@@ -2087,7 +1938,1303 @@
         "origin": "Other",
         "total": 87
       }
+    ]
+  },
+  {
+    "code": "FR",
+    "name": "France",
+    "flag": "🇫🇷",
+    "source": "INSEE / SDES (BDM series 010756763, national totals)",
+    "source_url": "https://www.insee.fr/fr/statistiques/serie/010756763",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2019 – Q2 2026",
+    "quarters": [
+      {
+        "q": "2019-Q1",
+        "label": "Q1 2019",
+        "total": 568977
+      },
+      {
+        "q": "2019-Q2",
+        "label": "Q2 2019",
+        "total": 614429
+      },
+      {
+        "q": "2019-Q3",
+        "label": "Q3 2019",
+        "total": 482684
+      },
+      {
+        "q": "2019-Q4",
+        "label": "Q4 2019",
+        "total": 592187
+      },
+      {
+        "q": "2020-Q1",
+        "label": "Q1 2020",
+        "total": 373105
+      },
+      {
+        "q": "2020-Q2",
+        "label": "Q2 2020",
+        "total": 357472
+      },
+      {
+        "q": "2020-Q3",
+        "label": "Q3 2020",
+        "total": 463171
+      },
+      {
+        "q": "2020-Q4",
+        "label": "Q4 2020",
+        "total": 499782
+      },
+      {
+        "q": "2021-Q1",
+        "label": "Q1 2021",
+        "total": 454566
+      },
+      {
+        "q": "2021-Q2",
+        "label": "Q2 2021",
+        "total": 491206
+      },
+      {
+        "q": "2021-Q3",
+        "label": "Q3 2021",
+        "total": 347990
+      },
+      {
+        "q": "2021-Q4",
+        "label": "Q4 2021",
+        "total": 414913
+      },
+      {
+        "q": "2022-Q1",
+        "label": "Q1 2022",
+        "total": 377238
+      },
+      {
+        "q": "2022-Q2",
+        "label": "Q2 2022",
+        "total": 416103
+      },
+      {
+        "q": "2022-Q3",
+        "label": "Q3 2022",
+        "total": 351223
+      },
+      {
+        "q": "2022-Q4",
+        "label": "Q4 2022",
+        "total": 432386
+      },
+      {
+        "q": "2023-Q1",
+        "label": "Q1 2023",
+        "total": 432818
+      },
+      {
+        "q": "2023-Q2",
+        "label": "Q2 2023",
+        "total": 473204
+      },
+      {
+        "q": "2023-Q3",
+        "label": "Q3 2023",
+        "total": 407792
+      },
+      {
+        "q": "2023-Q4",
+        "label": "Q4 2023",
+        "total": 503532
+      },
+      {
+        "q": "2024-Q1",
+        "label": "Q1 2024",
+        "total": 455438
+      },
+      {
+        "q": "2024-Q2",
+        "label": "Q2 2024",
+        "total": 474417
+      },
+      {
+        "q": "2024-Q3",
+        "label": "Q3 2024",
+        "total": 358733
+      },
+      {
+        "q": "2024-Q4",
+        "label": "Q4 2024",
+        "total": 466579
+      },
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 419818
+      },
+      {
+        "q": "2025-Q2",
+        "label": "Q2 2025",
+        "total": 434499
+      },
+      {
+        "q": "2025-Q3",
+        "label": "Q3 2025",
+        "total": 350413
+      },
+      {
+        "q": "2025-Q4",
+        "label": "Q4 2025",
+        "total": 459944
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 410816
+      },
+      {
+        "q": "2026-Q2",
+        "label": "Q2 2026",
+        "total": 456844
+      }
     ],
-    "total": 205843
+    "total": 13342279,
+    "brand_totals": [],
+    "origin_totals": []
+  },
+  {
+    "code": "UK",
+    "name": "United Kingdom",
+    "flag": "🇬🇧",
+    "source": "UK Dept. for Transport, table VEH0160 (quarterly)",
+    "source_url": "https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files",
+    "granularity": "quarterly",
+    "has_brands": true,
+    "brand_window_label": "since Sep 2023",
+    "window": "Q1 2019 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2019-Q1",
+        "label": "Q1 2019",
+        "total": 694106
+      },
+      {
+        "q": "2019-Q2",
+        "label": "Q2 2019",
+        "total": 562345
+      },
+      {
+        "q": "2019-Q3",
+        "label": "Q3 2019",
+        "total": 589052
+      },
+      {
+        "q": "2019-Q4",
+        "label": "Q4 2019",
+        "total": 449906
+      },
+      {
+        "q": "2020-Q1",
+        "label": "Q1 2020",
+        "total": 479697
+      },
+      {
+        "q": "2020-Q2",
+        "label": "Q2 2020",
+        "total": 168063
+      },
+      {
+        "q": "2020-Q3",
+        "label": "Q3 2020",
+        "total": 586271
+      },
+      {
+        "q": "2020-Q4",
+        "label": "Q4 2020",
+        "total": 385926
+      },
+      {
+        "q": "2021-Q1",
+        "label": "Q1 2021",
+        "total": 424120
+      },
+      {
+        "q": "2021-Q2",
+        "label": "Q2 2021",
+        "total": 477802
+      },
+      {
+        "q": "2021-Q3",
+        "label": "Q3 2021",
+        "total": 404478
+      },
+      {
+        "q": "2021-Q4",
+        "label": "Q4 2021",
+        "total": 333824
+      },
+      {
+        "q": "2022-Q1",
+        "label": "Q1 2022",
+        "total": 415847
+      },
+      {
+        "q": "2022-Q2",
+        "label": "Q2 2022",
+        "total": 382661
+      },
+      {
+        "q": "2022-Q3",
+        "label": "Q3 2022",
+        "total": 407644
+      },
+      {
+        "q": "2022-Q4",
+        "label": "Q4 2022",
+        "total": 406989
+      },
+      {
+        "q": "2023-Q1",
+        "label": "Q1 2023",
+        "total": 489426
+      },
+      {
+        "q": "2023-Q2",
+        "label": "Q2 2023",
+        "total": 452723
+      },
+      {
+        "q": "2023-Q3",
+        "label": "Q3 2023",
+        "total": 503375
+      },
+      {
+        "q": "2023-Q4",
+        "label": "Q4 2023",
+        "total": 454213
+      },
+      {
+        "q": "2024-Q1",
+        "label": "Q1 2024",
+        "total": 543820
+      },
+      {
+        "q": "2024-Q2",
+        "label": "Q2 2024",
+        "total": 459713
+      },
+      {
+        "q": "2024-Q3",
+        "label": "Q3 2024",
+        "total": 507245
+      },
+      {
+        "q": "2024-Q4",
+        "label": "Q4 2024",
+        "total": 439563
+      },
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 578284
+      },
+      {
+        "q": "2025-Q2",
+        "label": "Q2 2025",
+        "total": 461604
+      },
+      {
+        "q": "2025-Q3",
+        "label": "Q3 2025",
+        "total": 537628
+      },
+      {
+        "q": "2025-Q4",
+        "label": "Q4 2025",
+        "total": 448149
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 617894
+      }
+    ],
+    "total": 13662368,
+    "brand_totals": [
+      {
+        "brand": "VW",
+        "total": 481993
+      },
+      {
+        "brand": "BMW",
+        "total": 341695
+      },
+      {
+        "brand": "AUDI",
+        "total": 335304
+      },
+      {
+        "brand": "FORD",
+        "total": 327461
+      },
+      {
+        "brand": "TOYOTA",
+        "total": 309225
+      },
+      {
+        "brand": "KIA",
+        "total": 300107
+      },
+      {
+        "brand": "MERCEDES",
+        "total": 267900
+      },
+      {
+        "brand": "NISSAN",
+        "total": 260483
+      },
+      {
+        "brand": "HYUNDAI",
+        "total": 240210
+      },
+      {
+        "brand": "OPEL",
+        "total": 235346
+      },
+      {
+        "brand": "MG",
+        "total": 227345
+      },
+      {
+        "brand": "SKODA",
+        "total": 218211
+      },
+      {
+        "brand": "PEUGEOT",
+        "total": 202788
+      },
+      {
+        "brand": "VOLVO",
+        "total": 180269
+      },
+      {
+        "brand": "LAND ROVER",
+        "total": 168625
+      },
+      {
+        "brand": "RENAULT",
+        "total": 161352
+      },
+      {
+        "brand": "MINI",
+        "total": 132072
+      },
+      {
+        "brand": "TESLA",
+        "total": 130040
+      },
+      {
+        "brand": "CUPRA",
+        "total": 97175
+      },
+      {
+        "brand": "MAZDA",
+        "total": 83893
+      },
+      {
+        "brand": "HONDA",
+        "total": 82015
+      },
+      {
+        "brand": "BYD",
+        "total": 81323
+      },
+      {
+        "brand": "DACIA",
+        "total": 80235
+      },
+      {
+        "brand": "SEAT",
+        "total": 78416
+      },
+      {
+        "brand": "CITROEN",
+        "total": 74303
+      },
+      {
+        "brand": "SUZUKI",
+        "total": 64978
+      },
+      {
+        "brand": "PORSCHE",
+        "total": 54905
+      },
+      {
+        "brand": "JAECOO",
+        "total": 47366
+      },
+      {
+        "brand": "LEXUS",
+        "total": 46025
+      },
+      {
+        "brand": "POLESTAR",
+        "total": 35552
+      },
+      {
+        "brand": "OMODA",
+        "total": 32585
+      },
+      {
+        "brand": "FIAT",
+        "total": 32068
+      },
+      {
+        "brand": "JAGUAR",
+        "total": 26590
+      },
+      {
+        "brand": "JEEP",
+        "total": 24666
+      },
+      {
+        "brand": "CHERY",
+        "total": 13620
+      },
+      {
+        "brand": "SUBARU",
+        "total": 7766
+      },
+      {
+        "brand": "LEAPMOTOR",
+        "total": 7367
+      },
+      {
+        "brand": "ALFA ROMEO",
+        "total": 6306
+      },
+      {
+        "brand": "SMART",
+        "total": 4979
+      },
+      {
+        "brand": "LOTUS",
+        "total": 4231
+      },
+      {
+        "brand": "BENTLEY",
+        "total": 3637
+      },
+      {
+        "brand": "KGM",
+        "total": 3541
+      },
+      {
+        "brand": "GENESIS",
+        "total": 3285
+      },
+      {
+        "brand": "ASTON MARTIN",
+        "total": 3007
+      },
+      {
+        "brand": "DS",
+        "total": 2960
+      },
+      {
+        "brand": "ALPINE",
+        "total": 2920
+      },
+      {
+        "brand": "FERRARI",
+        "total": 2285
+      },
+      {
+        "brand": "SHINERAY",
+        "total": 2066
+      },
+      {
+        "brand": "LAMBORGHINI",
+        "total": 1985
+      },
+      {
+        "brand": "ABARTH",
+        "total": 1958
+      },
+      {
+        "brand": "ORA",
+        "total": 1810
+      },
+      {
+        "brand": "OTHER BRITISH",
+        "total": 1366
+      },
+      {
+        "brand": "MASERATI",
+        "total": 1280
+      },
+      {
+        "brand": "XPENG",
+        "total": 1263
+      },
+      {
+        "brand": "ROLLS ROYCE",
+        "total": 1231
+      },
+      {
+        "brand": "INEOS",
+        "total": 1209
+      },
+      {
+        "brand": "CHANGAN",
+        "total": 1103
+      },
+      {
+        "brand": "SSANGYONG",
+        "total": 803
+      },
+      {
+        "brand": "MITSUBISHI",
+        "total": 731
+      },
+      {
+        "brand": "RENAULT TRUCKS",
+        "total": 643
+      },
+      {
+        "brand": "MCLAREN",
+        "total": 640
+      },
+      {
+        "brand": "GWM",
+        "total": 550
+      },
+      {
+        "brand": "CHEVROLET",
+        "total": 436
+      },
+      {
+        "brand": "DODGE",
+        "total": 346
+      },
+      {
+        "brand": "FISKER",
+        "total": 341
+      },
+      {
+        "brand": "MORGAN",
+        "total": 340
+      },
+      {
+        "brand": "CATERHAM",
+        "total": 291
+      },
+      {
+        "brand": "CHEVROLET GMC",
+        "total": 246
+      },
+      {
+        "brand": "AUSTIN",
+        "total": 164
+      },
+      {
+        "brand": "TRIUMPH",
+        "total": 156
+      },
+      {
+        "brand": "MAXUS",
+        "total": 140
+      },
+      {
+        "brand": "CADILLAC",
+        "total": 135
+      },
+      {
+        "brand": "LANCIA",
+        "total": 126
+      },
+      {
+        "brand": "CHRYSLER",
+        "total": 125
+      },
+      {
+        "brand": "AUSTIN HEALEY",
+        "total": 104
+      },
+      {
+        "brand": "DATSUN",
+        "total": 97
+      },
+      {
+        "brand": "MAN",
+        "total": 82
+      },
+      {
+        "brand": "ARIEL",
+        "total": 76
+      },
+      {
+        "brand": "ROVER",
+        "total": 71
+      },
+      {
+        "brand": "DAIHATSU",
+        "total": 70
+      },
+      {
+        "brand": "MORRIS",
+        "total": 66
+      },
+      {
+        "brand": "PONTIAC",
+        "total": 58
+      },
+      {
+        "brand": "GORDON MURRAY",
+        "total": 55
+      },
+      {
+        "brand": "SKYWELL",
+        "total": 54
+      },
+      {
+        "brand": "BUICK",
+        "total": 51
+      },
+      {
+        "brand": "LINCOLN",
+        "total": 49
+      },
+      {
+        "brand": "SAAB",
+        "total": 39
+      },
+      {
+        "brand": "SUNBEAM",
+        "total": 32
+      },
+      {
+        "brand": "LADA",
+        "total": 29
+      },
+      {
+        "brand": "DAIMLER",
+        "total": 29
+      },
+      {
+        "brand": "MERCURY",
+        "total": 25
+      },
+      {
+        "brand": "ACURA",
+        "total": 24
+      },
+      {
+        "brand": "PLYMOUTH",
+        "total": 24
+      },
+      {
+        "brand": "WESTFIELD",
+        "total": 23
+      },
+      {
+        "brand": "BUGATTI",
+        "total": 22
+      },
+      {
+        "brand": "JENSEN",
+        "total": 18
+      },
+      {
+        "brand": "LEVC",
+        "total": 17
+      },
+      {
+        "brand": "OLDSMOBILE",
+        "total": 17
+      },
+      {
+        "brand": "HUMMER",
+        "total": 16
+      },
+      {
+        "brand": "HOLDEN",
+        "total": 16
+      },
+      {
+        "brand": "HOUSEHAM",
+        "total": 15
+      },
+      {
+        "brand": "INFINITI",
+        "total": 15
+      },
+      {
+        "brand": "COLEMAN MILNE",
+        "total": 14
+      },
+      {
+        "brand": "LEYLAND CARS",
+        "total": 14
+      },
+      {
+        "brand": "TATA",
+        "total": 13
+      },
+      {
+        "brand": "MOBILVETTA",
+        "total": 12
+      },
+      {
+        "brand": "MOKE AUTOMIBILI",
+        "total": 12
+      },
+      {
+        "brand": "AC",
+        "total": 12
+      },
+      {
+        "brand": "CORVETTE",
+        "total": 12
+      },
+      {
+        "brand": "TALBOT",
+        "total": 10
+      },
+      {
+        "brand": "LONDON TAXIS INT",
+        "total": 9
+      },
+      {
+        "brand": "MAEVING",
+        "total": 8
+      },
+      {
+        "brand": "KOENIGSEGG",
+        "total": 8
+      },
+      {
+        "brand": "TVR",
+        "total": 8
+      },
+      {
+        "brand": "HILLMAN",
+        "total": 7
+      },
+      {
+        "brand": "ALPINA",
+        "total": 7
+      },
+      {
+        "brand": "SAVIEM",
+        "total": 7
+      },
+      {
+        "brand": "ISUZU",
+        "total": 7
+      },
+      {
+        "brand": "MAYBACH",
+        "total": 7
+      },
+      {
+        "brand": "ZHENHUA",
+        "total": 6
+      },
+      {
+        "brand": "DE TOMASO",
+        "total": 6
+      },
+      {
+        "brand": "HUMBER",
+        "total": 6
+      },
+      {
+        "brand": "RILEY",
+        "total": 6
+      },
+      {
+        "brand": "SIMCA",
+        "total": 6
+      },
+      {
+        "brand": "GENERAL MOTORS",
+        "total": 5
+      },
+      {
+        "brand": "MAHINDRA",
+        "total": 5
+      },
+      {
+        "brand": "YAMAHA",
+        "total": 5
+      },
+      {
+        "brand": "WOLSELEY",
+        "total": 5
+      },
+      {
+        "brand": "HONCHING",
+        "total": 4
+      },
+      {
+        "brand": "LEYLAND",
+        "total": 4
+      },
+      {
+        "brand": "REVA",
+        "total": 4
+      },
+      {
+        "brand": "COLT",
+        "total": 4
+      },
+      {
+        "brand": "ZASTAVA",
+        "total": 4
+      },
+      {
+        "brand": "LONSDALE",
+        "total": 4
+      },
+      {
+        "brand": "NSU",
+        "total": 4
+      },
+      {
+        "brand": "SINGER",
+        "total": 4
+      },
+      {
+        "brand": "MGB",
+        "total": 4
+      },
+      {
+        "brand": "LAMBRETTA",
+        "total": 3
+      },
+      {
+        "brand": "MAGIRUS DEUTZ",
+        "total": 3
+      },
+      {
+        "brand": "MARCOS",
+        "total": 3
+      },
+      {
+        "brand": "RUF",
+        "total": 3
+      },
+      {
+        "brand": "CZ",
+        "total": 3
+      },
+      {
+        "brand": "PERODUA",
+        "total": 3
+      },
+      {
+        "brand": "R-VISION",
+        "total": 3
+      },
+      {
+        "brand": "ZURN HARVESTING",
+        "total": 3
+      },
+      {
+        "brand": "WELLS",
+        "total": 3
+      },
+      {
+        "brand": "THINK",
+        "total": 3
+      },
+      {
+        "brand": "AUSTIN-MORRIS",
+        "total": 2
+      },
+      {
+        "brand": "EBRO",
+        "total": 2
+      },
+      {
+        "brand": "MOTOR JIKOV",
+        "total": 2
+      },
+      {
+        "brand": "BRISTOL",
+        "total": 2
+      },
+      {
+        "brand": "FSO CARS",
+        "total": 2
+      },
+      {
+        "brand": "PINZGAUER",
+        "total": 2
+      },
+      {
+        "brand": "VELOSOLEX",
+        "total": 2
+      },
+      {
+        "brand": "AEON",
+        "total": 2
+      },
+      {
+        "brand": "BEDFORD",
+        "total": 2
+      },
+      {
+        "brand": "BSA",
+        "total": 2
+      },
+      {
+        "brand": "STEYR",
+        "total": 2
+      },
+      {
+        "brand": "HYMER",
+        "total": 2
+      },
+      {
+        "brand": "DENNIS",
+        "total": 2
+      },
+      {
+        "brand": "GAZ",
+        "total": 2
+      },
+      {
+        "brand": "YUAN",
+        "total": 2
+      },
+      {
+        "brand": "ZENOS",
+        "total": 2
+      },
+      {
+        "brand": "KTM",
+        "total": 2
+      },
+      {
+        "brand": "ENTERPRISE BUS",
+        "total": 2
+      },
+      {
+        "brand": "GARELLI",
+        "total": 2
+      },
+      {
+        "brand": "AM GENERAL",
+        "total": 1
+      },
+      {
+        "brand": "AVTOVAZ",
+        "total": 1
+      },
+      {
+        "brand": "JAWA",
+        "total": 1
+      },
+      {
+        "brand": "KEEWAY",
+        "total": 1
+      },
+      {
+        "brand": "MECALAC",
+        "total": 1
+      },
+      {
+        "brand": "SD",
+        "total": 1
+      },
+      {
+        "brand": "TYM",
+        "total": 1
+      },
+      {
+        "brand": "ACCESS",
+        "total": 1
+      },
+      {
+        "brand": "ASQUITH",
+        "total": 1
+      },
+      {
+        "brand": "JAGUAR LAND ROVER",
+        "total": 1
+      },
+      {
+        "brand": "JCB",
+        "total": 1
+      },
+      {
+        "brand": "OTHER AGRIC/CONSTRUCTIONAL",
+        "total": 1
+      },
+      {
+        "brand": "RIEJU",
+        "total": 1
+      },
+      {
+        "brand": "BOND",
+        "total": 1
+      },
+      {
+        "brand": "FODEN",
+        "total": 1
+      },
+      {
+        "brand": "MUTT",
+        "total": 1
+      },
+      {
+        "brand": "URAL",
+        "total": 1
+      },
+      {
+        "brand": "VICTORY",
+        "total": 1
+      },
+      {
+        "brand": "WARTBURG",
+        "total": 1
+      },
+      {
+        "brand": "BARONI",
+        "total": 1
+      },
+      {
+        "brand": "BIMOTA",
+        "total": 1
+      },
+      {
+        "brand": "UNI CARRIERS",
+        "total": 1
+      },
+      {
+        "brand": "VESPA (DOUGLAS)",
+        "total": 1
+      },
+      {
+        "brand": "VOLTA TRUCKS",
+        "total": 1
+      },
+      {
+        "brand": "CAN-AM",
+        "total": 1
+      },
+      {
+        "brand": "CHAMP",
+        "total": 1
+      },
+      {
+        "brand": "DAF",
+        "total": 1
+      },
+      {
+        "brand": "KARRIER",
+        "total": 1
+      },
+      {
+        "brand": "OVER",
+        "total": 1
+      },
+      {
+        "brand": "ROYAL ENFIELD",
+        "total": 1
+      },
+      {
+        "brand": "WACKER NEUSON",
+        "total": 1
+      },
+      {
+        "brand": "IVECO",
+        "total": 1
+      },
+      {
+        "brand": "MCC",
+        "total": 1
+      },
+      {
+        "brand": "MK SPORTSCARS",
+        "total": 1
+      },
+      {
+        "brand": "NOBLE",
+        "total": 1
+      },
+      {
+        "brand": "SANTANA",
+        "total": 1
+      },
+      {
+        "brand": "SMC",
+        "total": 1
+      },
+      {
+        "brand": "SUNLIGHT",
+        "total": 1
+      },
+      {
+        "brand": "TEREX",
+        "total": 1
+      },
+      {
+        "brand": "UMM",
+        "total": 1
+      },
+      {
+        "brand": "ARTEGA",
+        "total": 1
+      },
+      {
+        "brand": "HAKO",
+        "total": 1
+      },
+      {
+        "brand": "RELIANT",
+        "total": 1
+      },
+      {
+        "brand": "CASE",
+        "total": 1
+      },
+      {
+        "brand": "DIAMOND",
+        "total": 1
+      },
+      {
+        "brand": "PIAGGIO",
+        "total": 1
+      },
+      {
+        "brand": "POLARIS",
+        "total": 1
+      },
+      {
+        "brand": "VENTURI",
+        "total": 1
+      },
+      {
+        "brand": "ESKUTA",
+        "total": 1
+      },
+      {
+        "brand": "GINETTA",
+        "total": 1
+      },
+      {
+        "brand": "QUADDY",
+        "total": 1
+      },
+      {
+        "brand": "AJS",
+        "total": 1
+      },
+      {
+        "brand": "DFSK",
+        "total": 1
+      },
+      {
+        "brand": "FOREST RIVER",
+        "total": 1
+      },
+      {
+        "brand": "LYNK & CO",
+        "total": 1
+      },
+      {
+        "brand": "MOSKVICH",
+        "total": 1
+      },
+      {
+        "brand": "PENTA",
+        "total": 1
+      },
+      {
+        "brand": "TGB",
+        "total": 1
+      },
+      {
+        "brand": "AION",
+        "total": 1
+      },
+      {
+        "brand": "ASKOLL",
+        "total": 1
+      },
+      {
+        "brand": "HARLEY-DAVIDSON",
+        "total": 1
+      },
+      {
+        "brand": "MAN/VW",
+        "total": 1
+      },
+      {
+        "brand": "MITSUBISHI FUSO",
+        "total": 1
+      },
+      {
+        "brand": "VOGELE",
+        "total": 1
+      }
+    ],
+    "origin_totals": [
+      {
+        "origin": "Germany",
+        "total": 1722211
+      },
+      {
+        "origin": "Japan",
+        "total": 855131
+      },
+      {
+        "origin": "South Korea",
+        "total": 547946
+      },
+      {
+        "origin": "France",
+        "total": 524558
+      },
+      {
+        "origin": "USA",
+        "total": 483079
+      },
+      {
+        "origin": "China",
+        "total": 413425
+      },
+      {
+        "origin": "United Kingdom",
+        "total": 340942
+      },
+      {
+        "origin": "Czechia",
+        "total": 218211
+      },
+      {
+        "origin": "Sweden",
+        "total": 215821
+      },
+      {
+        "origin": "Spain",
+        "total": 175591
+      },
+      {
+        "origin": "Italy",
+        "total": 44024
+      },
+      {
+        "origin": "Other",
+        "total": 10549
+      }
+    ]
   }
 ]

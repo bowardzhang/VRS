@@ -32,6 +32,10 @@ ALIASES: dict[str, str] = {
     "BMW I": "BMW",
     "KG MOBILITY": "KGM",
     "OTHERS": "OTHER", "MUU": "OTHER", "MUUT": "OTHER", "OVRIGA": "OTHER",
+    # DfT (UK) spellings
+    "VAUXHALL": "OPEL",  # UK badge of Stellantis Opel
+    "MG MOTOR UK": "MG", "MG MOTOR": "MG",
+    "MERCEDES BENZ": "MERCEDES",
 }
 
 BRAND_ORIGIN: dict[str, str] = {

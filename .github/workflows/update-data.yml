@@ -59,6 +59,13 @@ jobs:
         # the whole current year; re-run refreshes recent months.
         run: python scripts/download_finland.py
 
+      - name: Download latest France (INSEE) + UK (DfT) registrations
+        # France: INSEE BDM national monthly totals. UK: DfT VEH0160 quarterly
+        # by make. Both open, no key. --allow-missing not needed (full re-fetch).
+        run: |
+          python scripts/download_france.py
+          python scripts/download_uk.py
+
       - name: Parse workbooks and rebuild site
         run: |
           python scripts/parse_germany.py
@@ -72,7 +79,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/Germany data/Netherlands data/Finland docs
+          git add data/Germany data/Netherlands data/Finland data/France data/UnitedKingdom docs
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else

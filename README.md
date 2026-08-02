@@ -16,13 +16,23 @@ Countries currently covered:
 - **🇫🇮 Finland** — [Traficom](https://tieto.traficom.fi/en) / Statistics
   Finland *first registrations of passenger cars* by make, via the Traficom
   PxWeb open-data API (no key required).
+- **🇫🇷 France** — [INSEE](https://www.insee.fr/fr/statistiques/serie/010756763)
+  BDM series 010756763, national monthly totals (SDMX). Brand-level detail is
+  not openly published, so France is *total-only*.
+- **🇬🇧 United Kingdom** — UK Department for Transport table
+  [VEH0160](https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files)
+  (cars registered for the first time, by make). DfT publishes *quarterly*.
 
 The site aggregates any selected subset of countries — a **🌍 country picker**
 in the top-right (multi-select, defaults to all, saved in a cookie) drives an
-*Europe overview* (total registrations by country, top brands and manufacturer
-origin across the selection). Country-specific deep dives (German KBA body
-segments, the supplier installation-rate pages) are shown when that country is
-in scope.
+*Europe overview*. Because national sources differ in cadence and detail, the
+overview uses the common denominator: a **quarterly** per-country historical
+trend (each country over its own multi-year history — monthly sources are rolled
+up to complete quarters, the UK is natively quarterly) plus **top-brand /
+manufacturer-origin** bars aggregated over a common recent window across the
+brand-capable countries (France is totals only). Country-specific deep dives
+(German KBA body segments, the supplier installation-rate pages) are shown when
+that country is in scope.
 
 ## Pipeline
 
@@ -43,6 +53,8 @@ Three small, dependency-light scripts, each runnable on its own:
 | `scripts/parse_germany.py`    | Parse every workbook into a tidy CSV + a compact JSON summary. |
 | `scripts/download_netherlands.py` | Fetch monthly new passenger-car counts by brand from the RDW Socrata API into `data/Netherlands/`. |
 | `scripts/download_finland.py` | Fetch monthly first-registration counts by make from the Traficom PxWeb API into `data/Finland/`. |
+| `scripts/download_france.py` | Fetch monthly national registration totals from the INSEE BDM (SDMX) into `data/France/`. |
+| `scripts/download_uk.py` | Fetch quarterly first-registration counts by make from DfT VEH0160 into `data/UnitedKingdom/`. |
 | `scripts/parse_suppliers.py`  | Join `data/vehicle_specs.csv` to the counts and add a per-component supplier installation-rate (`suppliers.dimensions`) block to the JSON. |
 | `scripts/build_supplier_pages.py` | Generate one self-contained secondary page per component (`analysis-soc/adas/radar/power/lidar.html`) from a shared template. |
 | `scripts/build_countries.py`  | Assemble a uniform multi-country core (`docs/data/countries.json`) that powers the country picker + Europe overview. |
@@ -85,6 +97,8 @@ python scripts/build_supplier_pages.py # generate the per-component secondary pa
 # 1b. Other countries (open data — no API key required)
 python scripts/download_netherlands.py # RDW (or --last N for trailing months)
 python scripts/download_finland.py      # Traficom / Statistics Finland
+python scripts/download_france.py       # INSEE national monthly totals
+python scripts/download_uk.py           # DfT VEH0160 quarterly by make
 python scripts/build_countries.py       # assemble the multi-country core
 
 # 3. Rebuild the static pages
