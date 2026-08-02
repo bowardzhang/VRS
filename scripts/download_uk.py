@@ -25,6 +25,8 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "UnitedKingdom"
 OUT_CSV = OUT_DIR / "uk_quarterly_brands.csv"
+MODELS_CSV = OUT_DIR / "uk_models.csv"
+MODELS_SINCE = (2023, 3)  # (year, quarter) — brand/model detail window
 
 SRC = "https://assets.publishing.service.gov.uk/media/6a54d2eea6586e258d371d72/df_VEH0160_GB.csv"
 _COL = re.compile(r"^(\d{4})\s*Q([1-4])$")
@@ -82,12 +84,48 @@ def parse(text: str, from_year: int) -> dict[tuple[int, int, str], int]:
     return data
 
 
+def parse_models(text: str) -> dict[tuple[str, str], int]:
+    """(make, generic model) totals over the recent detail window."""
+    reader = csv.reader(io.StringIO(text))
+    header = next(reader)
+    cols = []
+    for i, h in enumerate(header):
+        m = _COL.match(h.strip())
+        if m and (int(m.group(1)), int(m.group(2))) >= MODELS_SINCE:
+            cols.append(i)
+    try:
+        bt_i = header.index("BodyType"); mk_i = header.index("Make"); gm_i = header.index("GenModel")
+    except ValueError:
+        return {}
+    out: dict[tuple[str, str], int] = {}
+    for row in reader:
+        if len(row) <= gm_i or row[bt_i].strip() != "Cars":
+            continue
+        make = row[mk_i].strip().upper()
+        model = row[gm_i].strip().upper()
+        if not make or not model:
+            continue
+        tot = 0
+        for i in cols:
+            if i < len(row):
+                raw = row[i].strip().replace(",", "")
+                if raw not in ("", "-", "[c]", "[x]", "[z]", ".."):
+                    try:
+                        tot += int(raw)
+                    except ValueError:
+                        pass
+        if tot:
+            out[(make, model)] = out.get((make, model), 0) + tot
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--from-year", type=int, default=2019)
     args = ap.parse_args()
     print(f"[uk] downloading DfT VEH0160_GB (quarterly, cars) from {args.from_year} …")
-    data = parse(fetch(), args.from_year)
+    text = fetch()
+    data = parse(text, args.from_year)
     by_q: dict[tuple[int, int], int] = {}
     for (y, q, _), c in data.items():
         by_q[(y, q)] = by_q.get((y, q), 0) + c
@@ -101,6 +139,14 @@ def main() -> int:
         for (y, q, b), c in rows:
             w.writerow([y, q, b, c])
     print(f"[write] {OUT_CSV.relative_to(REPO_ROOT)} ({len(rows)} rows)")
+
+    models = parse_models(text)
+    with MODELS_CSV.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["brand", "model", "total"])
+        for (mk, md), c in sorted(models.items(), key=lambda kv: -kv[1]):
+            w.writerow([mk, md, c])
+    print(f"[write] {MODELS_CSV.relative_to(REPO_ROOT)} ({len(models)} brand/model rows)")
     return 0
 
 

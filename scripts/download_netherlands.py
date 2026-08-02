@@ -31,9 +31,11 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "Netherlands"
 OUT_CSV = OUT_DIR / "rdw_monthly_brands.csv"
+MODELS_CSV = OUT_DIR / "rdw_models.csv"
 
 RESOURCE = "https://opendata.rdw.nl/resource/m9d7-ebf2.json"
 DEFAULT_FROM = (2023, 9)  # align with the German FZ 10.1 window start
+MODELS_SINCE = "20230901"  # brand/model detail window (comparable across countries)
 
 
 def month_range(a: tuple[int, int], b: tuple[int, int]):
@@ -91,6 +93,50 @@ def fetch_month(year: int, month: int, retries: int = 4) -> list[tuple[str, int]
             time.sleep(delay)
             delay *= 2
     return []
+
+
+def fetch_models(retries: int = 4) -> list[tuple[str, str, int]]:
+    """One grouped query: (brand, model) totals since MODELS_SINCE."""
+    params = {
+        "$select": "merk,handelsbenaming,count(kenteken)",
+        "$where": ("voertuigsoort='Personenauto' AND "
+                   f"datum_eerste_toelating >= '{MODELS_SINCE}'"),
+        "$group": "merk,handelsbenaming",
+        "$order": "count_kenteken DESC",
+        "$limit": "6000",
+    }
+    url = RESOURCE + "?" + urllib.parse.urlencode(params, safe="", quote_via=urllib.parse.quote)
+    delay = 2.0
+    for attempt in range(retries):
+        try:
+            import json
+            req = urllib.request.Request(url, headers={"User-Agent": "VRS/1.0"})
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                rows = json.load(resp)
+            out = []
+            for r in rows:
+                brand = (r.get("merk") or "").strip().upper()
+                model = (r.get("handelsbenaming") or "").strip().upper()
+                cnt = int(r.get("count_kenteken") or 0)
+                if brand and model and cnt:
+                    out.append((brand, model, cnt))
+            return out
+        except Exception as exc:  # noqa: BLE001
+            if attempt == retries - 1:
+                raise
+            print(f"  [models retry {attempt+1}] {exc}", file=sys.stderr)
+            time.sleep(delay)
+            delay *= 2
+    return []
+
+
+def write_models(rows: list[tuple[str, str, int]]) -> None:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    with MODELS_CSV.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["brand", "model", "total"])
+        for b, m, c in sorted(rows, key=lambda r: -r[2]):
+            w.writerow([b, m, c])
 
 
 def load_existing() -> dict[tuple[int, int, str], int]:
@@ -152,6 +198,10 @@ def main() -> int:
 
     write_csv(data)
     print(f"[write] {OUT_CSV.relative_to(REPO_ROOT)} ({len(data)} rows)")
+
+    models = fetch_models()
+    write_models(models)
+    print(f"[write] {MODELS_CSV.relative_to(REPO_ROOT)} ({len(models)} brand/model rows)")
     return 0
 
 

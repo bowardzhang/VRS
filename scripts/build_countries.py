@@ -26,16 +26,84 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
-from eu_brands import canonical, origin
+from eu_brands import ALIASES, BRAND_ORIGIN, canonical, origin
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 GERMANY_CSV = REPO_ROOT / "data" / "Germany" / "processed" / "germany_registrations.csv"
 GERMANY_JSON = REPO_ROOT / "docs" / "data" / "germany.json"
 NL_CSV = REPO_ROOT / "data" / "Netherlands" / "rdw_monthly_brands.csv"
+NL_MODELS = REPO_ROOT / "data" / "Netherlands" / "rdw_models.csv"
 FI_CSV = REPO_ROOT / "data" / "Finland" / "traficom_monthly_brands.csv"
+FI_MODELS = REPO_ROOT / "data" / "Finland" / "traficom_models.csv"
 FR_CSV = REPO_ROOT / "data" / "France" / "insee_monthly_total.csv"
 UK_CSV = REPO_ROOT / "data" / "UnitedKingdom" / "uk_quarterly_brands.csv"
+UK_MODELS = REPO_ROOT / "data" / "UnitedKingdom" / "uk_models.csv"
 OUT = REPO_ROOT / "docs" / "data" / "countries.json"
+
+# Raw brand names (incl. multi-word aliases) longest-first, for splitting a
+# "BRAND MODEL" label and for stripping a brand prefix from a model string.
+BRAND_PREFIXES = sorted(
+    {b.upper() for b in list(ALIASES) + list(ALIASES.values())
+     + list(BRAND_ORIGIN)}, key=len, reverse=True)
+
+
+def _clean_model(brand_raw: str, model_raw: str) -> str:
+    """Strip a leading brand token from a model string (e.g. FORD PUMA -> PUMA)."""
+    m = model_raw.strip().upper()
+    for pref in (brand_raw.strip().upper(), canonical(brand_raw)):
+        if pref and m.startswith(pref + " "):
+            return m[len(pref) + 1:].strip()
+    return m
+
+
+def _split_label(label: str) -> tuple[str, str]:
+    """Split a 'BRAND MODEL' label into (canonical brand, model)."""
+    lab = label.strip().upper()
+    for pref in BRAND_PREFIXES:
+        if lab == pref or lab.startswith(pref + " "):
+            return canonical(pref), lab[len(pref):].strip()
+    parts = lab.split(" ", 1)
+    return canonical(parts[0]), (parts[1] if len(parts) > 1 else "")
+
+
+def _top_models(triples, limit: int = 15) -> list[dict]:
+    """triples: iterable of (canonical_brand, clean_model, total) -> ranked list."""
+    agg: dict[tuple[str, str], int] = defaultdict(int)
+    for cb, cm, t in triples:
+        if cb == "OTHER" or not cm:
+            continue
+        agg[(cb, cm)] += t
+    return [{"brand": b, "model": m, "total": t}
+            for (b, m), t in sorted(agg.items(), key=lambda kv: -kv[1])[:limit]]
+
+
+def models_for(code: str) -> list[dict]:
+    if code == "NL" and NL_MODELS.exists():
+        with NL_MODELS.open(encoding="utf-8") as fh:
+            return _top_models((canonical(r["brand"]), _clean_model(r["brand"], r["model"]),
+                                int(r["total"])) for r in csv.DictReader(fh))
+    if code == "UK" and UK_MODELS.exists():
+        with UK_MODELS.open(encoding="utf-8") as fh:
+            return _top_models((canonical(r["brand"]), _clean_model(r["brand"], r["model"]),
+                                int(r["total"])) for r in csv.DictReader(fh))
+    if code == "FI" and FI_MODELS.exists():
+        with FI_MODELS.open(encoding="utf-8") as fh:
+            out = []
+            for r in csv.DictReader(fh):
+                cb, cm = _split_label(r["model_label"])
+                out.append((cb, cm, int(r["total"])))
+            return _top_models(out)
+    if code == "DE":
+        triples = []
+        with GERMANY_CSV.open(encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                if r["row_type"] != "model" or r["drivetrain"] != "total" or not r["count_month"]:
+                    continue
+                if (int(r["year"]), int(r["month"])) < BRAND_WINDOW_START:
+                    continue
+                triples.append((canonical(r["brand"]), r["model"].strip().upper(), int(r["count_month"])))
+        return _top_models(triples)
+    return []
 
 # Count brands/origins only from this month onward, so every brand-capable
 # country contributes the same window and the shares stay comparable.
@@ -199,6 +267,8 @@ def main() -> int:
     ):
         if core:
             countries.append(core)
+    for core in countries:
+        core["top_models"] = models_for(core["code"]) if core["has_brands"] else []
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(countries, ensure_ascii=False, indent=2), encoding="utf-8")
     summary = ", ".join(
