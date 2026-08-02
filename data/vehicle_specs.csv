@@ -1,0 +1,208 @@
+brand,model,platform,domain_controller,soc_brand,soc_family,lidar,lidar_brand,confidence,notes
+# Estimated cockpit (in-vehicle infotainment / "车机") and LiDAR supplier configuration
+# per model, keyed by the KBA FZ 10.1 brand/model strings used in
+# data/Germany/processed/germany_registrations.csv.
+#
+# Methodology: cockpit compute silicon is set by the vehicle PLATFORM / brand
+# software generation, not by individual trim, so each model is mapped to the
+# SoC of the current generation on sale during the data window (registrations
+# 2023-09 .. 2026-06), i.e. "current new-model standard configuration".
+# Sources are platform-level (Qualcomm/Samsung/Renesas/NVIDIA/AMD press releases,
+# teardowns, OEM newsrooms) gathered via web research; see README / PR notes.
+#
+# Columns:
+#   domain_controller : yes | partial | no   (does the car use a consolidated
+#                        high-compute cockpit domain controller / "座舱域控")
+#   soc_brand         : Qualcomm | Samsung | Renesas | NVIDIA | AMD | NXP |
+#                        MediaTek | Undisclosed | None
+#   lidar             : no | optional | yes  (STANDARD-config estimate)
+#   confidence        : high | medium | low
+# Rows beginning with '#' and blank lines are ignored by the parser.
+#
+# ---- Volkswagen (MQB ICE -> Renesas MIB3 ; MEB BEV -> Samsung Exynos Auto) ----
+VW,GOLF,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,MQB ICE infotainment
+VW,T-ROC,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
+VW,TIGUAN,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
+VW,PASSAT,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,new 2024 gen may use newer SoC
+VW,POLO,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
+VW,T-CROSS,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
+VW,TAIGO,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
+VW,TAYRON,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,
+VW,TOURAN,MQB (MIB3),partial,Renesas,R-Car M3,no,,low,older platform
+VW,CADDY,MQB (MIB3),partial,Renesas,R-Car M3,no,,low,
+VW,TOUAREG,MLB (MIB3),yes,Samsung,Exynos Auto 8890,no,,low,premium MLB infotainment
+VW,TRANSPORTER,commercial,no,Undisclosed,,no,,low,commercial van head unit
+VW,ID.3,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,EU MEB; early cars Qualcomm 820A
+VW,"ID.4, ID.5",MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,EU MEB; early cars Qualcomm 820A
+VW,ID.7,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,
+VW,ID. BUZZ,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,
+# ---- Skoda (VW MQB / MEB) ----
+SKODA,OCTAVIA,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
+SKODA,KAROQ,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
+SKODA,KODIAQ,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
+SKODA,FABIA,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
+SKODA,KAMIQ,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
+SKODA,SCALA,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
+SKODA,SUPERB,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
+SKODA,ENYAQ,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,
+SKODA,ELROQ,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,
+# ---- Seat / Cupra (VW MQB / MEB) ----
+SEAT,LEON,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
+SEAT,ATECA,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
+SEAT,IBIZA,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
+SEAT,ARONA,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
+SEAT,FORMENTOR,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,Cupra
+SEAT,TERRAMAR,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,Cupra
+SEAT,BORN,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,Cupra
+SEAT,TAVASCAN,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,Cupra
+# ---- Audi (small MQB -> Renesas ; larger MIB3/PPE -> Samsung Exynos) ----
+AUDI,A1,MQB A0 (MIB3),partial,Renesas,R-Car M3,no,,low,
+AUDI,A3,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
+AUDI,Q2,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,
+AUDI,Q3,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
+AUDI,A4,MLB/MIB3,yes,Samsung,Exynos Auto 8890,no,,medium,Samsung named new A4
+AUDI,A5,PPC/MIB3,yes,Samsung,Exynos Auto 8890,no,,low,replaces A4
+AUDI,A6,MLB/PPE,yes,Samsung,Exynos Auto 8890,no,,medium,
+AUDI,Q5,MLB (MIB3),yes,Samsung,Exynos Auto 8890,no,,low,
+AUDI,Q7,MLB (MIB3),yes,Samsung,Exynos Auto 8890,no,,low,
+AUDI,Q8,MLB (MIB3),yes,Samsung,Exynos Auto 8890,no,,low,
+AUDI,Q4,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,
+AUDI,Q6,PPE (E3 1.2),yes,Samsung,Exynos Auto,no,,low,Q6 e-tron
+# ---- Porsche (VW group premium) ----
+PORSCHE,911,PCM,yes,Samsung,Exynos Auto,no,,low,
+PORSCHE,CAYENNE,MLB (PCM),yes,Samsung,Exynos Auto,no,,low,
+PORSCHE,MACAN,PPE (PCM),yes,Samsung,Exynos Auto,no,,low,Macan EV
+# ---- Mercedes-Benz (MBUX NTG6/NTG7 -> NVIDIA ; newest MB.OS -> Qualcomm) ----
+MERCEDES,"GLK, GLC",MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,medium,
+MERCEDES,E-KLASSE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,medium,W214
+MERCEDES,C-KLASSE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,medium,W206
+MERCEDES,A-KLASSE,MBUX (NTG6),yes,NVIDIA,Parker,no,,medium,
+MERCEDES,B-KLASSE,MBUX (NTG6),yes,NVIDIA,Parker,no,,medium,
+MERCEDES,GLA,MBUX (NTG6),yes,NVIDIA,Parker,no,,medium,
+MERCEDES,GLB,MBUX (NTG6),yes,NVIDIA,Parker,no,,medium,
+MERCEDES,CLA-KLASSE,MB.OS,yes,Qualcomm,Snapdragon Cockpit,no,,medium,new CLA 2025 switched to Qualcomm
+MERCEDES,CLE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,low,
+MERCEDES,"ML-KLASSE, GLE",MBUX (NTG6),yes,NVIDIA,Parker,no,,low,
+MERCEDES,G-KLASSE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,low,
+MERCEDES,S-KLASSE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,optional,Valeo,medium,Drive Pilot L3 offers Valeo LiDAR (optional)
+MERCEDES,V-KLASSE,MBUX,yes,NVIDIA,Parker,no,,low,
+MERCEDES,SPRINTER,commercial (MBUX),no,Undisclosed,,no,,low,commercial van
+MERCEDES,VITO,commercial,no,Undisclosed,,no,,low,commercial van
+MERCEDES,CITAN,Renault-based,no,Undisclosed,,no,,low,Kangoo rebadge
+# ---- BMW / Mini (iDrive 8/8.5/9 -> Qualcomm Snapdragon) ----
+BMW,1ER,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
+BMW,2ER,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
+BMW,3ER,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
+BMW,4ER,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
+BMW,5ER,iDrive 8.5,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
+BMW,X1,iDrive 9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
+BMW,X2,iDrive 9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
+BMW,X3,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
+BMW,X5,iDrive 8,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
+BMW,IX,iDrive 8,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
+MINI,MINI,BMW OS9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,new gen OS9
+# ---- Tesla (infotainment -> AMD Ryzen) ----
+TESLA,MODEL Y,MCU3,yes,AMD,Ryzen,no,,high,ADAS on Tesla FSD chip; cockpit AMD
+TESLA,MODEL 3,MCU3,yes,AMD,Ryzen,no,,high,
+# ---- Hyundai / Kia (ccNC -> Qualcomm Snapdragon ; small cars basic) ----
+HYUNDAI,TUCSON,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,
+HYUNDAI,KONA,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,
+HYUNDAI,IONIQ5,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,
+HYUNDAI,INSTER,ccNC,yes,Qualcomm,Snapdragon 8155,no,,low,
+HYUNDAI,I 30,AVN,partial,Undisclosed,,no,,low,older gen
+HYUNDAI,I 20,AVN,no,None,,no,,low,small car basic head unit
+HYUNDAI,I 10,AVN,no,None,,no,,low,small car basic head unit
+KIA,SPORTAGE,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,
+KIA,CEED,AVN,partial,Undisclosed,,no,,low,
+KIA,EV3,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,
+KIA,PICANTO,AVN,no,None,,no,,low,small car basic head unit
+# ---- Volvo (Android Automotive -> Qualcomm Snapdragon) ----
+VOLVO,XC60,Android Auto,yes,Qualcomm,Snapdragon Cockpit,no,,medium,current gen; pre-2022 NXP
+VOLVO,XC40,Android Auto,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
+VOLVO,XC90,Android Auto,yes,Qualcomm,Snapdragon Cockpit,no,,low,
+VOLVO,60,Android Auto,yes,Qualcomm,Snapdragon Cockpit,no,,low,S60/V60
+VOLVO,EX30,SEA (Android),yes,Qualcomm,Snapdragon 8155,no,,medium,Geely SEA platform
+VOLVO,EX90,SPA2,yes,Qualcomm,Snapdragon Cockpit,optional,Luminar,medium,LiDAR standard-ish on EX90 (Luminar)
+# ---- Renault (OpenR / Android Automotive -> Qualcomm ; Dacia basic) ----
+RENAULT,AUSTRAL,OpenR,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
+RENAULT,CLIO,OpenR/Media,partial,Qualcomm,Snapdragon Cockpit,no,,low,
+RENAULT,CAPTUR,OpenR/Media,partial,Qualcomm,Snapdragon Cockpit,no,,low,
+RENAULT,R5,OpenR,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
+RENAULT,KANGOO,OpenR,partial,Qualcomm,Snapdragon Cockpit,no,,low,
+DACIA,SANDERO,Media Display,no,MediaTek,,no,,low,basic Media Nav/Display
+DACIA,DUSTER,Media Display,no,MediaTek,,no,,low,
+DACIA,JOGGER,Media Display,no,MediaTek,,no,,low,
+DACIA,SPRING,Media Display,no,MediaTek,,no,,low,
+DACIA,BIGSTER,Media Display,partial,MediaTek,,no,,low,
+# ---- Opel / Stellantis (PSA i-Connect ; SoC undisclosed pre-STLA-Qualcomm) ----
+OPEL,CORSA,PSA i-Connect,partial,Undisclosed,,no,,low,
+OPEL,ASTRA,PSA i-Connect,yes,Undisclosed,,no,,low,10in Pure Panel
+OPEL,MOKKA,PSA i-Connect,partial,Undisclosed,,no,,low,
+OPEL,GRANDLAND X,STLA Medium,yes,Undisclosed,,no,,low,new Grandland 2024
+OPEL,CROSSLAND X,PSA,no,Undisclosed,,no,,low,older
+OPEL,FRONTERA,STLA,partial,Undisclosed,,no,,low,
+# ---- Peugeot / Citroen (Stellantis) ----
+PEUGEOT,208,PSA i-Connect,partial,Undisclosed,,no,,low,i-Cockpit
+PEUGEOT,2008,PSA i-Connect,partial,Undisclosed,,no,,low,
+PEUGEOT,308,PSA i-Connect,yes,Undisclosed,,no,,low,
+PEUGEOT,3008,STLA Medium,yes,Undisclosed,,no,,low,panoramic i-Cockpit
+PEUGEOT,5008,STLA Medium,yes,Undisclosed,,no,,low,
+CITROEN,C3,PSA,no,Undisclosed,,no,,low,new C3 basic
+CITROEN,C4,PSA i-Connect,partial,Undisclosed,,no,,low,
+CITROEN,C5,PSA i-Connect,yes,Undisclosed,,no,,low,C5 Aircross/X
+CITROEN,JUMPER,commercial,no,Undisclosed,,no,,low,van
+# ---- Fiat / Jeep (Stellantis Uconnect) ----
+FIAT,500,Uconnect/basic,partial,Undisclosed,,no,,low,500e Uconnect5
+FIAT,600,Uconnect5,partial,Undisclosed,,no,,low,
+FIAT,DUCATO,commercial,no,Undisclosed,,no,,low,van
+JEEP,AVENGER,STLA/Uconnect5,partial,Undisclosed,,no,,low,
+# ---- Ford (SYNC 4 undisclosed ; Explorer EV = VW MEB -> Samsung) ----
+FORD,KUGA,SYNC 4,partial,Undisclosed,,no,,low,
+FORD,PUMA,SYNC 4,partial,Undisclosed,,no,,low,
+FORD,FOCUS,SYNC 4,partial,Undisclosed,,no,,low,
+FORD,EXPLORER,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,EU Explorer on VW MEB
+FORD,"TRANSIT, TOURNEO",commercial,no,Undisclosed,,no,,low,
+FORD,TRANSIT CUSTOM,commercial,no,Undisclosed,,no,,low,
+FORD,TRANSIT CONNECT,commercial,no,Undisclosed,,no,,low,
+# ---- Toyota (Renesas R-Car ; small cars basic) ----
+TOYOTA,YARIS,Toyota AM,partial,Renesas,R-Car,no,,low,
+TOYOTA,AYGO,basic,no,None,,no,,low,small car
+TOYOTA,COROLLA,Toyota AM,yes,Renesas,R-Car,no,,low,
+TOYOTA,C-HR,Toyota AM,yes,Renesas,R-Car,no,,low,
+TOYOTA,RAV 4,Toyota AM,yes,Renesas,R-Car,no,,low,2026 gen moves to Qualcomm
+TOYOTA,PROACE,commercial,no,Undisclosed,,no,,low,PSA-based van
+# ---- Mazda (Mazda Connect -> Renesas) ----
+MAZDA,CX-30,Mazda Connect,partial,Renesas,R-Car,no,,low,
+MAZDA,CX-60,Mazda Connect,yes,Renesas,R-Car,no,,low,
+MAZDA,CX-5,Mazda Connect,partial,Renesas,R-Car,no,,low,
+MAZDA,2,Mazda Connect,no,Renesas,R-Car,no,,low,small; Mazda2 hybrid=Yaris
+MAZDA,3,Mazda Connect,partial,Renesas,R-Car,no,,low,
+# ---- Nissan / Mitsubishi ----
+NISSAN,QASHQAI,NissanConnect,partial,Undisclosed,,no,,low,
+NISSAN,JUKE,NissanConnect,no,Undisclosed,,no,,low,
+NISSAN,X-TRAIL,NissanConnect,partial,Undisclosed,,no,,low,
+MITSUBISHI,"MIRAGE, SPACE STAR",basic,no,None,,no,,low,small car
+# ---- Suzuki ----
+SUZUKI,SWIFT,basic,no,None,,no,,low,
+SUZUKI,VITARA,basic,no,None,,no,,low,
+# ---- Chinese brands (Qualcomm 8155 typical) ----
+MG ROEWE,4,MG cockpit,yes,Qualcomm,Snapdragon 8155,no,,medium,MG4
+MG ROEWE,ZS,MG cockpit,partial,Qualcomm,Snapdragon 8155,no,,low,
+BYD,SEAL U,DiLink,yes,Qualcomm,Snapdragon 8155,no,,low,BYD DiLink
+BYD,SEAL,DiLink,yes,Qualcomm,Snapdragon 8155,no,,low,
+MG ROEWE,3,MG cockpit,partial,Qualcomm,Snapdragon 8155,no,,low,MG3 hybrid
+MG ROEWE,RX6,MG cockpit,partial,Qualcomm,Snapdragon 8155,no,,low,
+SMART,1,ECARX,yes,Qualcomm,Snapdragon 8155,no,,medium,Geely/ECARX
+LEAPMOTOR,T03,Leapmotor,partial,Qualcomm,Snapdragon 8155,no,,low,Stellantis-distributed
+# ---- Additional higher-volume models ----
+KIA,EV6,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,
+KIA,STONIC,AVN,no,None,,no,,low,small car
+KIA,NIRO,ccNC,yes,Qualcomm,Snapdragon 8155,no,,low,
+HYUNDAI,BAYON,AVN,no,None,,no,,low,small car
+MITSUBISHI,COLT,Renault-based,partial,Qualcomm,Snapdragon Cockpit,no,,low,Clio rebadge
+MITSUBISHI,ASX,Renault-based,partial,Qualcomm,Snapdragon Cockpit,no,,low,Captur rebadge
+LAND ROVER,DEFENDER,Pivi Pro,yes,NXP,i.MX,no,,low,JLR Pivi Pro
+JEEP,COMPASS,Uconnect5,partial,Undisclosed,,no,,low,
+VW,ARTEON,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,
+VW,CRAFTER,commercial,no,Undisclosed,,no,,low,van
+VW,UP,basic,no,None,,no,,low,small car discontinued

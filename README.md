@@ -25,7 +25,8 @@ Three small, dependency-light scripts, each runnable on its own:
 |--------|---------|
 | `scripts/download_germany.py` | Fetch the monthly FZ 10.1 workbooks from KBA into `data/Germany/`. |
 | `scripts/parse_germany.py`    | Parse every workbook into a tidy CSV + a compact JSON summary. |
-| `scripts/build_site.py`       | Bake the JSON into `docs/index.html` so the page is fully self-contained. |
+| `scripts/parse_suppliers.py`  | Join `data/vehicle_specs.csv` to the counts and add a cockpit-SoC / LiDAR supplier-penetration block to the JSON. |
+| `scripts/build_site.py`       | Bake the JSON into `docs/*.html` so the pages are fully self-contained. |
 
 ### Historical powertrain series
 
@@ -57,8 +58,10 @@ python scripts/download_germany.py --to 2026-06 --last 12        # last 12 month
 
 # 2. Parse the workbooks -> CSV + JSON
 python scripts/parse_germany.py
+python scripts/parse_segments.py    # body-segment trends (FZ 11)
+python scripts/parse_suppliers.py   # cockpit-SoC / LiDAR supplier penetration
 
-# 3. Rebuild the static page
+# 3. Rebuild the static pages
 python scripts/build_site.py
 ```
 
@@ -102,6 +105,33 @@ Two chart titles on the homepage link to secondary analysis pages:
   **electrified drivetrains** — BEV, hybrid and plug-in hybrid: per-category
   count and market-share trends, and the top model series in each category.
   Data: the `ev` block from `build_ev_analysis()`.
+- **`docs/analysis-suppliers.html`** (from the *Cockpit SoC & LiDAR suppliers*
+  card) estimates the **cockpit domain-controller (“车机”) SoC supplier and
+  LiDAR penetration** by weighting a per-model configuration estimate with the
+  KBA registration counts: SoC-supplier share (Qualcomm / Samsung / NVIDIA /
+  Renesas / AMD / …), the SoC mix over time, cockpit domain-controller adoption,
+  and LiDAR penetration. Data: the `suppliers` block written by
+  `scripts/parse_suppliers.py`.
+
+### Cockpit / LiDAR supplier estimate
+
+KBA reports *how many* of each model were registered but nothing about their
+electronics. `scripts/parse_suppliers.py` joins the registration counts to a
+hand-authored, editable estimate in **`data/vehicle_specs.csv`** that maps each
+model to the cockpit compute silicon and LiDAR of its **current-generation
+platform / brand software stack** (e.g. VW MQB → Renesas *MIB3*, VW MEB → Samsung
+*Exynos Auto*, Mercedes *MBUX* → NVIDIA, BMW *iDrive 8/9* + Mini → Qualcomm
+*Snapdragon*, Tesla → AMD *Ryzen*, Hyundai/Kia *ccNC* / Volvo / Renault / Chinese
+brands → Qualcomm). Cockpit SoC is set by the platform, not the individual trim,
+so this platform-level mapping is the tractable, verifiable approach; each row
+carries a `confidence` and short note, and any unmapped model is reported
+separately as *Unclassified* (≈92 % of registrations are classified). LiDAR is
+effectively absent from standard configurations in this market — only a few
+premium options offer it (Valeo on Mercedes Drive Pilot, Luminar on the Volvo
+EX90) — so registration-weighted LiDAR penetration stays near zero. **Figures for
+the electronics are estimates; corrections to `data/vehicle_specs.csv` are
+welcome.** Run it after `parse_germany.py` (it augments `germany.json` in place,
+like `parse_segments.py`), then `build_site.py`.
 
 Both add their block to `germany.json`, show logos + year-over-year change, and
 are baked self-contained by `build_site.py` (which injects `germany.json` +

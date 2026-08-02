@@ -3,288 +3,130 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Germany — New Vehicle Registrations</title>
+<title>Cockpit SoC &amp; LiDAR Suppliers · Germany Registrations</title>
 <style>
   :root {
     color-scheme: light dark;
-    --page:        #f9f9f7;
-    --surface:     #fcfcfb;
-    --ink:         #0b0b0b;
-    --ink-2:       #52514e;
-    --muted:       #898781;
-    --grid:        #e1e0d9;
-    --axis:        #c3c2b7;
-    --border:      rgba(11,11,11,0.10);
-    --s1:          #2a78d6;  /* blue   */
-    --s2:          #eb6834;  /* orange */
-    --s3:          #1baf7a;  /* aqua   */
-    --s4:          #eda100;  /* yellow */
-    --s5:          #e87ba4;  /* magenta */
-    --s6:          #008300;  /* green */
-    --s7:          #4a3aa7;  /* violet */
-    --s8:          #e34948;  /* red */
-    --good:        #006300;
+    --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7; --s8:#e34948;
+    --good:#006300;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --page:    #0d0d0d;
-      --surface: #1a1a19;
-      --ink:     #ffffff;
-      --ink-2:   #c3c2b7;
-      --muted:   #898781;
-      --grid:    #2c2c2a;
-      --axis:    #383835;
-      --border:  rgba(255,255,255,0.10);
-      --s1:      #3987e5;
-      --s2:      #d95926;
-      --s3:      #199e70;
-      --s4:      #c98500;
-      --s5:      #d55181;
-      --s6:      #008300;
-      --s7:      #9085e9;
-      --s8:      #e66767;
-      --good:    #0ca30c;
-    }
-  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767; --good:#0ca30c;
+  }}
   :root[data-theme="dark"] {
-    --page:    #0d0d0d;
-    --surface: #1a1a19;
-    --ink:     #ffffff;
-    --ink-2:   #c3c2b7;
-    --muted:   #898781;
-    --grid:    #2c2c2a;
-    --axis:    #383835;
-    --border:  rgba(255,255,255,0.10);
-    --s1:      #3987e5;
-    --s2:      #d95926;
-    --s3:      #199e70;
-    --s4:      #c98500;
-    --s5:      #d55181;
-    --s6:      #008300;
-    --s7:      #9085e9;
-    --s8:      #e66767;
-    --good:    #0ca30c;
+    --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767; --good:#0ca30c;
   }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--page);
-    color: var(--ink);
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 32px 20px 80px; }
-  header.site { margin-bottom: 8px; }
-  .eyebrow { font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
-  h1 { font-size: clamp(26px, 4vw, 36px); margin: 0 0 6px; letter-spacing: -0.01em; }
-  .sub { color: var(--ink-2); margin: 0; font-size: 15px; }
-  .sub a { color: var(--s1); text-decoration: none; }
-  .sub a:hover { text-decoration: underline; }
-
-  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 28px 0 8px; }
-  @media (max-width: 720px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
-  .kpi {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-    padding: 16px 18px;
-  }
-  .kpi .label { font-size: 12.5px; color: var(--ink-2); margin: 0 0 8px; }
-  .kpi .value { font-size: 28px; font-weight: 650; letter-spacing: -0.01em; }
-  .kpi .value small { font-size: 15px; font-weight: 500; color: var(--muted); }
-  .kpi .foot { font-size: 12px; color: var(--muted); margin-top: 4px; }
-
-  section.card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
-    padding: 22px 24px; margin-top: 20px;
-  }
-  section.card h2 { font-size: 18px; margin: 0 0 2px; letter-spacing: -0.01em; }
-  .h2link { color: inherit; text-decoration: none; border-bottom: 2px solid var(--s1); padding-bottom: 1px; }
-  .h2link:hover { color: var(--s1); }
-  .h2hint { font-size: 12.5px; font-weight: 500; color: var(--s1); letter-spacing: 0; margin-left: 6px; white-space: nowrap; }
-  section.card .note { font-size: 13px; color: var(--muted); margin: 0 0 18px; }
-  .section-head { font-size: 15px; letter-spacing: .04em; text-transform: uppercase;
-    color: var(--muted); margin: 40px 0 -4px; font-weight: 600; }
-
-  .bars { display: flex; flex-direction: column; gap: 9px; }
-  .bar-row { display: grid; grid-template-columns: 168px 1fr; align-items: center; gap: 12px; }
-  .bars.with-yoy .bar-row { grid-template-columns: 168px 1fr 70px; }
-  @media (max-width: 560px) {
-    .bar-row, .bars.with-yoy .bar-row { grid-template-columns: 120px 1fr; }
-    .bars.with-yoy .bar-yoy { display: none; }
-  }
-  .bar-name { font-size: 13px; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    display: flex; align-items: center; gap: 7px; justify-content: flex-end; }
-  .bar-name .lbl { overflow: hidden; text-overflow: ellipsis; }
-  /* brand mark: real icon or monogram fallback */
-  .mark { width: 18px; height: 18px; flex: 0 0 18px; border-radius: 4px; display: inline-flex;
-    align-items: center; justify-content: center; overflow: hidden; }
-  .mark img { width: 18px; height: 18px; object-fit: contain; display: block; }
-  .mark.mono { color: #fff; font-size: 9px; font-weight: 700; letter-spacing: -.02em; }
-  .bar-yoy { font-size: 12px; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
-  .up { color: var(--good); } .down { color: var(--s2); } .flat { color: var(--muted); }
-  .bar-track { position: relative; height: 22px; }
-  .bar-fill {
-    height: 100%; border-radius: 4px; min-width: 2px;
-    display: flex; align-items: center; justify-content: flex-end;
-    overflow: hidden; transition: filter .12s;
-  }
-  .bar-track:hover .bar-fill { filter: brightness(1.06); }
-  .bar-val-in {
-    color: #fff; font-size: 12px; font-variant-numeric: tabular-nums;
-    padding-right: 8px; white-space: nowrap;
-  }
-  .bar-val {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    font-size: 12px; font-variant-numeric: tabular-nums; color: var(--ink);
-    padding-left: 8px; white-space: nowrap;
-  }
-
-  /* pie */
-  .pie-layout { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
-  .pie-wrap { position: relative; flex: 0 0 auto; }
-  svg#fuelPie { width: 200px; height: 200px; display: block; }
-  .pie-slice { stroke: var(--surface); stroke-width: 2; transition: opacity .12s; cursor: pointer; }
-  .pie-slice:hover { opacity: .85; }
-  .pie-lab { fill: #fff; font-size: 9px; font-weight: 600; text-anchor: middle; pointer-events: none; }
-  .pie-legend { flex: 1 1 260px; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
-  .pie-legend .row { display: grid; grid-template-columns: 12px 1fr auto auto; align-items: baseline; gap: 10px; font-size: 13px; }
-  .pie-legend .sw { width: 11px; height: 11px; border-radius: 3px; align-self: center; }
-  .pie-legend .nm { color: var(--ink-2); }
-  .pie-legend .amt { color: var(--ink); font-variant-numeric: tabular-nums; }
-  .pie-legend .yy { font-variant-numeric: tabular-nums; font-size: 12px; min-width: 62px; text-align: right; }
-
-  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; font-size: 12.5px; color: var(--ink-2); }
-  .legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
-
-  /* charts */
-  .trend-wrap { position: relative; }
-  svg.trend { width: 100%; height: 280px; display: block; overflow: visible; }
-  .trend-axis text { fill: var(--muted); font-size: 11px; }
-  .trend-grid line { stroke: var(--grid); stroke-width: 1; }
-  .trend-line { fill: none; stroke-width: 2; }
-  .trend-dot { fill: var(--surface); stroke-width: 1.5; }
-  .area-band { stroke: var(--surface); stroke-width: 1.5; }
-  .crosshair { stroke: var(--axis); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0; }
-  .tip {
-    position: absolute; pointer-events: none; opacity: 0; transition: opacity .08s;
-    background: var(--ink); color: var(--surface); font-size: 12px; padding: 7px 10px;
-    border-radius: 7px; white-space: nowrap; transform: translate(-50%, -125%); z-index: 5;
-    box-shadow: 0 4px 14px rgba(0,0,0,.18); line-height: 1.5;
-  }
-  .tip .tt-row { display: flex; align-items: center; gap: 7px; }
-  .tip .tt-sw { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
-  .tip .tt-head { font-weight: 600; margin-bottom: 3px; }
-  .chart-note-sm { font-size: 12px; color: var(--muted); margin-top: 12px; }
-
-  details.table { margin-top: 20px; }
-  details.table summary { cursor: pointer; font-size: 14px; color: var(--s1); }
-  table { border-collapse: collapse; width: 100%; margin-top: 12px; font-size: 13px; }
-  th, td { text-align: right; padding: 6px 10px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
-  th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; font-variant-numeric: normal; }
-  th { color: var(--ink-2); font-weight: 600; }
-
-  footer.site { margin-top: 40px; font-size: 12.5px; color: var(--muted); }
-  footer.site a { color: var(--s1); text-decoration: none; }
-  .toggle { position: fixed; top: 14px; right: 14px; background: var(--surface); border: 1px solid var(--border);
-    color: var(--ink-2); border-radius: 8px; padding: 6px 10px; font-size: 12px; cursor: pointer; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--page); color:var(--ink); line-height:1.5;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1040px; margin:0 auto; padding:32px 20px 80px; }
+  .eyebrow { font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin:0 0 6px; }
+  .back { color:var(--s1); text-decoration:none; font-size:13px; }
+  .back:hover { text-decoration:underline; }
+  h1 { font-size:clamp(24px,4vw,34px); margin:6px 0 6px; letter-spacing:-0.01em; }
+  .sub { color:var(--ink-2); margin:0; font-size:15px; }
+  .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:26px 0 8px; }
+  @media (max-width:720px){ .kpis { grid-template-columns:repeat(2,1fr); } }
+  .kpi { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 18px; }
+  .kpi .label { font-size:12.5px; color:var(--ink-2); margin:0 0 8px; display:flex; align-items:center; gap:6px; }
+  .kpi .dot { width:9px; height:9px; border-radius:3px; display:inline-block; }
+  .kpi .value { font-size:26px; font-weight:650; letter-spacing:-0.01em; }
+  .kpi .foot { font-size:12px; color:var(--muted); margin-top:4px; }
+  section.card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px 24px; margin-top:20px; }
+  section.card h2 { font-size:18px; margin:0 0 2px; letter-spacing:-0.01em; }
+  section.card .note { font-size:13px; color:var(--muted); margin:2px 0 18px; }
+  .bars { display:flex; flex-direction:column; gap:9px; }
+  .bar-row { display:grid; grid-template-columns:120px 1fr 96px; align-items:center; gap:10px; }
+  @media (max-width:560px){ .bar-row { grid-template-columns:96px 1fr 72px; } }
+  .bar-name { font-size:12.5px; color:var(--ink-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:flex; align-items:center; gap:6px; }
+  .bar-track { position:relative; height:22px; background:var(--grid); border-radius:4px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:4px; min-width:2px; }
+  .bar-val { font-size:12px; font-variant-numeric:tabular-nums; color:var(--ink-2); text-align:right; white-space:nowrap; }
+  .swatch { width:11px; height:11px; border-radius:3px; display:inline-block; flex:0 0 11px; }
+  .legend { display:flex; flex-wrap:wrap; gap:14px; margin-top:16px; font-size:12.5px; color:var(--ink-2); }
+  .legend span { display:inline-flex; align-items:center; gap:6px; }
+  .trend-wrap { position:relative; }
+  svg.trend { width:100%; height:300px; display:block; overflow:visible; }
+  .trend-axis text { fill:var(--muted); font-size:11px; }
+  .trend-grid line { stroke:var(--grid); stroke-width:1; }
+  .trend-line { fill:none; stroke-width:2; }
+  .crosshair { stroke:var(--axis); stroke-width:1; stroke-dasharray:3 3; opacity:0; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s; background:var(--ink); color:var(--surface);
+    font-size:12px; padding:8px 11px; border-radius:7px; white-space:nowrap; transform:translate(-50%,-115%); z-index:5;
+    box-shadow:0 4px 14px rgba(0,0,0,.18); line-height:1.55; }
+  .tip .tt-row { display:flex; align-items:center; gap:7px; justify-content:space-between; }
+  .tip .tt-sw { width:9px; height:9px; border-radius:2px; display:inline-block; }
+  .tip .tt-head { font-weight:600; margin-bottom:4px; }
+  table.models { width:100%; border-collapse:collapse; font-size:13px; }
+  table.models th, table.models td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--border); white-space:nowrap; }
+  table.models th { color:var(--muted); font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:.03em; }
+  table.models td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  .table-scroll { overflow-x:auto; }
+  .pill { display:inline-block; padding:2px 8px; border-radius:20px; font-size:11.5px; font-weight:600; color:#fff; }
+  .pill.soft { color:var(--ink-2); background:var(--grid); }
+  .tag { font-size:11px; color:var(--muted); }
+  .callout { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--s4); border-radius:10px; padding:14px 18px; margin-top:20px; font-size:13.5px; color:var(--ink-2); }
+  .callout b { color:var(--ink); }
+  footer.site { margin-top:40px; font-size:12.5px; color:var(--muted); }
+  footer.site a { color:var(--s1); }
+  .toggle { position:fixed; top:14px; right:14px; background:var(--surface); border:1px solid var(--border); color:var(--ink-2); border-radius:8px; padding:6px 10px; font-size:12px; cursor:pointer; }
 </style>
 </head>
 <body>
 <button class="toggle" id="themeToggle" aria-label="Toggle theme">◐ Theme</button>
 <div class="wrap">
-  <header class="site">
-    <p class="eyebrow">Vehicle Registration Statistics</p>
-    <h1>Germany — New Passenger-Car Registrations</h1>
+  <header>
+    <p class="eyebrow">Deep dive · Cockpit &amp; sensor suppliers</p>
+    <a class="back" href="index.html">← Back to Germany overview</a>
+    <h1>Cockpit SoC &amp; LiDAR supplier penetration</h1>
     <p class="sub" id="subtitle"></p>
   </header>
 
   <div class="kpis" id="kpis"></div>
 
-  <section class="card">
-    <h2>Top brands</h2>
-    <p class="note" id="brandsNote"></p>
-    <div class="bars" id="brandBars"></div>
-  </section>
+  <div class="callout" id="methodology"></div>
 
   <section class="card">
-    <h2>Top model series</h2>
-    <p class="note" id="modelsNote"></p>
-    <div class="bars" id="modelBars"></div>
+    <h2>Cockpit SoC supplier share</h2>
+    <p class="note">Registration-weighted share of the cockpit domain-controller / infotainment ("车机") silicon supplier, across the whole data window. Shares are of <em>classified</em> registrations.</p>
+    <div class="bars" id="socBars"></div>
   </section>
 
   <section class="card">
-    <h2>Powertrain mix</h2>
-    <p class="note" id="fuelNote"></p>
-    <div class="pie-layout">
-      <div class="pie-wrap">
-        <svg id="fuelPie" viewBox="0 0 200 200" role="img" aria-label="Powertrain mix (share of the month's registrations)"></svg>
-        <div class="tip" id="fuelTip"></div>
-      </div>
-      <div class="pie-legend" id="fuelLegend"></div>
+    <h2>Cockpit SoC supplier mix over time</h2>
+    <p class="note">Monthly share of new registrations by cockpit SoC supplier (stacked to 100%).</p>
+    <div class="trend-wrap"><svg class="trend" id="socChart" role="img"></svg><div class="tip" id="socTip"></div></div>
+    <div class="legend" id="socLegend"></div>
+  </section>
+
+  <section class="card">
+    <h2>Cockpit domain-controller adoption</h2>
+    <p class="note">Share of new registrations whose current standard configuration uses a consolidated cockpit domain controller ("座舱域控").</p>
+    <div class="trend-wrap"><svg class="trend" id="dcChart" role="img"></svg><div class="tip" id="dcTip"></div></div>
+  </section>
+
+  <section class="card">
+    <h2>LiDAR penetration</h2>
+    <p class="note" id="lidarNote"></p>
+    <div class="trend-wrap"><svg class="trend" id="lidarChart" role="img" style="height:200px"></svg><div class="tip" id="lidarTip"></div></div>
+  </section>
+
+  <section class="card">
+    <h2>Estimated configuration — top models</h2>
+    <p class="note">The highest-volume model series and their estimated cockpit SoC / domain controller / LiDAR. Confidence reflects how well-sourced the platform mapping is.</p>
+    <div class="table-scroll">
+      <table class="models">
+        <thead><tr><th>Model</th><th class="num">Registrations</th><th>Domain ctrl.</th><th>Cockpit SoC</th><th>LiDAR</th><th>Conf.</th></tr></thead>
+        <tbody id="modelRows"></tbody>
+      </table>
     </div>
   </section>
-
-  <h2 class="section-head">Trends over time</h2>
-
-  <section class="card" id="brandCard">
-    <h2>Registrations by brand</h2>
-    <p class="note" id="brandTrendNote"></p>
-    <div class="trend-wrap">
-      <svg class="trend" id="brandChart" role="img" aria-label="Monthly new registrations by brand"></svg>
-      <div class="tip" id="brandTip"></div>
-    </div>
-    <div class="legend" id="brandLegend"></div>
-  </section>
-
-  <section class="card" id="originCard">
-    <h2><a class="h2link" href="analysis-china.html">Registrations by manufacturer origin</a><span class="h2hint"> — deep dive: China ↗</span></h2>
-    <p class="note" id="originNote"></p>
-    <div class="trend-wrap">
-      <svg class="trend" id="originChart" role="img" aria-label="Monthly new registrations by country of origin"></svg>
-      <div class="tip" id="originTip"></div>
-    </div>
-    <div class="legend" id="originLegend"></div>
-    <p class="chart-note-sm">Grouped by the marque’s country of origin (the car’s
-      nationality), not the current owner group — e.g. VW-owned Škoda counts as
-      Czechia, Geely-owned Volvo as Sweden. SAIC’s MG is counted as China.</p>
-  </section>
-
-  <section class="card" id="trendCard">
-    <h2><a class="h2link" href="analysis-ev.html">Registrations by powertrain</a><span class="h2hint"> — deep dive: EV &amp; hybrid ↗</span></h2>
-    <p class="note" id="trendNote"></p>
-    <div class="trend-wrap">
-      <svg class="trend" id="trend" role="img" aria-label="Monthly new registrations by powertrain"></svg>
-      <div class="tip" id="trendTip"></div>
-    </div>
-    <div class="legend" id="trendLegend"></div>
-  </section>
-
-  <section class="card" id="segmentCard">
-    <h2>Registrations by body segment</h2>
-    <p class="note" id="segmentNote"></p>
-    <div class="trend-wrap" id="segmentWrap">
-      <svg class="trend" id="segmentChart" role="img" aria-label="Monthly new registrations by body segment"></svg>
-      <div class="tip" id="segmentTip"></div>
-    </div>
-    <div class="legend" id="segmentLegend"></div>
-    <p class="chart-note-sm" id="segmentSrc"></p>
-  </section>
-
-  <section class="card" id="supplierCard">
-    <h2><a class="h2link" href="analysis-suppliers.html">Cockpit SoC &amp; LiDAR suppliers</a><span class="h2hint"> — deep dive ↗</span></h2>
-    <p class="note" id="supplierNote"></p>
-    <div class="bars" id="supplierBars"></div>
-    <p class="chart-note-sm">Estimated: each model is mapped to the cockpit
-      domain-controller (“车机”) silicon of its current-generation platform, then
-      weighted by KBA registrations. Standard-config LiDAR is effectively 0%.
-      See the deep-dive page and <code>data/vehicle_specs.csv</code>.</p>
-  </section>
-
-  <details class="table">
-    <summary>View data table — top brands (latest month)</summary>
-    <div id="tableWrap"></div>
-  </details>
 
   <footer class="site">
     <p id="footerText"></p>
@@ -12185,420 +12027,232 @@
 <script>
 (function () {
   "use strict";
-  var DATA;
-  try {
-    DATA = JSON.parse(document.getElementById("germany-data").textContent);
-  } catch (e) {
-    document.getElementById("subtitle").textContent = "No data available yet.";
+  var DATA = {}, LOGOS = {};
+  try { DATA = JSON.parse(document.getElementById("germany-data").textContent || "{}"); } catch (e) {}
+  try { LOGOS = JSON.parse(document.getElementById("brand-logos").textContent || "{}"); } catch (e) {}
+  var S = DATA.suppliers;
+  var $ = function (id) { return document.getElementById(id); };
+  var fmt = function (n) { return (n == null ? "–" : n.toLocaleString("en-US")); };
+
+  // ----- theme toggle (mirrors the other pages) -----
+  var root = document.documentElement;
+  $("themeToggle").addEventListener("click", function () {
+    var cur = root.getAttribute("data-theme");
+    var next = cur === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+  });
+
+  if (!S) {
+    $("subtitle").textContent = "No supplier data baked in yet — run scripts/parse_suppliers.py then build_site.py.";
     return;
   }
-  var months = DATA.months || [];
-  var latest = DATA.latest;
-  var fmt = function (n) { return n == null ? "–" : n.toLocaleString("en-US"); };
-  var pct = function (part, whole) { return whole ? (100 * part / whole) : 0; };
 
-  // ---- subtitle ----
-  document.getElementById("subtitle").innerHTML =
-    "Monthly new-registration statistics by brand and model. Source: " +
-    '<a href="' + DATA.source_url + '" target="_blank" rel="noopener">' + DATA.source + "</a>.";
+  // Consistent colour per SoC supplier.
+  var COLORS = {
+    "Qualcomm": "#2a78d6", "Samsung": "#4a3aa7", "NVIDIA": "#1baf7a",
+    "Renesas": "#eb6834", "AMD": "#e34948", "NXP": "#eda100",
+    "MediaTek": "#e87ba4", "Undisclosed": "#8f8d86", "None": "#c3c2b7",
+    "Unclassified": "#d8d7d0"
+  };
+  var colorFor = function (b) { return COLORS[b] || "#8f8d86"; };
 
-  if (!latest) return;
+  var css = function (v) { return getComputedStyle(document.body).getPropertyValue(v).trim(); };
 
-  // ---- brand marks (real icon where available, else colored monogram) ----
-  var LOGOS = {};
-  try { LOGOS = JSON.parse(document.getElementById("brand-logos").textContent); } catch (e) {}
-  var MONO = ["--s1", "--s2", "--s3", "--s4", "--s5", "--s6", "--s7", "--s8"];
-  function brandKey(b) { return (b || "").trim().toUpperCase(); }
-  function markHTML(brand) {
-    var k = brandKey(brand);
-    if (LOGOS[k]) return '<span class="mark"><img src="' + LOGOS[k] + '" alt="' + k + '"></span>';
-    var word = (k.replace(/[^A-Z0-9 ]/g, "").split(" ")[0]) || "?";
-    var letters = word.length <= 3 ? word : word.slice(0, 2);
-    var idx = 0; for (var i = 0; i < k.length; i++) idx = (idx + k.charCodeAt(i)) % MONO.length;
-    var fs = letters.length >= 3 ? "font-size:8px;" : "";
-    return '<span class="mark mono" style="' + fs + 'background:var(' + MONO[idx] + ')">' + letters + '</span>';
-  }
+  // ----- subtitle + methodology -----
+  var labels = S.labels;
+  $("subtitle").textContent = (DATA.country || "Germany") + " · " + labels[0] + " – " + labels[labels.length - 1] +
+    " · new passenger-car registrations weighted by KBA counts.";
+  $("methodology").innerHTML = "<b>How to read this.</b> Registration volumes are official KBA figures. The cockpit " +
+    "SoC and LiDAR fields are <b>estimates</b> — each model is mapped to the silicon of its current-generation " +
+    "platform / brand software stack (\"当年新款标配\"), not measured per car. " + Math.round(S.coverage_pct) +
+    "% of registrations are classified; the rest are shown as <i>Unclassified</i>. Source mapping: <code>data/vehicle_specs.csv</code>.";
 
-  // ---- year-over-year helpers ----
-  function yoySpan(v) {
-    if (v == null) return '<span class="flat">—</span>';
-    var cls = v > 0 ? "up" : (v < 0 ? "down" : "flat");
-    var ar = v > 0 ? "▲ +" : (v < 0 ? "▼ " : "");
-    return '<span class="' + cls + '">' + ar + v.toFixed(1) + "%</span>";
-  }
-
-  // ---- KPIs ----
-  var kpiDefs = [
-    { label: latest.label + " — total registrations", value: fmt(latest.total), foot: yoySpan(latest.total_yoy) + " YoY" },
-    { label: "Year to date", value: fmt(latest.total_ytd) },
-    { label: "Battery-electric (BEV) share", value: pct(latest.bev, latest.total).toFixed(1) + "%", foot: fmt(latest.bev) + " cars &nbsp; " + yoySpan(latest.bev_yoy) },
-    { label: "Diesel share", value: pct(latest.diesel, latest.total).toFixed(1) + "%", foot: fmt(latest.diesel) + " cars &nbsp; " + yoySpan(latest.diesel_yoy) }
+  // ----- KPIs -----
+  var topSoc = S.soc_share.filter(function (r) { return r.brand !== "Unclassified"; })[0];
+  var dcLatest = S.dc_adoption.pct[S.dc_adoption.pct.length - 1];
+  var lidarWin = S.lidar.window;
+  var lidarTot = (lidarWin.yes || 0) + (lidarWin.optional || 0);
+  var lidarPct = S.total_registrations ? (100 * lidarTot / S.total_registrations) : 0;
+  var kpis = [
+    { label: "Leading cockpit SoC", dot: colorFor(topSoc.brand), value: topSoc.brand, foot: topSoc.share_classified + "% of classified" },
+    { label: "Domain-controller adoption", dot: css("--s3"), value: Math.round(dcLatest) + "%", foot: "latest month, of new regs" },
+    { label: "LiDAR penetration", dot: css("--s2"), value: lidarPct < 1 ? lidarPct.toFixed(2) + "%" : lidarPct.toFixed(1) + "%", foot: "standard-config estimate" },
+    { label: "Classified coverage", dot: css("--s1"), value: Math.round(S.coverage_pct) + "%", foot: fmt(S.classified_registrations) + " of " + fmt(S.total_registrations) }
   ];
-  document.getElementById("kpis").innerHTML = kpiDefs.map(function (k) {
-    return '<div class="kpi"><p class="label">' + k.label + '</p>' +
-      '<div class="value">' + k.value + '</div>' +
-      (k.foot ? '<div class="foot">' + k.foot + '</div>' : '') + '</div>';
+  $("kpis").innerHTML = kpis.map(function (k) {
+    return '<div class="kpi"><p class="label"><span class="dot" style="background:' + k.dot + '"></span>' + k.label +
+      '</p><div class="value">' + k.value + '</div><div class="foot">' + k.foot + '</div></div>';
   }).join("");
 
-  // ---- horizontal bar helper ----
-  function renderBars(el, rows, opts) {
-    opts = opts || {};
-    var max = Math.max.apply(null, rows.map(function (r) { return r.value || 0; })) || 1;
-    if (opts.yoy) el.classList.add("with-yoy");
-    el.innerHTML = rows.map(function (r) {
-      var w = Math.max(2, (100 * (r.value || 0) / max));
-      var color = r.color || "var(--s1)";
-      var inside = w > 24;
-      var label = opts.percent ? (r.value.toFixed(1) + "%") : fmt(r.value);
-      // Inside labels ride the fill's right edge (white on color); short bars
-      // get an outside label anchored just past the fill (ink on surface).
-      var fill = '<div class="bar-fill" style="width:' + w + '%;background:' + color + '">' +
-        (inside ? '<span class="bar-val-in">' + label + '</span>' : '') + '</div>';
-      var outside = inside ? '' :
-        '<span class="bar-val" style="left:' + w + '%">' + label + '</span>';
-      var mark = opts.logo ? markHTML(r.brand) : '';
-      var name = '<div class="bar-name" title="' + r.name + '">' + mark +
-        '<span class="lbl">' + r.name + '</span></div>';
-      var yoy = opts.yoy ? '<div class="bar-yoy">' + yoySpan(r.yoy) + '</div>' : '';
-      return '<div class="bar-row">' + name +
-        '<div class="bar-track">' + fill + outside + '</div>' + yoy + '</div>';
-    }).join("");
-  }
+  // ----- SoC supplier share bars (classified only) -----
+  var shareRows = S.soc_share.filter(function (r) { return r.brand !== "Unclassified"; });
+  var maxShare = Math.max.apply(null, shareRows.map(function (r) { return r.share_classified || 0; }));
+  $("socBars").innerHTML = shareRows.map(function (r) {
+    var w = maxShare ? (100 * (r.share_classified || 0) / maxShare) : 0;
+    return '<div class="bar-row">' +
+      '<div class="bar-name"><span class="swatch" style="background:' + colorFor(r.brand) + '"></span>' + r.brand + '</div>' +
+      '<div class="bar-track"><div class="bar-fill" style="width:' + w + '%;background:' + colorFor(r.brand) + '"></div></div>' +
+      '<div class="bar-val">' + (r.share_classified || 0).toFixed(1) + '%&nbsp;·&nbsp;' + fmt(r.total) + '</div>' +
+      '</div>';
+  }).join("");
 
-  // ---- top brands ----
-  document.getElementById("brandsNote").textContent = latest.label + " — passenger cars registered, by brand (with year-over-year change).";
-  renderBars(document.getElementById("brandBars"),
-    latest.top_brands.map(function (b) { return { name: b.brand, value: b.total, yoy: b.yoy, brand: b.brand }; }),
-    { logo: true, yoy: true });
+  // ================= generic line/area chart helpers =================
+  var SVGNS = "http://www.w3.org/2000/svg";
+  function el(name, attrs) { var e = document.createElementNS(SVGNS, name); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+  function xAt(i, n, L, W) { return n <= 1 ? L : L + (W * i) / (n - 1); }
 
-  // ---- top models ----
-  document.getElementById("modelsNote").textContent = latest.label + " — passenger cars registered, by model series (with year-over-year change).";
-  renderBars(document.getElementById("modelBars"),
-    latest.top_models.map(function (m) { return { name: m.brand + " " + m.model, value: m.total, yoy: m.yoy, brand: m.brand }; }),
-    { logo: true, yoy: true });
-
-  // ---- powertrain mix (pie, with YoY) ----
-  (function () {
-    // Mutually-exclusive drivetrains that sum to the month's total, so a pie is
-    // a valid part-of-whole view. Colours match the powertrain trend chart.
-    var slices = [
-      { name: "Petrol", value: latest.petrol, yoy: latest.petrol_yoy, cv: "--s2" },
-      { name: "Diesel", value: latest.diesel, yoy: latest.diesel_yoy, cv: "--s1" },
-      { name: "BEV", value: latest.bev, yoy: latest.bev_yoy, cv: "--s3" },
-      { name: "Plug-in hybrid", value: latest.plugin_hybrid, yoy: latest.plugin_hybrid_yoy, cv: "--s4" },
-      { name: "Hybrid", value: latest.hybrid, yoy: latest.hybrid_yoy, cv: "--s5" }
-    ].filter(function (s) { return s.value != null; });
-    var total = slices.reduce(function (a, s) { return a + s.value; }, 0) || 1;
-    document.getElementById("fuelNote").textContent =
-      latest.label + " — share of new registrations by drivetrain, with year-over-year change. Categories are mutually exclusive and sum to 100%.";
-
-    var svg = document.getElementById("fuelPie");
-    var cx = 100, cy = 100, r = 92;
-    function pt(ang) { return [cx + r * Math.cos(ang), cy + r * Math.sin(ang)]; }
-    var a0 = -Math.PI / 2;
-    slices.forEach(function (s) {
-      var frac = s.value / total, a1 = a0 + frac * 2 * Math.PI;
-      var large = frac > 0.5 ? 1 : 0;
-      var p0 = pt(a0), p1 = pt(a1);
-      var d = "M" + cx + " " + cy + " L" + p0[0].toFixed(2) + " " + p0[1].toFixed(2) +
-        " A" + r + " " + r + " 0 " + large + " 1 " + p1[0].toFixed(2) + " " + p1[1].toFixed(2) + " Z";
-      var path = svgEl("path", { class: "pie-slice", d: d, style: "fill:var(" + s.cv + ")" });
-      path.addEventListener("mouseenter", function () {
-        var tip = document.getElementById("fuelTip");
-        tip.innerHTML = '<div class="tt-head">' + s.name + "</div>" +
-          '<div class="tt-row">' + fmt(s.value) + " · " + (100 * frac).toFixed(1) + "%</div>" +
-          '<div class="tt-row">YoY: ' + (s.yoy == null ? "–" : (s.yoy > 0 ? "+" : "") + s.yoy.toFixed(1) + "%") + "</div>";
-        var mid = (a0 + a1) / 2, lp = [cx + r * 0.6 * Math.cos(mid), cy + r * 0.6 * Math.sin(mid)];
-        tip.style.opacity = 1; tip.style.left = lp[0] + "px"; tip.style.top = lp[1] + "px";
-      });
-      path.addEventListener("mouseleave", function () { document.getElementById("fuelTip").style.opacity = 0; });
-      svg.appendChild(path);
-      if (frac >= 0.06) {
-        var mid = (a0 + a1) / 2, lp = [cx + r * 0.62 * Math.cos(mid), cy + r * 0.62 * Math.sin(mid)];
-        var lab = svgEl("text", { class: "pie-lab", x: lp[0].toFixed(1), y: (lp[1] + 3).toFixed(1) });
-        lab.textContent = (100 * frac).toFixed(0) + "%";
-        svg.appendChild(lab);
-      }
-      a0 = a1;
+  // Stacked-area chart of the SoC mix (share, 0..100).
+  function drawStack(svg, tip, series) {
+    svg.innerHTML = "";
+    var box = svg.getBoundingClientRect();
+    var W = box.width || 900, H = box.height || 300;
+    var padL = 34, padR = 8, padT = 12, padB = 26;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var n = labels.length;
+    var g = el("g", {}); svg.appendChild(g);
+    // gridlines + y labels (0,25,50,75,100)
+    [0, 25, 50, 75, 100].forEach(function (v) {
+      var y = padT + plotH * (1 - v / 100);
+      g.appendChild(el("line", { x1: padL, y1: y, x2: W - padR, y2: y, stroke: css("--grid"), "stroke-width": 1 }));
+      var t = el("text", { x: padL - 6, y: y + 3, "text-anchor": "end", class: "trend-axis" }); t.textContent = v + "%"; g.appendChild(t);
     });
-
-    document.getElementById("fuelLegend").innerHTML = slices.map(function (s) {
-      var y = s.yoy, cls = y == null ? "flat" : (y > 0 ? "up" : (y < 0 ? "down" : "flat"));
-      var ar = y == null ? "–" : (y > 0 ? "▲ +" : (y < 0 ? "▼ " : "")) + Math.abs(y).toFixed(1) + "%";
-      return '<div class="row">' +
-        '<i class="sw" style="background:var(' + s.cv + ')"></i>' +
-        '<span class="nm">' + s.name + "</span>" +
-        '<span class="amt">' + fmt(s.value) + " · " + (100 * s.value / total).toFixed(1) + "%</span>" +
-        '<span class="yy ' + cls + '">' + ar + "</span></div>";
-    }).join("");
-  })();
-
-  // ================= reusable time-series charts =================
-  var NS = "http://www.w3.org/2000/svg";
-  function svgEl(t, a) { var e = document.createElementNS("http://www.w3.org/2000/svg", t); for (var k in a) e.setAttribute(k, a[k]); return e; }
-  var PALETTE = ["--s1", "--s2", "--s3", "--s4", "--s5", "--s6", "--s7", "--s8"];
-  function colorVar(s, i) {
-    if (s.colorVar) return s.colorVar;
-    if (s.name === "Other") return "--muted";
-    return PALETTE[i % PALETTE.length];
-  }
-  function yTicks(svg, m, W, ih, maxV, y) {
-    var g = svgEl("g", { class: "trend-grid" });
-    for (var t = 0; t <= 4; t++) {
-      var gv = maxV * t / 4, gy = y(gv);
-      g.appendChild(svgEl("line", { x1: m.l, x2: W - m.r, y1: gy, y2: gy }));
-      var tx = svgEl("text", { x: m.l - 8, y: gy + 4, "text-anchor": "end" });
-      tx.setAttribute("class", "trend-axis");
-      tx.textContent = gv >= 1000 ? Math.round(gv / 1000) + "k" : Math.round(gv);
-      svg.appendChild(tx);
+    // x labels (~6)
+    var step = Math.max(1, Math.round(n / 6));
+    for (var i = 0; i < n; i += step) {
+      var x = xAt(i, n, padL, plotW);
+      var tx = el("text", { x: x, y: H - 8, "text-anchor": "middle", class: "trend-axis" }); tx.textContent = labels[i]; g.appendChild(tx);
     }
-    svg.appendChild(g);
-  }
-  function xTicks(svg, labels, H, x) {
-    labels.forEach(function (lab, i) {
-      if (i === 0 || / January /.test(" " + lab + " ")) {
-        var yr = (lab.match(/(\d{4})/) || [])[1] || lab;
-        var lx = svgEl("text", { x: x(i), y: H - 8, "text-anchor": "middle" });
-        lx.setAttribute("class", "trend-axis"); lx.textContent = yr;
-        svg.appendChild(lx);
+    // build cumulative stacks
+    var cum = new Array(n).fill(0);
+    series.forEach(function (s) {
+      var top = [], bot = [];
+      for (var i = 0; i < n; i++) {
+        var y0 = cum[i], y1 = cum[i] + (s.share[i] || 0);
+        bot.push([xAt(i, n, padL, plotW), padT + plotH * (1 - y0 / 100)]);
+        top.push([xAt(i, n, padL, plotW), padT + plotH * (1 - y1 / 100)]);
+        cum[i] = y1;
       }
+      var d = "M" + top.map(function (p) { return p[0] + "," + p[1]; }).join("L") +
+        "L" + bot.slice().reverse().map(function (p) { return p[0] + "," + p[1]; }).join("L") + "Z";
+      g.appendChild(el("path", { d: d, fill: colorFor(s.name), "fill-opacity": 0.9, stroke: "none" }));
     });
-  }
-  function legendHTML(el, series) {
-    el.innerHTML = series.map(function (s, i) {
-      return '<span><i class="swatch" style="background:var(' + colorVar(s, i) + ')"></i>' + s.name + '</span>';
-    }).join("");
-  }
-  function tipHTML(head, rows) {
-    return '<div class="tt-head">' + head + '</div>' + rows.map(function (r) {
-      return '<div class="tt-row"><i class="tt-sw" style="background:var(' + r.cv + ')"></i>' +
-        r.name + ': ' + fmt(r.val) + '</div>';
-    }).join("");
-  }
-  function nearestIndex(svg, evt, m, iw, n, W) {
-    var r = svg.getBoundingClientRect();
-    var px = (evt.clientX - r.left) * (W / r.width);
-    var i = Math.round((px - m.l) / iw * (n - 1));
-    return i < 0 ? 0 : (i > n - 1 ? n - 1 : i);
-  }
-
-  function lineChart(svg, tip, legendEl, data) {
-    var labels = data.labels, series = data.series;
-    if (!labels || labels.length < 2 || !series.length) return false;
-    var W = svg.clientWidth || 900, H = 280, m = { t: 16, r: 16, b: 28, l: 52 };
-    var iw = W - m.l - m.r, ih = H - m.t - m.b;
-    var maxV = 0;
-    series.forEach(function (s) { s.values.forEach(function (v) { if (v != null && v > maxV) maxV = v; }); });
-    maxV = (maxV || 1) * 1.08;
-    var x = function (i) { return m.l + iw * i / (labels.length - 1); };
-    var y = function (v) { return m.t + ih - ih * v / maxV; };
-    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
-    yTicks(svg, m, W, ih, maxV, y);
-    series.forEach(function (s, si) {
-      var cv = colorVar(s, si), started = false, d = "";
-      s.values.forEach(function (v, i) {
-        if (v == null) { started = false; return; }
-        d += (started ? "L" : "M") + x(i) + " " + y(v) + " "; started = true;
-      });
-      svg.appendChild(svgEl("path", { class: "trend-line", d: d, style: "stroke:var(" + cv + ")" }));
+    // crosshair + hover
+    var cross = el("line", { class: "crosshair", y1: padT, y2: padT + plotH }); g.appendChild(cross);
+    var hit = el("rect", { x: padL, y: padT, width: plotW, height: plotH, fill: "transparent" }); g.appendChild(hit);
+    hit.addEventListener("mousemove", function (ev) {
+      var rect = svg.getBoundingClientRect();
+      var rel = (ev.clientX - rect.left - padL) / plotW;
+      var i = Math.max(0, Math.min(n - 1, Math.round(rel * (n - 1))));
+      var x = xAt(i, n, padL, plotW);
+      cross.setAttribute("x1", x); cross.setAttribute("x2", x); cross.setAttribute("opacity", 1);
+      var rows = series.filter(function (s) { return (s.share[i] || 0) >= 0.5; })
+        .map(function (s) {
+          return '<div class="tt-row"><span><span class="tt-sw" style="background:' + colorFor(s.name) + '"></span>' +
+            s.name + '</span><b>' + (s.share[i] || 0).toFixed(1) + '%</b></div>';
+        }).join("");
+      tip.innerHTML = '<div class="tt-head">' + labels[i] + '</div>' + rows;
+      tip.style.left = x + "px"; tip.style.top = padT + "px"; tip.style.opacity = 1;
     });
-    xTicks(svg, labels, H, x);
-    var cross = svgEl("line", { class: "crosshair", y1: m.t, y2: m.t + ih }); svg.appendChild(cross);
-    var dots = svgEl("g", {}); svg.appendChild(dots);
-    var hit = svgEl("rect", { x: m.l, y: m.t, width: iw, height: ih, fill: "transparent" });
-    hit.style.cursor = "crosshair";
-    hit.addEventListener("mousemove", function (evt) {
-      var i = nearestIndex(svg, evt, m, iw, labels.length, W);
-      cross.setAttribute("x1", x(i)); cross.setAttribute("x2", x(i)); cross.style.opacity = 1;
-      while (dots.firstChild) dots.removeChild(dots.firstChild);
-      var rows = [], py = evt ? (evt.clientY - svg.getBoundingClientRect().top) * (H / svg.getBoundingClientRect().height) : m.t;
-      series.forEach(function (s, si) {
-        var v = s.values[i]; if (v == null) return;
-        var cv = colorVar(s, si);
-        dots.appendChild(svgEl("circle", { class: "trend-dot", cx: x(i), cy: y(v), r: 3.5, style: "stroke:var(" + cv + ");fill:var(" + cv + ")" }));
-        rows.push({ name: s.name, val: v, cv: cv });
-      });
-      rows.sort(function (a, b) { return b.val - a.val; });
-      tip.innerHTML = tipHTML(labels[i], rows);
-      tip.style.opacity = 1; tip.style.left = x(i) + "px"; tip.style.top = py + "px";
-    });
-    hit.addEventListener("mouseleave", function () {
-      cross.style.opacity = 0; tip.style.opacity = 0; while (dots.firstChild) dots.removeChild(dots.firstChild);
-    });
-    svg.appendChild(hit);
-    legendHTML(legendEl, series);
-    return true;
+    hit.addEventListener("mouseleave", function () { cross.setAttribute("opacity", 0); tip.style.opacity = 0; });
   }
 
-  function stackedArea(svg, tip, legendEl, data, opts) {
-    opts = opts || {};
-    var labels = data.labels, series = data.series;
-    if (!labels || labels.length < 2 || !series.length) return false;
-    var W = svg.clientWidth || 900, H = 280, m = { t: 16, r: 16, b: 28, l: 52 };
-    var iw = W - m.l - m.r, ih = H - m.t - m.b;
-    var totals = labels.map(function (_, i) {
-      return series.reduce(function (a, s) { return a + (s.values[i] || 0); }, 0);
-    });
-    var maxV = (Math.max.apply(null, totals) || 1) * 1.05;
-    var x = function (i) { return m.l + iw * i / (labels.length - 1); };
-    // topDown: y grows downward (0 at top), so the first stacked series (largest,
-    // listed first in the legend) sits at the top of the stack.
-    var y = opts.topDown
-      ? function (v) { return m.t + ih * v / maxV; }
-      : function (v) { return m.t + ih - ih * v / maxV; };
-    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
-    yTicks(svg, m, W, ih, maxV, y);
-    var cum = labels.map(function () { return 0; });
-    series.forEach(function (s, si) {
-      var cv = colorVar(s, si), top = [], bot = [];
-      s.values.forEach(function (v, i) {
-        var lower = cum[i], upper = lower + (v || 0);
-        bot.push([x(i), y(lower)]); top.push([x(i), y(upper)]); cum[i] = upper;
-      });
-      var d = "M" + top.map(function (p) { return p[0] + " " + p[1]; }).join(" L");
-      for (var i = bot.length - 1; i >= 0; i--) d += " L" + bot[i][0] + " " + bot[i][1];
-      d += " Z";
-      svg.appendChild(svgEl("path", { class: "area-band", d: d, style: "fill:var(" + cv + ")" }));
-    });
-    xTicks(svg, labels, H, x);
-    var cross = svgEl("line", { class: "crosshair", y1: m.t, y2: m.t + ih }); svg.appendChild(cross);
-    var hit = svgEl("rect", { x: m.l, y: m.t, width: iw, height: ih, fill: "transparent" });
-    hit.style.cursor = "crosshair";
-    hit.addEventListener("mousemove", function (evt) {
-      var i = nearestIndex(svg, evt, m, iw, labels.length, W);
-      cross.setAttribute("x1", x(i)); cross.setAttribute("x2", x(i)); cross.style.opacity = 1;
-      var rows = series.map(function (s, si) { return { name: s.name, val: s.values[i] || 0, cv: colorVar(s, si) }; });
-      rows.sort(function (a, b) { return b.val - a.val; });
-      // Keep "Other" pinned at the bottom of the tooltip (matches legend + stack).
-      rows.sort(function (a, b) { return (a.name === "Other") - (b.name === "Other"); });
-      tip.innerHTML = tipHTML(labels[i] + " · total " + fmt(totals[i]), rows);
-      tip.style.opacity = 1; tip.style.left = x(i) + "px"; tip.style.top = m.t + "px";
-    });
-    hit.addEventListener("mouseleave", function () { cross.style.opacity = 0; tip.style.opacity = 0; });
-    svg.appendChild(hit);
-    legendHTML(legendEl, series);
-    return true;
-  }
-
-  // ---- powertrain over time (line) ----
-  (function () {
-    var defs = [
-      { name: "Petrol", colorVar: "--s2", key: "petrol" },
-      { name: "Diesel", colorVar: "--s1", key: "diesel" },
-      { name: "BEV", colorVar: "--s3", key: "bev" },
-      { name: "Plug-in hybrid", colorVar: "--s4", key: "plugin_hybrid" },
-      { name: "Hybrid", colorVar: "--s5", key: "hybrid" }
-    ];
-    var series = defs.map(function (s) {
-      return { name: s.name, colorVar: s.colorVar, values: months.map(function (mo) { return mo[s.key] == null ? null : mo[s.key]; }) };
-    }).filter(function (s) { return s.values.some(function (v) { return v != null; }); });
-    var labels = months.map(function (mo) { return mo.label; });
-    document.getElementById("trendNote").textContent =
-      "New passenger-car registrations per month by drivetrain, " + labels[0] + " – " + labels[labels.length - 1] + ".";
-    if (!lineChart(document.getElementById("trend"), document.getElementById("trendTip"), document.getElementById("trendLegend"), { labels: labels, series: series }))
-      document.getElementById("trendCard").style.display = "none";
-  })();
-
-  // ---- brand trends (line) ----
-  (function () {
-    var bt = DATA.brand_trends;
-    if (!bt) { document.getElementById("brandCard").style.display = "none"; return; }
-    document.getElementById("brandTrendNote").textContent =
-      "Monthly registrations for the largest brands, " + bt.labels[0] + " – " + bt.labels[bt.labels.length - 1] + ".";
-    if (!lineChart(document.getElementById("brandChart"), document.getElementById("brandTip"), document.getElementById("brandLegend"), bt))
-      document.getElementById("brandCard").style.display = "none";
-  })();
-
-  // ---- manufacturer origin (stacked area) ----
-  (function () {
-    var ot = DATA.origin_trends;
-    if (!ot) { document.getElementById("originCard").style.display = "none"; return; }
-    // Pin the gray "Other" bucket to the end so the legend and the stacked bands
-    // stay in the same order (Other is the last/bottom band and the last legend
-    // entry), whatever order the data arrives in.
-    var series = ot.series.slice().sort(function (a, b) {
-      return (a.name === "Other") - (b.name === "Other");
-    });
-    var data = { labels: ot.labels, series: series };
-    document.getElementById("originNote").textContent =
-      "Monthly registrations by manufacturer country of origin (stacked), " + ot.labels[0] + " – " + ot.labels[ot.labels.length - 1] + ".";
-    if (!stackedArea(document.getElementById("originChart"), document.getElementById("originTip"), document.getElementById("originLegend"), data, { topDown: true }))
-      document.getElementById("originCard").style.display = "none";
-  })();
-
-  // ---- body segment (line) ----
-  (function () {
-    var st = DATA.segment_trends;
-    var wrap = document.getElementById("segmentWrap");
-    var legend = document.getElementById("segmentLegend");
-    var src = document.getElementById("segmentSrc");
-    if (!st || !st.series || !st.series.length) {
-      // No FZ 11 data yet — keep the section as an explanatory placeholder.
-      wrap.style.display = "none"; legend.style.display = "none"; src.style.display = "none";
-      document.getElementById("segmentNote").innerHTML =
-        "Body-shape breakdowns (sedan/hatch, SUV, MPV/van, sports) come from KBA " +
-        "table <strong>FZ 11 (Segmente)</strong>. No FZ 11 workbooks have been " +
-        "downloaded yet — the monthly job will populate this chart automatically.";
-      return;
+  // Single-line percentage chart (DC adoption / LiDAR).
+  function drawLine(svg, tip, values, color, unit, ymax) {
+    svg.innerHTML = "";
+    var box = svg.getBoundingClientRect();
+    var W = box.width || 900, H = box.height || 240;
+    var padL = 38, padR = 8, padT = 12, padB = 26;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var n = labels.length;
+    ymax = ymax || Math.max(1, Math.ceil(Math.max.apply(null, values)));
+    var g = el("g", {}); svg.appendChild(g);
+    var ticks = 4;
+    for (var t = 0; t <= ticks; t++) {
+      var v = ymax * t / ticks, y = padT + plotH * (1 - v / ymax);
+      g.appendChild(el("line", { x1: padL, y1: y, x2: W - padR, y2: y, stroke: css("--grid"), "stroke-width": 1 }));
+      var lt = el("text", { x: padL - 6, y: y + 3, "text-anchor": "end", class: "trend-axis" });
+      lt.textContent = (ymax <= 2 ? v.toFixed(2) : Math.round(v)) + unit; g.appendChild(lt);
     }
-    document.getElementById("segmentNote").textContent =
-      "New passenger-car registrations per month by body shape, " +
-      st.labels[0] + " – " + st.labels[st.labels.length - 1] + ".";
-    src.innerHTML = "Source: KBA table <strong>FZ 11 (Segmente)</strong>. KBA size/segment " +
-      "classes are grouped into body shapes (all size classes → sedan &amp; hatch; " +
-      "SUVs + Geländewagen → SUV; Mini-/Großraum-Vans → MPV &amp; van; Sportwagen → sports).";
-    if (!lineChart(document.getElementById("segmentChart"), document.getElementById("segmentTip"), legend, st))
-      document.getElementById("segmentCard").style.display = "none";
-  })();
+    var step = Math.max(1, Math.round(n / 6));
+    for (var i = 0; i < n; i += step) {
+      var x = xAt(i, n, padL, plotW);
+      var tx = el("text", { x: x, y: H - 8, "text-anchor": "middle", class: "trend-axis" }); tx.textContent = labels[i]; g.appendChild(tx);
+    }
+    var pts = values.map(function (v, i) { return [xAt(i, n, padL, plotW), padT + plotH * (1 - Math.min(v, ymax) / ymax)]; });
+    var area = "M" + pts.map(function (p) { return p[0] + "," + p[1]; }).join("L") +
+      "L" + pts[n - 1][0] + "," + (padT + plotH) + "L" + pts[0][0] + "," + (padT + plotH) + "Z";
+    g.appendChild(el("path", { d: area, fill: color, "fill-opacity": 0.12, stroke: "none" }));
+    g.appendChild(el("path", { d: "M" + pts.map(function (p) { return p[0] + "," + p[1]; }).join("L"), class: "trend-line", stroke: color }));
+    var cross = el("line", { class: "crosshair", y1: padT, y2: padT + plotH }); g.appendChild(cross);
+    var dot = el("circle", { r: 4, fill: css("--surface"), stroke: color, "stroke-width": 2, opacity: 0 }); g.appendChild(dot);
+    var hit = el("rect", { x: padL, y: padT, width: plotW, height: plotH, fill: "transparent" }); g.appendChild(hit);
+    hit.addEventListener("mousemove", function (ev) {
+      var rect = svg.getBoundingClientRect();
+      var rel = (ev.clientX - rect.left - padL) / plotW;
+      var i = Math.max(0, Math.min(n - 1, Math.round(rel * (n - 1))));
+      var p = pts[i];
+      cross.setAttribute("x1", p[0]); cross.setAttribute("x2", p[0]); cross.setAttribute("opacity", 1);
+      dot.setAttribute("cx", p[0]); dot.setAttribute("cy", p[1]); dot.setAttribute("opacity", 1);
+      tip.innerHTML = '<div class="tt-head">' + labels[i] + '</div><div class="tt-row"><span>' +
+        (unit === "%" && ymax <= 2 ? values[i].toFixed(3) : values[i].toFixed(unit === "%" && ymax > 2 ? 1 : 2)) + unit + '</span></div>';
+      tip.style.left = p[0] + "px"; tip.style.top = p[1] + "px"; tip.style.opacity = 1;
+    });
+    hit.addEventListener("mouseleave", function () { cross.setAttribute("opacity", 0); dot.setAttribute("opacity", 0); tip.style.opacity = 0; });
+  }
 
-  // ---- cockpit SoC supplier teaser ----
-  (function () {
-    var S = DATA.suppliers;
-    var card = document.getElementById("supplierCard");
-    if (!S || !S.soc_share) { if (card) card.style.display = "none"; return; }
-    var SOC_COLORS = {
-      "Qualcomm": "#2a78d6", "Samsung": "#4a3aa7", "NVIDIA": "#1baf7a",
-      "Renesas": "#eb6834", "AMD": "#e34948", "NXP": "#eda100",
-      "MediaTek": "#e87ba4", "Undisclosed": "#8f8d86", "None": "#c3c2b7"
-    };
-    var rows = S.soc_share.filter(function (r) { return r.brand !== "Unclassified"; }).slice(0, 6);
-    var top = rows[0];
-    document.getElementById("supplierNote").innerHTML =
-      "Registration-weighted cockpit-SoC (“车机”) supplier share — <b>" + top.brand +
-      "</b> leads with " + (top.share_classified || 0).toFixed(0) + "% of classified registrations (" +
-      Math.round(S.coverage_pct) + "% of the market classified).";
-    var max = Math.max.apply(null, rows.map(function (r) { return r.share_classified || 0; }));
-    document.getElementById("supplierBars").innerHTML = rows.map(function (r) {
-      var c = SOC_COLORS[r.brand] || "#8f8d86";
-      var w = max ? (100 * (r.share_classified || 0) / max) : 0;
-      return '<div class="bar-row"><div class="bar-name"><span class="swatch" style="background:' + c + '"></span>' +
-        r.brand + '</div><div class="bar-track" style="background:var(--grid);border-radius:4px;overflow:hidden">' +
-        '<div class="bar-fill" style="width:' + w + '%;background:' + c + '"></div>' +
-        '<span class="bar-val" style="position:absolute;top:50%;transform:translateY(-50%);right:8px;font-size:11.5px;color:var(--ink-2)">' +
-        (r.share_classified || 0).toFixed(1) + '%</span></div></div>';
-    }).join("");
-  })();
-
-  // ---- data table ----
-  var t = ['<table><thead><tr><th>#</th><th>Brand</th><th>Total</th><th>BEV</th><th>Diesel</th><th>Plug-in hybrid</th></tr></thead><tbody>'];
-  latest.top_brands.forEach(function (b, i) {
-    t.push('<tr><td>' + (i + 1) + '</td><td>' + b.brand + '</td><td>' + fmt(b.total) +
-      '</td><td>' + fmt(b.bev) + '</td><td>' + fmt(b.diesel) + '</td><td>' + fmt(b.plugin_hybrid) + '</td></tr>');
+  // ----- SoC mix stacked area + legend -----
+  var stackSeries = S.soc_series.filter(function (s) {
+    return s.share.some(function (v) { return v > 0; });
   });
-  t.push('</tbody></table>');
-  document.getElementById("tableWrap").innerHTML = t.join("");
+  $("socLegend").innerHTML = stackSeries.map(function (s) {
+    return '<span><span class="swatch" style="background:' + colorFor(s.name) + '"></span>' + s.name + '</span>';
+  }).join("");
 
-  document.getElementById("footerText").innerHTML =
-    "Data: " + DATA.source + ". Metric: " + DATA.metric + ". " +
-    "Figures are official KBA new-registration counts. Generated from workbook table FZ 10.1.";
+  // ----- LiDAR note -----
+  var lidarSuppliers = "Valeo (Mercedes Drive Pilot), Luminar (Volvo EX90)";
+  $("lidarNote").innerHTML = "LiDAR is effectively absent from standard configurations in this market — only a few premium options offer it (" +
+    lidarSuppliers + "), so registration-weighted penetration stays near zero. Values below combine standard + optional-fitment models.";
 
-  // ---- theme toggle ----
-  document.getElementById("themeToggle").addEventListener("click", function () {
-    var cur = document.documentElement.getAttribute("data-theme");
-    var next = cur === "dark" ? "light" : (cur === "light" ? "dark" :
-      (matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark"));
-    document.documentElement.setAttribute("data-theme", next);
-  });
+  // ----- model detail table -----
+  function pillFor(soc) {
+    if (!soc || soc === "Unclassified" || soc === "None") return '<span class="pill soft">' + (soc || "–") + '</span>';
+    return '<span class="pill" style="background:' + colorFor(soc) + '">' + soc + '</span>';
+  }
+  function markFor(brand) {
+    var logo = LOGOS[brand];
+    if (logo) return '<span class="swatch" style="background:none;width:16px;height:16px;flex:0 0 16px;border-radius:4px;overflow:hidden;display:inline-flex"><img src="' + logo + '" style="width:16px;height:16px;object-fit:contain" alt=""></span>';
+    return '';
+  }
+  $("modelRows").innerHTML = S.top_models.map(function (m) {
+    var dc = m.domain_controller || "–";
+    var soc = m.soc_brand + (m.soc_family ? ' <span class="tag">' + m.soc_family + '</span>' : '');
+    var lidar = (m.lidar && m.lidar !== "no") ? m.lidar : "no";
+    return '<tr>' +
+      '<td><span style="display:inline-flex;align-items:center;gap:7px">' + markFor(m.brand) +
+      '<span>' + m.brand + ' ' + m.model + '</span></span></td>' +
+      '<td class="num">' + fmt(m.total) + '</td>' +
+      '<td>' + dc + '</td>' +
+      '<td>' + pillFor(m.soc_brand).replace(m.soc_brand, soc) + '</td>' +
+      '<td>' + lidar + '</td>' +
+      '<td class="tag">' + (m.confidence || "–") + '</td>' +
+      '</tr>';
+  }).join("");
+
+  // ----- footer -----
+  $("footerText").innerHTML = "Registrations © Kraftfahrt-Bundesamt (KBA), table FZ 10.1. " +
+    "Cockpit-SoC / LiDAR mapping is an independent estimate (see <code>data/vehicle_specs.csv</code>); " +
+    "corrections welcome. Generated by <code>scripts/parse_suppliers.py</code>.";
+
+  // draw charts (after layout)
+  function draw() {
+    drawStack($("socChart"), $("socTip"), stackSeries);
+    drawLine($("dcChart"), $("dcTip"), S.dc_adoption.pct, css("--s3"), "%", 100);
+    var lmax = Math.max(0.5, Math.ceil(Math.max.apply(null, S.lidar.pct) * 2) / 2);
+    drawLine($("lidarChart"), $("lidarTip"), S.lidar.pct, css("--s2"), "%", lmax);
+  }
+  draw();
+  var rt;
+  window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
 })();
 </script>
 </body>
