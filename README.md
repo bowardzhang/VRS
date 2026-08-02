@@ -3,10 +3,23 @@
 Downloads, analyses, and publishes monthly new-vehicle registration data for
 major European countries as a static website.
 
-**First country: Germany**, using the official
-[Kraftfahrt-Bundesamt (KBA)](https://www.kba.de/DE/Statistik/Produktkatalog/produkte/Fahrzeuge/fz10/fz10_gentab.html)
-table **FZ 10.1** — *Neuzulassungen von Personenkraftwagen nach Marken und
-Modellreihen* (new passenger-car registrations by brand and model series).
+Countries currently covered:
+
+- **🇩🇪 Germany** — official
+  [Kraftfahrt-Bundesamt (KBA)](https://www.kba.de/DE/Statistik/Produktkatalog/produkte/Fahrzeuge/fz10/fz10_gentab.html)
+  table **FZ 10.1** — *Neuzulassungen von Personenkraftwagen nach Marken und
+  Modellreihen* (new passenger-car registrations by brand and model series).
+- **🇳🇱 Netherlands** — [RDW](https://opendata.rdw.nl/) (Rijksdienst voor het
+  Wegverkeer) open data, the national vehicle register, via its Socrata API
+  (dataset `m9d7-ebf2`). New registrations are proxied by *first admission this
+  month* of a passenger car.
+
+The site aggregates any selected subset of countries — a **🌍 country picker**
+in the top-right (multi-select, defaults to all, saved in a cookie) drives an
+*Europe overview* (total registrations by country, top brands and manufacturer
+origin across the selection). Country-specific deep dives (German KBA body
+segments, the supplier installation-rate pages) are shown when that country is
+in scope.
 
 ## Pipeline
 
@@ -25,8 +38,10 @@ Three small, dependency-light scripts, each runnable on its own:
 |--------|---------|
 | `scripts/download_germany.py` | Fetch the monthly FZ 10.1 workbooks from KBA into `data/Germany/`. |
 | `scripts/parse_germany.py`    | Parse every workbook into a tidy CSV + a compact JSON summary. |
+| `scripts/download_netherlands.py` | Fetch monthly new passenger-car counts by brand from the RDW Socrata API into `data/Netherlands/`. |
 | `scripts/parse_suppliers.py`  | Join `data/vehicle_specs.csv` to the counts and add a per-component supplier installation-rate (`suppliers.dimensions`) block to the JSON. |
 | `scripts/build_supplier_pages.py` | Generate one self-contained secondary page per component (`analysis-soc/adas/radar/power/lidar.html`) from a shared template. |
+| `scripts/build_countries.py`  | Assemble a uniform multi-country core (`docs/data/countries.json`) that powers the country picker + Europe overview. |
 | `scripts/build_site.py`       | Bake the JSON into `docs/*.html` so the pages are fully self-contained. |
 
 ### Historical powertrain series
@@ -62,6 +77,10 @@ python scripts/parse_germany.py
 python scripts/parse_segments.py       # body-segment trends (FZ 11)
 python scripts/parse_suppliers.py      # per-component supplier installation rate
 python scripts/build_supplier_pages.py # generate the per-component secondary pages
+
+# 1b. Netherlands (RDW open data — no API key required)
+python scripts/download_netherlands.py # backfill (or --last N for trailing months)
+python scripts/build_countries.py      # assemble the multi-country core
 
 # 3. Rebuild the static pages
 python scripts/build_site.py
@@ -169,7 +188,7 @@ Two workflows keep the published site current with no manual work:
 
 | Workflow | Trigger | What it does |
 |----------|---------|--------------|
-| `.github/workflows/update-data.yml` | Monthly (cron, 8th at 06:00 UTC) + manual | Downloads the latest KBA workbooks, re-parses, rebuilds the page, and commits `data/Germany` + `docs`. |
+| `.github/workflows/update-data.yml` | Monthly (cron, 8th at 06:00 UTC) + manual | Downloads the latest KBA workbooks **and RDW (Netherlands) data**, re-parses, rebuilds the site, and commits `data/Germany` + `data/Netherlands` + `docs`. |
 | `.github/workflows/pages.yml`       | On `docs/**` push, after a data update, or manual | Publishes `docs/` to GitHub Pages. |
 
 GitHub's runners have open internet access, so they can reach `www.kba.de`
@@ -177,7 +196,7 @@ directly (unlike a locked-down local/sandbox environment). The downloader finds
 each month's real `.xlsx` link from its KBA landing page, so it is not affected
 by the unpredictable `?__blob=publicationFile&v=N` version parameter.
 
-**Initial 3-year backfill:** run the *Update KBA registration data* workflow
+**Initial 3-year backfill:** run the *Update registration data* workflow
 manually (Actions tab → Run workflow) with **months = `36`**. The monthly
 schedule then fetches the trailing three months each run (skipping files already
 present) so newly published and late-revised months are picked up automatically.

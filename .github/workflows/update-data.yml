@@ -1,8 +1,9 @@
-name: Update KBA registration data
+name: Update registration data
 
 on:
   # Monthly, on the 8th at 06:00 UTC — KBA publishes the previous month's
   # FZ 10 workbook within the first days of each month, so this leaves margin.
+  # RDW (Netherlands) open data is updated continuously; the same run refreshes it.
   schedule:
     - cron: "0 6 8 * *"
   # Manual runs: use a large "months" value (e.g. 36) for the initial backfill.
@@ -46,19 +47,27 @@ jobs:
           python scripts/download_germany.py --table fz10 --last "$MONTHS" --allow-missing
           python scripts/download_germany.py --table fz11 --last "$MONTHS" --allow-missing
 
+      - name: Download latest Netherlands (RDW) registrations
+        # RDW open data (Socrata) has open internet access from the runner.
+        # Re-fetch the trailing months to pick up late revisions.
+        run: |
+          MONTHS="${{ github.event.inputs.months || '3' }}"
+          python scripts/download_netherlands.py --last "$MONTHS"
+
       - name: Parse workbooks and rebuild site
         run: |
           python scripts/parse_germany.py
           python scripts/parse_segments.py
           python scripts/parse_suppliers.py
           python scripts/build_supplier_pages.py
+          python scripts/build_countries.py
           python scripts/build_site.py
 
       - name: Commit updated data and site
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/Germany docs
+          git add data/Germany data/Netherlands docs
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
