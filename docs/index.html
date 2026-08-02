@@ -191,13 +191,57 @@
 </style>
 </head>
 <body>
+<style id="multiCountryCSS">
+  .cbtn { position:fixed; top:14px; right:92px; background:var(--surface); border:1px solid var(--border); color:var(--ink-2); border-radius:8px; padding:6px 10px; font-size:12px; cursor:pointer; z-index:20; }
+  .cmenu { position:fixed; top:46px; right:14px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:10px; z-index:21; box-shadow:0 8px 24px rgba(0,0,0,.2); min-width:190px; display:none; }
+  .cmenu.open { display:block; }
+  .cmenu h4 { margin:2px 4px 8px; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); font-weight:600; }
+  .cmenu label { display:flex; align-items:center; gap:9px; padding:6px 6px; border-radius:6px; font-size:13.5px; cursor:pointer; }
+  .cmenu label:hover { background:var(--grid); }
+  .cmenu .actions { display:flex; gap:8px; margin-top:9px; border-top:1px solid var(--border); padding-top:9px; }
+  .cmenu .actions button { flex:1; font-size:12px; padding:5px; border:1px solid var(--border); border-radius:6px; background:var(--page); color:var(--ink-2); cursor:pointer; }
+  #euOverview .eu-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:24px; }
+  @media (max-width:820px){ #euOverview .eu-grid { grid-template-columns:1fr; } }
+  #euOverview h3 { font-size:14px; margin:0 0 12px; letter-spacing:-.01em; }
+  .cty-legend { display:flex; flex-wrap:wrap; gap:14px; margin-top:14px; font-size:12.5px; color:var(--ink-2); }
+  .cty-legend span { display:inline-flex; align-items:center; gap:6px; }
+  .cty-legend i { width:11px; height:11px; border-radius:3px; display:inline-block; }
+  .mini-bars { display:flex; flex-direction:column; gap:8px; }
+  .mini-bars .row { display:grid; grid-template-columns:116px 1fr 80px; align-items:center; gap:10px; }
+  @media (max-width:560px){ .mini-bars .row { grid-template-columns:96px 1fr 66px; } }
+  .mini-bars .lab { font-size:12.5px; color:var(--ink-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .mini-bars .trk { position:relative; height:19px; background:var(--grid); border-radius:4px; overflow:hidden; }
+  .mini-bars .fil { height:100%; border-radius:4px; }
+  .mini-bars .val { font-size:12px; text-align:right; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .gd-head { font-size:15px; letter-spacing:.03em; text-transform:uppercase; color:var(--muted); margin:44px 0 6px; font-weight:600; }
+</style>
+<button class="cbtn" id="countryBtn" aria-label="Select countries">🌍 <span id="countryBtnLabel">Countries</span> ▾</button>
+<div class="cmenu" id="countryMenu"><h4>Countries in scope</h4><div id="countryChecks"></div><div class="actions"><button id="ctyAll" type="button">All</button><button id="ctyNone" type="button">None</button></div></div>
 <button class="toggle" id="themeToggle" aria-label="Toggle theme">◐ Theme</button>
 <div class="wrap">
   <header class="site">
     <p class="eyebrow">Vehicle Registration Statistics</p>
-    <h1>Germany — New Passenger-Car Registrations</h1>
-    <p class="sub" id="subtitle"></p>
+    <h1 id="pageH1">European New Passenger-Car Registrations</h1>
+    <p class="sub" id="euSubtitle"></p>
   </header>
+
+  <section class="card" id="euOverview">
+    <h2>Europe overview <span class="h2hint" id="euCountriesLabel"></span></h2>
+    <p class="note" id="euNote"></p>
+    <div class="kpis" id="euKpis" style="margin:6px 0 20px"></div>
+    <h3>Total monthly registrations by country</h3>
+    <div class="trend-wrap"><svg class="trend" id="euTrend" role="img" aria-label="Monthly new registrations by country"></svg><div class="tip" id="euTip"></div></div>
+    <div class="cty-legend" id="euLegend"></div>
+    <div class="eu-grid">
+      <div><h3>Top brands</h3><div class="mini-bars" id="euBrands"></div></div>
+      <div><h3>By manufacturer origin</h3><div class="mini-bars" id="euOrigin"></div></div>
+    </div>
+    <p class="chart-note-sm" id="euSrc"></p>
+  </section>
+
+  <div id="germanyDetail">
+    <p class="gd-head">🇩🇪 Germany — detailed breakdown · KBA FZ 10.1</p>
+    <p class="sub" id="subtitle" style="margin:0 0 6px"></p>
 
   <div class="kpis" id="kpis"></div>
 
@@ -326,6 +370,7 @@
     <summary>View data table — top brands (latest month)</summary>
     <div id="tableWrap"></div>
   </details>
+  </div><!-- /germanyDetail -->
 
   <footer class="site">
     <p id="footerText"></p>
@@ -13153,6 +13198,1824 @@
       (matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark"));
     document.documentElement.setAttribute("data-theme", next);
   });
+})();
+</script>
+<script id="countries-data" type="application/json">[
+  {
+    "code": "DE",
+    "name": "Germany",
+    "flag": "🇩🇪",
+    "source": "Kraftfahrt-Bundesamt (KBA), table FZ 10.1",
+    "source_url": "https://www.kba.de/DE/Statistik/Produktkatalog/produkte/Fahrzeuge/fz10/fz10_gentab.html",
+    "window": "Sep 2023 – Jun 2026",
+    "months": [
+      {
+        "ym": "2023-09",
+        "label": "Sep 2023",
+        "total": 224502
+      },
+      {
+        "ym": "2023-10",
+        "label": "Oct 2023",
+        "total": 218959
+      },
+      {
+        "ym": "2023-11",
+        "label": "Nov 2023",
+        "total": 245701
+      },
+      {
+        "ym": "2023-12",
+        "label": "Dec 2023",
+        "total": 241883
+      },
+      {
+        "ym": "2024-01",
+        "label": "Jan 2024",
+        "total": 213553
+      },
+      {
+        "ym": "2024-02",
+        "label": "Feb 2024",
+        "total": 217388
+      },
+      {
+        "ym": "2024-03",
+        "label": "Mar 2024",
+        "total": 263844
+      },
+      {
+        "ym": "2024-04",
+        "label": "Apr 2024",
+        "total": 243102
+      },
+      {
+        "ym": "2024-05",
+        "label": "May 2024",
+        "total": 236425
+      },
+      {
+        "ym": "2024-06",
+        "label": "Jun 2024",
+        "total": 297329
+      },
+      {
+        "ym": "2024-07",
+        "label": "Jul 2024",
+        "total": 238263
+      },
+      {
+        "ym": "2024-08",
+        "label": "Aug 2024",
+        "total": 197322
+      },
+      {
+        "ym": "2024-09",
+        "label": "Sep 2024",
+        "total": 208848
+      },
+      {
+        "ym": "2024-10",
+        "label": "Oct 2024",
+        "total": 231992
+      },
+      {
+        "ym": "2024-11",
+        "label": "Nov 2024",
+        "total": 244544
+      },
+      {
+        "ym": "2024-12",
+        "label": "Dec 2024",
+        "total": 224721
+      },
+      {
+        "ym": "2025-01",
+        "label": "Jan 2025",
+        "total": 207640
+      },
+      {
+        "ym": "2025-02",
+        "label": "Feb 2025",
+        "total": 203434
+      },
+      {
+        "ym": "2025-03",
+        "label": "Mar 2025",
+        "total": 253497
+      },
+      {
+        "ym": "2025-04",
+        "label": "Apr 2025",
+        "total": 242728
+      },
+      {
+        "ym": "2025-05",
+        "label": "May 2025",
+        "total": 239297
+      },
+      {
+        "ym": "2025-06",
+        "label": "Jun 2025",
+        "total": 256193
+      },
+      {
+        "ym": "2025-07",
+        "label": "Jul 2025",
+        "total": 264802
+      },
+      {
+        "ym": "2025-08",
+        "label": "Aug 2025",
+        "total": 207229
+      },
+      {
+        "ym": "2025-09",
+        "label": "Sep 2025",
+        "total": 235528
+      },
+      {
+        "ym": "2025-10",
+        "label": "Oct 2025",
+        "total": 250133
+      },
+      {
+        "ym": "2025-11",
+        "label": "Nov 2025",
+        "total": 250671
+      },
+      {
+        "ym": "2025-12",
+        "label": "Dec 2025",
+        "total": 246439
+      },
+      {
+        "ym": "2026-01",
+        "label": "Jan 2026",
+        "total": 193981
+      },
+      {
+        "ym": "2026-02",
+        "label": "Feb 2026",
+        "total": 211262
+      },
+      {
+        "ym": "2026-03",
+        "label": "Mar 2026",
+        "total": 294161
+      },
+      {
+        "ym": "2026-04",
+        "label": "Apr 2026",
+        "total": 249163
+      },
+      {
+        "ym": "2026-05",
+        "label": "May 2026",
+        "total": 239448
+      },
+      {
+        "ym": "2026-06",
+        "label": "Jun 2026",
+        "total": 296378
+      }
+    ],
+    "brand_totals": [
+      {
+        "brand": "VW",
+        "total": 1540726
+      },
+      {
+        "brand": "MERCEDES",
+        "total": 731897
+      },
+      {
+        "brand": "BMW",
+        "total": 695010
+      },
+      {
+        "brand": "SKODA",
+        "total": 617191
+      },
+      {
+        "brand": "AUDI",
+        "total": 594599
+      },
+      {
+        "brand": "SEAT",
+        "total": 438546
+      },
+      {
+        "brand": "OPEL",
+        "total": 405151
+      },
+      {
+        "brand": "FORD",
+        "total": 290430
+      },
+      {
+        "brand": "HYUNDAI",
+        "total": 272504
+      },
+      {
+        "brand": "TOYOTA",
+        "total": 237642
+      },
+      {
+        "brand": "DACIA",
+        "total": 200453
+      },
+      {
+        "brand": "KIA",
+        "total": 183042
+      },
+      {
+        "brand": "FIAT",
+        "total": 172080
+      },
+      {
+        "brand": "RENAULT",
+        "total": 171759
+      },
+      {
+        "brand": "PEUGEOT",
+        "total": 171614
+      },
+      {
+        "brand": "VOLVO",
+        "total": 166151
+      },
+      {
+        "brand": "CITROEN",
+        "total": 142750
+      },
+      {
+        "brand": "MAZDA",
+        "total": 126922
+      },
+      {
+        "brand": "MINI",
+        "total": 103395
+      },
+      {
+        "brand": "TESLA",
+        "total": 102314
+      },
+      {
+        "brand": "PORSCHE",
+        "total": 90584
+      },
+      {
+        "brand": "NISSAN",
+        "total": 88334
+      },
+      {
+        "brand": "MG",
+        "total": 70748
+      },
+      {
+        "brand": "SUZUKI",
+        "total": 68036
+      },
+      {
+        "brand": "MITSUBISHI",
+        "total": 64369
+      },
+      {
+        "brand": "BYD",
+        "total": 53922
+      },
+      {
+        "brand": "LAND ROVER",
+        "total": 37188
+      },
+      {
+        "brand": "JEEP",
+        "total": 36246
+      },
+      {
+        "brand": "SMART",
+        "total": 26215
+      },
+      {
+        "brand": "HONDA",
+        "total": 20840
+      },
+      {
+        "brand": "ALFA ROMEO",
+        "total": 17947
+      },
+      {
+        "brand": "LEAPMOTOR",
+        "total": 15860
+      },
+      {
+        "brand": "LEXUS",
+        "total": 13222
+      },
+      {
+        "brand": "POLESTAR",
+        "total": 11941
+      },
+      {
+        "brand": "SUBARU",
+        "total": 11804
+      },
+      {
+        "brand": "DS",
+        "total": 8318
+      },
+      {
+        "brand": "GWM",
+        "total": 7686
+      },
+      {
+        "brand": "XPENG",
+        "total": 6741
+      },
+      {
+        "brand": "FERRARI",
+        "total": 4882
+      },
+      {
+        "brand": "MAN",
+        "total": 3846
+      },
+      {
+        "brand": "SSANGYONG",
+        "total": 3576
+      },
+      {
+        "brand": "KGM",
+        "total": 3543
+      },
+      {
+        "brand": "JAGUAR",
+        "total": 3344
+      },
+      {
+        "brand": "LAMBORGHINI",
+        "total": 3166
+      },
+      {
+        "brand": "IVECO",
+        "total": 2670
+      },
+      {
+        "brand": "ALPINE",
+        "total": 2417
+      },
+      {
+        "brand": "INEOS",
+        "total": 1639
+      },
+      {
+        "brand": "MASERATI",
+        "total": 1632
+      },
+      {
+        "brand": "BENTLEY",
+        "total": 1603
+      },
+      {
+        "brand": "LYNK & CO",
+        "total": 1590
+      },
+      {
+        "brand": "NIO",
+        "total": 1196
+      },
+      {
+        "brand": "ASTON MARTIN",
+        "total": 1030
+      },
+      {
+        "brand": "ROLLS ROYCE",
+        "total": 976
+      },
+      {
+        "brand": "LOTUS",
+        "total": 961
+      },
+      {
+        "brand": "LUCID",
+        "total": 720
+      },
+      {
+        "brand": "VINFAST",
+        "total": 592
+      },
+      {
+        "brand": "FISKER",
+        "total": 379
+      },
+      {
+        "brand": "CADILLAC",
+        "total": 367
+      },
+      {
+        "brand": "TOGG",
+        "total": 345
+      },
+      {
+        "brand": "GEELY",
+        "total": 326
+      },
+      {
+        "brand": "JAECOO",
+        "total": 256
+      },
+      {
+        "brand": "ZEEKR",
+        "total": 206
+      },
+      {
+        "brand": "MAXUS",
+        "total": 185
+      },
+      {
+        "brand": "MORGAN",
+        "total": 144
+      },
+      {
+        "brand": "OMODA",
+        "total": 105
+      },
+      {
+        "brand": "DEEPAL",
+        "total": 67
+      },
+      {
+        "brand": "LADA",
+        "total": 57
+      },
+      {
+        "brand": "CHERY",
+        "total": 42
+      },
+      {
+        "brand": "AIWAYS",
+        "total": 24
+      },
+      {
+        "brand": "DONGFENG",
+        "total": 18
+      },
+      {
+        "brand": "DAF TRUCKS",
+        "total": 4
+      },
+      {
+        "brand": "JAC",
+        "total": 4
+      },
+      {
+        "brand": "LANCIA",
+        "total": 2
+      }
+    ],
+    "origin_totals": [
+      {
+        "origin": "Germany",
+        "total": 4088028
+      },
+      {
+        "origin": "France",
+        "total": 697311
+      },
+      {
+        "origin": "Japan",
+        "total": 631169
+      },
+      {
+        "origin": "Czechia",
+        "total": 617191
+      },
+      {
+        "origin": "South Korea",
+        "total": 462665
+      },
+      {
+        "origin": "Spain",
+        "total": 438546
+      },
+      {
+        "origin": "USA",
+        "total": 430456
+      },
+      {
+        "origin": "Italy",
+        "total": 199213
+      },
+      {
+        "origin": "Sweden",
+        "total": 178092
+      },
+      {
+        "origin": "China",
+        "total": 158972
+      },
+      {
+        "origin": "United Kingdom",
+        "total": 150280
+      },
+      {
+        "origin": "Other",
+        "total": 4168
+      }
+    ],
+    "total": 8090360
+  },
+  {
+    "code": "NL",
+    "name": "Netherlands",
+    "flag": "🇳🇱",
+    "source": "RDW open data (Socrata dataset m9d7-ebf2)",
+    "source_url": "https://opendata.rdw.nl/",
+    "window": "Sep 2023 – Jun 2026",
+    "months": [
+      {
+        "ym": "2023-09",
+        "label": "Sep 2023",
+        "total": 37035
+      },
+      {
+        "ym": "2023-10",
+        "label": "Oct 2023",
+        "total": 34473
+      },
+      {
+        "ym": "2023-11",
+        "label": "Nov 2023",
+        "total": 34639
+      },
+      {
+        "ym": "2023-12",
+        "label": "Dec 2023",
+        "total": 32408
+      },
+      {
+        "ym": "2024-01",
+        "label": "Jan 2024",
+        "total": 42635
+      },
+      {
+        "ym": "2024-02",
+        "label": "Feb 2024",
+        "total": 38092
+      },
+      {
+        "ym": "2024-03",
+        "label": "Mar 2024",
+        "total": 47201
+      },
+      {
+        "ym": "2024-04",
+        "label": "Apr 2024",
+        "total": 36305
+      },
+      {
+        "ym": "2024-05",
+        "label": "May 2024",
+        "total": 35978
+      },
+      {
+        "ym": "2024-06",
+        "label": "Jun 2024",
+        "total": 42902
+      },
+      {
+        "ym": "2024-07",
+        "label": "Jul 2024",
+        "total": 31914
+      },
+      {
+        "ym": "2024-08",
+        "label": "Aug 2024",
+        "total": 31681
+      },
+      {
+        "ym": "2024-09",
+        "label": "Sep 2024",
+        "total": 35305
+      },
+      {
+        "ym": "2024-10",
+        "label": "Oct 2024",
+        "total": 36962
+      },
+      {
+        "ym": "2024-11",
+        "label": "Nov 2024",
+        "total": 38790
+      },
+      {
+        "ym": "2024-12",
+        "label": "Dec 2024",
+        "total": 41063
+      },
+      {
+        "ym": "2025-01",
+        "label": "Jan 2025",
+        "total": 38673
+      },
+      {
+        "ym": "2025-02",
+        "label": "Feb 2025",
+        "total": 34149
+      },
+      {
+        "ym": "2025-03",
+        "label": "Mar 2025",
+        "total": 39434
+      },
+      {
+        "ym": "2025-04",
+        "label": "Apr 2025",
+        "total": 34105
+      },
+      {
+        "ym": "2025-05",
+        "label": "May 2025",
+        "total": 36457
+      },
+      {
+        "ym": "2025-06",
+        "label": "Jun 2025",
+        "total": 40734
+      },
+      {
+        "ym": "2025-07",
+        "label": "Jul 2025",
+        "total": 33055
+      },
+      {
+        "ym": "2025-08",
+        "label": "Aug 2025",
+        "total": 28931
+      },
+      {
+        "ym": "2025-09",
+        "label": "Sep 2025",
+        "total": 35187
+      },
+      {
+        "ym": "2025-10",
+        "label": "Oct 2025",
+        "total": 37164
+      },
+      {
+        "ym": "2025-11",
+        "label": "Nov 2025",
+        "total": 36494
+      },
+      {
+        "ym": "2025-12",
+        "label": "Dec 2025",
+        "total": 49315
+      },
+      {
+        "ym": "2026-01",
+        "label": "Jan 2026",
+        "total": 29435
+      },
+      {
+        "ym": "2026-02",
+        "label": "Feb 2026",
+        "total": 23578
+      },
+      {
+        "ym": "2026-03",
+        "label": "Mar 2026",
+        "total": 32555
+      },
+      {
+        "ym": "2026-04",
+        "label": "Apr 2026",
+        "total": 26488
+      },
+      {
+        "ym": "2026-05",
+        "label": "May 2026",
+        "total": 30335
+      },
+      {
+        "ym": "2026-06",
+        "label": "Jun 2026",
+        "total": 39073
+      }
+    ],
+    "brand_totals": [
+      {
+        "brand": "KIA",
+        "total": 102762
+      },
+      {
+        "brand": "VW",
+        "total": 101896
+      },
+      {
+        "brand": "TOYOTA",
+        "total": 97103
+      },
+      {
+        "brand": "VOLVO",
+        "total": 76085
+      },
+      {
+        "brand": "BMW",
+        "total": 73660
+      },
+      {
+        "brand": "SKODA",
+        "total": 69919
+      },
+      {
+        "brand": "RENAULT",
+        "total": 68210
+      },
+      {
+        "brand": "TESLA",
+        "total": 61434
+      },
+      {
+        "brand": "AUDI",
+        "total": 53765
+      },
+      {
+        "brand": "HYUNDAI",
+        "total": 53617
+      },
+      {
+        "brand": "PEUGEOT",
+        "total": 51345
+      },
+      {
+        "brand": "MERCEDES",
+        "total": 48079
+      },
+      {
+        "brand": "FORD",
+        "total": 45729
+      },
+      {
+        "brand": "OPEL",
+        "total": 33318
+      },
+      {
+        "brand": "SUZUKI",
+        "total": 25698
+      },
+      {
+        "brand": "DACIA",
+        "total": 21586
+      },
+      {
+        "brand": "MAZDA",
+        "total": 20277
+      },
+      {
+        "brand": "CITROEN",
+        "total": 19552
+      },
+      {
+        "brand": "NISSAN",
+        "total": 17351
+      },
+      {
+        "brand": "MINI",
+        "total": 17283
+      },
+      {
+        "brand": "SEAT",
+        "total": 17205
+      },
+      {
+        "brand": "CUPRA",
+        "total": 14377
+      },
+      {
+        "brand": "BYD",
+        "total": 13599
+      },
+      {
+        "brand": "MG",
+        "total": 11571
+      },
+      {
+        "brand": "LAND ROVER",
+        "total": 10849
+      },
+      {
+        "brand": "MITSUBISHI",
+        "total": 10759
+      },
+      {
+        "brand": "FIAT",
+        "total": 9945
+      },
+      {
+        "brand": "PORSCHE",
+        "total": 9029
+      },
+      {
+        "brand": "JEEP",
+        "total": 8785
+      },
+      {
+        "brand": "LYNK & CO",
+        "total": 8138
+      },
+      {
+        "brand": "POLESTAR",
+        "total": 6577
+      },
+      {
+        "brand": "LEXUS",
+        "total": 4036
+      },
+      {
+        "brand": "HONDA",
+        "total": 3625
+      },
+      {
+        "brand": "XPENG",
+        "total": 3590
+      },
+      {
+        "brand": "ZEEKR",
+        "total": 3423
+      },
+      {
+        "brand": "LEAPMOTOR",
+        "total": 3206
+      },
+      {
+        "brand": "ALFA ROMEO",
+        "total": 2452
+      },
+      {
+        "brand": "SMART",
+        "total": 2174
+      },
+      {
+        "brand": "JAECOO",
+        "total": 2163
+      },
+      {
+        "brand": "ADRIA",
+        "total": 1381
+      },
+      {
+        "brand": "DS",
+        "total": 1299
+      },
+      {
+        "brand": "CAPRON",
+        "total": 1013
+      },
+      {
+        "brand": "HYMER",
+        "total": 857
+      },
+      {
+        "brand": "OMODA",
+        "total": 824
+      },
+      {
+        "brand": "DONGFENG",
+        "total": 730
+      },
+      {
+        "brand": "KNAUS",
+        "total": 729
+      },
+      {
+        "brand": "NIO",
+        "total": 678
+      },
+      {
+        "brand": "WEINSBERG",
+        "total": 533
+      },
+      {
+        "brand": "SUBARU",
+        "total": 528
+      },
+      {
+        "brand": "DETHLEFFS",
+        "total": 516
+      },
+      {
+        "brand": "ALPINE",
+        "total": 506
+      },
+      {
+        "brand": "CARTHAGO",
+        "total": 504
+      },
+      {
+        "brand": "BENTLEY",
+        "total": 470
+      },
+      {
+        "brand": "BURSTNER GMBH",
+        "total": 400
+      },
+      {
+        "brand": "FERRARI",
+        "total": 364
+      },
+      {
+        "brand": "POESSL",
+        "total": 356
+      },
+      {
+        "brand": "VINFAST",
+        "total": 354
+      },
+      {
+        "brand": "LANCIA",
+        "total": 328
+      },
+      {
+        "brand": "LOTUS",
+        "total": 305
+      },
+      {
+        "brand": "CHAUSSON",
+        "total": 297
+      },
+      {
+        "brand": "DS AUTOMOBILES",
+        "total": 294
+      },
+      {
+        "brand": "AIWAYS",
+        "total": 256
+      },
+      {
+        "brand": "JAGUAR",
+        "total": 254
+      },
+      {
+        "brand": "ABARTH",
+        "total": 221
+      },
+      {
+        "brand": "LAMBORGHINI",
+        "total": 212
+      },
+      {
+        "brand": "WESTFALIA",
+        "total": 208
+      },
+      {
+        "brand": "SUN LIVING",
+        "total": 183
+      },
+      {
+        "brand": "ASTON MARTIN",
+        "total": 182
+      },
+      {
+        "brand": "LUCID MOTORS",
+        "total": 173
+      },
+      {
+        "brand": "KG MOBILITY",
+        "total": 167
+      },
+      {
+        "brand": "SERES",
+        "total": 146
+      },
+      {
+        "brand": "ETRUSCO",
+        "total": 141
+      },
+      {
+        "brand": "LMC",
+        "total": 138
+      },
+      {
+        "brand": "RAPIDO",
+        "total": 136
+      },
+      {
+        "brand": "FAW",
+        "total": 118
+      },
+      {
+        "brand": "POSSL",
+        "total": 111
+      },
+      {
+        "brand": "DFSK",
+        "total": 110
+      },
+      {
+        "brand": "VOYAH",
+        "total": 105
+      },
+      {
+        "brand": "BENIMAR",
+        "total": 103
+      },
+      {
+        "brand": "FISKER",
+        "total": 101
+      },
+      {
+        "brand": "LAIKA",
+        "total": 100
+      },
+      {
+        "brand": "AUTOMOBILI LAMBORGHINI S.",
+        "total": 93
+      },
+      {
+        "brand": "MC LOUIS",
+        "total": 89
+      },
+      {
+        "brand": "MASERATI",
+        "total": 86
+      },
+      {
+        "brand": "NIESMANN+BISCHOFF",
+        "total": 86
+      },
+      {
+        "brand": "EURA MOBIL",
+        "total": 77
+      },
+      {
+        "brand": "WESTFALEN MOBIL",
+        "total": 70
+      },
+      {
+        "brand": "HOBBY",
+        "total": 68
+      },
+      {
+        "brand": "ROLLS ROYCE",
+        "total": 68
+      },
+      {
+        "brand": "FRANKIA",
+        "total": 64
+      },
+      {
+        "brand": "GEELY",
+        "total": 58
+      },
+      {
+        "brand": "TOURNE MOBIL",
+        "total": 52
+      },
+      {
+        "brand": "PILOTE",
+        "total": 52
+      },
+      {
+        "brand": "ALPINA",
+        "total": 46
+      },
+      {
+        "brand": "CHALLENGER",
+        "total": 45
+      },
+      {
+        "brand": "DEEPAL",
+        "total": 44
+      },
+      {
+        "brand": "CHRYSLER",
+        "total": 40
+      },
+      {
+        "brand": "GIOTTILINE",
+        "total": 40
+      },
+      {
+        "brand": "M.A.N.",
+        "total": 36
+      },
+      {
+        "brand": "KABE",
+        "total": 34
+      },
+      {
+        "brand": "MAN",
+        "total": 34
+      },
+      {
+        "brand": "MC LAREN",
+        "total": 33
+      },
+      {
+        "brand": "CADILLAC",
+        "total": 30
+      },
+      {
+        "brand": "ERIBA",
+        "total": 30
+      },
+      {
+        "brand": "MORGAN",
+        "total": 29
+      },
+      {
+        "brand": "MORELO",
+        "total": 28
+      },
+      {
+        "brand": "CONCORDE",
+        "total": 27
+      },
+      {
+        "brand": "GENESIS",
+        "total": 25
+      },
+      {
+        "brand": "ROLLER TEAM",
+        "total": 25
+      },
+      {
+        "brand": "DREAMER",
+        "total": 24
+      },
+      {
+        "brand": "TOTH ES FIAI",
+        "total": 24
+      },
+      {
+        "brand": "FORSTER",
+        "total": 21
+      },
+      {
+        "brand": "ITINEO",
+        "total": 20
+      },
+      {
+        "brand": "SSANGYONG",
+        "total": 19
+      },
+      {
+        "brand": "DONKERVOORT",
+        "total": 19
+      },
+      {
+        "brand": "ELNAGH",
+        "total": 18
+      },
+      {
+        "brand": "ALLIED VEHICLES LTD",
+        "total": 17
+      },
+      {
+        "brand": "MOBILVETTA DESIGN",
+        "total": 17
+      },
+      {
+        "brand": "CHEVROLET",
+        "total": 15
+      },
+      {
+        "brand": "BRAVIA",
+        "total": 15
+      },
+      {
+        "brand": "FIAT DUCATO AFFINITY",
+        "total": 15
+      },
+      {
+        "brand": "KARMANN MOBIL",
+        "total": 15
+      },
+      {
+        "brand": "RIMOR",
+        "total": 14
+      },
+      {
+        "brand": "YUCON",
+        "total": 14
+      },
+      {
+        "brand": "CHERY",
+        "total": 13
+      },
+      {
+        "brand": "NIESMANN-BISCHOFF",
+        "total": 12
+      },
+      {
+        "brand": "MOOVEO",
+        "total": 11
+      },
+      {
+        "brand": "MEGA MOBIL",
+        "total": 11
+      },
+      {
+        "brand": "ROBETA",
+        "total": 11
+      },
+      {
+        "brand": "MAXUS",
+        "total": 10
+      },
+      {
+        "brand": "XGO",
+        "total": 10
+      },
+      {
+        "brand": "AION",
+        "total": 10
+      },
+      {
+        "brand": "YUEDA-HUMAN HORIZONS",
+        "total": 9
+      },
+      {
+        "brand": "ILUSION",
+        "total": 9
+      },
+      {
+        "brand": "MCLOUIS",
+        "total": 9
+      },
+      {
+        "brand": "GREAT WALL MOTOR COMPANY",
+        "total": 8
+      },
+      {
+        "brand": "ARCA",
+        "total": 6
+      },
+      {
+        "brand": "CROSSCAMP",
+        "total": 6
+      },
+      {
+        "brand": "DODGE",
+        "total": 5
+      },
+      {
+        "brand": "KARMA",
+        "total": 4
+      },
+      {
+        "brand": "LA STRADA",
+        "total": 4
+      },
+      {
+        "brand": "AUTO-SLEEPERS",
+        "total": 4
+      },
+      {
+        "brand": "BUERSTNER",
+        "total": 4
+      },
+      {
+        "brand": "KNAUS TABBERT AG",
+        "total": 4
+      },
+      {
+        "brand": "TOGG",
+        "total": 4
+      },
+      {
+        "brand": "LINCOLN",
+        "total": 3
+      },
+      {
+        "brand": "GMC",
+        "total": 3
+      },
+      {
+        "brand": "FAW-VOLKSWAGEN",
+        "total": 3
+      },
+      {
+        "brand": "LAIKA CARAVANS S.P.A.",
+        "total": 3
+      },
+      {
+        "brand": "ELIOS",
+        "total": 3
+      },
+      {
+        "brand": "KNAUS TABBERT",
+        "total": 3
+      },
+      {
+        "brand": "ADRIA MOBIL",
+        "total": 3
+      },
+      {
+        "brand": "CATERHAM CARS LTD",
+        "total": 3
+      },
+      {
+        "brand": "LE VOYAGEUR",
+        "total": 3
+      },
+      {
+        "brand": "RANDGER",
+        "total": 2
+      },
+      {
+        "brand": "RIVIAN",
+        "total": 2
+      },
+      {
+        "brand": "CHANGAN",
+        "total": 2
+      },
+      {
+        "brand": "DENZA",
+        "total": 2
+      },
+      {
+        "brand": "ALPINE-RENAULT",
+        "total": 2
+      },
+      {
+        "brand": "KOENIGSEGG",
+        "total": 2
+      },
+      {
+        "brand": "DETROIT ELECTRIC",
+        "total": 2
+      },
+      {
+        "brand": "RIMAC",
+        "total": 2
+      },
+      {
+        "brand": "AHORN",
+        "total": 2
+      },
+      {
+        "brand": "AUTOSTAR",
+        "total": 2
+      },
+      {
+        "brand": "BRABUS",
+        "total": 2
+      },
+      {
+        "brand": "API CZ",
+        "total": 2
+      },
+      {
+        "brand": "BAVARIA",
+        "total": 2
+      },
+      {
+        "brand": "FONT VENDOME",
+        "total": 2
+      },
+      {
+        "brand": "BAIC",
+        "total": 2
+      },
+      {
+        "brand": "PRAGA",
+        "total": 2
+      },
+      {
+        "brand": "GORDON MURRAY AUTOMOTIVE",
+        "total": 2
+      },
+      {
+        "brand": "SUNLIGHT",
+        "total": 2
+      },
+      {
+        "brand": "CLEVER",
+        "total": 2
+      },
+      {
+        "brand": "MOBILVETTA",
+        "total": 1
+      },
+      {
+        "brand": "STELLA",
+        "total": 1
+      },
+      {
+        "brand": "WINGAMM",
+        "total": 1
+      },
+      {
+        "brand": "G.M.C.",
+        "total": 1
+      },
+      {
+        "brand": "GLOBECAR",
+        "total": 1
+      },
+      {
+        "brand": "P.L.A.",
+        "total": 1
+      },
+      {
+        "brand": "EURAMOBIL",
+        "total": 1
+      },
+      {
+        "brand": "HENDRIKUS",
+        "total": 1
+      },
+      {
+        "brand": "LEADING IDEAL",
+        "total": 1
+      },
+      {
+        "brand": "IVECO",
+        "total": 1
+      },
+      {
+        "brand": "MAN TRUCK & BUS SE MERCUS",
+        "total": 1
+      },
+      {
+        "brand": "KTM",
+        "total": 1
+      },
+      {
+        "brand": "SCANIA",
+        "total": 1
+      },
+      {
+        "brand": "INEOS",
+        "total": 1
+      },
+      {
+        "brand": "ARIEL",
+        "total": 1
+      },
+      {
+        "brand": "PHOENIX",
+        "total": 1
+      },
+      {
+        "brand": "VANTOURER",
+        "total": 1
+      },
+      {
+        "brand": "LEVC",
+        "total": 1
+      },
+      {
+        "brand": "FUSO",
+        "total": 1
+      },
+      {
+        "brand": "BUNKERVAN",
+        "total": 1
+      },
+      {
+        "brand": "CAMPEREVE",
+        "total": 1
+      },
+      {
+        "brand": "CORVETTE",
+        "total": 1
+      },
+      {
+        "brand": "HUMMER",
+        "total": 1
+      },
+      {
+        "brand": "PAGANI",
+        "total": 1
+      },
+      {
+        "brand": "VOLKSWAGEN-TABBERT",
+        "total": 1
+      },
+      {
+        "brand": "BURSTNER S.A.",
+        "total": 1
+      },
+      {
+        "brand": "MOKE",
+        "total": 1
+      },
+      {
+        "brand": "SKYWELL",
+        "total": 1
+      },
+      {
+        "brand": "PANAMA",
+        "total": 1
+      },
+      {
+        "brand": "ABT",
+        "total": 1
+      },
+      {
+        "brand": "DAIMLERCHRYSLER (USA)",
+        "total": 1
+      },
+      {
+        "brand": "ISUZU",
+        "total": 1
+      },
+      {
+        "brand": "FLEURETTE",
+        "total": 1
+      },
+      {
+        "brand": "CS",
+        "total": 1
+      },
+      {
+        "brand": "JULIA CAMPER",
+        "total": 1
+      },
+      {
+        "brand": "VOLKNER REISE-MOBIL",
+        "total": 1
+      },
+      {
+        "brand": "MELEX",
+        "total": 1
+      }
+    ],
+    "origin_totals": [
+      {
+        "origin": "Germany",
+        "total": 322001
+      },
+      {
+        "origin": "Japan",
+        "total": 179377
+      },
+      {
+        "origin": "France",
+        "total": 162498
+      },
+      {
+        "origin": "South Korea",
+        "total": 156423
+      },
+      {
+        "origin": "USA",
+        "total": 116094
+      },
+      {
+        "origin": "Sweden",
+        "total": 82662
+      },
+      {
+        "origin": "Czechia",
+        "total": 69919
+      },
+      {
+        "origin": "China",
+        "total": 48559
+      },
+      {
+        "origin": "Spain",
+        "total": 31582
+      },
+      {
+        "origin": "United Kingdom",
+        "total": 29441
+      },
+      {
+        "origin": "Italy",
+        "total": 13397
+      },
+      {
+        "origin": "Other",
+        "total": 10592
+      }
+    ],
+    "total": 1222545
+  }
+]</script>
+<script>
+(function () {
+  "use strict";
+  var COUNTRIES = [];
+  try { COUNTRIES = JSON.parse(document.getElementById("countries-data").textContent || "[]"); } catch (e) {}
+  var $ = function (id) { return document.getElementById(id); };
+  var fmt = function (n) { return (n == null ? "–" : Math.round(n).toLocaleString("en-US")); };
+  var css = function (v) { return getComputedStyle(document.body).getPropertyValue(v).trim(); };
+  var CTY_COLOR = { DE: "#2a78d6", NL: "#eb6834", FR: "#1baf7a", IT: "#e34948",
+    ES: "#eda100", BE: "#4a3aa7", SE: "#00a7b5", NO: "#e87ba4", AT: "#7b5cd6", PL: "#8f8d86" };
+  var ctyColor = function (c) { return CTY_COLOR[c] || "#8f8d86"; };
+  var ORIGIN_COLOR = { Germany: "#2a78d6", China: "#e34948", USA: "#4a3aa7", Japan: "#1baf7a",
+    France: "#eb6834", "South Korea": "#eda100", Czechia: "#00a7b5", Spain: "#e87ba4",
+    Sweden: "#7b5cd6", Italy: "#b5651d", Other: "#8f8d86", "United Kingdom": "#c05a9e" };
+
+  var overview = $("euOverview"), btn = $("countryBtn"), menu = $("countryMenu");
+  if (!COUNTRIES.length) {  // fall back to Germany-only page
+    if (overview) overview.style.display = "none";
+    if (btn) btn.style.display = "none";
+    if (menu) menu.style.display = "none";
+    var gd0 = $("germanyDetail"); if (gd0) gd0.querySelector(".gd-head").style.display = "none";
+    return;
+  }
+
+  // ----- cookie-persisted selection -----
+  var COOKIE = "vrs_countries";
+  function getCookie(k) {
+    var fromCookie = document.cookie.split("; ").reduce(function (a, c) {
+      var p = c.split("="); return p[0] === k ? decodeURIComponent(p.slice(1).join("=")) : a;
+    }, "");
+    if (fromCookie) return fromCookie;
+    try { return localStorage.getItem(k) || ""; } catch (e) { return ""; }  // file:// fallback
+  }
+  function setCookie(k, v) {
+    document.cookie = k + "=" + encodeURIComponent(v) + ";path=/;max-age=" + (3600 * 24 * 365) + ";SameSite=Lax";
+    try { localStorage.setItem(k, v); } catch (e) {}
+  }
+
+  var allCodes = COUNTRIES.map(function (c) { return c.code; });
+  var saved = getCookie(COOKIE);
+  var selected = saved ? saved.split(",").filter(function (c) { return allCodes.indexOf(c) >= 0; }) : allCodes.slice();
+  if (!selected.length) selected = allCodes.slice();
+
+  // ----- selector menu -----
+  $("countryChecks").innerHTML = COUNTRIES.map(function (c) {
+    return '<label><input type="checkbox" value="' + c.code + '"> ' + c.flag + ' ' + c.name + '</label>';
+  }).join("");
+  function syncChecks() {
+    Array.prototype.forEach.call(menu.querySelectorAll("input[type=checkbox]"), function (cb) {
+      cb.checked = selected.indexOf(cb.value) >= 0;
+    });
+    var lbl = selected.length === COUNTRIES.length ? "All countries"
+      : selected.length ? selected.join(", ") : "None";
+    $("countryBtnLabel").textContent = lbl;
+  }
+  btn.addEventListener("click", function (e) { e.stopPropagation(); menu.classList.toggle("open"); });
+  document.addEventListener("click", function (e) {
+    if (!menu.contains(e.target) && e.target !== btn) menu.classList.remove("open");
+  });
+  menu.addEventListener("change", function (e) {
+    if (e.target.type !== "checkbox") return;
+    var v = e.target.value;
+    if (e.target.checked) { if (selected.indexOf(v) < 0) selected.push(v); }
+    else selected = selected.filter(function (c) { return c !== v; });
+    persistAndRender();
+  });
+  $("ctyAll").addEventListener("click", function () { selected = allCodes.slice(); persistAndRender(); });
+  $("ctyNone").addEventListener("click", function () { selected = []; persistAndRender(); });
+
+  function persistAndRender() {
+    setCookie(COOKIE, selected.join(","));
+    syncChecks();
+    render();
+  }
+
+  // ----- helpers -----
+  function selectedCountries() {
+    return COUNTRIES.filter(function (c) { return selected.indexOf(c.code) >= 0; });
+  }
+  function unionMonths(cs) {
+    var set = {};
+    cs.forEach(function (c) { c.months.forEach(function (m) { set[m.ym] = m.label; }); });
+    return Object.keys(set).sort().map(function (ym) { return { ym: ym, label: set[ym] }; });
+  }
+  function aggregate(cs, field, key) {
+    var t = {};
+    cs.forEach(function (c) { c[field].forEach(function (r) { t[r[key]] = (t[r[key]] || 0) + r.total; }); });
+    return Object.keys(t).map(function (k) { var o = {}; o[key] = k; o.total = t[k]; return o; })
+      .sort(function (a, b) { return b.total - a.total; });
+  }
+
+  // ----- SVG stacked-area by country -----
+  var SVGNS = "http://www.w3.org/2000/svg";
+  function el(nm, a) { var e = document.createElementNS(SVGNS, nm); for (var k in a) e.setAttribute(k, a[k]); return e; }
+  function drawTrend(cs, months) {
+    var svg = $("euTrend"), tip = $("euTip"); svg.innerHTML = "";
+    var box = svg.getBoundingClientRect(); var W = box.width || 900, H = box.height || 300;
+    var padL = 46, padR = 8, padT = 12, padB = 26, plotW = W - padL - padR, plotH = H - padT - padB;
+    var n = months.length; if (!n) return;
+    var byc = cs.map(function (c) {
+      var map = {}; c.months.forEach(function (m) { map[m.ym] = m.total; });
+      return { code: c.code, vals: months.map(function (m) { return map[m.ym] || 0; }) };
+    });
+    var totals = months.map(function (_, i) { return byc.reduce(function (s, c) { return s + c.vals[i]; }, 0); });
+    var ymax = Math.max.apply(null, totals) || 1;
+    var g = el("g", {}); svg.appendChild(g);
+    for (var t = 0; t <= 4; t++) {
+      var v = ymax * t / 4, y = padT + plotH * (1 - t / 4);
+      g.appendChild(el("line", { x1: padL, y1: y, x2: W - padR, y2: y, stroke: css("--grid"), "stroke-width": 1 }));
+      var tx = el("text", { x: padL - 6, y: y + 3, "text-anchor": "end", fill: css("--muted"), "font-size": 11 });
+      tx.textContent = (v >= 1000 ? Math.round(v / 1000) + "k" : Math.round(v)); g.appendChild(tx);
+    }
+    var step = Math.max(1, Math.round(n / 6));
+    for (var i = 0; i < n; i += step) {
+      var x = n <= 1 ? padL : padL + plotW * i / (n - 1);
+      var lx = el("text", { x: x, y: H - 8, "text-anchor": "middle", fill: css("--muted"), "font-size": 11 });
+      lx.textContent = months[i].label; g.appendChild(lx);
+    }
+    var xAt = function (i) { return n <= 1 ? padL : padL + plotW * i / (n - 1); };
+    var yAt = function (v) { return padT + plotH * (1 - v / ymax); };
+    var cum = new Array(n).fill(0);
+    byc.forEach(function (c) {
+      var top = [], bot = [];
+      for (var i = 0; i < n; i++) { var y0 = cum[i], y1 = cum[i] + c.vals[i];
+        bot.push([xAt(i), yAt(y0)]); top.push([xAt(i), yAt(y1)]); cum[i] = y1; }
+      var d = "M" + top.map(function (p) { return p[0] + "," + p[1]; }).join("L") +
+        "L" + bot.slice().reverse().map(function (p) { return p[0] + "," + p[1]; }).join("L") + "Z";
+      g.appendChild(el("path", { d: d, fill: ctyColor(c.code), "fill-opacity": 0.85 }));
+    });
+    var cross = el("line", { stroke: css("--axis"), "stroke-width": 1, "stroke-dasharray": "3 3", y1: padT, y2: padT + plotH, opacity: 0 }); g.appendChild(cross);
+    var hit = el("rect", { x: padL, y: padT, width: plotW, height: plotH, fill: "transparent" }); g.appendChild(hit);
+    hit.addEventListener("mousemove", function (ev) {
+      var rect = svg.getBoundingClientRect();
+      var i = Math.max(0, Math.min(n - 1, Math.round((ev.clientX - rect.left - padL) / plotW * (n - 1))));
+      var x = xAt(i); cross.setAttribute("x1", x); cross.setAttribute("x2", x); cross.setAttribute("opacity", 1);
+      var rows = byc.map(function (c) {
+        return '<div class="tt-row"><span><span class="tt-sw" style="background:' + ctyColor(c.code) + '"></span>' + c.code + '</span><b>' + fmt(c.vals[i]) + '</b></div>';
+      }).join("");
+      tip.innerHTML = '<div class="tt-head">' + months[i].label + ' · ' + fmt(totals[i]) + '</div>' + rows;
+      tip.style.left = x + "px"; tip.style.top = padT + "px"; tip.style.opacity = 1;
+    });
+    hit.addEventListener("mouseleave", function () { cross.setAttribute("opacity", 0); tip.style.opacity = 0; });
+  }
+
+  function miniBars(elId, rows, key, colorFn, total) {
+    var top = rows.slice(0, 10);
+    var max = top.length ? top[0].total : 1;
+    $(elId).innerHTML = top.map(function (r) {
+      var w = 100 * r.total / max, share = total ? (100 * r.total / total) : 0;
+      return '<div class="row"><div class="lab">' + r[key] + '</div>' +
+        '<div class="trk"><div class="fil" style="width:' + w + '%;background:' + colorFn(r[key]) + '"></div></div>' +
+        '<div class="val">' + share.toFixed(1) + '%&nbsp;·&nbsp;' + fmt(r.total) + '</div></div>';
+    }).join("");
+  }
+
+  // ----- master render -----
+  function render() {
+    var cs = selectedCountries();
+    var gd = $("germanyDetail");
+    var deOn = selected.indexOf("DE") >= 0;
+    if (gd) {
+      var wasHidden = gd.style.display === "none";
+      gd.style.display = deOn ? "" : "none";
+      if (deOn && wasHidden) setTimeout(function () { window.dispatchEvent(new Event("resize")); }, 30);
+    }
+    // header text
+    var names = cs.map(function (c) { return c.flag + " " + c.name; });
+    if (cs.length === 1) $("pageH1").textContent = cs[0].name + " — New Passenger-Car Registrations";
+    else $("pageH1").textContent = "European New Passenger-Car Registrations";
+    $("euCountriesLabel").textContent = cs.length ? "— " + cs.map(function (c) { return c.code; }).join(" + ") : "";
+
+    if (!cs.length) {
+      $("euSubtitle").textContent = "No countries selected — choose at least one from the 🌍 menu (top-right).";
+      $("euNote").textContent = ""; $("euKpis").innerHTML = ""; $("euTrend").innerHTML = "";
+      $("euLegend").innerHTML = ""; $("euBrands").innerHTML = ""; $("euOrigin").innerHTML = ""; $("euSrc").innerHTML = "";
+      return;
+    }
+
+    var months = unionMonths(cs);
+    var latest = months[months.length - 1];
+    var latestTotal = cs.reduce(function (s, c) {
+      var m = c.months.filter(function (x) { return x.ym === latest.ym; })[0]; return s + (m ? m.total : 0);
+    }, 0);
+    var windowTotal = cs.reduce(function (s, c) { return s + c.total; }, 0);
+    var brands = aggregate(cs, "brand_totals", "brand");
+    var origins = aggregate(cs, "origin_totals", "origin");
+
+    $("euSubtitle").textContent = "New passenger-car registrations aggregated across " +
+      names.join(", ") + " · latest " + latest.label + ".";
+    $("euNote").innerHTML = "Registration-weighted, comparable across countries. Use the 🌍 <b>Countries</b> menu (top-right) to change scope — your choice is saved in a cookie.";
+
+    var kpis = [
+      { label: latest.label + " registrations", dot: css("--s1"), value: fmt(latestTotal), foot: cs.length + " countr" + (cs.length > 1 ? "ies" : "y") },
+      { label: "Total over window", dot: css("--s3"), value: fmt(windowTotal), foot: months[0].label + " – " + latest.label },
+      { label: "Top brand", dot: ctyColor("DE"), value: brands[0] ? brands[0].brand : "–", foot: brands[0] ? (100 * brands[0].total / windowTotal).toFixed(1) + "% of total" : "" },
+      { label: "Leading origin", dot: ORIGIN_COLOR[origins[0] && origins[0].origin] || css("--s2"), value: origins[0] ? origins[0].origin : "–", foot: origins[0] ? (100 * origins[0].total / windowTotal).toFixed(1) + "%" : "" }
+    ];
+    $("euKpis").innerHTML = kpis.map(function (k) {
+      return '<div class="kpi"><p class="label"><span class="dot" style="background:' + k.dot + '"></span>' + k.label +
+        '</p><div class="value">' + k.value + '</div><div class="foot">' + k.foot + '</div></div>';
+    }).join("");
+
+    drawTrend(cs, months);
+    $("euLegend").innerHTML = cs.map(function (c) {
+      return '<span><i style="background:' + ctyColor(c.code) + '"></i>' + c.flag + " " + c.name + '</span>';
+    }).join("");
+    miniBars("euBrands", brands, "brand", function () { return css("--s1"); }, windowTotal);
+    miniBars("euOrigin", origins, "origin", function (o) { return ORIGIN_COLOR[o] || "#8f8d86"; }, windowTotal);
+    $("euSrc").innerHTML = "Sources: " + cs.map(function (c) { return c.flag + " " + c.source; }).join(" · ") + ".";
+  }
+
+  syncChecks();
+  render();
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () {
+    if (selectedCountries().length) drawTrend(selectedCountries(), unionMonths(selectedCountries()));
+  }, 150); });
 })();
 </script>
 </body>

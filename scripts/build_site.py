@@ -20,6 +20,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DOCS = REPO_ROOT / "docs"
 JSON_PATH = DOCS / "data" / "germany.json"
 LOGOS_PATH = DOCS / "data" / "brand_logos.json"
+COUNTRIES_PATH = DOCS / "data" / "countries.json"
 
 # Pages to bake into. The main page must exist; secondary pages are optional.
 PAGES = ["index.html", "analysis-china.html", "analysis-ev.html",
@@ -29,6 +30,7 @@ PAGES = ["index.html", "analysis-china.html", "analysis-ev.html",
 BLOCKS = {
     "germany-data": JSON_PATH,
     "brand-logos": LOGOS_PATH,
+    "countries-data": COUNTRIES_PATH,
 }
 
 
