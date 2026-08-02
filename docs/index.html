@@ -272,13 +272,54 @@
   </section>
 
   <section class="card" id="supplierCard">
-    <h2><a class="h2link" href="analysis-suppliers.html">Cockpit SoC &amp; LiDAR suppliers</a><span class="h2hint"> — deep dive ↗</span></h2>
-    <p class="note" id="supplierNote"></p>
-    <div class="bars" id="supplierBars"></div>
-    <p class="chart-note-sm">Estimated: each model is mapped to the cockpit
-      domain-controller (“车机”) silicon of its current-generation platform, then
-      weighted by KBA registrations. Standard-config LiDAR is effectively 0%.
-      See the deep-dive page and <code>data/vehicle_specs.csv</code>.</p>
+    <style>
+      #supplierCard .suptiles { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:14px; margin-top:6px; }
+      #supplierCard .suptile { display:flex; flex-direction:column; gap:7px; text-decoration:none; color:inherit;
+        border:1px solid var(--border); border-radius:12px; padding:16px 16px 15px; background:var(--page); transition:border-color .12s, transform .12s; }
+      #supplierCard .suptile:hover { border-color:var(--s1); transform:translateY(-2px); }
+      #supplierCard .suptile .ic { width:38px; height:38px; }
+      #supplierCard .suptile .t { font-weight:650; font-size:14.5px; letter-spacing:-.01em; }
+      #supplierCard .suptile .cn { color:var(--muted); font-weight:500; font-size:12px; margin-left:6px; }
+      #supplierCard .suptile .d { font-size:12px; color:var(--ink-2); line-height:1.45; }
+      #supplierCard .suptile .go { font-size:12px; color:var(--s1); margin-top:auto; }
+    </style>
+    <h2>Supplier statistics<span class="h2hint"> 供应商统计 — installation-rate deep dives ↗</span></h2>
+    <p class="note">Estimated per-component supplier installation rate (“上装率”), weighting a per-model
+      configuration estimate by KBA registrations. Pick a component:</p>
+    <div class="suptiles">
+      <a class="suptile" href="analysis-soc.html">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#2a78d6" stroke-width="1.6" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/><rect x="10" y="10" width="4" height="4" rx="1"/><path d="M9 7V4M12 7V4M15 7V4M9 20v-3M12 20v-3M15 20v-3M7 9H4M7 12H4M7 15H4M20 9h-3M20 12h-3M20 15h-3"/></svg>
+        <div class="t">Cockpit SoC<span class="cn">座舱域控芯片</span></div>
+        <div class="d">In-vehicle infotainment (“车机”) compute silicon.</div>
+        <div class="go">View installation rate →</div>
+      </a>
+      <a class="suptile" href="analysis-adas.html">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#00a7b5" stroke-width="1.6" aria-hidden="true"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+        <div class="t">ADAS SoC<span class="cn">智驾感知芯片</span></div>
+        <div class="d">Front-camera / driver-assistance perception processor.</div>
+        <div class="go">View installation rate →</div>
+      </a>
+      <a class="suptile" href="analysis-radar.html">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#eb6834" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="18" r="1.6"/><path d="M8 15a5.5 5.5 0 0 1 8 0M5 12a9.5 9.5 0 0 1 14 0M2.5 9a13.5 13.5 0 0 1 19 0"/></svg>
+        <div class="t">Radar Tier-1<span class="cn">毫米波雷达</span></div>
+        <div class="d">Front-radar module supplier (ACC / AEB).</div>
+        <div class="go">View installation rate →</div>
+      </a>
+      <a class="suptile" href="analysis-power.html">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#c98500" stroke-width="1.6" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" stroke-linejoin="round"/></svg>
+        <div class="t">EV power-semi<span class="cn">电驱功率半导体</span></div>
+        <div class="d">Traction-inverter power module (SiC / IGBT), among BEVs.</div>
+        <div class="go">View installation rate →</div>
+      </a>
+      <a class="suptile" href="analysis-lidar.html">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#1baf7a" stroke-width="1.6" aria-hidden="true"><circle cx="5" cy="12" r="2.2"/><path d="M7 12h3M7 12l11-6M7 12l11 6M7 10l12-2M7 14l12 2" stroke-width="1.2"/></svg>
+        <div class="t">LiDAR<span class="cn">激光雷达</span></div>
+        <div class="d">LiDAR fitment &amp; supplier (near-zero in this market).</div>
+        <div class="go">View installation rate →</div>
+      </a>
+    </div>
+    <p class="chart-note-sm">Estimates mapped by vehicle platform / brand software generation, weighted by
+      KBA registrations. See each page and <code>data/vehicle_specs.csv</code>.</p>
   </section>
 
   <details class="table">
@@ -10563,7 +10604,7 @@
     ]
   },
   "suppliers": {
-    "note": "Registration counts are official KBA figures; cockpit SoC and LiDAR are per-model ESTIMATES mapped by vehicle platform / software generation (current new-model standard config). See data/vehicle_specs.csv.",
+    "note": "Registration counts are official KBA figures; the electronics fields are per-model ESTIMATES mapped by vehicle platform / software generation (current new-model standard config). Cockpit SoC & LiDAR are better-sourced; ADAS SoC, EV power-semi and radar Tier-1 are lower-confidence OEM/platform-relationship estimates. See data/vehicle_specs.csv.",
     "labels": [
       "Sep 2023",
       "Oct 2023",
@@ -10601,1582 +10642,2123 @@
       "Jun 2026"
     ],
     "total_registrations": 8056054,
-    "classified_registrations": 7409851,
+    "bev_registrations": 1454765,
     "coverage_pct": 92.0,
-    "soc_share": [
+    "dimensions": [
       {
-        "brand": "Renesas",
-        "total": 2517774,
-        "share_all": 31.25,
-        "share_classified": 33.98
-      },
-      {
-        "brand": "Qualcomm",
-        "total": 1430769,
-        "share_all": 17.76,
-        "share_classified": 19.31
-      },
-      {
-        "brand": "Undisclosed",
-        "total": 1424157,
-        "share_all": 17.68,
-        "share_classified": 19.22
-      },
-      {
-        "brand": "Samsung",
-        "total": 883848,
-        "share_all": 10.97,
-        "share_classified": 11.93
-      },
-      {
-        "brand": "Unclassified",
-        "total": 646203,
-        "share_all": 8.02,
-        "share_classified": null
-      },
-      {
-        "brand": "NVIDIA",
-        "total": 593463,
-        "share_all": 7.37,
-        "share_classified": 8.01
-      },
-      {
-        "brand": "None",
-        "total": 248288,
-        "share_all": 3.08,
-        "share_classified": 3.35
-      },
-      {
-        "brand": "MediaTek",
-        "total": 199914,
-        "share_all": 2.48,
-        "share_classified": 2.7
-      },
-      {
-        "brand": "AMD",
-        "total": 100599,
-        "share_all": 1.25,
-        "share_classified": 1.36
-      },
-      {
-        "brand": "NXP",
-        "total": 11039,
-        "share_all": 0.14,
-        "share_classified": 0.15
-      }
-    ],
-    "soc_series": [
-      {
-        "name": "Qualcomm",
-        "counts": [
-          33607,
-          36507,
-          43229,
-          48404,
-          29339,
-          33906,
-          43376,
-          40472,
-          36847,
-          47238,
-          40702,
-          32316,
-          35260,
-          38009,
-          41860,
-          42163,
-          33761,
-          34632,
-          42783,
-          43968,
-          41136,
-          46337,
-          48878,
-          38918,
-          42854,
-          49043,
-          49637,
-          52574,
-          35877,
-          38235,
-          53727,
-          48219,
-          46302,
-          60653
+        "key": "soc",
+        "title": "Cockpit SoC",
+        "cn": "座舱域控芯片",
+        "base": "all registrations",
+        "confidence": "better-sourced",
+        "blurb": "In-vehicle infotainment / cockpit domain-controller (车机) compute silicon.",
+        "base_total": 8056054,
+        "classified": 7409851,
+        "coverage_pct": 92.0,
+        "labels": [
+          "Sep 2023",
+          "Oct 2023",
+          "Nov 2023",
+          "Dec 2023",
+          "Jan 2024",
+          "Feb 2024",
+          "Mar 2024",
+          "Apr 2024",
+          "May 2024",
+          "Jun 2024",
+          "Jul 2024",
+          "Aug 2024",
+          "Sep 2024",
+          "Oct 2024",
+          "Nov 2024",
+          "Dec 2024",
+          "Jan 2025",
+          "Feb 2025",
+          "Mar 2025",
+          "Apr 2025",
+          "May 2025",
+          "Jun 2025",
+          "Jul 2025",
+          "Aug 2025",
+          "Sep 2025",
+          "Oct 2025",
+          "Nov 2025",
+          "Dec 2025",
+          "Jan 2026",
+          "Feb 2026",
+          "Mar 2026",
+          "Apr 2026",
+          "May 2026",
+          "Jun 2026"
         ],
         "share": [
-          15.04,
-          16.74,
-          17.68,
-          20.08,
-          13.8,
-          15.67,
-          16.5,
-          16.72,
-          15.64,
-          15.94,
-          17.17,
-          16.47,
-          16.95,
-          16.44,
-          17.19,
-          18.84,
-          16.34,
-          17.12,
-          16.95,
-          18.19,
-          17.25,
-          18.15,
-          18.54,
-          18.91,
-          18.27,
-          19.67,
-          19.88,
-          21.43,
-          18.57,
-          18.15,
-          18.34,
-          19.44,
-          19.43,
-          20.55
-        ]
+          {
+            "brand": "Renesas",
+            "total": 2517774,
+            "share_all": 31.25,
+            "share_classified": 33.98,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "VW",
+                "model": "GOLF",
+                "total": 259826
+              },
+              {
+                "brand": "VW",
+                "model": "T-ROC",
+                "total": 205791
+              },
+              {
+                "brand": "VW",
+                "model": "TIGUAN",
+                "total": 180778
+              },
+              {
+                "brand": "SKODA",
+                "model": "OCTAVIA",
+                "total": 132220
+              },
+              {
+                "brand": "VW",
+                "model": "PASSAT",
+                "total": 128189
+              },
+              {
+                "brand": "SEAT",
+                "model": "LEON",
+                "total": 102141
+              }
+            ]
+          },
+          {
+            "brand": "Qualcomm",
+            "total": 1430769,
+            "share_all": 17.76,
+            "share_classified": 19.31,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "BMW",
+                "model": "X1",
+                "total": 122377
+              },
+              {
+                "brand": "MINI",
+                "model": "MINI",
+                "total": 103395
+              },
+              {
+                "brand": "BMW",
+                "model": "3ER",
+                "total": 92321
+              },
+              {
+                "brand": "BMW",
+                "model": "5ER",
+                "total": 86302
+              },
+              {
+                "brand": "BMW",
+                "model": "X3",
+                "total": 84923
+              },
+              {
+                "brand": "BMW",
+                "model": "4ER",
+                "total": 66548
+              }
+            ]
+          },
+          {
+            "brand": "Undisclosed",
+            "total": 1424157,
+            "share_all": 17.68,
+            "share_classified": 19.22,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "OPEL",
+                "model": "CORSA",
+                "total": 135089
+              },
+              {
+                "brand": "OPEL",
+                "model": "ASTRA",
+                "total": 106560
+              },
+              {
+                "brand": "VW",
+                "model": "TRANSPORTER",
+                "total": 96138
+              },
+              {
+                "brand": "FIAT",
+                "model": "DUCATO",
+                "total": 81661
+              },
+              {
+                "brand": "OPEL",
+                "model": "MOKKA",
+                "total": 62043
+              },
+              {
+                "brand": "FIAT",
+                "model": "500",
+                "total": 56796
+              }
+            ]
+          },
+          {
+            "brand": "Samsung",
+            "total": 883848,
+            "share_all": 10.97,
+            "share_classified": 11.93,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "AUDI",
+                "model": "A6",
+                "total": 93793
+              },
+              {
+                "brand": "SKODA",
+                "model": "ENYAQ",
+                "total": 77620
+              },
+              {
+                "brand": "VW",
+                "model": "ID.3",
+                "total": 75266
+              },
+              {
+                "brand": "VW",
+                "model": "ID.4, ID.5",
+                "total": 66785
+              },
+              {
+                "brand": "VW",
+                "model": "ID.7",
+                "total": 64842
+              },
+              {
+                "brand": "AUDI",
+                "model": "A5",
+                "total": 60077
+              }
+            ]
+          },
+          {
+            "brand": "Unclassified",
+            "total": 646203,
+            "share_all": 8.02,
+            "share_classified": null,
+            "is_supplier": false,
+            "top_models": [
+              {
+                "brand": "PORSCHE",
+                "model": "TAYCAN",
+                "total": 9508
+              },
+              {
+                "brand": "FORD",
+                "model": "TRANSIT COURIER",
+                "total": 9499
+              },
+              {
+                "brand": "CITROEN",
+                "model": "JUMPY",
+                "total": 9495
+              },
+              {
+                "brand": "BMW",
+                "model": "X4",
+                "total": 9275
+              },
+              {
+                "brand": "RENAULT",
+                "model": "ARKANA",
+                "total": 9172
+              },
+              {
+                "brand": "TOYOTA",
+                "model": "BZ4",
+                "total": 9046
+              }
+            ]
+          },
+          {
+            "brand": "NVIDIA",
+            "total": 593463,
+            "share_all": 7.37,
+            "share_classified": 8.01,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "MERCEDES",
+                "model": "GLK, GLC",
+                "total": 103882
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "E-KLASSE",
+                "total": 89897
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "C-KLASSE",
+                "total": 74657
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "GLA",
+                "total": 67497
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "V-KLASSE",
+                "total": 56260
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "A-KLASSE",
+                "total": 48284
+              }
+            ]
+          },
+          {
+            "brand": "None",
+            "total": 248288,
+            "share_all": 3.08,
+            "share_classified": 3.35,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "TOYOTA",
+                "model": "AYGO",
+                "total": 48917
+              },
+              {
+                "brand": "HYUNDAI",
+                "model": "I 10",
+                "total": 34535
+              },
+              {
+                "brand": "HYUNDAI",
+                "model": "I 20",
+                "total": 32368
+              },
+              {
+                "brand": "SUZUKI",
+                "model": "SWIFT",
+                "total": 29337
+              },
+              {
+                "brand": "MITSUBISHI",
+                "model": "MIRAGE, SPACE STAR",
+                "total": 25690
+              },
+              {
+                "brand": "KIA",
+                "model": "PICANTO",
+                "total": 25653
+              }
+            ]
+          },
+          {
+            "brand": "MediaTek",
+            "total": 199914,
+            "share_all": 2.48,
+            "share_classified": 2.7,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "DACIA",
+                "model": "SANDERO",
+                "total": 76748
+              },
+              {
+                "brand": "DACIA",
+                "model": "DUSTER",
+                "total": 47111
+              },
+              {
+                "brand": "DACIA",
+                "model": "JOGGER",
+                "total": 37272
+              },
+              {
+                "brand": "DACIA",
+                "model": "BIGSTER",
+                "total": 22159
+              },
+              {
+                "brand": "DACIA",
+                "model": "SPRING",
+                "total": 16624
+              }
+            ]
+          },
+          {
+            "brand": "AMD",
+            "total": 100599,
+            "share_all": 1.25,
+            "share_classified": 1.36,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "TESLA",
+                "model": "MODEL Y",
+                "total": 73031
+              },
+              {
+                "brand": "TESLA",
+                "model": "MODEL 3",
+                "total": 27568
+              }
+            ]
+          },
+          {
+            "brand": "NXP",
+            "total": 11039,
+            "share_all": 0.14,
+            "share_classified": 0.15,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "LAND ROVER",
+                "model": "DEFENDER",
+                "total": 11039
+              }
+            ]
+          }
+        ],
+        "series": [
+          {
+            "name": "Qualcomm",
+            "share": [
+              15.04,
+              16.74,
+              17.68,
+              20.08,
+              13.8,
+              15.67,
+              16.5,
+              16.72,
+              15.64,
+              15.94,
+              17.17,
+              16.47,
+              16.95,
+              16.44,
+              17.19,
+              18.84,
+              16.34,
+              17.12,
+              16.95,
+              18.19,
+              17.25,
+              18.15,
+              18.54,
+              18.91,
+              18.27,
+              19.67,
+              19.88,
+              21.43,
+              18.57,
+              18.15,
+              18.34,
+              19.44,
+              19.43,
+              20.55
+            ]
+          },
+          {
+            "name": "Samsung",
+            "share": [
+              7.52,
+              9.52,
+              10.29,
+              9.78,
+              6.99,
+              7.81,
+              7.6,
+              9.17,
+              9.25,
+              9.15,
+              8.2,
+              8.69,
+              11.17,
+              10.65,
+              10.42,
+              10.29,
+              12.37,
+              12.84,
+              11.85,
+              12.72,
+              13.07,
+              11.12,
+              11.31,
+              11.33,
+              11.64,
+              13.38,
+              13.46,
+              13.27,
+              13.54,
+              12.81,
+              13.03,
+              13.07,
+              12.46,
+              12.49
+            ]
+          },
+          {
+            "name": "NVIDIA",
+            "share": [
+              7.7,
+              8.42,
+              8.5,
+              6.82,
+              8.27,
+              7.5,
+              6.5,
+              7.41,
+              6.97,
+              5.79,
+              8.08,
+              8.24,
+              7.59,
+              8.65,
+              8.98,
+              7.99,
+              8.25,
+              7.85,
+              7.21,
+              7.51,
+              7.57,
+              7.12,
+              7.6,
+              7.38,
+              7.06,
+              7.75,
+              7.78,
+              6.28,
+              7.45,
+              6.06,
+              6.24,
+              7.07,
+              6.3,
+              6.07
+            ]
+          },
+          {
+            "name": "Renesas",
+            "share": [
+              31.97,
+              28.44,
+              29.6,
+              29.07,
+              34.71,
+              32.54,
+              31.88,
+              33.59,
+              34.8,
+              34.29,
+              33.13,
+              32.21,
+              32.02,
+              32.39,
+              32.58,
+              29.99,
+              33.63,
+              31.58,
+              33.19,
+              30.31,
+              31.73,
+              30.25,
+              31.44,
+              30.61,
+              31.33,
+              30.53,
+              30.1,
+              29.65,
+              30.32,
+              30.55,
+              29.74,
+              28.44,
+              29.4,
+              27.78
+            ]
+          },
+          {
+            "name": "AMD",
+            "share": [
+              1.81,
+              1.49,
+              1.95,
+              1.6,
+              1.45,
+              2.75,
+              1.44,
+              0.66,
+              0.8,
+              1.53,
+              1.0,
+              1.2,
+              1.77,
+              0.69,
+              0.9,
+              1.73,
+              0.61,
+              0.69,
+              0.87,
+              0.36,
+              0.5,
+              0.72,
+              0.42,
+              0.7,
+              1.45,
+              0.3,
+              0.68,
+              0.82,
+              0.66,
+              1.05,
+              3.14,
+              1.25,
+              2.13,
+              2.62
+            ]
+          },
+          {
+            "name": "NXP",
+            "share": [
+              0.14,
+              0.18,
+              0.15,
+              0.14,
+              0.19,
+              0.14,
+              0.12,
+              0.14,
+              0.08,
+              0.08,
+              0.09,
+              0.07,
+              0.1,
+              0.1,
+              0.14,
+              0.16,
+              0.15,
+              0.09,
+              0.14,
+              0.19,
+              0.12,
+              0.12,
+              0.19,
+              0.16,
+              0.12,
+              0.08,
+              0.08,
+              0.15,
+              0.22,
+              0.17,
+              0.2,
+              0.18,
+              0.14,
+              0.15
+            ]
+          },
+          {
+            "name": "MediaTek",
+            "share": [
+              1.76,
+              2.59,
+              2.21,
+              2.48,
+              3.12,
+              2.7,
+              2.31,
+              2.34,
+              2.15,
+              2.94,
+              2.54,
+              2.27,
+              1.93,
+              2.38,
+              2.35,
+              3.24,
+              2.77,
+              2.38,
+              2.74,
+              2.12,
+              2.15,
+              3.03,
+              2.74,
+              2.53,
+              2.43,
+              2.36,
+              2.5,
+              3.23,
+              1.63,
+              1.94,
+              2.24,
+              2.18,
+              2.43,
+              3.2
+            ]
+          },
+          {
+            "name": "Undisclosed",
+            "share": [
+              20.51,
+              18.72,
+              17.27,
+              16.84,
+              20.27,
+              19.71,
+              20.95,
+              18.12,
+              18.39,
+              18.84,
+              19.11,
+              19.92,
+              17.88,
+              18.45,
+              16.8,
+              15.78,
+              15.64,
+              16.6,
+              16.95,
+              18.8,
+              17.47,
+              18.29,
+              18.07,
+              18.49,
+              17.65,
+              16.42,
+              15.91,
+              14.98,
+              17.11,
+              18.52,
+              16.27,
+              16.37,
+              15.93,
+              15.28
+            ]
+          },
+          {
+            "name": "None",
+            "share": [
+              3.98,
+              3.48,
+              3.57,
+              3.38,
+              3.37,
+              3.66,
+              4.07,
+              3.36,
+              3.22,
+              3.05,
+              3.38,
+              3.9,
+              3.4,
+              3.16,
+              3.37,
+              3.52,
+              3.02,
+              3.53,
+              3.06,
+              2.95,
+              3.18,
+              3.36,
+              2.8,
+              2.73,
+              3.26,
+              2.82,
+              2.83,
+              2.87,
+              2.25,
+              2.57,
+              2.64,
+              2.0,
+              1.77,
+              1.87
+            ]
+          },
+          {
+            "name": "Unclassified",
+            "share": [
+              9.57,
+              10.42,
+              8.78,
+              9.81,
+              7.83,
+              7.52,
+              8.63,
+              8.5,
+              8.7,
+              8.39,
+              7.29,
+              7.04,
+              7.21,
+              7.1,
+              7.28,
+              8.45,
+              7.21,
+              7.33,
+              7.04,
+              6.85,
+              6.95,
+              7.84,
+              6.89,
+              7.17,
+              6.8,
+              6.69,
+              6.78,
+              7.31,
+              8.24,
+              8.18,
+              8.18,
+              10.0,
+              10.02,
+              9.99
+            ]
+          }
+        ],
+        "penetration": null
       },
       {
-        "name": "Samsung",
-        "counts": [
-          16796,
-          20752,
-          25164,
-          23579,
-          14860,
-          16898,
-          19969,
-          22183,
-          21782,
-          27112,
-          19438,
-          17050,
-          23239,
-          24617,
-          25360,
-          23036,
-          25560,
-          25982,
-          29918,
-          30761,
-          31160,
-          28388,
-          29818,
-          23326,
-          27297,
-          33349,
-          33595,
-          32560,
-          26157,
-          26979,
-          38172,
-          32430,
-          29688,
-          36873
+        "key": "adas",
+        "title": "ADAS / perception SoC",
+        "cn": "智驾感知芯片",
+        "base": "all registrations",
+        "confidence": "directional estimate",
+        "blurb": "Front-camera / driver-assistance perception processor.",
+        "base_total": 8056054,
+        "classified": 7409851,
+        "coverage_pct": 92.0,
+        "labels": [
+          "Sep 2023",
+          "Oct 2023",
+          "Nov 2023",
+          "Dec 2023",
+          "Jan 2024",
+          "Feb 2024",
+          "Mar 2024",
+          "Apr 2024",
+          "May 2024",
+          "Jun 2024",
+          "Jul 2024",
+          "Aug 2024",
+          "Sep 2024",
+          "Oct 2024",
+          "Nov 2024",
+          "Dec 2024",
+          "Jan 2025",
+          "Feb 2025",
+          "Mar 2025",
+          "Apr 2025",
+          "May 2025",
+          "Jun 2025",
+          "Jul 2025",
+          "Aug 2025",
+          "Sep 2025",
+          "Oct 2025",
+          "Nov 2025",
+          "Dec 2025",
+          "Jan 2026",
+          "Feb 2026",
+          "Mar 2026",
+          "Apr 2026",
+          "May 2026",
+          "Jun 2026"
         ],
         "share": [
-          7.52,
-          9.52,
-          10.29,
-          9.78,
-          6.99,
-          7.81,
-          7.6,
-          9.17,
-          9.25,
-          9.15,
-          8.2,
-          8.69,
-          11.17,
-          10.65,
-          10.42,
-          10.29,
-          12.37,
-          12.84,
-          11.85,
-          12.72,
-          13.07,
-          11.12,
-          11.31,
-          11.33,
-          11.64,
-          13.38,
-          13.46,
-          13.27,
-          13.54,
-          12.81,
-          13.03,
-          13.07,
-          12.46,
-          12.49
-        ]
+          {
+            "brand": "Mobileye",
+            "total": 5886222,
+            "share_all": 73.07,
+            "share_classified": 79.44,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "VW",
+                "model": "GOLF",
+                "total": 259826
+              },
+              {
+                "brand": "VW",
+                "model": "T-ROC",
+                "total": 205791
+              },
+              {
+                "brand": "VW",
+                "model": "TIGUAN",
+                "total": 180778
+              },
+              {
+                "brand": "OPEL",
+                "model": "CORSA",
+                "total": 135089
+              },
+              {
+                "brand": "SKODA",
+                "model": "OCTAVIA",
+                "total": 132220
+              },
+              {
+                "brand": "VW",
+                "model": "PASSAT",
+                "total": 128189
+              }
+            ]
+          },
+          {
+            "brand": "NVIDIA",
+            "total": 720941,
+            "share_all": 8.95,
+            "share_classified": 9.73,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "MERCEDES",
+                "model": "GLK, GLC",
+                "total": 103882
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "E-KLASSE",
+                "total": 89897
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "C-KLASSE",
+                "total": 74657
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "GLA",
+                "total": 67497
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "CLA-KLASSE",
+                "total": 60165
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "V-KLASSE",
+                "total": 56260
+              }
+            ]
+          },
+          {
+            "brand": "Unclassified",
+            "total": 646203,
+            "share_all": 8.02,
+            "share_classified": null,
+            "is_supplier": false,
+            "top_models": [
+              {
+                "brand": "PORSCHE",
+                "model": "TAYCAN",
+                "total": 9508
+              },
+              {
+                "brand": "FORD",
+                "model": "TRANSIT COURIER",
+                "total": 9499
+              },
+              {
+                "brand": "CITROEN",
+                "model": "JUMPY",
+                "total": 9495
+              },
+              {
+                "brand": "BMW",
+                "model": "X4",
+                "total": 9275
+              },
+              {
+                "brand": "RENAULT",
+                "model": "ARKANA",
+                "total": 9172
+              },
+              {
+                "brand": "TOYOTA",
+                "model": "BZ4",
+                "total": 9046
+              }
+            ]
+          },
+          {
+            "brand": "None",
+            "total": 412541,
+            "share_all": 5.12,
+            "share_classified": 5.57,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "DACIA",
+                "model": "SANDERO",
+                "total": 76748
+              },
+              {
+                "brand": "TOYOTA",
+                "model": "AYGO",
+                "total": 48917
+              },
+              {
+                "brand": "DACIA",
+                "model": "DUSTER",
+                "total": 47111
+              },
+              {
+                "brand": "DACIA",
+                "model": "JOGGER",
+                "total": 37272
+              },
+              {
+                "brand": "HYUNDAI",
+                "model": "I 10",
+                "total": 34535
+              },
+              {
+                "brand": "HYUNDAI",
+                "model": "I 20",
+                "total": 32368
+              }
+            ]
+          },
+          {
+            "brand": "Denso",
+            "total": 173648,
+            "share_all": 2.16,
+            "share_classified": 2.34,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "TOYOTA",
+                "model": "YARIS",
+                "total": 81436
+              },
+              {
+                "brand": "TOYOTA",
+                "model": "COROLLA",
+                "total": 39714
+              },
+              {
+                "brand": "TOYOTA",
+                "model": "C-HR",
+                "total": 26792
+              },
+              {
+                "brand": "TOYOTA",
+                "model": "PROACE",
+                "total": 12976
+              },
+              {
+                "brand": "TOYOTA",
+                "model": "RAV 4",
+                "total": 12730
+              }
+            ]
+          },
+          {
+            "brand": "Undisclosed",
+            "total": 115900,
+            "share_all": 1.44,
+            "share_classified": 1.56,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "MG ROEWE",
+                "model": "4",
+                "total": 24256
+              },
+              {
+                "brand": "BYD",
+                "model": "SEAL U",
+                "total": 17016
+              },
+              {
+                "brand": "MG ROEWE",
+                "model": "ZS",
+                "total": 15924
+              },
+              {
+                "brand": "SMART",
+                "model": "1",
+                "total": 12869
+              },
+              {
+                "brand": "BYD",
+                "model": "SEAL",
+                "total": 12275
+              },
+              {
+                "brand": "MG ROEWE",
+                "model": "3",
+                "total": 12189
+              }
+            ]
+          },
+          {
+            "brand": "Tesla",
+            "total": 100599,
+            "share_all": 1.25,
+            "share_classified": 1.36,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "TESLA",
+                "model": "MODEL Y",
+                "total": 73031
+              },
+              {
+                "brand": "TESLA",
+                "model": "MODEL 3",
+                "total": 27568
+              }
+            ]
+          }
+        ],
+        "series": [
+          {
+            "name": "Mobileye",
+            "share": [
+              72.65,
+              70.19,
+              72.68,
+              72.69,
+              72.64,
+              72.05,
+              73.61,
+              73.48,
+              73.76,
+              73.03,
+              72.82,
+              72.99,
+              74.2,
+              73.21,
+              72.0,
+              70.12,
+              74.71,
+              74.4,
+              74.71,
+              75.77,
+              74.87,
+              73.88,
+              74.54,
+              73.72,
+              72.88,
+              73.81,
+              72.84,
+              72.52,
+              74.85,
+              74.97,
+              72.22,
+              71.56,
+              71.3,
+              69.82
+            ]
+          },
+          {
+            "name": "NVIDIA",
+            "share": [
+              9.16,
+              9.82,
+              9.85,
+              8.15,
+              9.74,
+              8.92,
+              7.96,
+              9.03,
+              8.18,
+              7.02,
+              9.5,
+              9.72,
+              8.68,
+              9.9,
+              10.5,
+              9.34,
+              9.45,
+              9.18,
+              8.62,
+              9.07,
+              9.06,
+              8.71,
+              9.27,
+              9.2,
+              8.63,
+              9.66,
+              9.91,
+              8.24,
+              9.51,
+              7.96,
+              8.03,
+              9.3,
+              8.26,
+              8.06
+            ]
+          },
+          {
+            "name": "Tesla",
+            "share": [
+              1.81,
+              1.49,
+              1.95,
+              1.6,
+              1.45,
+              2.75,
+              1.44,
+              0.66,
+              0.8,
+              1.53,
+              1.0,
+              1.2,
+              1.77,
+              0.69,
+              0.9,
+              1.73,
+              0.61,
+              0.69,
+              0.87,
+              0.36,
+              0.5,
+              0.72,
+              0.42,
+              0.7,
+              1.45,
+              0.3,
+              0.68,
+              0.82,
+              0.66,
+              1.05,
+              3.14,
+              1.25,
+              2.13,
+              2.62
+            ]
+          },
+          {
+            "name": "Denso",
+            "share": [
+              2.02,
+              2.18,
+              1.55,
+              1.71,
+              2.31,
+              2.04,
+              2.35,
+              2.36,
+              2.12,
+              2.35,
+              2.97,
+              2.78,
+              2.75,
+              3.19,
+              3.28,
+              2.83,
+              1.71,
+              1.82,
+              2.17,
+              1.93,
+              2.19,
+              2.19,
+              2.16,
+              2.29,
+              2.23,
+              2.08,
+              2.25,
+              2.74,
+              1.23,
+              1.5,
+              1.68,
+              1.61,
+              1.48,
+              1.38
+            ]
+          },
+          {
+            "name": "Undisclosed",
+            "share": [
+              0.51,
+              1.11,
+              0.85,
+              1.33,
+              0.48,
+              0.99,
+              0.77,
+              0.85,
+              1.6,
+              2.23,
+              0.92,
+              0.61,
+              0.57,
+              0.92,
+              0.7,
+              1.09,
+              0.89,
+              1.05,
+              1.16,
+              1.28,
+              1.49,
+              1.21,
+              1.25,
+              1.68,
+              2.32,
+              2.28,
+              2.2,
+              2.28,
+              1.62,
+              1.83,
+              1.88,
+              2.1,
+              2.6,
+              3.06
+            ]
+          },
+          {
+            "name": "None",
+            "share": [
+              4.28,
+              4.79,
+              4.34,
+              4.71,
+              5.54,
+              5.73,
+              5.26,
+              5.12,
+              4.84,
+              5.45,
+              5.49,
+              5.67,
+              4.83,
+              5.0,
+              5.34,
+              6.44,
+              5.43,
+              5.53,
+              5.43,
+              4.74,
+              4.93,
+              5.45,
+              5.46,
+              5.25,
+              5.69,
+              5.17,
+              5.33,
+              6.11,
+              3.88,
+              4.5,
+              4.87,
+              4.18,
+              4.2,
+              5.07
+            ]
+          },
+          {
+            "name": "Unclassified",
+            "share": [
+              9.57,
+              10.42,
+              8.78,
+              9.81,
+              7.83,
+              7.52,
+              8.63,
+              8.5,
+              8.7,
+              8.39,
+              7.29,
+              7.04,
+              7.21,
+              7.1,
+              7.28,
+              8.45,
+              7.21,
+              7.33,
+              7.04,
+              6.85,
+              6.95,
+              7.84,
+              6.89,
+              7.17,
+              6.8,
+              6.69,
+              6.78,
+              7.31,
+              8.24,
+              8.18,
+              8.18,
+              10.0,
+              10.02,
+              9.99
+            ]
+          }
+        ],
+        "penetration": null
       },
       {
-        "name": "NVIDIA",
-        "counts": [
-          17206,
-          18366,
-          20785,
-          16450,
-          17594,
-          16234,
-          17096,
-          17933,
-          16409,
-          17167,
-          19150,
-          16164,
-          15783,
-          19994,
-          21873,
-          17879,
-          17047,
-          15890,
-          18197,
-          18145,
-          18048,
-          18182,
-          20029,
-          15198,
-          16554,
-          19331,
-          19428,
-          15416,
-          14398,
-          12754,
-          18276,
-          17547,
-          15017,
-          17923
+        "key": "radar",
+        "title": "Front-radar Tier-1",
+        "cn": "前向毫米波雷达",
+        "base": "all registrations",
+        "confidence": "directional estimate",
+        "blurb": "Front radar module supplier (ACC / AEB).",
+        "base_total": 8056054,
+        "classified": 7409851,
+        "coverage_pct": 92.0,
+        "labels": [
+          "Sep 2023",
+          "Oct 2023",
+          "Nov 2023",
+          "Dec 2023",
+          "Jan 2024",
+          "Feb 2024",
+          "Mar 2024",
+          "Apr 2024",
+          "May 2024",
+          "Jun 2024",
+          "Jul 2024",
+          "Aug 2024",
+          "Sep 2024",
+          "Oct 2024",
+          "Nov 2024",
+          "Dec 2024",
+          "Jan 2025",
+          "Feb 2025",
+          "Mar 2025",
+          "Apr 2025",
+          "May 2025",
+          "Jun 2025",
+          "Jul 2025",
+          "Aug 2025",
+          "Sep 2025",
+          "Oct 2025",
+          "Nov 2025",
+          "Dec 2025",
+          "Jan 2026",
+          "Feb 2026",
+          "Mar 2026",
+          "Apr 2026",
+          "May 2026",
+          "Jun 2026"
         ],
         "share": [
-          7.7,
-          8.42,
-          8.5,
-          6.82,
-          8.27,
-          7.5,
-          6.5,
-          7.41,
-          6.97,
-          5.79,
-          8.08,
-          8.24,
-          7.59,
-          8.65,
-          8.98,
-          7.99,
-          8.25,
-          7.85,
-          7.21,
-          7.51,
-          7.57,
-          7.12,
-          7.6,
-          7.38,
-          7.06,
-          7.75,
-          7.78,
-          6.28,
-          7.45,
-          6.06,
-          6.24,
-          7.07,
-          6.3,
-          6.07
-        ]
+          {
+            "brand": "Continental",
+            "total": 4254415,
+            "share_all": 52.81,
+            "share_classified": 57.42,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "VW",
+                "model": "GOLF",
+                "total": 259826
+              },
+              {
+                "brand": "VW",
+                "model": "T-ROC",
+                "total": 205791
+              },
+              {
+                "brand": "VW",
+                "model": "TIGUAN",
+                "total": 180778
+              },
+              {
+                "brand": "SKODA",
+                "model": "OCTAVIA",
+                "total": 132220
+              },
+              {
+                "brand": "VW",
+                "model": "PASSAT",
+                "total": 128189
+              },
+              {
+                "brand": "BMW",
+                "model": "X1",
+                "total": 122377
+              }
+            ]
+          },
+          {
+            "brand": "Bosch",
+            "total": 1105137,
+            "share_all": 13.72,
+            "share_classified": 14.91,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "MERCEDES",
+                "model": "GLK, GLC",
+                "total": 103882
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "E-KLASSE",
+                "total": 89897
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "C-KLASSE",
+                "total": 74657
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "GLA",
+                "total": 67497
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "CLA-KLASSE",
+                "total": 60165
+              },
+              {
+                "brand": "MERCEDES",
+                "model": "V-KLASSE",
+                "total": 56260
+              }
+            ]
+          },
+          {
+            "brand": "Valeo",
+            "total": 849663,
+            "share_all": 10.55,
+            "share_classified": 11.47,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "OPEL",
+                "model": "CORSA",
+                "total": 135089
+              },
+              {
+                "brand": "OPEL",
+                "model": "ASTRA",
+                "total": 106560
+              },
+              {
+                "brand": "FIAT",
+                "model": "DUCATO",
+                "total": 81661
+              },
+              {
+                "brand": "OPEL",
+                "model": "MOKKA",
+                "total": 62043
+              },
+              {
+                "brand": "FIAT",
+                "model": "500",
+                "total": 56796
+              },
+              {
+                "brand": "OPEL",
+                "model": "GRANDLAND X",
+                "total": 56218
+              }
+            ]
+          },
+          {
+            "brand": "Unclassified",
+            "total": 646203,
+            "share_all": 8.02,
+            "share_classified": null,
+            "is_supplier": false,
+            "top_models": [
+              {
+                "brand": "PORSCHE",
+                "model": "TAYCAN",
+                "total": 9508
+              },
+              {
+                "brand": "FORD",
+                "model": "TRANSIT COURIER",
+                "total": 9499
+              },
+              {
+                "brand": "CITROEN",
+                "model": "JUMPY",
+                "total": 9495
+              },
+              {
+                "brand": "BMW",
+                "model": "X4",
+                "total": 9275
+              },
+              {
+                "brand": "RENAULT",
+                "model": "ARKANA",
+                "total": 9172
+              },
+              {
+                "brand": "TOYOTA",
+                "model": "BZ4",
+                "total": 9046
+              }
+            ]
+          },
+          {
+            "brand": "HL Klemove",
+            "total": 411574,
+            "share_all": 5.11,
+            "share_classified": 5.55,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "HYUNDAI",
+                "model": "TUCSON",
+                "total": 65024
+              },
+              {
+                "brand": "KIA",
+                "model": "CEED",
+                "total": 49215
+              },
+              {
+                "brand": "HYUNDAI",
+                "model": "KONA",
+                "total": 41481
+              },
+              {
+                "brand": "KIA",
+                "model": "SPORTAGE",
+                "total": 38045
+              },
+              {
+                "brand": "HYUNDAI",
+                "model": "I 10",
+                "total": 34535
+              },
+              {
+                "brand": "HYUNDAI",
+                "model": "I 20",
+                "total": 32368
+              }
+            ]
+          },
+          {
+            "brand": "Denso",
+            "total": 329020,
+            "share_all": 4.08,
+            "share_classified": 4.44,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "TOYOTA",
+                "model": "YARIS",
+                "total": 81436
+              },
+              {
+                "brand": "TOYOTA",
+                "model": "AYGO",
+                "total": 48917
+              },
+              {
+                "brand": "TOYOTA",
+                "model": "COROLLA",
+                "total": 39714
+              },
+              {
+                "brand": "MAZDA",
+                "model": "CX-30",
+                "total": 33405
+              },
+              {
+                "brand": "TOYOTA",
+                "model": "C-HR",
+                "total": 26792
+              },
+              {
+                "brand": "MAZDA",
+                "model": "CX-60",
+                "total": 21179
+              }
+            ]
+          },
+          {
+            "brand": "None",
+            "total": 300513,
+            "share_all": 3.73,
+            "share_classified": 4.06,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "DACIA",
+                "model": "SANDERO",
+                "total": 76748
+              },
+              {
+                "brand": "TESLA",
+                "model": "MODEL Y",
+                "total": 73031
+              },
+              {
+                "brand": "DACIA",
+                "model": "DUSTER",
+                "total": 47111
+              },
+              {
+                "brand": "DACIA",
+                "model": "JOGGER",
+                "total": 37272
+              },
+              {
+                "brand": "TESLA",
+                "model": "MODEL 3",
+                "total": 27568
+              },
+              {
+                "brand": "DACIA",
+                "model": "BIGSTER",
+                "total": 22159
+              }
+            ]
+          },
+          {
+            "brand": "Veoneer/Magna",
+            "total": 159529,
+            "share_all": 1.98,
+            "share_classified": 2.15,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "VOLVO",
+                "model": "XC60",
+                "total": 63443
+              },
+              {
+                "brand": "VOLVO",
+                "model": "XC40",
+                "total": 36330
+              },
+              {
+                "brand": "VOLVO",
+                "model": "XC90",
+                "total": 24559
+              },
+              {
+                "brand": "VOLVO",
+                "model": "EX30",
+                "total": 16271
+              },
+              {
+                "brand": "VOLVO",
+                "model": "60",
+                "total": 16233
+              },
+              {
+                "brand": "VOLVO",
+                "model": "EX90",
+                "total": 2693
+              }
+            ]
+          }
+        ],
+        "series": [],
+        "penetration": null
       },
       {
-        "name": "Renesas",
-        "counts": [
-          71419,
-          62004,
-          72396,
-          70076,
-          73799,
-          70411,
-          83776,
-          81305,
-          81973,
-          101603,
-          78533,
-          63206,
-          66621,
-          74880,
-          79319,
-          67109,
-          69479,
-          63884,
-          83790,
-          73272,
-          75654,
-          77214,
-          82890,
-          63004,
-          73504,
-          76120,
-          75154,
-          72739,
-          58562,
-          64343,
-          87114,
-          70544,
-          70075,
-          82002
+        "key": "power",
+        "title": "EV inverter power-semi",
+        "cn": "电驱功率半导体",
+        "base": "BEV registrations",
+        "confidence": "directional estimate",
+        "blurb": "Traction-inverter power module (SiC / IGBT), among battery-electric cars.",
+        "base_total": 1454765,
+        "classified": 1270351,
+        "coverage_pct": 87.3,
+        "labels": [
+          "Sep 2023",
+          "Oct 2023",
+          "Nov 2023",
+          "Dec 2023",
+          "Jan 2024",
+          "Feb 2024",
+          "Mar 2024",
+          "Apr 2024",
+          "May 2024",
+          "Jun 2024",
+          "Jul 2024",
+          "Aug 2024",
+          "Sep 2024",
+          "Oct 2024",
+          "Nov 2024",
+          "Dec 2024",
+          "Jan 2025",
+          "Feb 2025",
+          "Mar 2025",
+          "Apr 2025",
+          "May 2025",
+          "Jun 2025",
+          "Jul 2025",
+          "Aug 2025",
+          "Sep 2025",
+          "Oct 2025",
+          "Nov 2025",
+          "Dec 2025",
+          "Jan 2026",
+          "Feb 2026",
+          "Mar 2026",
+          "Apr 2026",
+          "May 2026",
+          "Jun 2026"
         ],
         "share": [
-          31.97,
-          28.44,
-          29.6,
-          29.07,
-          34.71,
-          32.54,
-          31.88,
-          33.59,
-          34.8,
-          34.29,
-          33.13,
-          32.21,
-          32.02,
-          32.39,
-          32.58,
-          29.99,
-          33.63,
-          31.58,
-          33.19,
-          30.31,
-          31.73,
-          30.25,
-          31.44,
-          30.61,
-          31.33,
-          30.53,
-          30.1,
-          29.65,
-          30.32,
-          30.55,
-          29.74,
-          28.44,
-          29.4,
-          27.78
-        ]
+          {
+            "brand": "Infineon",
+            "total": 1163702,
+            "share_all": 79.99,
+            "share_classified": 91.6,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "SKODA",
+                "model": "ENYAQ",
+                "total": 77618
+              },
+              {
+                "brand": "VW",
+                "model": "ID.3",
+                "total": 75266
+              },
+              {
+                "brand": "VW",
+                "model": "ID.4, ID.5",
+                "total": 66785
+              },
+              {
+                "brand": "VW",
+                "model": "ID.7",
+                "total": 64842
+              },
+              {
+                "brand": "SEAT",
+                "model": "BORN",
+                "total": 50431
+              },
+              {
+                "brand": "BMW",
+                "model": "X1",
+                "total": 48414
+              }
+            ]
+          },
+          {
+            "brand": "Unclassified",
+            "total": 184414,
+            "share_all": 12.68,
+            "share_classified": null,
+            "is_supplier": false,
+            "top_models": [
+              {
+                "brand": "PORSCHE",
+                "model": "TAYCAN",
+                "total": 9507
+              },
+              {
+                "brand": "TOYOTA",
+                "model": "BZ4",
+                "total": 9046
+              },
+              {
+                "brand": "BYD",
+                "model": "DOLPHIN SURF",
+                "total": 6701
+              },
+              {
+                "brand": "FORD",
+                "model": "CAPRI",
+                "total": 6414
+              },
+              {
+                "brand": "POLESTAR",
+                "model": "2",
+                "total": 5831
+              },
+              {
+                "brand": "SMART",
+                "model": "FORTWO",
+                "total": 5541
+              }
+            ]
+          },
+          {
+            "brand": "STMicro",
+            "total": 100599,
+            "share_all": 6.92,
+            "share_classified": 7.92,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "TESLA",
+                "model": "MODEL Y",
+                "total": 73031
+              },
+              {
+                "brand": "TESLA",
+                "model": "MODEL 3",
+                "total": 27568
+              }
+            ]
+          },
+          {
+            "brand": "BYD Semi",
+            "total": 6050,
+            "share_all": 0.42,
+            "share_classified": 0.48,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "BYD",
+                "model": "SEAL",
+                "total": 4139
+              },
+              {
+                "brand": "BYD",
+                "model": "SEAL U",
+                "total": 1911
+              }
+            ]
+          }
+        ],
+        "series": [],
+        "penetration": null
       },
       {
-        "name": "AMD",
-        "counts": [
-          4051,
-          3256,
-          4777,
-          3852,
-          3088,
-          5958,
-          3789,
-          1594,
-          1879,
-          4548,
-          2376,
-          2346,
-          3675,
-          1589,
-          2185,
-          3881,
-          1251,
-          1403,
-          2196,
-          873,
-          1201,
-          1847,
-          1107,
-          1432,
-          3400,
-          741,
-          1705,
-          2002,
-          1281,
-          2212,
-          9197,
-          3102,
-          5074,
-          7731
+        "key": "lidar",
+        "title": "LiDAR",
+        "cn": "激光雷达",
+        "base": "all registrations",
+        "confidence": "better-sourced",
+        "blurb": "LiDAR fitment (standard-config estimate) and its supplier.",
+        "base_total": 8056054,
+        "classified": 15685,
+        "coverage_pct": 0.2,
+        "labels": [
+          "Sep 2023",
+          "Oct 2023",
+          "Nov 2023",
+          "Dec 2023",
+          "Jan 2024",
+          "Feb 2024",
+          "Mar 2024",
+          "Apr 2024",
+          "May 2024",
+          "Jun 2024",
+          "Jul 2024",
+          "Aug 2024",
+          "Sep 2024",
+          "Oct 2024",
+          "Nov 2024",
+          "Dec 2024",
+          "Jan 2025",
+          "Feb 2025",
+          "Mar 2025",
+          "Apr 2025",
+          "May 2025",
+          "Jun 2025",
+          "Jul 2025",
+          "Aug 2025",
+          "Sep 2025",
+          "Oct 2025",
+          "Nov 2025",
+          "Dec 2025",
+          "Jan 2026",
+          "Feb 2026",
+          "Mar 2026",
+          "Apr 2026",
+          "May 2026",
+          "Jun 2026"
         ],
         "share": [
-          1.81,
-          1.49,
-          1.95,
-          1.6,
-          1.45,
-          2.75,
-          1.44,
-          0.66,
-          0.8,
-          1.53,
-          1.0,
-          1.2,
-          1.77,
-          0.69,
-          0.9,
-          1.73,
-          0.61,
-          0.69,
-          0.87,
-          0.36,
-          0.5,
-          0.72,
-          0.42,
-          0.7,
-          1.45,
-          0.3,
-          0.68,
-          0.82,
-          0.66,
-          1.05,
-          3.14,
-          1.25,
-          2.13,
-          2.62
-        ]
-      },
-      {
-        "name": "NXP",
-        "counts": [
-          307,
-          388,
-          369,
-          342,
-          406,
-          305,
-          319,
-          329,
-          187,
-          223,
-          225,
-          136,
-          211,
-          231,
-          332,
-          358,
-          310,
-          188,
-          357,
-          466,
-          297,
-          318,
-          497,
-          330,
-          279,
-          193,
-          193,
-          365,
-          416,
-          359,
-          572,
-          438,
-          340,
-          453
+          {
+            "brand": "No LiDAR",
+            "total": 7394166,
+            "share_all": 91.78,
+            "share_classified": null,
+            "is_supplier": false,
+            "top_models": [
+              {
+                "brand": "VW",
+                "model": "GOLF",
+                "total": 259826
+              },
+              {
+                "brand": "VW",
+                "model": "T-ROC",
+                "total": 205791
+              },
+              {
+                "brand": "VW",
+                "model": "TIGUAN",
+                "total": 180778
+              },
+              {
+                "brand": "OPEL",
+                "model": "CORSA",
+                "total": 135089
+              },
+              {
+                "brand": "SKODA",
+                "model": "OCTAVIA",
+                "total": 132220
+              },
+              {
+                "brand": "VW",
+                "model": "PASSAT",
+                "total": 128189
+              }
+            ]
+          },
+          {
+            "brand": "Unclassified",
+            "total": 646203,
+            "share_all": 8.02,
+            "share_classified": null,
+            "is_supplier": false,
+            "top_models": [
+              {
+                "brand": "PORSCHE",
+                "model": "TAYCAN",
+                "total": 9508
+              },
+              {
+                "brand": "FORD",
+                "model": "TRANSIT COURIER",
+                "total": 9499
+              },
+              {
+                "brand": "CITROEN",
+                "model": "JUMPY",
+                "total": 9495
+              },
+              {
+                "brand": "BMW",
+                "model": "X4",
+                "total": 9275
+              },
+              {
+                "brand": "RENAULT",
+                "model": "ARKANA",
+                "total": 9172
+              },
+              {
+                "brand": "TOYOTA",
+                "model": "BZ4",
+                "total": 9046
+              }
+            ]
+          },
+          {
+            "brand": "Valeo",
+            "total": 12992,
+            "share_all": 0.16,
+            "share_classified": 82.83,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "MERCEDES",
+                "model": "S-KLASSE",
+                "total": 12992
+              }
+            ]
+          },
+          {
+            "brand": "Luminar",
+            "total": 2693,
+            "share_all": 0.03,
+            "share_classified": 17.17,
+            "is_supplier": true,
+            "top_models": [
+              {
+                "brand": "VOLVO",
+                "model": "EX90",
+                "total": 2693
+              }
+            ]
+          }
         ],
-        "share": [
-          0.14,
-          0.18,
-          0.15,
-          0.14,
-          0.19,
-          0.14,
-          0.12,
-          0.14,
-          0.08,
-          0.08,
-          0.09,
-          0.07,
-          0.1,
-          0.1,
-          0.14,
-          0.16,
-          0.15,
-          0.09,
-          0.14,
-          0.19,
-          0.12,
-          0.12,
-          0.19,
-          0.16,
-          0.12,
-          0.08,
-          0.08,
-          0.15,
-          0.22,
-          0.17,
-          0.2,
-          0.18,
-          0.14,
-          0.15
-        ]
-      },
-      {
-        "name": "MediaTek",
-        "counts": [
-          3932,
-          5646,
-          5407,
-          5968,
-          6630,
-          5851,
-          6075,
-          5654,
-          5054,
-          8722,
-          6022,
-          4463,
-          4017,
-          5498,
-          5711,
-          7245,
-          5721,
-          4813,
-          6910,
-          5115,
-          5125,
-          7739,
-          7222,
-          5197,
-          5700,
-          5874,
-          6246,
-          7936,
-          3141,
-          4076,
-          6548,
-          5408,
-          5797,
-          9451
-        ],
-        "share": [
-          1.76,
-          2.59,
-          2.21,
-          2.48,
-          3.12,
-          2.7,
-          2.31,
-          2.34,
-          2.15,
-          2.94,
-          2.54,
-          2.27,
-          1.93,
-          2.38,
-          2.35,
-          3.24,
-          2.77,
-          2.38,
-          2.74,
-          2.12,
-          2.15,
-          3.03,
-          2.74,
-          2.53,
-          2.43,
-          2.36,
-          2.5,
-          3.23,
-          1.63,
-          1.94,
-          2.24,
-          2.18,
-          2.43,
-          3.2
-        ]
-      },
-      {
-        "name": "Undisclosed",
-        "counts": [
-          45834,
-          40822,
-          42237,
-          40601,
-          43113,
-          42651,
-          55066,
-          43856,
-          43306,
-          55816,
-          45314,
-          39102,
-          37197,
-          42652,
-          40908,
-          35323,
-          32314,
-          33576,
-          42782,
-          45456,
-          41641,
-          46686,
-          47649,
-          38049,
-          41394,
-          40940,
-          39715,
-          36761,
-          33046,
-          39008,
-          47663,
-          40604,
-          37972,
-          45103
-        ],
-        "share": [
-          20.51,
-          18.72,
-          17.27,
-          16.84,
-          20.27,
-          19.71,
-          20.95,
-          18.12,
-          18.39,
-          18.84,
-          19.11,
-          19.92,
-          17.88,
-          18.45,
-          16.8,
-          15.78,
-          15.64,
-          16.6,
-          16.95,
-          18.8,
-          17.47,
-          18.29,
-          18.07,
-          18.49,
-          17.65,
-          16.42,
-          15.91,
-          14.98,
-          17.11,
-          18.52,
-          16.27,
-          16.37,
-          15.93,
-          15.28
-        ]
-      },
-      {
-        "name": "None",
-        "counts": [
-          8885,
-          7577,
-          8735,
-          8153,
-          7172,
-          7914,
-          10686,
-          8120,
-          7591,
-          9032,
-          8020,
-          7660,
-          7073,
-          7304,
-          8201,
-          7869,
-          6236,
-          7133,
-          7713,
-          7140,
-          7578,
-          8568,
-          7377,
-          5617,
-          7640,
-          7024,
-          7056,
-          7044,
-          4349,
-          5404,
-          7723,
-          4969,
-          4212,
-          5513
-        ],
-        "share": [
-          3.98,
-          3.48,
-          3.57,
-          3.38,
-          3.37,
-          3.66,
-          4.07,
-          3.36,
-          3.22,
-          3.05,
-          3.38,
-          3.9,
-          3.4,
-          3.16,
-          3.37,
-          3.52,
-          3.02,
-          3.53,
-          3.06,
-          2.95,
-          3.18,
-          3.36,
-          2.8,
-          2.73,
-          3.26,
-          2.82,
-          2.83,
-          2.87,
-          2.25,
-          2.57,
-          2.64,
-          2.0,
-          1.77,
-          1.87
-        ]
-      },
-      {
-        "name": "Unclassified",
-        "counts": [
-          21383,
-          22712,
-          21466,
-          23653,
-          16645,
-          16262,
-          22669,
-          20570,
-          20498,
-          24861,
-          17289,
-          13813,
-          14997,
-          16407,
-          17712,
-          18913,
-          14889,
-          14823,
-          17780,
-          16561,
-          16581,
-          20008,
-          18172,
-          14750,
-          15953,
-          16678,
-          16929,
-          17940,
-          15921,
-          17237,
-          23954,
-          24816,
-          23878,
-          29483
-        ],
-        "share": [
-          9.57,
-          10.42,
-          8.78,
-          9.81,
-          7.83,
-          7.52,
-          8.63,
-          8.5,
-          8.7,
-          8.39,
-          7.29,
-          7.04,
-          7.21,
-          7.1,
-          7.28,
-          8.45,
-          7.21,
-          7.33,
-          7.04,
-          6.85,
-          6.95,
-          7.84,
-          6.89,
-          7.17,
-          6.8,
-          6.69,
-          6.78,
-          7.31,
-          8.24,
-          8.18,
-          8.18,
-          10.0,
-          10.02,
-          9.99
-        ]
-      }
-    ],
-    "dc_adoption": {
-      "labels": [
-        "Sep 2023",
-        "Oct 2023",
-        "Nov 2023",
-        "Dec 2023",
-        "Jan 2024",
-        "Feb 2024",
-        "Mar 2024",
-        "Apr 2024",
-        "May 2024",
-        "Jun 2024",
-        "Jul 2024",
-        "Aug 2024",
-        "Sep 2024",
-        "Oct 2024",
-        "Nov 2024",
-        "Dec 2024",
-        "Jan 2025",
-        "Feb 2025",
-        "Mar 2025",
-        "Apr 2025",
-        "May 2025",
-        "Jun 2025",
-        "Jul 2025",
-        "Aug 2025",
-        "Sep 2025",
-        "Oct 2025",
-        "Nov 2025",
-        "Dec 2025",
-        "Jan 2026",
-        "Feb 2026",
-        "Mar 2026",
-        "Apr 2026",
-        "May 2026",
-        "Jun 2026"
-      ],
-      "pct": [
-        62.1,
-        63.18,
-        66.01,
-        64.72,
-        65.73,
-        65.5,
-        61.95,
-        65.46,
-        66.54,
-        64.57,
-        65.3,
-        65.1,
-        67.02,
-        66.49,
-        68.0,
-        65.73,
-        68.3,
-        67.74,
-        66.98,
-        67.35,
-        68.04,
-        65.25,
-        67.72,
-        66.42,
-        66.93,
-        69.98,
-        69.82,
-        66.59,
-        68.83,
-        66.63,
-        67.61,
-        66.72,
-        67.33,
-        66.77
-      ],
-      "window": {
-        "yes": 5350682,
-        "partial": 1153728,
-        "no": 905441,
-        "Unclassified": 646203
-      }
-    },
-    "lidar": {
-      "labels": [
-        "Sep 2023",
-        "Oct 2023",
-        "Nov 2023",
-        "Dec 2023",
-        "Jan 2024",
-        "Feb 2024",
-        "Mar 2024",
-        "Apr 2024",
-        "May 2024",
-        "Jun 2024",
-        "Jul 2024",
-        "Aug 2024",
-        "Sep 2024",
-        "Oct 2024",
-        "Nov 2024",
-        "Dec 2024",
-        "Jan 2025",
-        "Feb 2025",
-        "Mar 2025",
-        "Apr 2025",
-        "May 2025",
-        "Jun 2025",
-        "Jul 2025",
-        "Aug 2025",
-        "Sep 2025",
-        "Oct 2025",
-        "Nov 2025",
-        "Dec 2025",
-        "Jan 2026",
-        "Feb 2026",
-        "Mar 2026",
-        "Apr 2026",
-        "May 2026",
-        "Jun 2026"
-      ],
-      "pct": [
-        0.25,
-        0.228,
-        0.219,
-        0.173,
-        0.228,
-        0.237,
-        0.18,
-        0.231,
-        0.249,
-        0.175,
-        0.238,
-        0.206,
-        0.142,
-        0.202,
-        0.166,
-        0.182,
-        0.255,
-        0.218,
-        0.175,
-        0.209,
-        0.193,
-        0.215,
-        0.163,
-        0.243,
-        0.171,
-        0.135,
-        0.152,
-        0.15,
-        0.21,
-        0.142,
-        0.127,
-        0.205,
-        0.16,
-        0.235
-      ],
-      "window": {
-        "yes": 0,
-        "optional": 15685,
-        "no": 7394166,
-        "Unclassified": 646203
-      }
-    },
-    "top_models": [
-      {
-        "brand": "VW",
-        "model": "GOLF",
-        "total": 259826,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "VW",
-        "model": "T-ROC",
-        "total": 205791,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "VW",
-        "model": "TIGUAN",
-        "total": 180778,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "OPEL",
-        "model": "CORSA",
-        "total": 135089,
-        "domain_controller": "partial",
-        "soc_brand": "Undisclosed",
-        "soc_family": "",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "SKODA",
-        "model": "OCTAVIA",
-        "total": 132220,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "VW",
-        "model": "PASSAT",
-        "total": 128189,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "BMW",
-        "model": "X1",
-        "total": 122377,
-        "domain_controller": "yes",
-        "soc_brand": "Qualcomm",
-        "soc_family": "Snapdragon Cockpit",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "OPEL",
-        "model": "ASTRA",
-        "total": 106560,
-        "domain_controller": "yes",
-        "soc_brand": "Undisclosed",
-        "soc_family": "",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "MERCEDES",
-        "model": "GLK, GLC",
-        "total": 103882,
-        "domain_controller": "yes",
-        "soc_brand": "NVIDIA",
-        "soc_family": "Tegra/Orin",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "MINI",
-        "model": "MINI",
-        "total": 103395,
-        "domain_controller": "yes",
-        "soc_brand": "Qualcomm",
-        "soc_family": "Snapdragon Cockpit",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "SEAT",
-        "model": "LEON",
-        "total": 102141,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "VW",
-        "model": "TRANSPORTER",
-        "total": 96138,
-        "domain_controller": "no",
-        "soc_brand": "Undisclosed",
-        "soc_family": "",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "VW",
-        "model": "POLO",
-        "total": 95912,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "AUDI",
-        "model": "A6",
-        "total": 93793,
-        "domain_controller": "yes",
-        "soc_brand": "Samsung",
-        "soc_family": "Exynos Auto 8890",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "BMW",
-        "model": "3ER",
-        "total": 92321,
-        "domain_controller": "yes",
-        "soc_brand": "Qualcomm",
-        "soc_family": "Snapdragon Cockpit",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "AUDI",
-        "model": "A3",
-        "total": 90710,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "MERCEDES",
-        "model": "E-KLASSE",
-        "total": 89897,
-        "domain_controller": "yes",
-        "soc_brand": "NVIDIA",
-        "soc_family": "Tegra/Orin",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "VW",
-        "model": "T-CROSS",
-        "total": 86595,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "BMW",
-        "model": "5ER",
-        "total": 86302,
-        "domain_controller": "yes",
-        "soc_brand": "Qualcomm",
-        "soc_family": "Snapdragon Cockpit",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "BMW",
-        "model": "X3",
-        "total": 84923,
-        "domain_controller": "yes",
-        "soc_brand": "Qualcomm",
-        "soc_family": "Snapdragon Cockpit",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "FIAT",
-        "model": "DUCATO",
-        "total": 81661,
-        "domain_controller": "no",
-        "soc_brand": "Undisclosed",
-        "soc_family": "",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "TOYOTA",
-        "model": "YARIS",
-        "total": 81436,
-        "domain_controller": "partial",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "SKODA",
-        "model": "KAROQ",
-        "total": 80562,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "SKODA",
-        "model": "ENYAQ",
-        "total": 77620,
-        "domain_controller": "yes",
-        "soc_brand": "Samsung",
-        "soc_family": "Exynos Auto V7",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "DACIA",
-        "model": "SANDERO",
-        "total": 76748,
-        "domain_controller": "no",
-        "soc_brand": "MediaTek",
-        "soc_family": "",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "SKODA",
-        "model": "KODIAQ",
-        "total": 76589,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "VW",
-        "model": "ID.3",
-        "total": 75266,
-        "domain_controller": "yes",
-        "soc_brand": "Samsung",
-        "soc_family": "Exynos Auto V7",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "SEAT",
-        "model": "FORMENTOR",
-        "total": 75021,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "MERCEDES",
-        "model": "C-KLASSE",
-        "total": 74657,
-        "domain_controller": "yes",
-        "soc_brand": "NVIDIA",
-        "soc_family": "Tegra/Orin",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "TESLA",
-        "model": "MODEL Y",
-        "total": 73031,
-        "domain_controller": "yes",
-        "soc_brand": "AMD",
-        "soc_family": "Ryzen",
-        "lidar": "no",
-        "confidence": "high"
-      },
-      {
-        "brand": "SKODA",
-        "model": "FABIA",
-        "total": 71711,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "MERCEDES",
-        "model": "GLA",
-        "total": 67497,
-        "domain_controller": "yes",
-        "soc_brand": "NVIDIA",
-        "soc_family": "Parker",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "VW",
-        "model": "ID.4, ID.5",
-        "total": 66785,
-        "domain_controller": "yes",
-        "soc_brand": "Samsung",
-        "soc_family": "Exynos Auto V7",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "BMW",
-        "model": "4ER",
-        "total": 66548,
-        "domain_controller": "yes",
-        "soc_brand": "Qualcomm",
-        "soc_family": "Snapdragon Cockpit",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "BMW",
-        "model": "1ER",
-        "total": 65025,
-        "domain_controller": "yes",
-        "soc_brand": "Qualcomm",
-        "soc_family": "Snapdragon Cockpit",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "HYUNDAI",
-        "model": "TUCSON",
-        "total": 65024,
-        "domain_controller": "yes",
-        "soc_brand": "Qualcomm",
-        "soc_family": "Snapdragon 8155",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "VW",
-        "model": "ID.7",
-        "total": 64842,
-        "domain_controller": "yes",
-        "soc_brand": "Samsung",
-        "soc_family": "Exynos Auto V7",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "VW",
-        "model": "TAIGO",
-        "total": 64514,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "VOLVO",
-        "model": "XC60",
-        "total": 63443,
-        "domain_controller": "yes",
-        "soc_brand": "Qualcomm",
-        "soc_family": "Snapdragon Cockpit",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "OPEL",
-        "model": "MOKKA",
-        "total": 62043,
-        "domain_controller": "partial",
-        "soc_brand": "Undisclosed",
-        "soc_family": "",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "SKODA",
-        "model": "KAMIQ",
-        "total": 61612,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "MERCEDES",
-        "model": "CLA-KLASSE",
-        "total": 60165,
-        "domain_controller": "yes",
-        "soc_brand": "Qualcomm",
-        "soc_family": "Snapdragon Cockpit",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "AUDI",
-        "model": "A5",
-        "total": 60077,
-        "domain_controller": "yes",
-        "soc_brand": "Samsung",
-        "soc_family": "Exynos Auto 8890",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "FIAT",
-        "model": "500",
-        "total": 56796,
-        "domain_controller": "partial",
-        "soc_brand": "Undisclosed",
-        "soc_family": "",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "MERCEDES",
-        "model": "V-KLASSE",
-        "total": 56260,
-        "domain_controller": "yes",
-        "soc_brand": "NVIDIA",
-        "soc_family": "Parker",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "OPEL",
-        "model": "GRANDLAND X",
-        "total": 56218,
-        "domain_controller": "yes",
-        "soc_brand": "Undisclosed",
-        "soc_family": "",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "BMW",
-        "model": "2ER",
-        "total": 55815,
-        "domain_controller": "yes",
-        "soc_brand": "Qualcomm",
-        "soc_family": "Snapdragon Cockpit",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "AUDI",
-        "model": "Q3",
-        "total": 55756,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "SEAT",
-        "model": "ATECA",
-        "total": 54076,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "VW",
-        "model": "CADDY",
-        "total": 53205,
-        "domain_controller": "partial",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "FORD",
-        "model": "KUGA",
-        "total": 52876,
-        "domain_controller": "partial",
-        "soc_brand": "Undisclosed",
-        "soc_family": "",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "AUDI",
-        "model": "Q5",
-        "total": 52498,
-        "domain_controller": "yes",
-        "soc_brand": "Samsung",
-        "soc_family": "Exynos Auto 8890",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "SEAT",
-        "model": "IBIZA",
-        "total": 51698,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "FORD",
-        "model": "PUMA",
-        "total": 50802,
-        "domain_controller": "partial",
-        "soc_brand": "Undisclosed",
-        "soc_family": "",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "SEAT",
-        "model": "BORN",
-        "total": 50431,
-        "domain_controller": "yes",
-        "soc_brand": "Samsung",
-        "soc_family": "Exynos Auto V7",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "SKODA",
-        "model": "SUPERB",
-        "total": 49630,
-        "domain_controller": "yes",
-        "soc_brand": "Renesas",
-        "soc_family": "R-Car M3",
-        "lidar": "no",
-        "confidence": "medium"
-      },
-      {
-        "brand": "KIA",
-        "model": "CEED",
-        "total": 49215,
-        "domain_controller": "partial",
-        "soc_brand": "Undisclosed",
-        "soc_family": "",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "CITROEN",
-        "model": "C3",
-        "total": 49187,
-        "domain_controller": "no",
-        "soc_brand": "Undisclosed",
-        "soc_family": "",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "TOYOTA",
-        "model": "AYGO",
-        "total": 48917,
-        "domain_controller": "no",
-        "soc_brand": "None",
-        "soc_family": "",
-        "lidar": "no",
-        "confidence": "low"
-      },
-      {
-        "brand": "MERCEDES",
-        "model": "A-KLASSE",
-        "total": 48284,
-        "domain_controller": "yes",
-        "soc_brand": "NVIDIA",
-        "soc_family": "Parker",
-        "lidar": "no",
-        "confidence": "medium"
+        "series": [],
+        "penetration": {
+          "labels": [
+            "Sep 2023",
+            "Oct 2023",
+            "Nov 2023",
+            "Dec 2023",
+            "Jan 2024",
+            "Feb 2024",
+            "Mar 2024",
+            "Apr 2024",
+            "May 2024",
+            "Jun 2024",
+            "Jul 2024",
+            "Aug 2024",
+            "Sep 2024",
+            "Oct 2024",
+            "Nov 2024",
+            "Dec 2024",
+            "Jan 2025",
+            "Feb 2025",
+            "Mar 2025",
+            "Apr 2025",
+            "May 2025",
+            "Jun 2025",
+            "Jul 2025",
+            "Aug 2025",
+            "Sep 2025",
+            "Oct 2025",
+            "Nov 2025",
+            "Dec 2025",
+            "Jan 2026",
+            "Feb 2026",
+            "Mar 2026",
+            "Apr 2026",
+            "May 2026",
+            "Jun 2026"
+          ],
+          "pct": [
+            0.25,
+            0.228,
+            0.219,
+            0.173,
+            0.228,
+            0.237,
+            0.18,
+            0.231,
+            0.249,
+            0.175,
+            0.238,
+            0.206,
+            0.142,
+            0.202,
+            0.166,
+            0.182,
+            0.255,
+            0.218,
+            0.175,
+            0.209,
+            0.193,
+            0.215,
+            0.163,
+            0.243,
+            0.171,
+            0.135,
+            0.152,
+            0.15,
+            0.21,
+            0.142,
+            0.127,
+            0.205,
+            0.16,
+            0.235
+          ]
+        }
       }
     ]
   }
@@ -12549,34 +13131,6 @@
       "SUVs + Geländewagen → SUV; Mini-/Großraum-Vans → MPV &amp; van; Sportwagen → sports).";
     if (!lineChart(document.getElementById("segmentChart"), document.getElementById("segmentTip"), legend, st))
       document.getElementById("segmentCard").style.display = "none";
-  })();
-
-  // ---- cockpit SoC supplier teaser ----
-  (function () {
-    var S = DATA.suppliers;
-    var card = document.getElementById("supplierCard");
-    if (!S || !S.soc_share) { if (card) card.style.display = "none"; return; }
-    var SOC_COLORS = {
-      "Qualcomm": "#2a78d6", "Samsung": "#4a3aa7", "NVIDIA": "#1baf7a",
-      "Renesas": "#eb6834", "AMD": "#e34948", "NXP": "#eda100",
-      "MediaTek": "#e87ba4", "Undisclosed": "#8f8d86", "None": "#c3c2b7"
-    };
-    var rows = S.soc_share.filter(function (r) { return r.brand !== "Unclassified"; }).slice(0, 6);
-    var top = rows[0];
-    document.getElementById("supplierNote").innerHTML =
-      "Registration-weighted cockpit-SoC (“车机”) supplier share — <b>" + top.brand +
-      "</b> leads with " + (top.share_classified || 0).toFixed(0) + "% of classified registrations (" +
-      Math.round(S.coverage_pct) + "% of the market classified).";
-    var max = Math.max.apply(null, rows.map(function (r) { return r.share_classified || 0; }));
-    document.getElementById("supplierBars").innerHTML = rows.map(function (r) {
-      var c = SOC_COLORS[r.brand] || "#8f8d86";
-      var w = max ? (100 * (r.share_classified || 0) / max) : 0;
-      return '<div class="bar-row"><div class="bar-name"><span class="swatch" style="background:' + c + '"></span>' +
-        r.brand + '</div><div class="bar-track" style="background:var(--grid);border-radius:4px;overflow:hidden">' +
-        '<div class="bar-fill" style="width:' + w + '%;background:' + c + '"></div>' +
-        '<span class="bar-val" style="position:absolute;top:50%;transform:translateY(-50%);right:8px;font-size:11.5px;color:var(--ink-2)">' +
-        (r.share_classified || 0).toFixed(1) + '%</span></div></div>';
-    }).join("");
   })();
 
   // ---- data table ----
