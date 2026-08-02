@@ -13,6 +13,9 @@ Countries currently covered:
   Wegverkeer) open data, the national vehicle register, via its Socrata API
   (dataset `m9d7-ebf2`). New registrations are proxied by *first admission this
   month* of a passenger car.
+- **🇫🇮 Finland** — [Traficom](https://tieto.traficom.fi/en) / Statistics
+  Finland *first registrations of passenger cars* by make, via the Traficom
+  PxWeb open-data API (no key required).
 
 The site aggregates any selected subset of countries — a **🌍 country picker**
 in the top-right (multi-select, defaults to all, saved in a cookie) drives an
@@ -39,6 +42,7 @@ Three small, dependency-light scripts, each runnable on its own:
 | `scripts/download_germany.py` | Fetch the monthly FZ 10.1 workbooks from KBA into `data/Germany/`. |
 | `scripts/parse_germany.py`    | Parse every workbook into a tidy CSV + a compact JSON summary. |
 | `scripts/download_netherlands.py` | Fetch monthly new passenger-car counts by brand from the RDW Socrata API into `data/Netherlands/`. |
+| `scripts/download_finland.py` | Fetch monthly first-registration counts by make from the Traficom PxWeb API into `data/Finland/`. |
 | `scripts/parse_suppliers.py`  | Join `data/vehicle_specs.csv` to the counts and add a per-component supplier installation-rate (`suppliers.dimensions`) block to the JSON. |
 | `scripts/build_supplier_pages.py` | Generate one self-contained secondary page per component (`analysis-soc/adas/radar/power/lidar.html`) from a shared template. |
 | `scripts/build_countries.py`  | Assemble a uniform multi-country core (`docs/data/countries.json`) that powers the country picker + Europe overview. |
@@ -78,9 +82,10 @@ python scripts/parse_segments.py       # body-segment trends (FZ 11)
 python scripts/parse_suppliers.py      # per-component supplier installation rate
 python scripts/build_supplier_pages.py # generate the per-component secondary pages
 
-# 1b. Netherlands (RDW open data — no API key required)
-python scripts/download_netherlands.py # backfill (or --last N for trailing months)
-python scripts/build_countries.py      # assemble the multi-country core
+# 1b. Other countries (open data — no API key required)
+python scripts/download_netherlands.py # RDW (or --last N for trailing months)
+python scripts/download_finland.py      # Traficom / Statistics Finland
+python scripts/build_countries.py       # assemble the multi-country core
 
 # 3. Rebuild the static pages
 python scripts/build_site.py

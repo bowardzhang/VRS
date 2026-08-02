@@ -25,6 +25,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 GERMANY_CSV = REPO_ROOT / "data" / "Germany" / "processed" / "germany_registrations.csv"
 GERMANY_JSON = REPO_ROOT / "docs" / "data" / "germany.json"
 NL_CSV = REPO_ROOT / "data" / "Netherlands" / "rdw_monthly_brands.csv"
+FI_CSV = REPO_ROOT / "data" / "Finland" / "traficom_monthly_brands.csv"
 OUT = REPO_ROOT / "docs" / "data" / "countries.json"
 
 MONTH_ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -86,28 +87,33 @@ def germany_core() -> dict:
                  monthly_total, brand_month)
 
 
-def netherlands_core() -> dict | None:
-    if not NL_CSV.exists():
+def csv_core(csv_path, code, name, flag, source, source_url) -> dict | None:
+    """Core from a simple year,month,brand,count CSV (NL, FI, …)."""
+    if not csv_path.exists():
         return None
     monthly_total: dict[tuple[int, int], int] = defaultdict(int)
     brand_month: dict[tuple[int, int], dict[str, int]] = defaultdict(dict)
-    with NL_CSV.open(encoding="utf-8") as fh:
+    with csv_path.open(encoding="utf-8") as fh:
         for r in csv.DictReader(fh):
             key = (int(r["year"]), int(r["month"]))
             cnt = int(r["count"])
+            b = r["brand"].strip()
             monthly_total[key] += cnt
-            brand_month[key][r["brand"].strip()] = brand_month[key].get(r["brand"].strip(), 0) + cnt
-    return _core("NL", "Netherlands", "🇳🇱",
-                 "RDW open data (Socrata dataset m9d7-ebf2)",
-                 "https://opendata.rdw.nl/",
-                 dict(monthly_total), brand_month)
+            brand_month[key][b] = brand_month[key].get(b, 0) + cnt
+    return _core(code, name, flag, source, source_url, dict(monthly_total), brand_month)
 
 
 def main() -> int:
     countries = [germany_core()]
-    nl = netherlands_core()
-    if nl:
-        countries.append(nl)
+    for core in (
+        csv_core(NL_CSV, "NL", "Netherlands", "🇳🇱",
+                 "RDW open data (Socrata dataset m9d7-ebf2)", "https://opendata.rdw.nl/"),
+        csv_core(FI_CSV, "FI", "Finland", "🇫🇮",
+                 "Traficom / Statistics Finland (PxWeb open data)",
+                 "https://trafi2.stat.fi/PXWeb/pxweb/en/TraFi/"),
+    ):
+        if core:
+            countries.append(core)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(countries, ensure_ascii=False, indent=2), encoding="utf-8")
     summary = ", ".join(f"{c['code']}({len(c['months'])}mo, {c['total']:,})" for c in countries)

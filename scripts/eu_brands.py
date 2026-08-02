@@ -27,6 +27,11 @@ ALIASES: dict[str, str] = {
     "ROLLS-ROYCE": "ROLLS ROYCE",
     "ASTON-MARTIN": "ASTON MARTIN",
     "GREAT WALL": "GWM",
+    # Traficom (Finland) spellings
+    "TESLA MOTORS": "TESLA",
+    "BMW I": "BMW",
+    "KG MOBILITY": "KGM",
+    "OTHERS": "OTHER", "MUU": "OTHER", "MUUT": "OTHER", "OVRIGA": "OTHER",
 }
 
 BRAND_ORIGIN: dict[str, str] = {
@@ -65,6 +70,8 @@ BRAND_ORIGIN: dict[str, str] = {
     "ZEEKR": "China", "MAXUS": "China", "OMODA": "China", "DEEPAL": "China",
     "CHERY": "China", "AIWAYS": "China", "DONGFENG": "China", "HONGQI": "China",
     "SERES": "China", "WEY": "China", "ORA": "China", "DFSK": "China",
+    "GAC": "China", "VOYAH": "China", "SKYWELL": "China", "JAC": "China",
+    "SKYWORTH": "China", "FORTHING": "China", "BAIC": "China",
 }
 
 
