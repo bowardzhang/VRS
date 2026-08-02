@@ -1,4 +1,4 @@
-brand,model,platform,domain_controller,soc_brand,soc_family,lidar,lidar_brand,confidence,notes
+brand,model,platform,domain_controller,soc_brand,soc_family,lidar,lidar_brand,confidence,notes,adas_soc,power_semi,radar_tier1
 # Estimated cockpit (in-vehicle infotainment / "车机") and LiDAR supplier configuration
 # per model, keyed by the KBA FZ 10.1 brand/model strings used in
 # data/Germany/processed/germany_registrations.csv.
@@ -16,193 +16,203 @@ brand,model,platform,domain_controller,soc_brand,soc_family,lidar,lidar_brand,co
 #   soc_brand         : Qualcomm | Samsung | Renesas | NVIDIA | AMD | NXP |
 #                        MediaTek | Undisclosed | None
 #   lidar             : no | optional | yes  (STANDARD-config estimate)
-#   confidence        : high | medium | low
+#   confidence        : high | medium | low   (applies to the cockpit-SoC mapping)
+#   adas_soc          : front-camera / ADAS-perception SoC vendor
+#                        (Mobileye | NVIDIA | Tesla | Denso | Undisclosed | None)
+#   power_semi        : EV traction-inverter power-module vendor — relevant only
+#                        for electrified models; the parser weights it by BEV
+#                        registrations (Infineon | STMicro | BYD Semi | onsemi | …)
+#   radar_tier1       : front-radar Tier-1 vendor (Continental | Bosch | Denso |
+#                        Valeo | HL Klemove | Veoneer/Magna | None [vision-only])
+# NOTE: adas_soc / power_semi / radar_tier1 are LOWER-confidence, OEM/platform-
+#   relationship estimates (silicon here is rarely disclosed per model) — treat
+#   them as directional. The cockpit soc_brand / lidar columns are better-sourced.
 # Rows beginning with '#' and blank lines are ignored by the parser.
 #
 # ---- Volkswagen (MQB ICE -> Renesas MIB3 ; MEB BEV -> Samsung Exynos Auto) ----
-VW,GOLF,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,MQB ICE infotainment
-VW,T-ROC,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
-VW,TIGUAN,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
-VW,PASSAT,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,new 2024 gen may use newer SoC
-VW,POLO,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
-VW,T-CROSS,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
-VW,TAIGO,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
-VW,TAYRON,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,
-VW,TOURAN,MQB (MIB3),partial,Renesas,R-Car M3,no,,low,older platform
-VW,CADDY,MQB (MIB3),partial,Renesas,R-Car M3,no,,low,
-VW,TOUAREG,MLB (MIB3),yes,Samsung,Exynos Auto 8890,no,,low,premium MLB infotainment
-VW,TRANSPORTER,commercial,no,Undisclosed,,no,,low,commercial van head unit
-VW,ID.3,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,EU MEB; early cars Qualcomm 820A
-VW,"ID.4, ID.5",MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,EU MEB; early cars Qualcomm 820A
-VW,ID.7,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,
-VW,ID. BUZZ,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,
+VW,GOLF,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,MQB ICE infotainment,Mobileye,Infineon,Continental
+VW,T-ROC,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+VW,TIGUAN,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+VW,PASSAT,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,new 2024 gen may use newer SoC,Mobileye,Infineon,Continental
+VW,POLO,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+VW,T-CROSS,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+VW,TAIGO,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+VW,TAYRON,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,,Mobileye,Infineon,Continental
+VW,TOURAN,MQB (MIB3),partial,Renesas,R-Car M3,no,,low,older platform,Mobileye,Infineon,Continental
+VW,CADDY,MQB (MIB3),partial,Renesas,R-Car M3,no,,low,,Mobileye,Infineon,Continental
+VW,TOUAREG,MLB (MIB3),yes,Samsung,Exynos Auto 8890,no,,low,premium MLB infotainment,Mobileye,Infineon,Continental
+VW,TRANSPORTER,commercial,no,Undisclosed,,no,,low,commercial van head unit,Mobileye,Infineon,Continental
+VW,ID.3,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,EU MEB; early cars Qualcomm 820A,Mobileye,Infineon,Continental
+VW,"ID.4, ID.5",MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,EU MEB; early cars Qualcomm 820A,Mobileye,Infineon,Continental
+VW,ID.7,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,,Mobileye,Infineon,Continental
+VW,ID. BUZZ,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,,Mobileye,Infineon,Continental
 # ---- Skoda (VW MQB / MEB) ----
-SKODA,OCTAVIA,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
-SKODA,KAROQ,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
-SKODA,KODIAQ,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
-SKODA,FABIA,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
-SKODA,KAMIQ,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
-SKODA,SCALA,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
-SKODA,SUPERB,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
-SKODA,ENYAQ,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,
-SKODA,ELROQ,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,
+SKODA,OCTAVIA,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+SKODA,KAROQ,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+SKODA,KODIAQ,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+SKODA,FABIA,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+SKODA,KAMIQ,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+SKODA,SCALA,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+SKODA,SUPERB,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+SKODA,ENYAQ,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,,Mobileye,Infineon,Continental
+SKODA,ELROQ,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,,Mobileye,Infineon,Continental
 # ---- Seat / Cupra (VW MQB / MEB) ----
-SEAT,LEON,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
-SEAT,ATECA,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
-SEAT,IBIZA,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
-SEAT,ARONA,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,
-SEAT,FORMENTOR,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,Cupra
-SEAT,TERRAMAR,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,Cupra
-SEAT,BORN,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,Cupra
-SEAT,TAVASCAN,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,Cupra
+SEAT,LEON,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+SEAT,ATECA,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+SEAT,IBIZA,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+SEAT,ARONA,MQB A0 (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+SEAT,FORMENTOR,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,Cupra,Mobileye,Infineon,Continental
+SEAT,TERRAMAR,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,Cupra,Mobileye,Infineon,Continental
+SEAT,BORN,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,Cupra,Mobileye,Infineon,Continental
+SEAT,TAVASCAN,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,Cupra,Mobileye,Infineon,Continental
 # ---- Audi (small MQB -> Renesas ; larger MIB3/PPE -> Samsung Exynos) ----
-AUDI,A1,MQB A0 (MIB3),partial,Renesas,R-Car M3,no,,low,
-AUDI,A3,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
-AUDI,Q2,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,
-AUDI,Q3,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,
-AUDI,A4,MLB/MIB3,yes,Samsung,Exynos Auto 8890,no,,medium,Samsung named new A4
-AUDI,A5,PPC/MIB3,yes,Samsung,Exynos Auto 8890,no,,low,replaces A4
-AUDI,A6,MLB/PPE,yes,Samsung,Exynos Auto 8890,no,,medium,
-AUDI,Q5,MLB (MIB3),yes,Samsung,Exynos Auto 8890,no,,low,
-AUDI,Q7,MLB (MIB3),yes,Samsung,Exynos Auto 8890,no,,low,
-AUDI,Q8,MLB (MIB3),yes,Samsung,Exynos Auto 8890,no,,low,
-AUDI,Q4,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,
-AUDI,Q6,PPE (E3 1.2),yes,Samsung,Exynos Auto,no,,low,Q6 e-tron
+AUDI,A1,MQB A0 (MIB3),partial,Renesas,R-Car M3,no,,low,,Mobileye,Infineon,Continental
+AUDI,A3,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+AUDI,Q2,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,,Mobileye,Infineon,Continental
+AUDI,Q3,MQB (MIB3),yes,Renesas,R-Car M3,no,,medium,,Mobileye,Infineon,Continental
+AUDI,A4,MLB/MIB3,yes,Samsung,Exynos Auto 8890,no,,medium,Samsung named new A4,Mobileye,Infineon,Continental
+AUDI,A5,PPC/MIB3,yes,Samsung,Exynos Auto 8890,no,,low,replaces A4,Mobileye,Infineon,Continental
+AUDI,A6,MLB/PPE,yes,Samsung,Exynos Auto 8890,no,,medium,,Mobileye,Infineon,Continental
+AUDI,Q5,MLB (MIB3),yes,Samsung,Exynos Auto 8890,no,,low,,Mobileye,Infineon,Continental
+AUDI,Q7,MLB (MIB3),yes,Samsung,Exynos Auto 8890,no,,low,,Mobileye,Infineon,Continental
+AUDI,Q8,MLB (MIB3),yes,Samsung,Exynos Auto 8890,no,,low,,Mobileye,Infineon,Continental
+AUDI,Q4,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,,Mobileye,Infineon,Continental
+AUDI,Q6,PPE (E3 1.2),yes,Samsung,Exynos Auto,no,,low,Q6 e-tron,Mobileye,Infineon,Continental
 # ---- Porsche (VW group premium) ----
-PORSCHE,911,PCM,yes,Samsung,Exynos Auto,no,,low,
-PORSCHE,CAYENNE,MLB (PCM),yes,Samsung,Exynos Auto,no,,low,
-PORSCHE,MACAN,PPE (PCM),yes,Samsung,Exynos Auto,no,,low,Macan EV
+PORSCHE,911,PCM,yes,Samsung,Exynos Auto,no,,low,,Mobileye,Infineon,Continental
+PORSCHE,CAYENNE,MLB (PCM),yes,Samsung,Exynos Auto,no,,low,,Mobileye,Infineon,Continental
+PORSCHE,MACAN,PPE (PCM),yes,Samsung,Exynos Auto,no,,low,Macan EV,Mobileye,Infineon,Continental
 # ---- Mercedes-Benz (MBUX NTG6/NTG7 -> NVIDIA ; newest MB.OS -> Qualcomm) ----
-MERCEDES,"GLK, GLC",MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,medium,
-MERCEDES,E-KLASSE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,medium,W214
-MERCEDES,C-KLASSE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,medium,W206
-MERCEDES,A-KLASSE,MBUX (NTG6),yes,NVIDIA,Parker,no,,medium,
-MERCEDES,B-KLASSE,MBUX (NTG6),yes,NVIDIA,Parker,no,,medium,
-MERCEDES,GLA,MBUX (NTG6),yes,NVIDIA,Parker,no,,medium,
-MERCEDES,GLB,MBUX (NTG6),yes,NVIDIA,Parker,no,,medium,
-MERCEDES,CLA-KLASSE,MB.OS,yes,Qualcomm,Snapdragon Cockpit,no,,medium,new CLA 2025 switched to Qualcomm
-MERCEDES,CLE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,low,
-MERCEDES,"ML-KLASSE, GLE",MBUX (NTG6),yes,NVIDIA,Parker,no,,low,
-MERCEDES,G-KLASSE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,low,
-MERCEDES,S-KLASSE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,optional,Valeo,medium,Drive Pilot L3 offers Valeo LiDAR (optional)
-MERCEDES,V-KLASSE,MBUX,yes,NVIDIA,Parker,no,,low,
-MERCEDES,SPRINTER,commercial (MBUX),no,Undisclosed,,no,,low,commercial van
-MERCEDES,VITO,commercial,no,Undisclosed,,no,,low,commercial van
-MERCEDES,CITAN,Renault-based,no,Undisclosed,,no,,low,Kangoo rebadge
+MERCEDES,"GLK, GLC",MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,medium,,NVIDIA,Infineon,Bosch
+MERCEDES,E-KLASSE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,medium,W214,NVIDIA,Infineon,Bosch
+MERCEDES,C-KLASSE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,medium,W206,NVIDIA,Infineon,Bosch
+MERCEDES,A-KLASSE,MBUX (NTG6),yes,NVIDIA,Parker,no,,medium,,NVIDIA,Infineon,Bosch
+MERCEDES,B-KLASSE,MBUX (NTG6),yes,NVIDIA,Parker,no,,medium,,NVIDIA,Infineon,Bosch
+MERCEDES,GLA,MBUX (NTG6),yes,NVIDIA,Parker,no,,medium,,NVIDIA,Infineon,Bosch
+MERCEDES,GLB,MBUX (NTG6),yes,NVIDIA,Parker,no,,medium,,NVIDIA,Infineon,Bosch
+MERCEDES,CLA-KLASSE,MB.OS,yes,Qualcomm,Snapdragon Cockpit,no,,medium,new CLA 2025 switched to Qualcomm,NVIDIA,Infineon,Bosch
+MERCEDES,CLE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,low,,NVIDIA,Infineon,Bosch
+MERCEDES,"ML-KLASSE, GLE",MBUX (NTG6),yes,NVIDIA,Parker,no,,low,,NVIDIA,Infineon,Bosch
+MERCEDES,G-KLASSE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,no,,low,,NVIDIA,Infineon,Bosch
+MERCEDES,S-KLASSE,MBUX (NTG7),yes,NVIDIA,Tegra/Orin,optional,Valeo,medium,Drive Pilot L3 offers Valeo LiDAR (optional),NVIDIA,Infineon,Bosch
+MERCEDES,V-KLASSE,MBUX,yes,NVIDIA,Parker,no,,low,,NVIDIA,Infineon,Bosch
+MERCEDES,SPRINTER,commercial (MBUX),no,Undisclosed,,no,,low,commercial van,NVIDIA,Infineon,Bosch
+MERCEDES,VITO,commercial,no,Undisclosed,,no,,low,commercial van,NVIDIA,Infineon,Bosch
+MERCEDES,CITAN,Renault-based,no,Undisclosed,,no,,low,Kangoo rebadge,NVIDIA,Infineon,Bosch
 # ---- BMW / Mini (iDrive 8/8.5/9 -> Qualcomm Snapdragon) ----
-BMW,1ER,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
-BMW,2ER,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
-BMW,3ER,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
-BMW,4ER,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
-BMW,5ER,iDrive 8.5,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
-BMW,X1,iDrive 9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
-BMW,X2,iDrive 9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
-BMW,X3,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
-BMW,X5,iDrive 8,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
-BMW,IX,iDrive 8,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
-MINI,MINI,BMW OS9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,new gen OS9
+BMW,1ER,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,,Mobileye,Infineon,Continental
+BMW,2ER,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,,Mobileye,Infineon,Continental
+BMW,3ER,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,,Mobileye,Infineon,Continental
+BMW,4ER,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,,Mobileye,Infineon,Continental
+BMW,5ER,iDrive 8.5,yes,Qualcomm,Snapdragon Cockpit,no,,medium,,Mobileye,Infineon,Continental
+BMW,X1,iDrive 9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,,Mobileye,Infineon,Continental
+BMW,X2,iDrive 9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,,Mobileye,Infineon,Continental
+BMW,X3,iDrive 8/9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,,Mobileye,Infineon,Continental
+BMW,X5,iDrive 8,yes,Qualcomm,Snapdragon Cockpit,no,,medium,,Mobileye,Infineon,Continental
+BMW,IX,iDrive 8,yes,Qualcomm,Snapdragon Cockpit,no,,medium,,Mobileye,Infineon,Continental
+MINI,MINI,BMW OS9,yes,Qualcomm,Snapdragon Cockpit,no,,medium,new gen OS9,Mobileye,Infineon,Continental
 # ---- Tesla (infotainment -> AMD Ryzen) ----
-TESLA,MODEL Y,MCU3,yes,AMD,Ryzen,no,,high,ADAS on Tesla FSD chip; cockpit AMD
-TESLA,MODEL 3,MCU3,yes,AMD,Ryzen,no,,high,
+TESLA,MODEL Y,MCU3,yes,AMD,Ryzen,no,,high,ADAS on Tesla FSD chip; cockpit AMD,Tesla,STMicro,None
+TESLA,MODEL 3,MCU3,yes,AMD,Ryzen,no,,high,,Tesla,STMicro,None
 # ---- Hyundai / Kia (ccNC -> Qualcomm Snapdragon ; small cars basic) ----
-HYUNDAI,TUCSON,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,
-HYUNDAI,KONA,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,
-HYUNDAI,IONIQ5,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,
-HYUNDAI,INSTER,ccNC,yes,Qualcomm,Snapdragon 8155,no,,low,
-HYUNDAI,I 30,AVN,partial,Undisclosed,,no,,low,older gen
-HYUNDAI,I 20,AVN,no,None,,no,,low,small car basic head unit
-HYUNDAI,I 10,AVN,no,None,,no,,low,small car basic head unit
-KIA,SPORTAGE,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,
-KIA,CEED,AVN,partial,Undisclosed,,no,,low,
-KIA,EV3,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,
-KIA,PICANTO,AVN,no,None,,no,,low,small car basic head unit
+HYUNDAI,TUCSON,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,,Mobileye,Infineon,HL Klemove
+HYUNDAI,KONA,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,,Mobileye,Infineon,HL Klemove
+HYUNDAI,IONIQ5,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,,Mobileye,Infineon,HL Klemove
+HYUNDAI,INSTER,ccNC,yes,Qualcomm,Snapdragon 8155,no,,low,,Mobileye,Infineon,HL Klemove
+HYUNDAI,I 30,AVN,partial,Undisclosed,,no,,low,older gen,Mobileye,Infineon,HL Klemove
+HYUNDAI,I 20,AVN,no,None,,no,,low,small car basic head unit,None,Infineon,HL Klemove
+HYUNDAI,I 10,AVN,no,None,,no,,low,small car basic head unit,None,Infineon,HL Klemove
+KIA,SPORTAGE,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,,Mobileye,Infineon,HL Klemove
+KIA,CEED,AVN,partial,Undisclosed,,no,,low,,Mobileye,Infineon,HL Klemove
+KIA,EV3,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,,Mobileye,Infineon,HL Klemove
+KIA,PICANTO,AVN,no,None,,no,,low,small car basic head unit,None,Infineon,HL Klemove
 # ---- Volvo (Android Automotive -> Qualcomm Snapdragon) ----
-VOLVO,XC60,Android Auto,yes,Qualcomm,Snapdragon Cockpit,no,,medium,current gen; pre-2022 NXP
-VOLVO,XC40,Android Auto,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
-VOLVO,XC90,Android Auto,yes,Qualcomm,Snapdragon Cockpit,no,,low,
-VOLVO,60,Android Auto,yes,Qualcomm,Snapdragon Cockpit,no,,low,S60/V60
-VOLVO,EX30,SEA (Android),yes,Qualcomm,Snapdragon 8155,no,,medium,Geely SEA platform
-VOLVO,EX90,SPA2,yes,Qualcomm,Snapdragon Cockpit,optional,Luminar,medium,LiDAR standard-ish on EX90 (Luminar)
+VOLVO,XC60,Android Auto,yes,Qualcomm,Snapdragon Cockpit,no,,medium,current gen; pre-2022 NXP,Mobileye,Infineon,Veoneer/Magna
+VOLVO,XC40,Android Auto,yes,Qualcomm,Snapdragon Cockpit,no,,medium,,Mobileye,Infineon,Veoneer/Magna
+VOLVO,XC90,Android Auto,yes,Qualcomm,Snapdragon Cockpit,no,,low,,Mobileye,Infineon,Veoneer/Magna
+VOLVO,60,Android Auto,yes,Qualcomm,Snapdragon Cockpit,no,,low,S60/V60,Mobileye,Infineon,Veoneer/Magna
+VOLVO,EX30,SEA (Android),yes,Qualcomm,Snapdragon 8155,no,,medium,Geely SEA platform,Mobileye,Infineon,Veoneer/Magna
+VOLVO,EX90,SPA2,yes,Qualcomm,Snapdragon Cockpit,optional,Luminar,medium,LiDAR standard-ish on EX90 (Luminar),NVIDIA,Infineon,Veoneer/Magna
 # ---- Renault (OpenR / Android Automotive -> Qualcomm ; Dacia basic) ----
-RENAULT,AUSTRAL,OpenR,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
-RENAULT,CLIO,OpenR/Media,partial,Qualcomm,Snapdragon Cockpit,no,,low,
-RENAULT,CAPTUR,OpenR/Media,partial,Qualcomm,Snapdragon Cockpit,no,,low,
-RENAULT,R5,OpenR,yes,Qualcomm,Snapdragon Cockpit,no,,medium,
-RENAULT,KANGOO,OpenR,partial,Qualcomm,Snapdragon Cockpit,no,,low,
-DACIA,SANDERO,Media Display,no,MediaTek,,no,,low,basic Media Nav/Display
-DACIA,DUSTER,Media Display,no,MediaTek,,no,,low,
-DACIA,JOGGER,Media Display,no,MediaTek,,no,,low,
-DACIA,SPRING,Media Display,no,MediaTek,,no,,low,
-DACIA,BIGSTER,Media Display,partial,MediaTek,,no,,low,
+RENAULT,AUSTRAL,OpenR,yes,Qualcomm,Snapdragon Cockpit,no,,medium,,Mobileye,Infineon,Continental
+RENAULT,CLIO,OpenR/Media,partial,Qualcomm,Snapdragon Cockpit,no,,low,,Mobileye,Infineon,Continental
+RENAULT,CAPTUR,OpenR/Media,partial,Qualcomm,Snapdragon Cockpit,no,,low,,Mobileye,Infineon,Continental
+RENAULT,R5,OpenR,yes,Qualcomm,Snapdragon Cockpit,no,,medium,,Mobileye,Infineon,Continental
+RENAULT,KANGOO,OpenR,partial,Qualcomm,Snapdragon Cockpit,no,,low,,Mobileye,Infineon,Continental
+DACIA,SANDERO,Media Display,no,MediaTek,,no,,low,basic Media Nav/Display,None,Infineon,None
+DACIA,DUSTER,Media Display,no,MediaTek,,no,,low,,None,Infineon,None
+DACIA,JOGGER,Media Display,no,MediaTek,,no,,low,,None,Infineon,None
+DACIA,SPRING,Media Display,no,MediaTek,,no,,low,,None,Infineon,None
+DACIA,BIGSTER,Media Display,partial,MediaTek,,no,,low,,None,Infineon,None
 # ---- Opel / Stellantis (PSA i-Connect ; SoC undisclosed pre-STLA-Qualcomm) ----
-OPEL,CORSA,PSA i-Connect,partial,Undisclosed,,no,,low,
-OPEL,ASTRA,PSA i-Connect,yes,Undisclosed,,no,,low,10in Pure Panel
-OPEL,MOKKA,PSA i-Connect,partial,Undisclosed,,no,,low,
-OPEL,GRANDLAND X,STLA Medium,yes,Undisclosed,,no,,low,new Grandland 2024
-OPEL,CROSSLAND X,PSA,no,Undisclosed,,no,,low,older
-OPEL,FRONTERA,STLA,partial,Undisclosed,,no,,low,
+OPEL,CORSA,PSA i-Connect,partial,Undisclosed,,no,,low,,Mobileye,Infineon,Valeo
+OPEL,ASTRA,PSA i-Connect,yes,Undisclosed,,no,,low,10in Pure Panel,Mobileye,Infineon,Valeo
+OPEL,MOKKA,PSA i-Connect,partial,Undisclosed,,no,,low,,Mobileye,Infineon,Valeo
+OPEL,GRANDLAND X,STLA Medium,yes,Undisclosed,,no,,low,new Grandland 2024,Mobileye,Infineon,Valeo
+OPEL,CROSSLAND X,PSA,no,Undisclosed,,no,,low,older,Mobileye,Infineon,Valeo
+OPEL,FRONTERA,STLA,partial,Undisclosed,,no,,low,,Mobileye,Infineon,Valeo
 # ---- Peugeot / Citroen (Stellantis) ----
-PEUGEOT,208,PSA i-Connect,partial,Undisclosed,,no,,low,i-Cockpit
-PEUGEOT,2008,PSA i-Connect,partial,Undisclosed,,no,,low,
-PEUGEOT,308,PSA i-Connect,yes,Undisclosed,,no,,low,
-PEUGEOT,3008,STLA Medium,yes,Undisclosed,,no,,low,panoramic i-Cockpit
-PEUGEOT,5008,STLA Medium,yes,Undisclosed,,no,,low,
-CITROEN,C3,PSA,no,Undisclosed,,no,,low,new C3 basic
-CITROEN,C4,PSA i-Connect,partial,Undisclosed,,no,,low,
-CITROEN,C5,PSA i-Connect,yes,Undisclosed,,no,,low,C5 Aircross/X
-CITROEN,JUMPER,commercial,no,Undisclosed,,no,,low,van
+PEUGEOT,208,PSA i-Connect,partial,Undisclosed,,no,,low,i-Cockpit,Mobileye,Infineon,Valeo
+PEUGEOT,2008,PSA i-Connect,partial,Undisclosed,,no,,low,,Mobileye,Infineon,Valeo
+PEUGEOT,308,PSA i-Connect,yes,Undisclosed,,no,,low,,Mobileye,Infineon,Valeo
+PEUGEOT,3008,STLA Medium,yes,Undisclosed,,no,,low,panoramic i-Cockpit,Mobileye,Infineon,Valeo
+PEUGEOT,5008,STLA Medium,yes,Undisclosed,,no,,low,,Mobileye,Infineon,Valeo
+CITROEN,C3,PSA,no,Undisclosed,,no,,low,new C3 basic,Mobileye,Infineon,Valeo
+CITROEN,C4,PSA i-Connect,partial,Undisclosed,,no,,low,,Mobileye,Infineon,Valeo
+CITROEN,C5,PSA i-Connect,yes,Undisclosed,,no,,low,C5 Aircross/X,Mobileye,Infineon,Valeo
+CITROEN,JUMPER,commercial,no,Undisclosed,,no,,low,van,Mobileye,Infineon,Valeo
 # ---- Fiat / Jeep (Stellantis Uconnect) ----
-FIAT,500,Uconnect/basic,partial,Undisclosed,,no,,low,500e Uconnect5
-FIAT,600,Uconnect5,partial,Undisclosed,,no,,low,
-FIAT,DUCATO,commercial,no,Undisclosed,,no,,low,van
-JEEP,AVENGER,STLA/Uconnect5,partial,Undisclosed,,no,,low,
+FIAT,500,Uconnect/basic,partial,Undisclosed,,no,,low,500e Uconnect5,Mobileye,Infineon,Valeo
+FIAT,600,Uconnect5,partial,Undisclosed,,no,,low,,Mobileye,Infineon,Valeo
+FIAT,DUCATO,commercial,no,Undisclosed,,no,,low,van,Mobileye,Infineon,Valeo
+JEEP,AVENGER,STLA/Uconnect5,partial,Undisclosed,,no,,low,,Mobileye,Infineon,Valeo
 # ---- Ford (SYNC 4 undisclosed ; Explorer EV = VW MEB -> Samsung) ----
-FORD,KUGA,SYNC 4,partial,Undisclosed,,no,,low,
-FORD,PUMA,SYNC 4,partial,Undisclosed,,no,,low,
-FORD,FOCUS,SYNC 4,partial,Undisclosed,,no,,low,
-FORD,EXPLORER,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,EU Explorer on VW MEB
-FORD,"TRANSIT, TOURNEO",commercial,no,Undisclosed,,no,,low,
-FORD,TRANSIT CUSTOM,commercial,no,Undisclosed,,no,,low,
-FORD,TRANSIT CONNECT,commercial,no,Undisclosed,,no,,low,
+FORD,KUGA,SYNC 4,partial,Undisclosed,,no,,low,,Mobileye,Infineon,Bosch
+FORD,PUMA,SYNC 4,partial,Undisclosed,,no,,low,,Mobileye,Infineon,Bosch
+FORD,FOCUS,SYNC 4,partial,Undisclosed,,no,,low,,Mobileye,Infineon,Bosch
+FORD,EXPLORER,MEB (ICAS3),yes,Samsung,Exynos Auto V7,no,,medium,EU Explorer on VW MEB,Mobileye,Infineon,Bosch
+FORD,"TRANSIT, TOURNEO",commercial,no,Undisclosed,,no,,low,,Mobileye,Infineon,Bosch
+FORD,TRANSIT CUSTOM,commercial,no,Undisclosed,,no,,low,,Mobileye,Infineon,Bosch
+FORD,TRANSIT CONNECT,commercial,no,Undisclosed,,no,,low,,Mobileye,Infineon,Bosch
 # ---- Toyota (Renesas R-Car ; small cars basic) ----
-TOYOTA,YARIS,Toyota AM,partial,Renesas,R-Car,no,,low,
-TOYOTA,AYGO,basic,no,None,,no,,low,small car
-TOYOTA,COROLLA,Toyota AM,yes,Renesas,R-Car,no,,low,
-TOYOTA,C-HR,Toyota AM,yes,Renesas,R-Car,no,,low,
-TOYOTA,RAV 4,Toyota AM,yes,Renesas,R-Car,no,,low,2026 gen moves to Qualcomm
-TOYOTA,PROACE,commercial,no,Undisclosed,,no,,low,PSA-based van
+TOYOTA,YARIS,Toyota AM,partial,Renesas,R-Car,no,,low,,Denso,Infineon,Denso
+TOYOTA,AYGO,basic,no,None,,no,,low,small car,None,Infineon,Denso
+TOYOTA,COROLLA,Toyota AM,yes,Renesas,R-Car,no,,low,,Denso,Infineon,Denso
+TOYOTA,C-HR,Toyota AM,yes,Renesas,R-Car,no,,low,,Denso,Infineon,Denso
+TOYOTA,RAV 4,Toyota AM,yes,Renesas,R-Car,no,,low,2026 gen moves to Qualcomm,Denso,Infineon,Denso
+TOYOTA,PROACE,commercial,no,Undisclosed,,no,,low,PSA-based van,Denso,Infineon,Denso
 # ---- Mazda (Mazda Connect -> Renesas) ----
-MAZDA,CX-30,Mazda Connect,partial,Renesas,R-Car,no,,low,
-MAZDA,CX-60,Mazda Connect,yes,Renesas,R-Car,no,,low,
-MAZDA,CX-5,Mazda Connect,partial,Renesas,R-Car,no,,low,
-MAZDA,2,Mazda Connect,no,Renesas,R-Car,no,,low,small; Mazda2 hybrid=Yaris
-MAZDA,3,Mazda Connect,partial,Renesas,R-Car,no,,low,
+MAZDA,CX-30,Mazda Connect,partial,Renesas,R-Car,no,,low,,Mobileye,Infineon,Denso
+MAZDA,CX-60,Mazda Connect,yes,Renesas,R-Car,no,,low,,Mobileye,Infineon,Denso
+MAZDA,CX-5,Mazda Connect,partial,Renesas,R-Car,no,,low,,Mobileye,Infineon,Denso
+MAZDA,2,Mazda Connect,no,Renesas,R-Car,no,,low,small; Mazda2 hybrid=Yaris,Mobileye,Infineon,Denso
+MAZDA,3,Mazda Connect,partial,Renesas,R-Car,no,,low,,Mobileye,Infineon,Denso
 # ---- Nissan / Mitsubishi ----
-NISSAN,QASHQAI,NissanConnect,partial,Undisclosed,,no,,low,
-NISSAN,JUKE,NissanConnect,no,Undisclosed,,no,,low,
-NISSAN,X-TRAIL,NissanConnect,partial,Undisclosed,,no,,low,
-MITSUBISHI,"MIRAGE, SPACE STAR",basic,no,None,,no,,low,small car
+NISSAN,QASHQAI,NissanConnect,partial,Undisclosed,,no,,low,,Mobileye,Infineon,Continental
+NISSAN,JUKE,NissanConnect,no,Undisclosed,,no,,low,,Mobileye,Infineon,Continental
+NISSAN,X-TRAIL,NissanConnect,partial,Undisclosed,,no,,low,,Mobileye,Infineon,Continental
+MITSUBISHI,"MIRAGE, SPACE STAR",basic,no,None,,no,,low,small car,Mobileye,Infineon,Continental
 # ---- Suzuki ----
-SUZUKI,SWIFT,basic,no,None,,no,,low,
-SUZUKI,VITARA,basic,no,None,,no,,low,
+SUZUKI,SWIFT,basic,no,None,,no,,low,,None,Infineon,Continental
+SUZUKI,VITARA,basic,no,None,,no,,low,,None,Infineon,Continental
 # ---- Chinese brands (Qualcomm 8155 typical) ----
-MG ROEWE,4,MG cockpit,yes,Qualcomm,Snapdragon 8155,no,,medium,MG4
-MG ROEWE,ZS,MG cockpit,partial,Qualcomm,Snapdragon 8155,no,,low,
-BYD,SEAL U,DiLink,yes,Qualcomm,Snapdragon 8155,no,,low,BYD DiLink
-BYD,SEAL,DiLink,yes,Qualcomm,Snapdragon 8155,no,,low,
-MG ROEWE,3,MG cockpit,partial,Qualcomm,Snapdragon 8155,no,,low,MG3 hybrid
-MG ROEWE,RX6,MG cockpit,partial,Qualcomm,Snapdragon 8155,no,,low,
-SMART,1,ECARX,yes,Qualcomm,Snapdragon 8155,no,,medium,Geely/ECARX
-LEAPMOTOR,T03,Leapmotor,partial,Qualcomm,Snapdragon 8155,no,,low,Stellantis-distributed
+MG ROEWE,4,MG cockpit,yes,Qualcomm,Snapdragon 8155,no,,medium,MG4,Undisclosed,Infineon,Bosch
+MG ROEWE,ZS,MG cockpit,partial,Qualcomm,Snapdragon 8155,no,,low,,Undisclosed,Infineon,Bosch
+BYD,SEAL U,DiLink,yes,Qualcomm,Snapdragon 8155,no,,low,BYD DiLink,Undisclosed,BYD Semi,Bosch
+BYD,SEAL,DiLink,yes,Qualcomm,Snapdragon 8155,no,,low,,Undisclosed,BYD Semi,Bosch
+MG ROEWE,3,MG cockpit,partial,Qualcomm,Snapdragon 8155,no,,low,MG3 hybrid,Undisclosed,Infineon,Bosch
+MG ROEWE,RX6,MG cockpit,partial,Qualcomm,Snapdragon 8155,no,,low,,Undisclosed,Infineon,Bosch
+SMART,1,ECARX,yes,Qualcomm,Snapdragon 8155,no,,medium,Geely/ECARX,Undisclosed,Infineon,Bosch
+LEAPMOTOR,T03,Leapmotor,partial,Qualcomm,Snapdragon 8155,no,,low,Stellantis-distributed,Undisclosed,Infineon,Bosch
 # ---- Additional higher-volume models ----
-KIA,EV6,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,
-KIA,STONIC,AVN,no,None,,no,,low,small car
-KIA,NIRO,ccNC,yes,Qualcomm,Snapdragon 8155,no,,low,
-HYUNDAI,BAYON,AVN,no,None,,no,,low,small car
-MITSUBISHI,COLT,Renault-based,partial,Qualcomm,Snapdragon Cockpit,no,,low,Clio rebadge
-MITSUBISHI,ASX,Renault-based,partial,Qualcomm,Snapdragon Cockpit,no,,low,Captur rebadge
-LAND ROVER,DEFENDER,Pivi Pro,yes,NXP,i.MX,no,,low,JLR Pivi Pro
-JEEP,COMPASS,Uconnect5,partial,Undisclosed,,no,,low,
-VW,ARTEON,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,
-VW,CRAFTER,commercial,no,Undisclosed,,no,,low,van
-VW,UP,basic,no,None,,no,,low,small car discontinued
+KIA,EV6,ccNC,yes,Qualcomm,Snapdragon 8155,no,,medium,,Mobileye,Infineon,HL Klemove
+KIA,STONIC,AVN,no,None,,no,,low,small car,None,Infineon,HL Klemove
+KIA,NIRO,ccNC,yes,Qualcomm,Snapdragon 8155,no,,low,,Mobileye,Infineon,HL Klemove
+HYUNDAI,BAYON,AVN,no,None,,no,,low,small car,None,Infineon,HL Klemove
+MITSUBISHI,COLT,Renault-based,partial,Qualcomm,Snapdragon Cockpit,no,,low,Clio rebadge,Mobileye,Infineon,Continental
+MITSUBISHI,ASX,Renault-based,partial,Qualcomm,Snapdragon Cockpit,no,,low,Captur rebadge,Mobileye,Infineon,Continental
+LAND ROVER,DEFENDER,Pivi Pro,yes,NXP,i.MX,no,,low,JLR Pivi Pro,Mobileye,Infineon,Bosch
+JEEP,COMPASS,Uconnect5,partial,Undisclosed,,no,,low,,Mobileye,Infineon,Valeo
+VW,ARTEON,MQB (MIB3),yes,Renesas,R-Car M3,no,,low,,Mobileye,Infineon,Continental
+VW,CRAFTER,commercial,no,Undisclosed,,no,,low,van,Mobileye,Infineon,Continental
+VW,UP,basic,no,None,,no,,low,small car discontinued,Mobileye,Infineon,Continental

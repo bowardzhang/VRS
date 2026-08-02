@@ -117,12 +117,34 @@
     <div class="trend-wrap"><svg class="trend" id="lidarChart" role="img" style="height:200px"></svg><div class="tip" id="lidarTip"></div></div>
   </section>
 
+  <p class="section-head" style="font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:40px 0 -4px;font-weight:600;">Other electronic components <span style="text-transform:none;font-weight:500;color:var(--muted);">— lower-confidence estimates</span></p>
+
+  <section class="card">
+    <h2>ADAS / perception SoC supplier share</h2>
+    <p class="note">Front-camera / driver-assistance perception silicon, registration-weighted (share of classified). Europe's mass market leans heavily on one vendor.</p>
+    <div class="bars" id="adasBars"></div>
+    <div class="trend-wrap" style="margin-top:20px"><svg class="trend" id="adasChart" role="img" style="height:260px"></svg><div class="tip" id="adasTip"></div></div>
+    <div class="legend" id="adasLegend"></div>
+  </section>
+
+  <section class="card">
+    <h2>Front-radar Tier-1 supplier share</h2>
+    <p class="note">Estimated front-radar module supplier (ACC / AEB), registration-weighted (share of classified). Assigned mostly by OEM relationship — directional only.</p>
+    <div class="bars" id="radarBars"></div>
+  </section>
+
+  <section class="card">
+    <h2>EV traction-inverter power-semiconductor share</h2>
+    <p class="note" id="powerNote"></p>
+    <div class="bars" id="powerBars"></div>
+  </section>
+
   <section class="card">
     <h2>Estimated configuration — top models</h2>
     <p class="note">The highest-volume model series and their estimated cockpit SoC / domain controller / LiDAR. Confidence reflects how well-sourced the platform mapping is.</p>
     <div class="table-scroll">
       <table class="models">
-        <thead><tr><th>Model</th><th class="num">Registrations</th><th>Domain ctrl.</th><th>Cockpit SoC</th><th>LiDAR</th><th>Conf.</th></tr></thead>
+        <thead><tr><th>Model</th><th class="num">Registrations</th><th>Cockpit SoC</th><th>ADAS SoC</th><th>Radar T1</th><th>EV power-semi</th><th>LiDAR</th></tr></thead>
         <tbody id="modelRows"></tbody>
       </table>
     </div>
@@ -10405,7 +10427,7 @@
     ]
   },
   "suppliers": {
-    "note": "Registration counts are official KBA figures; cockpit SoC and LiDAR are per-model ESTIMATES mapped by vehicle platform / software generation (current new-model standard config). See data/vehicle_specs.csv.",
+    "note": "Registration counts are official KBA figures; the electronics fields are per-model ESTIMATES mapped by vehicle platform / software generation (current new-model standard config). Cockpit SoC & LiDAR are better-sourced; ADAS SoC, EV power-semi and radar Tier-1 are lower-confidence OEM/platform-relationship estimates. See data/vehicle_specs.csv.",
     "labels": [
       "Sep 2023",
       "Oct 2023",
@@ -10443,6 +10465,7 @@
       "Jun 2026"
     ],
     "total_registrations": 8056054,
+    "bev_registrations": 1454765,
     "classified_registrations": 7409851,
     "coverage_pct": 92.0,
     "soc_share": [
@@ -11259,6 +11282,1567 @@
         ]
       }
     ],
+    "adas": {
+      "share": [
+        {
+          "brand": "Mobileye",
+          "total": 5886222,
+          "share_all": 73.07,
+          "share_classified": 79.44
+        },
+        {
+          "brand": "NVIDIA",
+          "total": 720941,
+          "share_all": 8.95,
+          "share_classified": 9.73
+        },
+        {
+          "brand": "Unclassified",
+          "total": 646203,
+          "share_all": 8.02,
+          "share_classified": null
+        },
+        {
+          "brand": "None",
+          "total": 412541,
+          "share_all": 5.12,
+          "share_classified": 5.57
+        },
+        {
+          "brand": "Denso",
+          "total": 173648,
+          "share_all": 2.16,
+          "share_classified": 2.34
+        },
+        {
+          "brand": "Undisclosed",
+          "total": 115900,
+          "share_all": 1.44,
+          "share_classified": 1.56
+        },
+        {
+          "brand": "Tesla",
+          "total": 100599,
+          "share_all": 1.25,
+          "share_classified": 1.36
+        }
+      ],
+      "series": [
+        {
+          "name": "Mobileye",
+          "counts": [
+            162322,
+            153043,
+            177750,
+            175241,
+            154473,
+            155919,
+            193453,
+            177842,
+            173720,
+            216391,
+            172635,
+            143257,
+            154385,
+            169249,
+            175293,
+            156907,
+            154331,
+            150524,
+            188597,
+            183188,
+            178506,
+            188602,
+            196527,
+            151732,
+            170958,
+            184003,
+            181854,
+            177911,
+            144572,
+            157900,
+            211566,
+            177512,
+            169959,
+            206100
+          ],
+          "share": [
+            72.65,
+            70.19,
+            72.68,
+            72.69,
+            72.64,
+            72.05,
+            73.61,
+            73.48,
+            73.76,
+            73.03,
+            72.82,
+            72.99,
+            74.2,
+            73.21,
+            72.0,
+            70.12,
+            74.71,
+            74.4,
+            74.71,
+            75.77,
+            74.87,
+            73.88,
+            74.54,
+            73.72,
+            72.88,
+            73.81,
+            72.84,
+            72.52,
+            74.85,
+            74.97,
+            72.22,
+            71.56,
+            71.3,
+            69.82
+          ]
+        },
+        {
+          "name": "NVIDIA",
+          "counts": [
+            20465,
+            21418,
+            24095,
+            19653,
+            20708,
+            19312,
+            20908,
+            21855,
+            19273,
+            20794,
+            22526,
+            19068,
+            18059,
+            22877,
+            25567,
+            20895,
+            19525,
+            18574,
+            21747,
+            21918,
+            21597,
+            22228,
+            24436,
+            18935,
+            20249,
+            24093,
+            24749,
+            20207,
+            18371,
+            16754,
+            23529,
+            23068,
+            19691,
+            23797
+          ],
+          "share": [
+            9.16,
+            9.82,
+            9.85,
+            8.15,
+            9.74,
+            8.92,
+            7.96,
+            9.03,
+            8.18,
+            7.02,
+            9.5,
+            9.72,
+            8.68,
+            9.9,
+            10.5,
+            9.34,
+            9.45,
+            9.18,
+            8.62,
+            9.07,
+            9.06,
+            8.71,
+            9.27,
+            9.2,
+            8.63,
+            9.66,
+            9.91,
+            8.24,
+            9.51,
+            7.96,
+            8.03,
+            9.3,
+            8.26,
+            8.06
+          ]
+        },
+        {
+          "name": "Tesla",
+          "counts": [
+            4051,
+            3256,
+            4777,
+            3852,
+            3088,
+            5958,
+            3789,
+            1594,
+            1879,
+            4548,
+            2376,
+            2346,
+            3675,
+            1589,
+            2185,
+            3881,
+            1251,
+            1403,
+            2196,
+            873,
+            1201,
+            1847,
+            1107,
+            1432,
+            3400,
+            741,
+            1705,
+            2002,
+            1281,
+            2212,
+            9197,
+            3102,
+            5074,
+            7731
+          ],
+          "share": [
+            1.81,
+            1.49,
+            1.95,
+            1.6,
+            1.45,
+            2.75,
+            1.44,
+            0.66,
+            0.8,
+            1.53,
+            1.0,
+            1.2,
+            1.77,
+            0.69,
+            0.9,
+            1.73,
+            0.61,
+            0.69,
+            0.87,
+            0.36,
+            0.5,
+            0.72,
+            0.42,
+            0.7,
+            1.45,
+            0.3,
+            0.68,
+            0.82,
+            0.66,
+            1.05,
+            3.14,
+            1.25,
+            2.13,
+            2.62
+          ]
+        },
+        {
+          "name": "Denso",
+          "counts": [
+            4503,
+            4748,
+            3793,
+            4129,
+            4920,
+            4409,
+            6174,
+            5712,
+            4998,
+            6968,
+            7044,
+            5448,
+            5720,
+            7367,
+            7997,
+            6322,
+            3532,
+            3686,
+            5481,
+            4675,
+            5227,
+            5590,
+            5700,
+            4707,
+            5223,
+            5190,
+            5623,
+            6716,
+            2375,
+            3164,
+            4912,
+            3990,
+            3535,
+            4070
+          ],
+          "share": [
+            2.02,
+            2.18,
+            1.55,
+            1.71,
+            2.31,
+            2.04,
+            2.35,
+            2.36,
+            2.12,
+            2.35,
+            2.97,
+            2.78,
+            2.75,
+            3.19,
+            3.28,
+            2.83,
+            1.71,
+            1.82,
+            2.17,
+            1.93,
+            2.19,
+            2.19,
+            2.16,
+            2.29,
+            2.23,
+            2.08,
+            2.25,
+            2.74,
+            1.23,
+            1.5,
+            1.68,
+            1.61,
+            1.48,
+            1.38
+          ]
+        },
+        {
+          "name": "Undisclosed",
+          "counts": [
+            1137,
+            2419,
+            2081,
+            3206,
+            1029,
+            2141,
+            2011,
+            2048,
+            3767,
+            6618,
+            2188,
+            1205,
+            1195,
+            2127,
+            1714,
+            2441,
+            1833,
+            2133,
+            2920,
+            3084,
+            3561,
+            3088,
+            3299,
+            3453,
+            5452,
+            5691,
+            5496,
+            5582,
+            3138,
+            3861,
+            5519,
+            5213,
+            6209,
+            9041
+          ],
+          "share": [
+            0.51,
+            1.11,
+            0.85,
+            1.33,
+            0.48,
+            0.99,
+            0.77,
+            0.85,
+            1.6,
+            2.23,
+            0.92,
+            0.61,
+            0.57,
+            0.92,
+            0.7,
+            1.09,
+            0.89,
+            1.05,
+            1.16,
+            1.28,
+            1.49,
+            1.21,
+            1.25,
+            1.68,
+            2.32,
+            2.28,
+            2.2,
+            2.28,
+            1.62,
+            1.83,
+            1.88,
+            2.1,
+            2.6,
+            3.06
+          ]
+        },
+        {
+          "name": "None",
+          "counts": [
+            9559,
+            10434,
+            10603,
+            11344,
+            11783,
+            12389,
+            13817,
+            12395,
+            11391,
+            16142,
+            13011,
+            11119,
+            10042,
+            11565,
+            12993,
+            14417,
+            11207,
+            11181,
+            13705,
+            11458,
+            11748,
+            13924,
+            14398,
+            10812,
+            13340,
+            12897,
+            13302,
+            14979,
+            7490,
+            9479,
+            14269,
+            10376,
+            10009,
+            14963
+          ],
+          "share": [
+            4.28,
+            4.79,
+            4.34,
+            4.71,
+            5.54,
+            5.73,
+            5.26,
+            5.12,
+            4.84,
+            5.45,
+            5.49,
+            5.67,
+            4.83,
+            5.0,
+            5.34,
+            6.44,
+            5.43,
+            5.53,
+            5.43,
+            4.74,
+            4.93,
+            5.45,
+            5.46,
+            5.25,
+            5.69,
+            5.17,
+            5.33,
+            6.11,
+            3.88,
+            4.5,
+            4.87,
+            4.18,
+            4.2,
+            5.07
+          ]
+        },
+        {
+          "name": "Unclassified",
+          "counts": [
+            21383,
+            22712,
+            21466,
+            23653,
+            16645,
+            16262,
+            22669,
+            20570,
+            20498,
+            24861,
+            17289,
+            13813,
+            14997,
+            16407,
+            17712,
+            18913,
+            14889,
+            14823,
+            17780,
+            16561,
+            16581,
+            20008,
+            18172,
+            14750,
+            15953,
+            16678,
+            16929,
+            17940,
+            15921,
+            17237,
+            23954,
+            24816,
+            23878,
+            29483
+          ],
+          "share": [
+            9.57,
+            10.42,
+            8.78,
+            9.81,
+            7.83,
+            7.52,
+            8.63,
+            8.5,
+            8.7,
+            8.39,
+            7.29,
+            7.04,
+            7.21,
+            7.1,
+            7.28,
+            8.45,
+            7.21,
+            7.33,
+            7.04,
+            6.85,
+            6.95,
+            7.84,
+            6.89,
+            7.17,
+            6.8,
+            6.69,
+            6.78,
+            7.31,
+            8.24,
+            8.18,
+            8.18,
+            10.0,
+            10.02,
+            9.99
+          ]
+        }
+      ],
+      "coverage_pct": 92.0
+    },
+    "radar": {
+      "share": [
+        {
+          "brand": "Continental",
+          "total": 4254415,
+          "share_all": 52.81,
+          "share_classified": 57.42
+        },
+        {
+          "brand": "Bosch",
+          "total": 1105137,
+          "share_all": 13.72,
+          "share_classified": 14.91
+        },
+        {
+          "brand": "Valeo",
+          "total": 849663,
+          "share_all": 10.55,
+          "share_classified": 11.47
+        },
+        {
+          "brand": "Unclassified",
+          "total": 646203,
+          "share_all": 8.02,
+          "share_classified": null
+        },
+        {
+          "brand": "HL Klemove",
+          "total": 411574,
+          "share_all": 5.11,
+          "share_classified": 5.55
+        },
+        {
+          "brand": "Denso",
+          "total": 329020,
+          "share_all": 4.08,
+          "share_classified": 4.44
+        },
+        {
+          "brand": "None",
+          "total": 300513,
+          "share_all": 3.73,
+          "share_classified": 4.06
+        },
+        {
+          "brand": "Veoneer/Magna",
+          "total": 159529,
+          "share_all": 1.98,
+          "share_classified": 2.15
+        }
+      ],
+      "series": [
+        {
+          "name": "Continental",
+          "counts": [
+            112033,
+            105644,
+            128164,
+            126303,
+            108144,
+            108793,
+            132731,
+            128180,
+            124576,
+            154532,
+            121736,
+            98863,
+            110584,
+            119871,
+            128255,
+            114301,
+            117347,
+            111507,
+            140688,
+            131347,
+            131295,
+            134382,
+            142363,
+            107639,
+            124425,
+            137086,
+            135071,
+            133486,
+            107223,
+            114067,
+            154968,
+            130012,
+            125331,
+            153468
+          ],
+          "share": [
+            50.14,
+            48.45,
+            52.4,
+            52.39,
+            50.86,
+            50.28,
+            50.5,
+            52.96,
+            52.89,
+            52.15,
+            51.35,
+            50.37,
+            53.15,
+            51.85,
+            52.68,
+            51.08,
+            56.81,
+            55.11,
+            55.73,
+            54.33,
+            55.07,
+            52.64,
+            54.0,
+            52.3,
+            53.04,
+            54.99,
+            54.1,
+            54.41,
+            55.51,
+            54.16,
+            52.9,
+            52.41,
+            52.58,
+            51.99
+          ]
+        },
+        {
+          "name": "Bosch",
+          "counts": [
+            29970,
+            30974,
+            33929,
+            28940,
+            29194,
+            29006,
+            32884,
+            31724,
+            30059,
+            36171,
+            32953,
+            28077,
+            27275,
+            32496,
+            34726,
+            29618,
+            28663,
+            29383,
+            32905,
+            34144,
+            33353,
+            33715,
+            38645,
+            31054,
+            34109,
+            37418,
+            38209,
+            32919,
+            27906,
+            27733,
+            37941,
+            35324,
+            32152,
+            41568
+          ],
+          "share": [
+            13.41,
+            14.21,
+            13.87,
+            12.0,
+            13.73,
+            13.4,
+            12.51,
+            13.11,
+            12.76,
+            12.21,
+            13.9,
+            14.31,
+            13.11,
+            14.06,
+            14.26,
+            13.24,
+            13.88,
+            14.52,
+            13.04,
+            14.12,
+            13.99,
+            13.21,
+            14.66,
+            15.09,
+            14.54,
+            15.01,
+            15.3,
+            13.42,
+            14.45,
+            13.17,
+            12.95,
+            14.24,
+            13.49,
+            14.08
+          ]
+        },
+        {
+          "name": "Denso",
+          "counts": [
+            9394,
+            8738,
+            7842,
+            8605,
+            8698,
+            9092,
+            12860,
+            10599,
+            9291,
+            12403,
+            10831,
+            8985,
+            10287,
+            11873,
+            12846,
+            11874,
+            6574,
+            7509,
+            11364,
+            8403,
+            9353,
+            9875,
+            9424,
+            8173,
+            10903,
+            9498,
+            11205,
+            13423,
+            5491,
+            7124,
+            12417,
+            7810,
+            7074,
+            9182
+          ],
+          "share": [
+            4.2,
+            4.01,
+            3.21,
+            3.57,
+            4.09,
+            4.2,
+            4.89,
+            4.38,
+            3.94,
+            4.19,
+            4.57,
+            4.58,
+            4.94,
+            5.14,
+            5.28,
+            5.31,
+            3.18,
+            3.71,
+            4.5,
+            3.48,
+            3.92,
+            3.87,
+            3.57,
+            3.97,
+            4.65,
+            3.81,
+            4.49,
+            5.47,
+            2.84,
+            3.38,
+            4.24,
+            3.15,
+            2.97,
+            3.11
+          ]
+        },
+        {
+          "name": "Valeo",
+          "counts": [
+            28896,
+            24512,
+            24803,
+            25317,
+            26097,
+            24638,
+            31617,
+            24331,
+            26690,
+            35065,
+            26448,
+            23550,
+            22031,
+            26832,
+            24689,
+            19799,
+            16639,
+            17604,
+            23831,
+            26766,
+            24035,
+            28851,
+            27224,
+            22501,
+            24468,
+            25274,
+            24183,
+            22004,
+            19422,
+            24120,
+            29036,
+            26086,
+            24736,
+            27568
+          ],
+          "share": [
+            12.93,
+            11.24,
+            10.14,
+            10.5,
+            12.27,
+            11.39,
+            12.03,
+            10.05,
+            11.33,
+            11.83,
+            11.16,
+            12.0,
+            10.59,
+            11.61,
+            10.14,
+            8.85,
+            8.05,
+            8.7,
+            9.44,
+            11.07,
+            10.08,
+            11.3,
+            10.33,
+            10.93,
+            10.43,
+            10.14,
+            9.69,
+            8.97,
+            10.06,
+            11.45,
+            9.91,
+            10.52,
+            10.38,
+            9.34
+          ]
+        },
+        {
+          "name": "HL Klemove",
+          "counts": [
+            10804,
+            13208,
+            13220,
+            12934,
+            10289,
+            11644,
+            14735,
+            14004,
+            12665,
+            14744,
+            14160,
+            12400,
+            10961,
+            11680,
+            11952,
+            12340,
+            10275,
+            9834,
+            11767,
+            13517,
+            12918,
+            13188,
+            14311,
+            11381,
+            11704,
+            12318,
+            11552,
+            10432,
+            8909,
+            10168,
+            14362,
+            11743,
+            9957,
+            11498
+          ],
+          "share": [
+            4.84,
+            6.06,
+            5.41,
+            5.37,
+            4.84,
+            5.38,
+            5.61,
+            5.79,
+            5.38,
+            4.98,
+            5.97,
+            6.32,
+            5.27,
+            5.05,
+            4.91,
+            5.51,
+            4.97,
+            4.86,
+            4.66,
+            5.59,
+            5.42,
+            5.17,
+            5.43,
+            5.53,
+            4.99,
+            4.94,
+            4.63,
+            4.25,
+            4.61,
+            4.83,
+            4.9,
+            4.73,
+            4.18,
+            3.9
+          ]
+        },
+        {
+          "name": "Veoneer/Magna",
+          "counts": [
+            2957,
+            3340,
+            4957,
+            5506,
+            3861,
+            5146,
+            5461,
+            5360,
+            4814,
+            5276,
+            5254,
+            3759,
+            4246,
+            4935,
+            5385,
+            5805,
+            5209,
+            5448,
+            4985,
+            5031,
+            4560,
+            5682,
+            5171,
+            3694,
+            3913,
+            4406,
+            4558,
+            5195,
+            3854,
+            3870,
+            4523,
+            3776,
+            4356,
+            5236
+          ],
+          "share": [
+            1.32,
+            1.53,
+            2.03,
+            2.28,
+            1.82,
+            2.38,
+            2.08,
+            2.21,
+            2.04,
+            1.78,
+            2.22,
+            1.92,
+            2.04,
+            2.13,
+            2.21,
+            2.59,
+            2.52,
+            2.69,
+            1.97,
+            2.08,
+            1.91,
+            2.23,
+            1.96,
+            1.79,
+            1.67,
+            1.77,
+            1.83,
+            2.12,
+            2.0,
+            1.84,
+            1.54,
+            1.52,
+            1.83,
+            1.77
+          ]
+        },
+        {
+          "name": "None",
+          "counts": [
+            7983,
+            8902,
+            10184,
+            9820,
+            9718,
+            11809,
+            9864,
+            7248,
+            6933,
+            13270,
+            8398,
+            6809,
+            7692,
+            7087,
+            7896,
+            11126,
+            6972,
+            6216,
+            9106,
+            5988,
+            6326,
+            9586,
+            8329,
+            6629,
+            9100,
+            6615,
+            7951,
+            9938,
+            4422,
+            6288,
+            15745,
+            8510,
+            10871,
+            17182
+          ],
+          "share": [
+            3.57,
+            4.08,
+            4.16,
+            4.07,
+            4.57,
+            5.46,
+            3.75,
+            2.99,
+            2.94,
+            4.48,
+            3.54,
+            3.47,
+            3.7,
+            3.07,
+            3.24,
+            4.97,
+            3.38,
+            3.07,
+            3.61,
+            2.48,
+            2.65,
+            3.75,
+            3.16,
+            3.22,
+            3.88,
+            2.65,
+            3.18,
+            4.05,
+            2.29,
+            2.99,
+            5.37,
+            3.43,
+            4.56,
+            5.82
+          ]
+        },
+        {
+          "name": "Unclassified",
+          "counts": [
+            21383,
+            22712,
+            21466,
+            23653,
+            16645,
+            16262,
+            22669,
+            20570,
+            20498,
+            24861,
+            17289,
+            13813,
+            14997,
+            16407,
+            17712,
+            18913,
+            14889,
+            14823,
+            17780,
+            16561,
+            16581,
+            20008,
+            18172,
+            14750,
+            15953,
+            16678,
+            16929,
+            17940,
+            15921,
+            17237,
+            23954,
+            24816,
+            23878,
+            29483
+          ],
+          "share": [
+            9.57,
+            10.42,
+            8.78,
+            9.81,
+            7.83,
+            7.52,
+            8.63,
+            8.5,
+            8.7,
+            8.39,
+            7.29,
+            7.04,
+            7.21,
+            7.1,
+            7.28,
+            8.45,
+            7.21,
+            7.33,
+            7.04,
+            6.85,
+            6.95,
+            7.84,
+            6.89,
+            7.17,
+            6.8,
+            6.69,
+            6.78,
+            7.31,
+            8.24,
+            8.18,
+            8.18,
+            10.0,
+            10.02,
+            9.99
+          ]
+        }
+      ],
+      "coverage_pct": 92.0
+    },
+    "power_semi": {
+      "share": [
+        {
+          "brand": "Infineon",
+          "total": 1163702,
+          "share_all": 79.99,
+          "share_classified": 91.6
+        },
+        {
+          "brand": "Unclassified",
+          "total": 184414,
+          "share_all": 12.68,
+          "share_classified": null
+        },
+        {
+          "brand": "STMicro",
+          "total": 100599,
+          "share_all": 6.92,
+          "share_classified": 7.92
+        },
+        {
+          "brand": "BYD Semi",
+          "total": 6050,
+          "share_all": 0.42,
+          "share_classified": 0.48
+        }
+      ],
+      "series": [
+        {
+          "name": "Infineon",
+          "counts": [
+            22746,
+            28149,
+            34070,
+            43279,
+            15482,
+            17888,
+            22441,
+            23900,
+            23887,
+            34349,
+            24917,
+            21917,
+            27783,
+            30274,
+            29348,
+            25570,
+            29427,
+            30740,
+            36204,
+            40483,
+            37316,
+            38849,
+            42086,
+            33274,
+            36428,
+            45316,
+            46317,
+            44149,
+            34257,
+            36473,
+            52249,
+            49559,
+            43663,
+            60912
+          ],
+          "share": [
+            72.22,
+            75.71,
+            76.2,
+            79.4,
+            69.54,
+            65.51,
+            71.77,
+            81.18,
+            80.75,
+            79.35,
+            81.52,
+            81.49,
+            80.79,
+            85.7,
+            84.26,
+            77.04,
+            86.04,
+            86.53,
+            85.68,
+            89.26,
+            87.03,
+            82.64,
+            87.12,
+            85.29,
+            80.58,
+            86.68,
+            83.6,
+            81.07,
+            80.75,
+            79.01,
+            74.19,
+            77.39,
+            73.07,
+            72.65
+          ]
+        },
+        {
+          "name": "STMicro",
+          "counts": [
+            4051,
+            3256,
+            4777,
+            3852,
+            3088,
+            5958,
+            3789,
+            1594,
+            1879,
+            4548,
+            2376,
+            2346,
+            3675,
+            1589,
+            2185,
+            3881,
+            1251,
+            1403,
+            2196,
+            873,
+            1201,
+            1847,
+            1107,
+            1432,
+            3400,
+            741,
+            1705,
+            2002,
+            1281,
+            2212,
+            9197,
+            3102,
+            5074,
+            7731
+          ],
+          "share": [
+            12.86,
+            8.76,
+            10.68,
+            7.07,
+            13.87,
+            21.82,
+            12.12,
+            5.41,
+            6.35,
+            10.51,
+            7.77,
+            8.72,
+            10.69,
+            4.5,
+            6.27,
+            11.69,
+            3.66,
+            3.95,
+            5.2,
+            1.92,
+            2.8,
+            3.93,
+            2.29,
+            3.67,
+            7.52,
+            1.42,
+            3.08,
+            3.68,
+            3.02,
+            4.79,
+            13.06,
+            4.84,
+            8.49,
+            9.22
+          ]
+        },
+        {
+          "name": "BYD Semi",
+          "counts": [
+            0,
+            0,
+            0,
+            21,
+            18,
+            11,
+            21,
+            26,
+            98,
+            204,
+            111,
+            108,
+            67,
+            78,
+            101,
+            97,
+            75,
+            62,
+            201,
+            412,
+            370,
+            144,
+            280,
+            290,
+            331,
+            139,
+            184,
+            343,
+            286,
+            165,
+            282,
+            346,
+            501,
+            678
+          ],
+          "share": [
+            0.0,
+            0.0,
+            0.0,
+            0.04,
+            0.08,
+            0.04,
+            0.07,
+            0.09,
+            0.33,
+            0.47,
+            0.36,
+            0.4,
+            0.19,
+            0.22,
+            0.29,
+            0.29,
+            0.22,
+            0.17,
+            0.48,
+            0.91,
+            0.86,
+            0.31,
+            0.58,
+            0.74,
+            0.73,
+            0.27,
+            0.33,
+            0.63,
+            0.67,
+            0.36,
+            0.4,
+            0.54,
+            0.84,
+            0.81
+          ]
+        },
+        {
+          "name": "Unclassified",
+          "counts": [
+            4700,
+            5774,
+            5865,
+            7354,
+            3676,
+            3449,
+            5015,
+            3921,
+            3719,
+            4186,
+            3161,
+            2524,
+            2865,
+            3384,
+            3196,
+            3641,
+            3448,
+            3319,
+            3653,
+            3586,
+            3991,
+            6171,
+            4834,
+            4015,
+            5047,
+            6082,
+            7198,
+            7961,
+            6597,
+            7314,
+            8699,
+            11027,
+            10517,
+            14525
+          ],
+          "share": [
+            14.92,
+            15.53,
+            13.12,
+            13.49,
+            16.51,
+            12.63,
+            16.04,
+            13.32,
+            12.57,
+            9.67,
+            10.34,
+            9.38,
+            8.33,
+            9.58,
+            9.18,
+            10.97,
+            10.08,
+            9.34,
+            8.65,
+            7.91,
+            9.31,
+            13.13,
+            10.01,
+            10.29,
+            11.16,
+            11.63,
+            12.99,
+            14.62,
+            15.55,
+            15.84,
+            12.35,
+            17.22,
+            17.6,
+            17.32
+          ]
+        }
+      ],
+      "coverage_pct": 87.3,
+      "base": "BEV registrations"
+    },
     "dc_adoption": {
       "labels": [
         "Sep 2023",
@@ -11428,6 +13012,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11438,6 +13025,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11448,6 +13038,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11458,6 +13051,9 @@
         "soc_brand": "Undisclosed",
         "soc_family": "",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Valeo",
         "confidence": "low"
       },
       {
@@ -11468,6 +13064,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11478,6 +13077,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "low"
       },
       {
@@ -11488,6 +13090,9 @@
         "soc_brand": "Qualcomm",
         "soc_family": "Snapdragon Cockpit",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11498,6 +13103,9 @@
         "soc_brand": "Undisclosed",
         "soc_family": "",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Valeo",
         "confidence": "low"
       },
       {
@@ -11508,6 +13116,9 @@
         "soc_brand": "NVIDIA",
         "soc_family": "Tegra/Orin",
         "lidar": "no",
+        "adas_soc": "NVIDIA",
+        "power_semi": "Infineon",
+        "radar_tier1": "Bosch",
         "confidence": "medium"
       },
       {
@@ -11518,6 +13129,9 @@
         "soc_brand": "Qualcomm",
         "soc_family": "Snapdragon Cockpit",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11528,6 +13142,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11538,6 +13155,9 @@
         "soc_brand": "Undisclosed",
         "soc_family": "",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "low"
       },
       {
@@ -11548,6 +13168,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11558,6 +13181,9 @@
         "soc_brand": "Samsung",
         "soc_family": "Exynos Auto 8890",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11568,6 +13194,9 @@
         "soc_brand": "Qualcomm",
         "soc_family": "Snapdragon Cockpit",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11578,6 +13207,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11588,6 +13220,9 @@
         "soc_brand": "NVIDIA",
         "soc_family": "Tegra/Orin",
         "lidar": "no",
+        "adas_soc": "NVIDIA",
+        "power_semi": "Infineon",
+        "radar_tier1": "Bosch",
         "confidence": "medium"
       },
       {
@@ -11598,6 +13233,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11608,6 +13246,9 @@
         "soc_brand": "Qualcomm",
         "soc_family": "Snapdragon Cockpit",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11618,6 +13259,9 @@
         "soc_brand": "Qualcomm",
         "soc_family": "Snapdragon Cockpit",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11628,6 +13272,9 @@
         "soc_brand": "Undisclosed",
         "soc_family": "",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Valeo",
         "confidence": "low"
       },
       {
@@ -11638,6 +13285,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car",
         "lidar": "no",
+        "adas_soc": "Denso",
+        "power_semi": "Infineon",
+        "radar_tier1": "Denso",
         "confidence": "low"
       },
       {
@@ -11648,6 +13298,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11658,6 +13311,9 @@
         "soc_brand": "Samsung",
         "soc_family": "Exynos Auto V7",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11668,6 +13324,9 @@
         "soc_brand": "MediaTek",
         "soc_family": "",
         "lidar": "no",
+        "adas_soc": "None",
+        "power_semi": "Infineon",
+        "radar_tier1": "None",
         "confidence": "low"
       },
       {
@@ -11678,6 +13337,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11688,6 +13350,9 @@
         "soc_brand": "Samsung",
         "soc_family": "Exynos Auto V7",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11698,6 +13363,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11708,6 +13376,9 @@
         "soc_brand": "NVIDIA",
         "soc_family": "Tegra/Orin",
         "lidar": "no",
+        "adas_soc": "NVIDIA",
+        "power_semi": "Infineon",
+        "radar_tier1": "Bosch",
         "confidence": "medium"
       },
       {
@@ -11718,6 +13389,9 @@
         "soc_brand": "AMD",
         "soc_family": "Ryzen",
         "lidar": "no",
+        "adas_soc": "Tesla",
+        "power_semi": "STMicro",
+        "radar_tier1": "None",
         "confidence": "high"
       },
       {
@@ -11728,6 +13402,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11738,6 +13415,9 @@
         "soc_brand": "NVIDIA",
         "soc_family": "Parker",
         "lidar": "no",
+        "adas_soc": "NVIDIA",
+        "power_semi": "Infineon",
+        "radar_tier1": "Bosch",
         "confidence": "medium"
       },
       {
@@ -11748,6 +13428,9 @@
         "soc_brand": "Samsung",
         "soc_family": "Exynos Auto V7",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11758,6 +13441,9 @@
         "soc_brand": "Qualcomm",
         "soc_family": "Snapdragon Cockpit",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11768,6 +13454,9 @@
         "soc_brand": "Qualcomm",
         "soc_family": "Snapdragon Cockpit",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11778,6 +13467,9 @@
         "soc_brand": "Qualcomm",
         "soc_family": "Snapdragon 8155",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "HL Klemove",
         "confidence": "medium"
       },
       {
@@ -11788,6 +13480,9 @@
         "soc_brand": "Samsung",
         "soc_family": "Exynos Auto V7",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11798,6 +13493,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11808,6 +13506,9 @@
         "soc_brand": "Qualcomm",
         "soc_family": "Snapdragon Cockpit",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Veoneer/Magna",
         "confidence": "medium"
       },
       {
@@ -11818,6 +13519,9 @@
         "soc_brand": "Undisclosed",
         "soc_family": "",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Valeo",
         "confidence": "low"
       },
       {
@@ -11828,6 +13532,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11838,6 +13545,9 @@
         "soc_brand": "Qualcomm",
         "soc_family": "Snapdragon Cockpit",
         "lidar": "no",
+        "adas_soc": "NVIDIA",
+        "power_semi": "Infineon",
+        "radar_tier1": "Bosch",
         "confidence": "medium"
       },
       {
@@ -11848,6 +13558,9 @@
         "soc_brand": "Samsung",
         "soc_family": "Exynos Auto 8890",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "low"
       },
       {
@@ -11858,6 +13571,9 @@
         "soc_brand": "Undisclosed",
         "soc_family": "",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Valeo",
         "confidence": "low"
       },
       {
@@ -11868,6 +13584,9 @@
         "soc_brand": "NVIDIA",
         "soc_family": "Parker",
         "lidar": "no",
+        "adas_soc": "NVIDIA",
+        "power_semi": "Infineon",
+        "radar_tier1": "Bosch",
         "confidence": "low"
       },
       {
@@ -11878,6 +13597,9 @@
         "soc_brand": "Undisclosed",
         "soc_family": "",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Valeo",
         "confidence": "low"
       },
       {
@@ -11888,6 +13610,9 @@
         "soc_brand": "Qualcomm",
         "soc_family": "Snapdragon Cockpit",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11898,6 +13623,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11908,6 +13636,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11918,6 +13649,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "low"
       },
       {
@@ -11928,6 +13662,9 @@
         "soc_brand": "Undisclosed",
         "soc_family": "",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Bosch",
         "confidence": "low"
       },
       {
@@ -11938,6 +13675,9 @@
         "soc_brand": "Samsung",
         "soc_family": "Exynos Auto 8890",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "low"
       },
       {
@@ -11948,6 +13688,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11958,6 +13701,9 @@
         "soc_brand": "Undisclosed",
         "soc_family": "",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Bosch",
         "confidence": "low"
       },
       {
@@ -11968,6 +13714,9 @@
         "soc_brand": "Samsung",
         "soc_family": "Exynos Auto V7",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11978,6 +13727,9 @@
         "soc_brand": "Renesas",
         "soc_family": "R-Car M3",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Continental",
         "confidence": "medium"
       },
       {
@@ -11988,6 +13740,9 @@
         "soc_brand": "Undisclosed",
         "soc_family": "",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "HL Klemove",
         "confidence": "low"
       },
       {
@@ -11998,6 +13753,9 @@
         "soc_brand": "Undisclosed",
         "soc_family": "",
         "lidar": "no",
+        "adas_soc": "Mobileye",
+        "power_semi": "Infineon",
+        "radar_tier1": "Valeo",
         "confidence": "low"
       },
       {
@@ -12008,6 +13766,9 @@
         "soc_brand": "None",
         "soc_family": "",
         "lidar": "no",
+        "adas_soc": "None",
+        "power_semi": "Infineon",
+        "radar_tier1": "Denso",
         "confidence": "low"
       },
       {
@@ -12018,6 +13779,9 @@
         "soc_brand": "NVIDIA",
         "soc_family": "Parker",
         "lidar": "no",
+        "adas_soc": "NVIDIA",
+        "power_semi": "Infineon",
+        "radar_tier1": "Bosch",
         "confidence": "medium"
       }
     ]
@@ -12052,7 +13816,13 @@
     "Qualcomm": "#2a78d6", "Samsung": "#4a3aa7", "NVIDIA": "#1baf7a",
     "Renesas": "#eb6834", "AMD": "#e34948", "NXP": "#eda100",
     "MediaTek": "#e87ba4", "Undisclosed": "#8f8d86", "None": "#c3c2b7",
-    "Unclassified": "#d8d7d0"
+    "Unclassified": "#d8d7d0",
+    // ADAS / radar / power-semi vendors
+    "Mobileye": "#00a7b5", "Tesla": "#e34948", "Denso": "#7b5cd6",
+    "Continental": "#2a78d6", "Bosch": "#e34948", "Valeo": "#1baf7a",
+    "HL Klemove": "#eda100", "Veoneer/Magna": "#e87ba4",
+    "Infineon": "#2a78d6", "STMicro": "#eb6834", "onsemi": "#4a3aa7",
+    "BYD Semi": "#1baf7a"
   };
   var colorFor = function (b) { return COLORS[b] || "#8f8d86"; };
 
@@ -12062,10 +13832,13 @@
   var labels = S.labels;
   $("subtitle").textContent = (DATA.country || "Germany") + " · " + labels[0] + " – " + labels[labels.length - 1] +
     " · new passenger-car registrations weighted by KBA counts.";
-  $("methodology").innerHTML = "<b>How to read this.</b> Registration volumes are official KBA figures. The cockpit " +
-    "SoC and LiDAR fields are <b>estimates</b> — each model is mapped to the silicon of its current-generation " +
+  $("methodology").innerHTML = "<b>How to read this.</b> Registration volumes are official KBA figures. The electronics " +
+    "fields are <b>estimates</b> — each model is mapped to the silicon of its current-generation " +
     "platform / brand software stack (\"当年新款标配\"), not measured per car. " + Math.round(S.coverage_pct) +
-    "% of registrations are classified; the rest are shown as <i>Unclassified</i>. Source mapping: <code>data/vehicle_specs.csv</code>.";
+    "% of registrations are classified; the rest are shown as <i>Unclassified</i>. " +
+    "<b>Cockpit SoC & LiDAR</b> are the best-sourced; <b>ADAS SoC, EV power-semiconductor and radar Tier-1</b> " +
+    "are lower-confidence OEM/platform-relationship estimates — treat them as directional. " +
+    "Source mapping: <code>data/vehicle_specs.csv</code>.";
 
   // ----- KPIs -----
   var topSoc = S.soc_share.filter(function (r) { return r.brand !== "Unclassified"; })[0];
@@ -12084,17 +13857,28 @@
       '</p><div class="value">' + k.value + '</div><div class="foot">' + k.foot + '</div></div>';
   }).join("");
 
-  // ----- SoC supplier share bars (classified only) -----
-  var shareRows = S.soc_share.filter(function (r) { return r.brand !== "Unclassified"; });
-  var maxShare = Math.max.apply(null, shareRows.map(function (r) { return r.share_classified || 0; }));
-  $("socBars").innerHTML = shareRows.map(function (r) {
-    var w = maxShare ? (100 * (r.share_classified || 0) / maxShare) : 0;
-    return '<div class="bar-row">' +
-      '<div class="bar-name"><span class="swatch" style="background:' + colorFor(r.brand) + '"></span>' + r.brand + '</div>' +
-      '<div class="bar-track"><div class="bar-fill" style="width:' + w + '%;background:' + colorFor(r.brand) + '"></div></div>' +
-      '<div class="bar-val">' + (r.share_classified || 0).toFixed(1) + '%&nbsp;·&nbsp;' + fmt(r.total) + '</div>' +
-      '</div>';
-  }).join("");
+  // ----- shared supplier share-bar renderer (classified only) -----
+  function renderBars(elId, shareArr) {
+    var rows = shareArr.filter(function (r) { return r.brand !== "Unclassified"; });
+    var max = Math.max.apply(null, rows.map(function (r) { return r.share_classified || 0; }));
+    $(elId).innerHTML = rows.map(function (r) {
+      var w = max ? (100 * (r.share_classified || 0) / max) : 0;
+      return '<div class="bar-row">' +
+        '<div class="bar-name"><span class="swatch" style="background:' + colorFor(r.brand) + '"></span>' + r.brand + '</div>' +
+        '<div class="bar-track"><div class="bar-fill" style="width:' + w + '%;background:' + colorFor(r.brand) + '"></div></div>' +
+        '<div class="bar-val">' + (r.share_classified || 0).toFixed(1) + '%&nbsp;·&nbsp;' + fmt(r.total) + '</div>' +
+        '</div>';
+    }).join("");
+  }
+  renderBars("socBars", S.soc_share);
+  if (S.adas) renderBars("adasBars", S.adas.share);
+  if (S.radar) renderBars("radarBars", S.radar.share);
+  if (S.power_semi) {
+    renderBars("powerBars", S.power_semi.share);
+    $("powerNote").innerHTML = "Estimated traction-inverter power-module vendor, weighted by <b>battery-electric</b> registrations (" +
+      fmt(S.bev_registrations) + " BEVs; " + Math.round(S.power_semi.coverage_pct) +
+      "% classified). SiC vs IGBT is the industry's hot transition — Infineon dominates EU inverters, ST supplies Tesla's SiC, BYD makes its own.";
+  }
 
   // ================= generic line/area chart helpers =================
   var SVGNS = "http://www.w3.org/2000/svg";
@@ -12204,9 +13988,15 @@
   var stackSeries = S.soc_series.filter(function (s) {
     return s.share.some(function (v) { return v > 0; });
   });
-  $("socLegend").innerHTML = stackSeries.map(function (s) {
-    return '<span><span class="swatch" style="background:' + colorFor(s.name) + '"></span>' + s.name + '</span>';
-  }).join("");
+  function renderLegend(elId, series) {
+    $(elId).innerHTML = series.map(function (s) {
+      return '<span><span class="swatch" style="background:' + colorFor(s.name) + '"></span>' + s.name + '</span>';
+    }).join("");
+  }
+  renderLegend("socLegend", stackSeries);
+
+  var adasStack = S.adas ? S.adas.series.filter(function (s) { return s.share.some(function (v) { return v > 0; }); }) : [];
+  if (S.adas) renderLegend("adasLegend", adasStack);
 
   // ----- LiDAR note -----
   var lidarSuppliers = "Valeo (Mercedes Drive Pilot), Luminar (Volvo EX90)";
@@ -12224,17 +14014,17 @@
     return '';
   }
   $("modelRows").innerHTML = S.top_models.map(function (m) {
-    var dc = m.domain_controller || "–";
     var soc = m.soc_brand + (m.soc_family ? ' <span class="tag">' + m.soc_family + '</span>' : '');
     var lidar = (m.lidar && m.lidar !== "no") ? m.lidar : "no";
     return '<tr>' +
       '<td><span style="display:inline-flex;align-items:center;gap:7px">' + markFor(m.brand) +
       '<span>' + m.brand + ' ' + m.model + '</span></span></td>' +
       '<td class="num">' + fmt(m.total) + '</td>' +
-      '<td>' + dc + '</td>' +
       '<td>' + pillFor(m.soc_brand).replace(m.soc_brand, soc) + '</td>' +
+      '<td>' + pillFor(m.adas_soc) + '</td>' +
+      '<td>' + pillFor(m.radar_tier1) + '</td>' +
+      '<td>' + pillFor(m.power_semi) + '</td>' +
       '<td>' + lidar + '</td>' +
-      '<td class="tag">' + (m.confidence || "–") + '</td>' +
       '</tr>';
   }).join("");
 
@@ -12246,6 +14036,7 @@
   // draw charts (after layout)
   function draw() {
     drawStack($("socChart"), $("socTip"), stackSeries);
+    if (S.adas) drawStack($("adasChart"), $("adasTip"), adasStack);
     drawLine($("dcChart"), $("dcTip"), S.dc_adoption.pct, css("--s3"), "%", 100);
     var lmax = Math.max(0.5, Math.ceil(Math.max.apply(null, S.lidar.pct) * 2) / 2);
     drawLine($("lidarChart"), $("lidarTip"), S.lidar.pct, css("--s2"), "%", lmax);
