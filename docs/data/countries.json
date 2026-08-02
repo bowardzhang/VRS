@@ -487,7 +487,13 @@
         "model": "3ER",
         "total": 92321
       }
-    ]
+    ],
+    "powertrain": {
+      "has": false,
+      "shares": []
+    },
+    "ytd": 1484393,
+    "ytd_year": 2026
   },
   {
     "code": "NL",
@@ -1628,7 +1634,13 @@
         "model": "XC60",
         "total": 14859
       }
-    ]
+    ],
+    "powertrain": {
+      "has": false,
+      "shares": []
+    },
+    "ytd": 181464,
+    "ytd_year": 2026
   },
   {
     "code": "FI",
@@ -2177,7 +2189,39 @@
         "model": "ID.7",
         "total": 2684
       }
-    ]
+    ],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 76136,
+          "pct": 36.3
+        },
+        {
+          "fuel": "PHEV",
+          "total": 39990,
+          "pct": 19.1
+        },
+        {
+          "fuel": "Petrol",
+          "total": 83547,
+          "pct": 39.9
+        },
+        {
+          "fuel": "Diesel",
+          "total": 9722,
+          "pct": 4.6
+        },
+        {
+          "fuel": "Other",
+          "total": 231,
+          "pct": 0.1
+        }
+      ]
+    },
+    "ytd": 36585,
+    "ytd_year": 2026
   },
   {
     "code": "FR",
@@ -2344,7 +2388,13 @@
     "total": 13342279,
     "brand_totals": [],
     "origin_totals": [],
-    "top_models": []
+    "top_models": [],
+    "powertrain": {
+      "has": false,
+      "shares": []
+    },
+    "ytd": 867660,
+    "ytd_year": 2026
   },
   {
     "code": "UK",
@@ -3552,6 +3602,43 @@
         "model": "A3",
         "total": 68193
       }
-    ]
+    ],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 1135048,
+          "pct": 20.4
+        },
+        {
+          "fuel": "PHEV",
+          "total": 539545,
+          "pct": 9.7
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 1684316,
+          "pct": 30.3
+        },
+        {
+          "fuel": "Petrol",
+          "total": 1902861,
+          "pct": 34.3
+        },
+        {
+          "fuel": "Diesel",
+          "total": 285123,
+          "pct": 5.1
+        },
+        {
+          "fuel": "Other",
+          "total": 4595,
+          "pct": 0.1
+        }
+      ]
+    },
+    "ytd": 617894,
+    "ytd_year": 2026
   }
 ]

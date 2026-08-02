@@ -31,10 +31,13 @@ trend (each country over its own multi-year history — monthly sources are roll
 up to complete quarters, the UK is natively quarterly) plus **top-brand /
 manufacturer-origin** bars aggregated over a common recent window across the
 brand-capable countries (France is totals only). Selecting a country also shows a
-**per-country breakdown** card — its top brands and top model series (NL via the
-RDW `handelsbenaming`, FI via the Traficom by-model table, UK via the DfT
-`GenModel` column). Country-specific deep dives (German KBA body segments, the
-supplier installation-rate pages) are shown when that country is in scope.
+**per-country breakdown** card — headline KPIs (latest quarter, year-to-date,
+BEV / diesel share), a **powertrain mix**, and top brands + top model series with
+brand logos (NL via the RDW `handelsbenaming`, FI via the Traficom by-model and
+driving-power tables, UK via the DfT `GenModel` / `Fuel` columns). Where a source
+doesn't publish a field (e.g. NL powertrain, France brand/model), the card says
+so. Country-specific deep dives (German KBA body segments, the supplier
+installation-rate pages) are shown when that country is in scope.
 
 ## Pipeline
 

@@ -26,7 +26,17 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "UnitedKingdom"
 OUT_CSV = OUT_DIR / "uk_quarterly_brands.csv"
 MODELS_CSV = OUT_DIR / "uk_models.csv"
+POWERTRAIN_CSV = OUT_DIR / "uk_powertrain.csv"
 MODELS_SINCE = (2023, 3)  # (year, quarter) — brand/model detail window
+
+# DfT Fuel label -> canonical powertrain bucket.
+UK_FUEL = {
+    "Petrol": "Petrol", "Diesel": "Diesel", "Battery electric": "BEV",
+    "Plug-in hybrid electric (petrol)": "PHEV", "Plug-in hybrid electric (diesel)": "PHEV",
+    "Hybrid electric (petrol)": "Hybrid", "Hybrid electric (diesel)": "Hybrid",
+    "Fuel cell electric": "Other", "Range extended electric": "Other",
+    "Gas": "Other", "Other fuel types": "Other",
+}
 
 SRC = "https://assets.publishing.service.gov.uk/media/6a54d2eea6586e258d371d72/df_VEH0160_GB.csv"
 _COL = re.compile(r"^(\d{4})\s*Q([1-4])$")
@@ -119,6 +129,36 @@ def parse_models(text: str) -> dict[tuple[str, str], int]:
     return out
 
 
+def parse_powertrain(text: str, from_year: int) -> dict:
+    """(year, quarter, canonical fuel) totals for Cars."""
+    reader = csv.reader(io.StringIO(text))
+    header = next(reader)
+    periods = []
+    for i, h in enumerate(header):
+        m = _COL.match(h.strip())
+        if m and int(m.group(1)) >= from_year:
+            periods.append((i, int(m.group(1)), int(m.group(2))))
+    try:
+        bt_i = header.index("BodyType"); fu_i = header.index("Fuel")
+    except ValueError:
+        return {}
+    out: dict[tuple[int, int, str], int] = {}
+    for row in reader:
+        if len(row) <= fu_i or row[bt_i].strip() != "Cars":
+            continue
+        fuel = UK_FUEL.get(row[fu_i].strip(), "Other")
+        for i, y, q in periods:
+            if i >= len(row):
+                continue
+            raw = row[i].strip().replace(",", "")
+            if raw not in ("", "-", "[c]", "[x]", "[z]", ".."):
+                try:
+                    out[(y, q, fuel)] = out.get((y, q, fuel), 0) + int(raw)
+                except ValueError:
+                    pass
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--from-year", type=int, default=2019)
@@ -147,6 +187,14 @@ def main() -> int:
         for (mk, md), c in sorted(models.items(), key=lambda kv: -kv[1]):
             w.writerow([mk, md, c])
     print(f"[write] {MODELS_CSV.relative_to(REPO_ROOT)} ({len(models)} brand/model rows)")
+
+    pt = parse_powertrain(text, args.from_year)
+    with POWERTRAIN_CSV.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "quarter", "fuel", "count"])
+        for (y, q, f), c in sorted(pt.items()):
+            w.writerow([y, q, f, c])
+    print(f"[write] {POWERTRAIN_CSV.relative_to(REPO_ROOT)} ({len(pt)} rows)")
     return 0
 
 
