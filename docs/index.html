@@ -203,9 +203,14 @@
   #euOverview .eu-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:24px; }
   @media (max-width:820px){ #euOverview .eu-grid { grid-template-columns:1fr; } }
   #euOverview h3 { font-size:14px; margin:0 0 12px; letter-spacing:-.01em; }
-  .cty-legend { display:flex; flex-wrap:wrap; gap:14px; margin-top:14px; font-size:12.5px; color:var(--ink-2); }
-  .cty-legend span { display:inline-flex; align-items:center; gap:6px; }
-  .cty-legend i { width:11px; height:11px; border-radius:3px; display:inline-block; }
+  .eu-sm { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; margin-top:6px; }
+  .sm-card { border:1px solid var(--border); border-radius:12px; padding:13px 14px; background:var(--page); }
+  .sm-head { display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; margin-bottom:2px; }
+  .sm-head i { width:10px; height:10px; border-radius:3px; display:inline-block; flex:0 0 10px; }
+  .sm-sub { font-size:11.5px; color:var(--muted); margin-bottom:8px; }
+  .sm-card svg { width:100%; height:56px; display:block; overflow:visible; }
+  .sm-foot { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:5px; font-variant-numeric:tabular-nums; }
+  .sm-foot b { color:var(--ink-2); font-weight:600; }
   .mini-bars { display:flex; flex-direction:column; gap:8px; }
   .mini-bars .row { display:grid; grid-template-columns:116px 1fr 80px; align-items:center; gap:10px; }
   @media (max-width:560px){ .mini-bars .row { grid-template-columns:96px 1fr 66px; } }
@@ -229,11 +234,10 @@
     <h2>Europe overview <span class="h2hint" id="euCountriesLabel"></span></h2>
     <p class="note" id="euNote"></p>
     <div class="kpis" id="euKpis" style="margin:6px 0 20px"></div>
-    <h3>Total monthly registrations by country</h3>
-    <div class="trend-wrap"><svg class="trend" id="euTrend" role="img" aria-label="Monthly new registrations by country"></svg><div class="tip" id="euTip"></div></div>
-    <div class="cty-legend" id="euLegend"></div>
+    <h3>Registration trend by country <span style="font-weight:500;color:var(--muted)">— quarterly, each country over its own history</span></h3>
+    <div class="eu-sm" id="euTrends"></div>
     <div class="eu-grid">
-      <div><h3>Top brands</h3><div class="mini-bars" id="euBrands"></div></div>
+      <div><h3>Top brands <span class="brwin" id="euBrandsWin" style="font-weight:500;color:var(--muted);font-size:12px"></span></h3><div class="mini-bars" id="euBrands"></div></div>
       <div><h3>By manufacturer origin</h3><div class="mini-bars" id="euOrigin"></div></div>
     </div>
     <p class="chart-note-sm" id="euSrc"></p>
@@ -13207,179 +13211,68 @@
     "flag": "🇩🇪",
     "source": "Kraftfahrt-Bundesamt (KBA), table FZ 10.1",
     "source_url": "https://www.kba.de/DE/Statistik/Produktkatalog/produkte/Fahrzeuge/fz10/fz10_gentab.html",
-    "window": "Sep 2023 – Jun 2026",
-    "months": [
+    "granularity": "quarterly",
+    "has_brands": true,
+    "brand_window_label": "since Sep 2023",
+    "window": "Q4 2023 – Q2 2026",
+    "quarters": [
       {
-        "ym": "2023-09",
-        "label": "Sep 2023",
-        "total": 224502
+        "q": "2023-Q4",
+        "label": "Q4 2023",
+        "total": 706543
       },
       {
-        "ym": "2023-10",
-        "label": "Oct 2023",
-        "total": 218959
+        "q": "2024-Q1",
+        "label": "Q1 2024",
+        "total": 694785
       },
       {
-        "ym": "2023-11",
-        "label": "Nov 2023",
-        "total": 245701
+        "q": "2024-Q2",
+        "label": "Q2 2024",
+        "total": 776856
       },
       {
-        "ym": "2023-12",
-        "label": "Dec 2023",
-        "total": 241883
+        "q": "2024-Q3",
+        "label": "Q3 2024",
+        "total": 644433
       },
       {
-        "ym": "2024-01",
-        "label": "Jan 2024",
-        "total": 213553
+        "q": "2024-Q4",
+        "label": "Q4 2024",
+        "total": 701257
       },
       {
-        "ym": "2024-02",
-        "label": "Feb 2024",
-        "total": 217388
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 664571
       },
       {
-        "ym": "2024-03",
-        "label": "Mar 2024",
-        "total": 263844
+        "q": "2025-Q2",
+        "label": "Q2 2025",
+        "total": 738218
       },
       {
-        "ym": "2024-04",
-        "label": "Apr 2024",
-        "total": 243102
+        "q": "2025-Q3",
+        "label": "Q3 2025",
+        "total": 707559
       },
       {
-        "ym": "2024-05",
-        "label": "May 2024",
-        "total": 236425
+        "q": "2025-Q4",
+        "label": "Q4 2025",
+        "total": 747243
       },
       {
-        "ym": "2024-06",
-        "label": "Jun 2024",
-        "total": 297329
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 699404
       },
       {
-        "ym": "2024-07",
-        "label": "Jul 2024",
-        "total": 238263
-      },
-      {
-        "ym": "2024-08",
-        "label": "Aug 2024",
-        "total": 197322
-      },
-      {
-        "ym": "2024-09",
-        "label": "Sep 2024",
-        "total": 208848
-      },
-      {
-        "ym": "2024-10",
-        "label": "Oct 2024",
-        "total": 231992
-      },
-      {
-        "ym": "2024-11",
-        "label": "Nov 2024",
-        "total": 244544
-      },
-      {
-        "ym": "2024-12",
-        "label": "Dec 2024",
-        "total": 224721
-      },
-      {
-        "ym": "2025-01",
-        "label": "Jan 2025",
-        "total": 207640
-      },
-      {
-        "ym": "2025-02",
-        "label": "Feb 2025",
-        "total": 203434
-      },
-      {
-        "ym": "2025-03",
-        "label": "Mar 2025",
-        "total": 253497
-      },
-      {
-        "ym": "2025-04",
-        "label": "Apr 2025",
-        "total": 242728
-      },
-      {
-        "ym": "2025-05",
-        "label": "May 2025",
-        "total": 239297
-      },
-      {
-        "ym": "2025-06",
-        "label": "Jun 2025",
-        "total": 256193
-      },
-      {
-        "ym": "2025-07",
-        "label": "Jul 2025",
-        "total": 264802
-      },
-      {
-        "ym": "2025-08",
-        "label": "Aug 2025",
-        "total": 207229
-      },
-      {
-        "ym": "2025-09",
-        "label": "Sep 2025",
-        "total": 235528
-      },
-      {
-        "ym": "2025-10",
-        "label": "Oct 2025",
-        "total": 250133
-      },
-      {
-        "ym": "2025-11",
-        "label": "Nov 2025",
-        "total": 250671
-      },
-      {
-        "ym": "2025-12",
-        "label": "Dec 2025",
-        "total": 246439
-      },
-      {
-        "ym": "2026-01",
-        "label": "Jan 2026",
-        "total": 193981
-      },
-      {
-        "ym": "2026-02",
-        "label": "Feb 2026",
-        "total": 211262
-      },
-      {
-        "ym": "2026-03",
-        "label": "Mar 2026",
-        "total": 294161
-      },
-      {
-        "ym": "2026-04",
-        "label": "Apr 2026",
-        "total": 249163
-      },
-      {
-        "ym": "2026-05",
-        "label": "May 2026",
-        "total": 239448
-      },
-      {
-        "ym": "2026-06",
-        "label": "Jun 2026",
-        "total": 296378
+        "q": "2026-Q2",
+        "label": "Q2 2026",
+        "total": 784989
       }
     ],
+    "total": 7865858,
     "brand_totals": [
       {
         "brand": "VW",
@@ -13723,8 +13616,7 @@
         "origin": "Other",
         "total": 4164
       }
-    ],
-    "total": 8090360
+    ]
   },
   {
     "code": "NL",
@@ -13732,179 +13624,163 @@
     "flag": "🇳🇱",
     "source": "RDW open data (Socrata dataset m9d7-ebf2)",
     "source_url": "https://opendata.rdw.nl/",
-    "window": "Sep 2023 – Jun 2026",
-    "months": [
+    "granularity": "quarterly",
+    "has_brands": true,
+    "brand_window_label": "since Sep 2023",
+    "window": "Q1 2019 – Q2 2026",
+    "quarters": [
       {
-        "ym": "2023-09",
-        "label": "Sep 2023",
-        "total": 37035
+        "q": "2019-Q1",
+        "label": "Q1 2019",
+        "total": 152851
       },
       {
-        "ym": "2023-10",
-        "label": "Oct 2023",
-        "total": 34473
+        "q": "2019-Q2",
+        "label": "Q2 2019",
+        "total": 152206
       },
       {
-        "ym": "2023-11",
-        "label": "Nov 2023",
-        "total": 34639
+        "q": "2019-Q3",
+        "label": "Q3 2019",
+        "total": 134298
       },
       {
-        "ym": "2023-12",
-        "label": "Dec 2023",
-        "total": 32408
+        "q": "2019-Q4",
+        "label": "Q4 2019",
+        "total": 142280
       },
       {
-        "ym": "2024-01",
-        "label": "Jan 2024",
-        "total": 42635
+        "q": "2020-Q1",
+        "label": "Q1 2020",
+        "total": 141263
       },
       {
-        "ym": "2024-02",
-        "label": "Feb 2024",
-        "total": 38092
+        "q": "2020-Q2",
+        "label": "Q2 2020",
+        "total": 83528
       },
       {
-        "ym": "2024-03",
-        "label": "Mar 2024",
-        "total": 47201
+        "q": "2020-Q3",
+        "label": "Q3 2020",
+        "total": 135282
       },
       {
-        "ym": "2024-04",
-        "label": "Apr 2024",
-        "total": 36305
+        "q": "2020-Q4",
+        "label": "Q4 2020",
+        "total": 160010
       },
       {
-        "ym": "2024-05",
-        "label": "May 2024",
-        "total": 35978
+        "q": "2021-Q1",
+        "label": "Q1 2021",
+        "total": 139134
       },
       {
-        "ym": "2024-06",
-        "label": "Jun 2024",
-        "total": 42902
+        "q": "2021-Q2",
+        "label": "Q2 2021",
+        "total": 144779
       },
       {
-        "ym": "2024-07",
-        "label": "Jul 2024",
-        "total": 31914
+        "q": "2021-Q3",
+        "label": "Q3 2021",
+        "total": 117824
       },
       {
-        "ym": "2024-08",
-        "label": "Aug 2024",
-        "total": 31681
+        "q": "2021-Q4",
+        "label": "Q4 2021",
+        "total": 127376
       },
       {
-        "ym": "2024-09",
-        "label": "Sep 2024",
-        "total": 35305
+        "q": "2022-Q1",
+        "label": "Q1 2022",
+        "total": 125696
       },
       {
-        "ym": "2024-10",
-        "label": "Oct 2024",
-        "total": 36962
+        "q": "2022-Q2",
+        "label": "Q2 2022",
+        "total": 120566
       },
       {
-        "ym": "2024-11",
-        "label": "Nov 2024",
-        "total": 38790
+        "q": "2022-Q3",
+        "label": "Q3 2022",
+        "total": 106746
       },
       {
-        "ym": "2024-12",
-        "label": "Dec 2024",
-        "total": 41063
+        "q": "2022-Q4",
+        "label": "Q4 2022",
+        "total": 130633
       },
       {
-        "ym": "2025-01",
-        "label": "Jan 2025",
-        "total": 38673
+        "q": "2023-Q1",
+        "label": "Q1 2023",
+        "total": 134204
       },
       {
-        "ym": "2025-02",
-        "label": "Feb 2025",
-        "total": 34149
+        "q": "2023-Q2",
+        "label": "Q2 2023",
+        "total": 134957
       },
       {
-        "ym": "2025-03",
-        "label": "Mar 2025",
-        "total": 39434
+        "q": "2023-Q3",
+        "label": "Q3 2023",
+        "total": 107670
       },
       {
-        "ym": "2025-04",
-        "label": "Apr 2025",
-        "total": 34105
+        "q": "2023-Q4",
+        "label": "Q4 2023",
+        "total": 101520
       },
       {
-        "ym": "2025-05",
-        "label": "May 2025",
-        "total": 36457
+        "q": "2024-Q1",
+        "label": "Q1 2024",
+        "total": 127928
       },
       {
-        "ym": "2025-06",
-        "label": "Jun 2025",
-        "total": 40734
+        "q": "2024-Q2",
+        "label": "Q2 2024",
+        "total": 115185
       },
       {
-        "ym": "2025-07",
-        "label": "Jul 2025",
-        "total": 33055
+        "q": "2024-Q3",
+        "label": "Q3 2024",
+        "total": 98900
       },
       {
-        "ym": "2025-08",
-        "label": "Aug 2025",
-        "total": 28931
+        "q": "2024-Q4",
+        "label": "Q4 2024",
+        "total": 116815
       },
       {
-        "ym": "2025-09",
-        "label": "Sep 2025",
-        "total": 35187
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 112256
       },
       {
-        "ym": "2025-10",
-        "label": "Oct 2025",
-        "total": 37164
+        "q": "2025-Q2",
+        "label": "Q2 2025",
+        "total": 111296
       },
       {
-        "ym": "2025-11",
-        "label": "Nov 2025",
-        "total": 36494
+        "q": "2025-Q3",
+        "label": "Q3 2025",
+        "total": 97173
       },
       {
-        "ym": "2025-12",
-        "label": "Dec 2025",
-        "total": 49315
+        "q": "2025-Q4",
+        "label": "Q4 2025",
+        "total": 122973
       },
       {
-        "ym": "2026-01",
-        "label": "Jan 2026",
-        "total": 29435
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 85568
       },
       {
-        "ym": "2026-02",
-        "label": "Feb 2026",
-        "total": 23578
-      },
-      {
-        "ym": "2026-03",
-        "label": "Mar 2026",
-        "total": 32555
-      },
-      {
-        "ym": "2026-04",
-        "label": "Apr 2026",
-        "total": 26488
-      },
-      {
-        "ym": "2026-05",
-        "label": "May 2026",
-        "total": 30335
-      },
-      {
-        "ym": "2026-06",
-        "label": "Jun 2026",
-        "total": 39073
+        "q": "2026-Q2",
+        "label": "Q2 2026",
+        "total": 95896
       }
     ],
+    "total": 3676813,
     "brand_totals": [
       {
         "brand": "KIA",
@@ -14796,8 +14672,7 @@
         "origin": "Other",
         "total": 10317
       }
-    ],
-    "total": 1222545
+    ]
   },
   {
     "code": "FI",
@@ -14805,179 +14680,163 @@
     "flag": "🇫🇮",
     "source": "Traficom / Statistics Finland (PxWeb open data)",
     "source_url": "https://trafi2.stat.fi/PXWeb/pxweb/en/TraFi/",
-    "window": "Sep 2023 – Jun 2026",
-    "months": [
+    "granularity": "quarterly",
+    "has_brands": true,
+    "brand_window_label": "since Sep 2023",
+    "window": "Q1 2019 – Q2 2026",
+    "quarters": [
       {
-        "ym": "2023-09",
-        "label": "Sep 2023",
-        "total": 7384
+        "q": "2019-Q1",
+        "label": "Q1 2019",
+        "total": 28738
       },
       {
-        "ym": "2023-10",
-        "label": "Oct 2023",
-        "total": 6310
+        "q": "2019-Q2",
+        "label": "Q2 2019",
+        "total": 30494
       },
       {
-        "ym": "2023-11",
-        "label": "Nov 2023",
-        "total": 6593
+        "q": "2019-Q3",
+        "label": "Q3 2019",
+        "total": 27204
       },
       {
-        "ym": "2023-12",
-        "label": "Dec 2023",
-        "total": 5750
+        "q": "2019-Q4",
+        "label": "Q4 2019",
+        "total": 26056
       },
       {
-        "ym": "2024-01",
-        "label": "Jan 2024",
-        "total": 6493
+        "q": "2020-Q1",
+        "label": "Q1 2020",
+        "total": 27822
       },
       {
-        "ym": "2024-02",
-        "label": "Feb 2024",
-        "total": 5276
+        "q": "2020-Q2",
+        "label": "Q2 2020",
+        "total": 18429
       },
       {
-        "ym": "2024-03",
-        "label": "Mar 2024",
-        "total": 6385
+        "q": "2020-Q3",
+        "label": "Q3 2020",
+        "total": 25412
       },
       {
-        "ym": "2024-04",
-        "label": "Apr 2024",
-        "total": 6011
+        "q": "2020-Q4",
+        "label": "Q4 2020",
+        "total": 22774
       },
       {
-        "ym": "2024-05",
-        "label": "May 2024",
-        "total": 7552
+        "q": "2021-Q1",
+        "label": "Q1 2021",
+        "total": 27425
       },
       {
-        "ym": "2024-06",
-        "label": "Jun 2024",
-        "total": 6573
+        "q": "2021-Q2",
+        "label": "Q2 2021",
+        "total": 27738
       },
       {
-        "ym": "2024-07",
-        "label": "Jul 2024",
-        "total": 5036
+        "q": "2021-Q3",
+        "label": "Q3 2021",
+        "total": 21178
       },
       {
-        "ym": "2024-08",
-        "label": "Aug 2024",
-        "total": 6390
+        "q": "2021-Q4",
+        "label": "Q4 2021",
+        "total": 19503
       },
       {
-        "ym": "2024-09",
-        "label": "Sep 2024",
-        "total": 4556
+        "q": "2022-Q1",
+        "label": "Q1 2022",
+        "total": 21404
       },
       {
-        "ym": "2024-10",
-        "label": "Oct 2024",
-        "total": 5829
+        "q": "2022-Q2",
+        "label": "Q2 2022",
+        "total": 21200
       },
       {
-        "ym": "2024-11",
-        "label": "Nov 2024",
-        "total": 6268
+        "q": "2022-Q3",
+        "label": "Q3 2022",
+        "total": 19087
       },
       {
-        "ym": "2024-12",
-        "label": "Dec 2024",
-        "total": 6240
+        "q": "2022-Q4",
+        "label": "Q4 2022",
+        "total": 18561
       },
       {
-        "ym": "2025-01",
-        "label": "Jan 2025",
-        "total": 5663
+        "q": "2023-Q1",
+        "label": "Q1 2023",
+        "total": 20702
       },
       {
-        "ym": "2025-02",
-        "label": "Feb 2025",
-        "total": 4702
+        "q": "2023-Q2",
+        "label": "Q2 2023",
+        "total": 25426
       },
       {
-        "ym": "2025-03",
-        "label": "Mar 2025",
-        "total": 6085
+        "q": "2023-Q3",
+        "label": "Q3 2023",
+        "total": 21333
       },
       {
-        "ym": "2025-04",
-        "label": "Apr 2025",
-        "total": 6133
+        "q": "2023-Q4",
+        "label": "Q4 2023",
+        "total": 18653
       },
       {
-        "ym": "2025-05",
-        "label": "May 2025",
-        "total": 6701
+        "q": "2024-Q1",
+        "label": "Q1 2024",
+        "total": 18154
       },
       {
-        "ym": "2025-06",
-        "label": "Jun 2025",
-        "total": 7293
+        "q": "2024-Q2",
+        "label": "Q2 2024",
+        "total": 20136
       },
       {
-        "ym": "2025-07",
-        "label": "Jul 2025",
-        "total": 5286
+        "q": "2024-Q3",
+        "label": "Q3 2024",
+        "total": 15982
       },
       {
-        "ym": "2025-08",
-        "label": "Aug 2025",
-        "total": 5147
+        "q": "2024-Q4",
+        "label": "Q4 2024",
+        "total": 18337
       },
       {
-        "ym": "2025-09",
-        "label": "Sep 2025",
-        "total": 5900
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 16450
       },
       {
-        "ym": "2025-10",
-        "label": "Oct 2025",
-        "total": 6096
+        "q": "2025-Q2",
+        "label": "Q2 2025",
+        "total": 20127
       },
       {
-        "ym": "2025-11",
-        "label": "Nov 2025",
-        "total": 6104
+        "q": "2025-Q3",
+        "label": "Q3 2025",
+        "total": 16333
       },
       {
-        "ym": "2025-12",
-        "label": "Dec 2025",
-        "total": 5502
+        "q": "2025-Q4",
+        "label": "Q4 2025",
+        "total": 17702
       },
       {
-        "ym": "2026-01",
-        "label": "Jan 2026",
-        "total": 5374
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 16888
       },
       {
-        "ym": "2026-02",
-        "label": "Feb 2026",
-        "total": 4820
-      },
-      {
-        "ym": "2026-03",
-        "label": "Mar 2026",
-        "total": 6694
-      },
-      {
-        "ym": "2026-04",
-        "label": "Apr 2026",
-        "total": 5598
-      },
-      {
-        "ym": "2026-05",
-        "label": "May 2026",
-        "total": 6666
-      },
-      {
-        "ym": "2026-06",
-        "label": "Jun 2026",
-        "total": 7433
+        "q": "2026-Q2",
+        "label": "Q2 2026",
+        "total": 19697
       }
     ],
+    "total": 648945,
     "brand_totals": [
       {
         "brand": "TOYOTA",
@@ -15144,10 +15003,6 @@
         "total": 74
       },
       {
-        "brand": "OTHER",
-        "total": 44
-      },
-      {
         "brand": "FERRARI",
         "total": 42
       },
@@ -15289,8 +15144,1304 @@
         "origin": "Other",
         "total": 87
       }
+    ]
+  },
+  {
+    "code": "FR",
+    "name": "France",
+    "flag": "🇫🇷",
+    "source": "INSEE / SDES (BDM series 010756763, national totals)",
+    "source_url": "https://www.insee.fr/fr/statistiques/serie/010756763",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2019 – Q2 2026",
+    "quarters": [
+      {
+        "q": "2019-Q1",
+        "label": "Q1 2019",
+        "total": 568977
+      },
+      {
+        "q": "2019-Q2",
+        "label": "Q2 2019",
+        "total": 614429
+      },
+      {
+        "q": "2019-Q3",
+        "label": "Q3 2019",
+        "total": 482684
+      },
+      {
+        "q": "2019-Q4",
+        "label": "Q4 2019",
+        "total": 592187
+      },
+      {
+        "q": "2020-Q1",
+        "label": "Q1 2020",
+        "total": 373105
+      },
+      {
+        "q": "2020-Q2",
+        "label": "Q2 2020",
+        "total": 357472
+      },
+      {
+        "q": "2020-Q3",
+        "label": "Q3 2020",
+        "total": 463171
+      },
+      {
+        "q": "2020-Q4",
+        "label": "Q4 2020",
+        "total": 499782
+      },
+      {
+        "q": "2021-Q1",
+        "label": "Q1 2021",
+        "total": 454566
+      },
+      {
+        "q": "2021-Q2",
+        "label": "Q2 2021",
+        "total": 491206
+      },
+      {
+        "q": "2021-Q3",
+        "label": "Q3 2021",
+        "total": 347990
+      },
+      {
+        "q": "2021-Q4",
+        "label": "Q4 2021",
+        "total": 414913
+      },
+      {
+        "q": "2022-Q1",
+        "label": "Q1 2022",
+        "total": 377238
+      },
+      {
+        "q": "2022-Q2",
+        "label": "Q2 2022",
+        "total": 416103
+      },
+      {
+        "q": "2022-Q3",
+        "label": "Q3 2022",
+        "total": 351223
+      },
+      {
+        "q": "2022-Q4",
+        "label": "Q4 2022",
+        "total": 432386
+      },
+      {
+        "q": "2023-Q1",
+        "label": "Q1 2023",
+        "total": 432818
+      },
+      {
+        "q": "2023-Q2",
+        "label": "Q2 2023",
+        "total": 473204
+      },
+      {
+        "q": "2023-Q3",
+        "label": "Q3 2023",
+        "total": 407792
+      },
+      {
+        "q": "2023-Q4",
+        "label": "Q4 2023",
+        "total": 503532
+      },
+      {
+        "q": "2024-Q1",
+        "label": "Q1 2024",
+        "total": 455438
+      },
+      {
+        "q": "2024-Q2",
+        "label": "Q2 2024",
+        "total": 474417
+      },
+      {
+        "q": "2024-Q3",
+        "label": "Q3 2024",
+        "total": 358733
+      },
+      {
+        "q": "2024-Q4",
+        "label": "Q4 2024",
+        "total": 466579
+      },
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 419818
+      },
+      {
+        "q": "2025-Q2",
+        "label": "Q2 2025",
+        "total": 434499
+      },
+      {
+        "q": "2025-Q3",
+        "label": "Q3 2025",
+        "total": 350413
+      },
+      {
+        "q": "2025-Q4",
+        "label": "Q4 2025",
+        "total": 459944
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 410816
+      },
+      {
+        "q": "2026-Q2",
+        "label": "Q2 2026",
+        "total": 456844
+      }
     ],
-    "total": 205843
+    "total": 13342279,
+    "brand_totals": [],
+    "origin_totals": []
+  },
+  {
+    "code": "UK",
+    "name": "United Kingdom",
+    "flag": "🇬🇧",
+    "source": "UK Dept. for Transport, table VEH0160 (quarterly)",
+    "source_url": "https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files",
+    "granularity": "quarterly",
+    "has_brands": true,
+    "brand_window_label": "since Sep 2023",
+    "window": "Q1 2019 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2019-Q1",
+        "label": "Q1 2019",
+        "total": 694106
+      },
+      {
+        "q": "2019-Q2",
+        "label": "Q2 2019",
+        "total": 562345
+      },
+      {
+        "q": "2019-Q3",
+        "label": "Q3 2019",
+        "total": 589052
+      },
+      {
+        "q": "2019-Q4",
+        "label": "Q4 2019",
+        "total": 449906
+      },
+      {
+        "q": "2020-Q1",
+        "label": "Q1 2020",
+        "total": 479697
+      },
+      {
+        "q": "2020-Q2",
+        "label": "Q2 2020",
+        "total": 168063
+      },
+      {
+        "q": "2020-Q3",
+        "label": "Q3 2020",
+        "total": 586271
+      },
+      {
+        "q": "2020-Q4",
+        "label": "Q4 2020",
+        "total": 385926
+      },
+      {
+        "q": "2021-Q1",
+        "label": "Q1 2021",
+        "total": 424120
+      },
+      {
+        "q": "2021-Q2",
+        "label": "Q2 2021",
+        "total": 477802
+      },
+      {
+        "q": "2021-Q3",
+        "label": "Q3 2021",
+        "total": 404478
+      },
+      {
+        "q": "2021-Q4",
+        "label": "Q4 2021",
+        "total": 333824
+      },
+      {
+        "q": "2022-Q1",
+        "label": "Q1 2022",
+        "total": 415847
+      },
+      {
+        "q": "2022-Q2",
+        "label": "Q2 2022",
+        "total": 382661
+      },
+      {
+        "q": "2022-Q3",
+        "label": "Q3 2022",
+        "total": 407644
+      },
+      {
+        "q": "2022-Q4",
+        "label": "Q4 2022",
+        "total": 406989
+      },
+      {
+        "q": "2023-Q1",
+        "label": "Q1 2023",
+        "total": 489426
+      },
+      {
+        "q": "2023-Q2",
+        "label": "Q2 2023",
+        "total": 452723
+      },
+      {
+        "q": "2023-Q3",
+        "label": "Q3 2023",
+        "total": 503375
+      },
+      {
+        "q": "2023-Q4",
+        "label": "Q4 2023",
+        "total": 454213
+      },
+      {
+        "q": "2024-Q1",
+        "label": "Q1 2024",
+        "total": 543820
+      },
+      {
+        "q": "2024-Q2",
+        "label": "Q2 2024",
+        "total": 459713
+      },
+      {
+        "q": "2024-Q3",
+        "label": "Q3 2024",
+        "total": 507245
+      },
+      {
+        "q": "2024-Q4",
+        "label": "Q4 2024",
+        "total": 439563
+      },
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 578284
+      },
+      {
+        "q": "2025-Q2",
+        "label": "Q2 2025",
+        "total": 461604
+      },
+      {
+        "q": "2025-Q3",
+        "label": "Q3 2025",
+        "total": 537628
+      },
+      {
+        "q": "2025-Q4",
+        "label": "Q4 2025",
+        "total": 448149
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 617894
+      }
+    ],
+    "total": 13662368,
+    "brand_totals": [
+      {
+        "brand": "VW",
+        "total": 481993
+      },
+      {
+        "brand": "BMW",
+        "total": 341695
+      },
+      {
+        "brand": "AUDI",
+        "total": 335304
+      },
+      {
+        "brand": "FORD",
+        "total": 327461
+      },
+      {
+        "brand": "TOYOTA",
+        "total": 309225
+      },
+      {
+        "brand": "KIA",
+        "total": 300107
+      },
+      {
+        "brand": "MERCEDES",
+        "total": 267900
+      },
+      {
+        "brand": "NISSAN",
+        "total": 260483
+      },
+      {
+        "brand": "HYUNDAI",
+        "total": 240210
+      },
+      {
+        "brand": "OPEL",
+        "total": 235346
+      },
+      {
+        "brand": "MG",
+        "total": 227345
+      },
+      {
+        "brand": "SKODA",
+        "total": 218211
+      },
+      {
+        "brand": "PEUGEOT",
+        "total": 202788
+      },
+      {
+        "brand": "VOLVO",
+        "total": 180269
+      },
+      {
+        "brand": "LAND ROVER",
+        "total": 168625
+      },
+      {
+        "brand": "RENAULT",
+        "total": 161352
+      },
+      {
+        "brand": "MINI",
+        "total": 132072
+      },
+      {
+        "brand": "TESLA",
+        "total": 130040
+      },
+      {
+        "brand": "CUPRA",
+        "total": 97175
+      },
+      {
+        "brand": "MAZDA",
+        "total": 83893
+      },
+      {
+        "brand": "HONDA",
+        "total": 82015
+      },
+      {
+        "brand": "BYD",
+        "total": 81323
+      },
+      {
+        "brand": "DACIA",
+        "total": 80235
+      },
+      {
+        "brand": "SEAT",
+        "total": 78416
+      },
+      {
+        "brand": "CITROEN",
+        "total": 74303
+      },
+      {
+        "brand": "SUZUKI",
+        "total": 64978
+      },
+      {
+        "brand": "PORSCHE",
+        "total": 54905
+      },
+      {
+        "brand": "JAECOO",
+        "total": 47366
+      },
+      {
+        "brand": "LEXUS",
+        "total": 46025
+      },
+      {
+        "brand": "POLESTAR",
+        "total": 35552
+      },
+      {
+        "brand": "OMODA",
+        "total": 32585
+      },
+      {
+        "brand": "FIAT",
+        "total": 32068
+      },
+      {
+        "brand": "JAGUAR",
+        "total": 26590
+      },
+      {
+        "brand": "JEEP",
+        "total": 24666
+      },
+      {
+        "brand": "CHERY",
+        "total": 13620
+      },
+      {
+        "brand": "SUBARU",
+        "total": 7766
+      },
+      {
+        "brand": "LEAPMOTOR",
+        "total": 7367
+      },
+      {
+        "brand": "ALFA ROMEO",
+        "total": 6306
+      },
+      {
+        "brand": "SMART",
+        "total": 4979
+      },
+      {
+        "brand": "LOTUS",
+        "total": 4231
+      },
+      {
+        "brand": "BENTLEY",
+        "total": 3637
+      },
+      {
+        "brand": "KGM",
+        "total": 3541
+      },
+      {
+        "brand": "GENESIS",
+        "total": 3285
+      },
+      {
+        "brand": "ASTON MARTIN",
+        "total": 3007
+      },
+      {
+        "brand": "DS",
+        "total": 2960
+      },
+      {
+        "brand": "ALPINE",
+        "total": 2920
+      },
+      {
+        "brand": "FERRARI",
+        "total": 2285
+      },
+      {
+        "brand": "SHINERAY",
+        "total": 2066
+      },
+      {
+        "brand": "LAMBORGHINI",
+        "total": 1985
+      },
+      {
+        "brand": "ABARTH",
+        "total": 1958
+      },
+      {
+        "brand": "ORA",
+        "total": 1810
+      },
+      {
+        "brand": "OTHER BRITISH",
+        "total": 1366
+      },
+      {
+        "brand": "MASERATI",
+        "total": 1280
+      },
+      {
+        "brand": "XPENG",
+        "total": 1263
+      },
+      {
+        "brand": "ROLLS ROYCE",
+        "total": 1231
+      },
+      {
+        "brand": "INEOS",
+        "total": 1209
+      },
+      {
+        "brand": "CHANGAN",
+        "total": 1103
+      },
+      {
+        "brand": "SSANGYONG",
+        "total": 803
+      },
+      {
+        "brand": "MITSUBISHI",
+        "total": 731
+      },
+      {
+        "brand": "RENAULT TRUCKS",
+        "total": 643
+      },
+      {
+        "brand": "MCLAREN",
+        "total": 640
+      },
+      {
+        "brand": "GWM",
+        "total": 550
+      },
+      {
+        "brand": "CHEVROLET",
+        "total": 436
+      },
+      {
+        "brand": "DODGE",
+        "total": 346
+      },
+      {
+        "brand": "FISKER",
+        "total": 341
+      },
+      {
+        "brand": "MORGAN",
+        "total": 340
+      },
+      {
+        "brand": "CATERHAM",
+        "total": 291
+      },
+      {
+        "brand": "CHEVROLET GMC",
+        "total": 246
+      },
+      {
+        "brand": "AUSTIN",
+        "total": 164
+      },
+      {
+        "brand": "TRIUMPH",
+        "total": 156
+      },
+      {
+        "brand": "MAXUS",
+        "total": 140
+      },
+      {
+        "brand": "CADILLAC",
+        "total": 135
+      },
+      {
+        "brand": "LANCIA",
+        "total": 126
+      },
+      {
+        "brand": "CHRYSLER",
+        "total": 125
+      },
+      {
+        "brand": "AUSTIN HEALEY",
+        "total": 104
+      },
+      {
+        "brand": "DATSUN",
+        "total": 97
+      },
+      {
+        "brand": "MAN",
+        "total": 82
+      },
+      {
+        "brand": "ARIEL",
+        "total": 76
+      },
+      {
+        "brand": "ROVER",
+        "total": 71
+      },
+      {
+        "brand": "DAIHATSU",
+        "total": 70
+      },
+      {
+        "brand": "MORRIS",
+        "total": 66
+      },
+      {
+        "brand": "PONTIAC",
+        "total": 58
+      },
+      {
+        "brand": "GORDON MURRAY",
+        "total": 55
+      },
+      {
+        "brand": "SKYWELL",
+        "total": 54
+      },
+      {
+        "brand": "BUICK",
+        "total": 51
+      },
+      {
+        "brand": "LINCOLN",
+        "total": 49
+      },
+      {
+        "brand": "SAAB",
+        "total": 39
+      },
+      {
+        "brand": "SUNBEAM",
+        "total": 32
+      },
+      {
+        "brand": "LADA",
+        "total": 29
+      },
+      {
+        "brand": "DAIMLER",
+        "total": 29
+      },
+      {
+        "brand": "MERCURY",
+        "total": 25
+      },
+      {
+        "brand": "ACURA",
+        "total": 24
+      },
+      {
+        "brand": "PLYMOUTH",
+        "total": 24
+      },
+      {
+        "brand": "WESTFIELD",
+        "total": 23
+      },
+      {
+        "brand": "BUGATTI",
+        "total": 22
+      },
+      {
+        "brand": "JENSEN",
+        "total": 18
+      },
+      {
+        "brand": "LEVC",
+        "total": 17
+      },
+      {
+        "brand": "OLDSMOBILE",
+        "total": 17
+      },
+      {
+        "brand": "HUMMER",
+        "total": 16
+      },
+      {
+        "brand": "HOLDEN",
+        "total": 16
+      },
+      {
+        "brand": "HOUSEHAM",
+        "total": 15
+      },
+      {
+        "brand": "INFINITI",
+        "total": 15
+      },
+      {
+        "brand": "COLEMAN MILNE",
+        "total": 14
+      },
+      {
+        "brand": "LEYLAND CARS",
+        "total": 14
+      },
+      {
+        "brand": "TATA",
+        "total": 13
+      },
+      {
+        "brand": "MOBILVETTA",
+        "total": 12
+      },
+      {
+        "brand": "MOKE AUTOMIBILI",
+        "total": 12
+      },
+      {
+        "brand": "AC",
+        "total": 12
+      },
+      {
+        "brand": "CORVETTE",
+        "total": 12
+      },
+      {
+        "brand": "TALBOT",
+        "total": 10
+      },
+      {
+        "brand": "LONDON TAXIS INT",
+        "total": 9
+      },
+      {
+        "brand": "MAEVING",
+        "total": 8
+      },
+      {
+        "brand": "KOENIGSEGG",
+        "total": 8
+      },
+      {
+        "brand": "TVR",
+        "total": 8
+      },
+      {
+        "brand": "HILLMAN",
+        "total": 7
+      },
+      {
+        "brand": "ALPINA",
+        "total": 7
+      },
+      {
+        "brand": "SAVIEM",
+        "total": 7
+      },
+      {
+        "brand": "ISUZU",
+        "total": 7
+      },
+      {
+        "brand": "MAYBACH",
+        "total": 7
+      },
+      {
+        "brand": "ZHENHUA",
+        "total": 6
+      },
+      {
+        "brand": "DE TOMASO",
+        "total": 6
+      },
+      {
+        "brand": "HUMBER",
+        "total": 6
+      },
+      {
+        "brand": "RILEY",
+        "total": 6
+      },
+      {
+        "brand": "SIMCA",
+        "total": 6
+      },
+      {
+        "brand": "GENERAL MOTORS",
+        "total": 5
+      },
+      {
+        "brand": "MAHINDRA",
+        "total": 5
+      },
+      {
+        "brand": "YAMAHA",
+        "total": 5
+      },
+      {
+        "brand": "WOLSELEY",
+        "total": 5
+      },
+      {
+        "brand": "HONCHING",
+        "total": 4
+      },
+      {
+        "brand": "LEYLAND",
+        "total": 4
+      },
+      {
+        "brand": "REVA",
+        "total": 4
+      },
+      {
+        "brand": "COLT",
+        "total": 4
+      },
+      {
+        "brand": "ZASTAVA",
+        "total": 4
+      },
+      {
+        "brand": "LONSDALE",
+        "total": 4
+      },
+      {
+        "brand": "NSU",
+        "total": 4
+      },
+      {
+        "brand": "SINGER",
+        "total": 4
+      },
+      {
+        "brand": "MGB",
+        "total": 4
+      },
+      {
+        "brand": "LAMBRETTA",
+        "total": 3
+      },
+      {
+        "brand": "MAGIRUS DEUTZ",
+        "total": 3
+      },
+      {
+        "brand": "MARCOS",
+        "total": 3
+      },
+      {
+        "brand": "RUF",
+        "total": 3
+      },
+      {
+        "brand": "CZ",
+        "total": 3
+      },
+      {
+        "brand": "PERODUA",
+        "total": 3
+      },
+      {
+        "brand": "R-VISION",
+        "total": 3
+      },
+      {
+        "brand": "ZURN HARVESTING",
+        "total": 3
+      },
+      {
+        "brand": "WELLS",
+        "total": 3
+      },
+      {
+        "brand": "THINK",
+        "total": 3
+      },
+      {
+        "brand": "AUSTIN-MORRIS",
+        "total": 2
+      },
+      {
+        "brand": "EBRO",
+        "total": 2
+      },
+      {
+        "brand": "MOTOR JIKOV",
+        "total": 2
+      },
+      {
+        "brand": "BRISTOL",
+        "total": 2
+      },
+      {
+        "brand": "FSO CARS",
+        "total": 2
+      },
+      {
+        "brand": "PINZGAUER",
+        "total": 2
+      },
+      {
+        "brand": "VELOSOLEX",
+        "total": 2
+      },
+      {
+        "brand": "AEON",
+        "total": 2
+      },
+      {
+        "brand": "BEDFORD",
+        "total": 2
+      },
+      {
+        "brand": "BSA",
+        "total": 2
+      },
+      {
+        "brand": "STEYR",
+        "total": 2
+      },
+      {
+        "brand": "HYMER",
+        "total": 2
+      },
+      {
+        "brand": "DENNIS",
+        "total": 2
+      },
+      {
+        "brand": "GAZ",
+        "total": 2
+      },
+      {
+        "brand": "YUAN",
+        "total": 2
+      },
+      {
+        "brand": "ZENOS",
+        "total": 2
+      },
+      {
+        "brand": "KTM",
+        "total": 2
+      },
+      {
+        "brand": "ENTERPRISE BUS",
+        "total": 2
+      },
+      {
+        "brand": "GARELLI",
+        "total": 2
+      },
+      {
+        "brand": "AM GENERAL",
+        "total": 1
+      },
+      {
+        "brand": "AVTOVAZ",
+        "total": 1
+      },
+      {
+        "brand": "JAWA",
+        "total": 1
+      },
+      {
+        "brand": "KEEWAY",
+        "total": 1
+      },
+      {
+        "brand": "MECALAC",
+        "total": 1
+      },
+      {
+        "brand": "SD",
+        "total": 1
+      },
+      {
+        "brand": "TYM",
+        "total": 1
+      },
+      {
+        "brand": "ACCESS",
+        "total": 1
+      },
+      {
+        "brand": "ASQUITH",
+        "total": 1
+      },
+      {
+        "brand": "JAGUAR LAND ROVER",
+        "total": 1
+      },
+      {
+        "brand": "JCB",
+        "total": 1
+      },
+      {
+        "brand": "OTHER AGRIC/CONSTRUCTIONAL",
+        "total": 1
+      },
+      {
+        "brand": "RIEJU",
+        "total": 1
+      },
+      {
+        "brand": "BOND",
+        "total": 1
+      },
+      {
+        "brand": "FODEN",
+        "total": 1
+      },
+      {
+        "brand": "MUTT",
+        "total": 1
+      },
+      {
+        "brand": "URAL",
+        "total": 1
+      },
+      {
+        "brand": "VICTORY",
+        "total": 1
+      },
+      {
+        "brand": "WARTBURG",
+        "total": 1
+      },
+      {
+        "brand": "BARONI",
+        "total": 1
+      },
+      {
+        "brand": "BIMOTA",
+        "total": 1
+      },
+      {
+        "brand": "UNI CARRIERS",
+        "total": 1
+      },
+      {
+        "brand": "VESPA (DOUGLAS)",
+        "total": 1
+      },
+      {
+        "brand": "VOLTA TRUCKS",
+        "total": 1
+      },
+      {
+        "brand": "CAN-AM",
+        "total": 1
+      },
+      {
+        "brand": "CHAMP",
+        "total": 1
+      },
+      {
+        "brand": "DAF",
+        "total": 1
+      },
+      {
+        "brand": "KARRIER",
+        "total": 1
+      },
+      {
+        "brand": "OVER",
+        "total": 1
+      },
+      {
+        "brand": "ROYAL ENFIELD",
+        "total": 1
+      },
+      {
+        "brand": "WACKER NEUSON",
+        "total": 1
+      },
+      {
+        "brand": "IVECO",
+        "total": 1
+      },
+      {
+        "brand": "MCC",
+        "total": 1
+      },
+      {
+        "brand": "MK SPORTSCARS",
+        "total": 1
+      },
+      {
+        "brand": "NOBLE",
+        "total": 1
+      },
+      {
+        "brand": "SANTANA",
+        "total": 1
+      },
+      {
+        "brand": "SMC",
+        "total": 1
+      },
+      {
+        "brand": "SUNLIGHT",
+        "total": 1
+      },
+      {
+        "brand": "TEREX",
+        "total": 1
+      },
+      {
+        "brand": "UMM",
+        "total": 1
+      },
+      {
+        "brand": "ARTEGA",
+        "total": 1
+      },
+      {
+        "brand": "HAKO",
+        "total": 1
+      },
+      {
+        "brand": "RELIANT",
+        "total": 1
+      },
+      {
+        "brand": "CASE",
+        "total": 1
+      },
+      {
+        "brand": "DIAMOND",
+        "total": 1
+      },
+      {
+        "brand": "PIAGGIO",
+        "total": 1
+      },
+      {
+        "brand": "POLARIS",
+        "total": 1
+      },
+      {
+        "brand": "VENTURI",
+        "total": 1
+      },
+      {
+        "brand": "ESKUTA",
+        "total": 1
+      },
+      {
+        "brand": "GINETTA",
+        "total": 1
+      },
+      {
+        "brand": "QUADDY",
+        "total": 1
+      },
+      {
+        "brand": "AJS",
+        "total": 1
+      },
+      {
+        "brand": "DFSK",
+        "total": 1
+      },
+      {
+        "brand": "FOREST RIVER",
+        "total": 1
+      },
+      {
+        "brand": "LYNK & CO",
+        "total": 1
+      },
+      {
+        "brand": "MOSKVICH",
+        "total": 1
+      },
+      {
+        "brand": "PENTA",
+        "total": 1
+      },
+      {
+        "brand": "TGB",
+        "total": 1
+      },
+      {
+        "brand": "AION",
+        "total": 1
+      },
+      {
+        "brand": "ASKOLL",
+        "total": 1
+      },
+      {
+        "brand": "HARLEY-DAVIDSON",
+        "total": 1
+      },
+      {
+        "brand": "MAN/VW",
+        "total": 1
+      },
+      {
+        "brand": "MITSUBISHI FUSO",
+        "total": 1
+      },
+      {
+        "brand": "VOGELE",
+        "total": 1
+      }
+    ],
+    "origin_totals": [
+      {
+        "origin": "Germany",
+        "total": 1722211
+      },
+      {
+        "origin": "Japan",
+        "total": 855131
+      },
+      {
+        "origin": "South Korea",
+        "total": 547946
+      },
+      {
+        "origin": "France",
+        "total": 524558
+      },
+      {
+        "origin": "USA",
+        "total": 483079
+      },
+      {
+        "origin": "China",
+        "total": 413425
+      },
+      {
+        "origin": "United Kingdom",
+        "total": 340942
+      },
+      {
+        "origin": "Czechia",
+        "total": 218211
+      },
+      {
+        "origin": "Sweden",
+        "total": 215821
+      },
+      {
+        "origin": "Spain",
+        "total": 175591
+      },
+      {
+        "origin": "Italy",
+        "total": 44024
+      },
+      {
+        "origin": "Other",
+        "total": 10549
+      }
+    ]
   }
 ]</script>
 <script>
@@ -15301,8 +16452,8 @@
   var $ = function (id) { return document.getElementById(id); };
   var fmt = function (n) { return (n == null ? "–" : Math.round(n).toLocaleString("en-US")); };
   var css = function (v) { return getComputedStyle(document.body).getPropertyValue(v).trim(); };
-  var CTY_COLOR = { DE: "#2a78d6", NL: "#eb6834", FI: "#7b5cd6", FR: "#1baf7a", IT: "#e34948",
-    ES: "#eda100", BE: "#4a3aa7", SE: "#00a7b5", NO: "#e87ba4", AT: "#c05a9e", PL: "#8f8d86" };
+  var CTY_COLOR = { DE: "#2a78d6", NL: "#eb6834", FI: "#7b5cd6", FR: "#1baf7a", UK: "#e34948",
+    IT: "#b5651d", ES: "#eda100", BE: "#4a3aa7", SE: "#00a7b5", NO: "#e87ba4", AT: "#c05a9e", PL: "#8f8d86" };
   var ctyColor = function (c) { return CTY_COLOR[c] || "#8f8d86"; };
   var ORIGIN_COLOR = { Germany: "#2a78d6", China: "#e34948", USA: "#4a3aa7", Japan: "#1baf7a",
     France: "#eb6834", "South Korea": "#eda100", Czechia: "#00a7b5", Spain: "#e87ba4",
@@ -15372,69 +16523,58 @@
   function selectedCountries() {
     return COUNTRIES.filter(function (c) { return selected.indexOf(c.code) >= 0; });
   }
-  function unionMonths(cs) {
-    var set = {};
-    cs.forEach(function (c) { c.months.forEach(function (m) { set[m.ym] = m.label; }); });
-    return Object.keys(set).sort().map(function (ym) { return { ym: ym, label: set[ym] }; });
-  }
   function aggregate(cs, field, key) {
     var t = {};
-    cs.forEach(function (c) { c[field].forEach(function (r) { t[r[key]] = (t[r[key]] || 0) + r.total; }); });
-    return Object.keys(t).map(function (k) { var o = {}; o[key] = k; o.total = t[k]; return o; })
+    cs.forEach(function (c) {
+      if (!c.has_brands) return;
+      c[field].forEach(function (r) { t[r[key]] = (t[r[key]] || 0) + r.total; });
+    });
+    return Object.keys(t).filter(function (k) { return k !== "OTHER"; })
+      .map(function (k) { var o = {}; o[key] = k; o.total = t[k]; return o; })
       .sort(function (a, b) { return b.total - a.total; });
   }
+  function commonLatestQuarter(cs) {
+    // latest quarter present in every selected country (min of each last quarter)
+    var lasts = cs.map(function (c) { return c.quarters.length ? c.quarters[c.quarters.length - 1].q : null; });
+    if (lasts.indexOf(null) >= 0) return null;
+    return lasts.sort()[0];
+  }
 
-  // ----- SVG stacked-area by country -----
   var SVGNS = "http://www.w3.org/2000/svg";
   function el(nm, a) { var e = document.createElementNS(SVGNS, nm); for (var k in a) e.setAttribute(k, a[k]); return e; }
-  function drawTrend(cs, months) {
-    var svg = $("euTrend"), tip = $("euTip"); svg.innerHTML = "";
-    var box = svg.getBoundingClientRect(); var W = box.width || 900, H = box.height || 300;
-    var padL = 46, padR = 8, padT = 12, padB = 26, plotW = W - padL - padR, plotH = H - padT - padB;
-    var n = months.length; if (!n) return;
-    var byc = cs.map(function (c) {
-      var map = {}; c.months.forEach(function (m) { map[m.ym] = m.total; });
-      return { code: c.code, vals: months.map(function (m) { return map[m.ym] || 0; }) };
-    });
-    var totals = months.map(function (_, i) { return byc.reduce(function (s, c) { return s + c.vals[i]; }, 0); });
-    var ymax = Math.max.apply(null, totals) || 1;
-    var g = el("g", {}); svg.appendChild(g);
-    for (var t = 0; t <= 4; t++) {
-      var v = ymax * t / 4, y = padT + plotH * (1 - t / 4);
-      g.appendChild(el("line", { x1: padL, y1: y, x2: W - padR, y2: y, stroke: css("--grid"), "stroke-width": 1 }));
-      var tx = el("text", { x: padL - 6, y: y + 3, "text-anchor": "end", fill: css("--muted"), "font-size": 11 });
-      tx.textContent = (v >= 1000 ? Math.round(v / 1000) + "k" : Math.round(v)); g.appendChild(tx);
-    }
-    var step = Math.max(1, Math.round(n / 6));
-    for (var i = 0; i < n; i += step) {
-      var x = n <= 1 ? padL : padL + plotW * i / (n - 1);
-      var lx = el("text", { x: x, y: H - 8, "text-anchor": "middle", fill: css("--muted"), "font-size": 11 });
-      lx.textContent = months[i].label; g.appendChild(lx);
-    }
-    var xAt = function (i) { return n <= 1 ? padL : padL + plotW * i / (n - 1); };
-    var yAt = function (v) { return padT + plotH * (1 - v / ymax); };
-    var cum = new Array(n).fill(0);
-    byc.forEach(function (c) {
-      var top = [], bot = [];
-      for (var i = 0; i < n; i++) { var y0 = cum[i], y1 = cum[i] + c.vals[i];
-        bot.push([xAt(i), yAt(y0)]); top.push([xAt(i), yAt(y1)]); cum[i] = y1; }
-      var d = "M" + top.map(function (p) { return p[0] + "," + p[1]; }).join("L") +
-        "L" + bot.slice().reverse().map(function (p) { return p[0] + "," + p[1]; }).join("L") + "Z";
-      g.appendChild(el("path", { d: d, fill: ctyColor(c.code), "fill-opacity": 0.85 }));
-    });
-    var cross = el("line", { stroke: css("--axis"), "stroke-width": 1, "stroke-dasharray": "3 3", y1: padT, y2: padT + plotH, opacity: 0 }); g.appendChild(cross);
-    var hit = el("rect", { x: padL, y: padT, width: plotW, height: plotH, fill: "transparent" }); g.appendChild(hit);
-    hit.addEventListener("mousemove", function (ev) {
-      var rect = svg.getBoundingClientRect();
-      var i = Math.max(0, Math.min(n - 1, Math.round((ev.clientX - rect.left - padL) / plotW * (n - 1))));
-      var x = xAt(i); cross.setAttribute("x1", x); cross.setAttribute("x2", x); cross.setAttribute("opacity", 1);
-      var rows = byc.map(function (c) {
-        return '<div class="tt-row"><span><span class="tt-sw" style="background:' + ctyColor(c.code) + '"></span>' + c.code + '</span><b>' + fmt(c.vals[i]) + '</b></div>';
-      }).join("");
-      tip.innerHTML = '<div class="tt-head">' + months[i].label + ' · ' + fmt(totals[i]) + '</div>' + rows;
-      tip.style.left = x + "px"; tip.style.top = padT + "px"; tip.style.opacity = 1;
-    });
-    hit.addEventListener("mouseleave", function () { cross.setAttribute("opacity", 0); tip.style.opacity = 0; });
+
+  // ----- per-country small-multiple sparklines (quarterly, own scale) -----
+  function sparkline(country) {
+    var qs = country.quarters; if (!qs.length) return "";
+    var vals = qs.map(function (q) { return q.total; });
+    var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+    var W = 172, H = 56, n = vals.length;
+    var xAt = function (i) { return n <= 1 ? 0 : (W * i) / (n - 1); };
+    var yAt = function (v) { return max === min ? H / 2 : H - 4 - (H - 8) * (v - min) / (max - min); };
+    var color = ctyColor(country.code);
+    var pts = vals.map(function (v, i) { return xAt(i) + "," + yAt(v); });
+    var area = "M0," + H + " L" + pts.join(" L") + " L" + W + "," + H + " Z";
+    var last = vals[n - 1], first = vals[0];
+    return '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none">' +
+      '<path d="' + area + '" fill="' + color + '" fill-opacity="0.10"/>' +
+      '<polyline points="' + pts.join(" ") + '" fill="none" stroke="' + color + '" stroke-width="1.6"/>' +
+      '<circle cx="' + xAt(n - 1) + '" cy="' + yAt(last) + '" r="2.6" fill="' + color + '"/>' +
+      '</svg>';
+  }
+  function renderTrends(cs) {
+    $("euTrends").innerHTML = cs.map(function (c) {
+      var qs = c.quarters; if (!qs.length) return "";
+      var last = qs[qs.length - 1], first = qs[0];
+      var delta = first.total ? (100 * (last.total - first.total) / first.total) : 0;
+      var arrow = delta >= 0 ? "▲" : "▼", cls = delta >= 0 ? "var(--good)" : "var(--s2)";
+      return '<div class="sm-card"><div class="sm-head"><i style="background:' + ctyColor(c.code) + '"></i>' +
+        c.flag + " " + c.name + '</div>' +
+        '<div class="sm-sub">' + c.window + (c.has_brands ? "" : " · totals only") + '</div>' +
+        sparkline(c) +
+        '<div class="sm-foot"><span>' + first.label + '</span>' +
+        '<span><b>' + fmt(last.total) + '</b> <span style="color:' + cls + '">' + arrow + Math.abs(delta).toFixed(0) + '%</span></span></div>' +
+        '</div>';
+    }).join("");
   }
 
   function miniBars(elId, rows, key, colorFn, total) {
@@ -15466,49 +16606,54 @@
 
     if (!cs.length) {
       $("euSubtitle").textContent = "No countries selected — choose at least one from the 🌍 menu (top-right).";
-      $("euNote").textContent = ""; $("euKpis").innerHTML = ""; $("euTrend").innerHTML = "";
-      $("euLegend").innerHTML = ""; $("euBrands").innerHTML = ""; $("euOrigin").innerHTML = ""; $("euSrc").innerHTML = "";
+      $("euNote").textContent = ""; $("euKpis").innerHTML = ""; $("euTrends").innerHTML = "";
+      $("euBrands").innerHTML = ""; $("euOrigin").innerHTML = ""; $("euSrc").innerHTML = ""; $("euBrandsWin").textContent = "";
       return;
     }
 
-    var months = unionMonths(cs);
-    var latest = months[months.length - 1];
-    var latestTotal = cs.reduce(function (s, c) {
-      var m = c.months.filter(function (x) { return x.ym === latest.ym; })[0]; return s + (m ? m.total : 0);
-    }, 0);
-    var windowTotal = cs.reduce(function (s, c) { return s + c.total; }, 0);
+    // latest quarter common to all selected, and its combined total
+    var clq = commonLatestQuarter(cs);
+    var latestLabel = "–", latestTotal = 0;
+    if (clq) {
+      cs.forEach(function (c) {
+        var q = c.quarters.filter(function (x) { return x.q === clq; })[0];
+        if (q) { latestTotal += q.total; latestLabel = q.label; }
+      });
+    }
+    var historyTotal = cs.reduce(function (s, c) { return s + c.total; }, 0);
+    var brandCs = cs.filter(function (c) { return c.has_brands; });
     var brands = aggregate(cs, "brand_totals", "brand");
     var origins = aggregate(cs, "origin_totals", "origin");
+    var brandBase = brands.reduce(function (s, r) { return s + r.total; }, 0);
 
-    $("euSubtitle").textContent = "New passenger-car registrations aggregated across " +
-      names.join(", ") + " · latest " + latest.label + ".";
-    $("euNote").innerHTML = "Registration-weighted, comparable across countries. Use the 🌍 <b>Countries</b> menu (top-right) to change scope — your choice is saved in a cookie.";
+    $("euSubtitle").textContent = "New passenger-car registrations across " + names.join(", ") +
+      " · quarterly history " + (cs.length > 1 ? "per country" : cs[0].window) + ".";
+    $("euNote").innerHTML = "Use the 🌍 <b>Countries</b> menu (top-right) to change scope — your choice is saved in a cookie. " +
+      "Each country is shown over its own available history; the UK is quarterly at source, France is national totals only.";
 
     var kpis = [
-      { label: latest.label + " registrations", dot: css("--s1"), value: fmt(latestTotal), foot: cs.length + " countr" + (cs.length > 1 ? "ies" : "y") },
-      { label: "Total over window", dot: css("--s3"), value: fmt(windowTotal), foot: months[0].label + " – " + latest.label },
-      { label: "Top brand", dot: ctyColor("DE"), value: brands[0] ? brands[0].brand : "–", foot: brands[0] ? (100 * brands[0].total / windowTotal).toFixed(1) + "% of total" : "" },
-      { label: "Leading origin", dot: ORIGIN_COLOR[origins[0] && origins[0].origin] || css("--s2"), value: origins[0] ? origins[0].origin : "–", foot: origins[0] ? (100 * origins[0].total / windowTotal).toFixed(1) + "%" : "" }
+      { label: (clq ? latestLabel : "Latest quarter") + " registrations", dot: css("--s1"), value: fmt(latestTotal), foot: cs.length + " countr" + (cs.length > 1 ? "ies" : "y") + (clq ? "" : " (no common quarter)") },
+      { label: "Total over history", dot: css("--s3"), value: fmt(historyTotal), foot: "combined, each country's window" },
+      { label: "Top brand", dot: ctyColor("DE"), value: brands[0] ? brands[0].brand : "–", foot: brands[0] ? (100 * brands[0].total / brandBase).toFixed(1) + "% of classified" : "no brand data" },
+      { label: "Leading origin", dot: ORIGIN_COLOR[origins[0] && origins[0].origin] || css("--s2"), value: origins[0] ? origins[0].origin : "–", foot: origins[0] ? (100 * origins[0].total / brandBase).toFixed(1) + "%" : "" }
     ];
     $("euKpis").innerHTML = kpis.map(function (k) {
       return '<div class="kpi"><p class="label"><span class="dot" style="background:' + k.dot + '"></span>' + k.label +
         '</p><div class="value">' + k.value + '</div><div class="foot">' + k.foot + '</div></div>';
     }).join("");
 
-    drawTrend(cs, months);
-    $("euLegend").innerHTML = cs.map(function (c) {
-      return '<span><i style="background:' + ctyColor(c.code) + '"></i>' + c.flag + " " + c.name + '</span>';
-    }).join("");
-    miniBars("euBrands", brands, "brand", function () { return css("--s1"); }, windowTotal);
-    miniBars("euOrigin", origins, "origin", function (o) { return ORIGIN_COLOR[o] || "#8f8d86"; }, windowTotal);
+    renderTrends(cs);
+    var win = brandCs.length ? brandCs[0].brand_window_label : "";
+    $("euBrandsWin").textContent = brandCs.length
+      ? "— " + brandCs.map(function (c) { return c.code; }).join(", ") + " " + win
+      : "— no brand data for the selection";
+    miniBars("euBrands", brands, "brand", function () { return css("--s1"); }, brandBase);
+    miniBars("euOrigin", origins, "origin", function (o) { return ORIGIN_COLOR[o] || "#8f8d86"; }, brandBase);
     $("euSrc").innerHTML = "Sources: " + cs.map(function (c) { return c.flag + " " + c.source; }).join(" · ") + ".";
   }
 
   syncChecks();
   render();
-  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () {
-    if (selectedCountries().length) drawTrend(selectedCountries(), unionMonths(selectedCountries()));
-  }, 150); });
 })();
 </script>
 </body>
