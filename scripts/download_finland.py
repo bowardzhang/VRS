@@ -19,6 +19,7 @@ import argparse
 import csv
 import io
 import json
+import re
 import sys
 import time
 import urllib.request
@@ -28,10 +29,14 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "Finland"
 OUT_CSV = OUT_DIR / "traficom_monthly_brands.csv"
+MODELS_CSV = OUT_DIR / "traficom_models.csv"
 
 API = ("https://trafi2.stat.fi/PXWeb/api/v1/en/TraFi/"
        "TraFi__Ensirekisteroinnit/")
-DEFAULT_FROM = (2023, 9)
+MODELS_API = ("https://trafi2.stat.fi/PXWeb/api/v1/en/TraFi/"
+              "Ensirekisteroinnit/050_ensirek_tau_105.px")
+MODELS_SINCE = "2023M09"  # brand/model detail window
+DEFAULT_FROM = (2019, 1)  # full history (one cheap PxWeb query)
 
 MONTHS = {
     "January": 1, "February": 2, "March": 3, "April": 4, "May": 5, "June": 6,
@@ -109,6 +114,66 @@ def parse_wide(text: str, lo: tuple[int, int], hi: tuple[int, int]) -> dict:
     return data
 
 
+def fetch_models(retries: int = 4) -> list[tuple[str, int]]:
+    """(model_label, total) since MODELS_SINCE from the by-Model table (050)."""
+    query = {
+        "query": [
+            {"code": "Alue", "selection": {"filter": "item", "values": ["MA1"]}},
+            {"code": "Mallisarja", "selection": {"filter": "all", "values": ["*"]}},
+            {"code": "Käyttövoima", "selection": {"filter": "item", "values": ["YH"]}},
+            {"code": "Kuukausi", "selection": {"filter": "top", "values": ["40"]}},
+        ],
+        "response": {"format": "csv"},
+    }
+    body = json.dumps(query).encode("utf-8")
+    delay = 2.0
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(
+                MODELS_API, data=body,
+                headers={"Content-Type": "application/json", "User-Agent": "VRS/1.0"})
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                text = resp.read().decode("utf-8-sig", errors="replace")
+            break
+        except Exception as exc:  # noqa: BLE001
+            if attempt == retries - 1:
+                raise
+            print(f"  [models retry {attempt+1}] {exc}", file=sys.stderr)
+            time.sleep(delay)
+            delay *= 2
+    reader = csv.reader(io.StringIO(text))
+    header = next(reader)
+    cols = [i for i, h in enumerate(header[3:], start=3)
+            if re.match(r"^\d{4}M\d{2}$", h.strip().strip('"')) and h.strip().strip('"') >= MODELS_SINCE]
+    out: list[tuple[str, int]] = []
+    for row in reader:
+        if len(row) < 4:
+            continue
+        label = row[1].strip()
+        if not label or label.lower().endswith(" total") or label == "Passenger cars total":
+            continue
+        tot = 0
+        for i in cols:
+            raw = row[i].strip()
+            if raw not in ("", "-", ".", ".."):
+                try:
+                    tot += int(raw.replace(" ", ""))
+                except ValueError:
+                    pass
+        if tot:
+            out.append((label.upper(), tot))
+    return out
+
+
+def write_models(rows: list[tuple[str, int]]) -> None:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    with MODELS_CSV.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["model_label", "total"])
+        for label, c in sorted(rows, key=lambda r: -r[1]):
+            w.writerow([label, c])
+
+
 def write_csv(data: dict[tuple[int, int, str], int]) -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     rows = sorted(data.items(), key=lambda kv: (kv[0][0], kv[0][1], -kv[1], kv[0][2]))
@@ -138,6 +203,10 @@ def main() -> int:
         print(f"  {ym[0]}-{ym[1]:02d}: {by_month[ym]:,} cars")
     write_csv(data)
     print(f"[write] {OUT_CSV.relative_to(REPO_ROOT)} ({len(data)} rows)")
+
+    models = fetch_models()
+    write_models(models)
+    print(f"[write] {MODELS_CSV.relative_to(REPO_ROOT)} ({len(models)} model rows)")
     return 0
 
 
