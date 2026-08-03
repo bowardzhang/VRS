@@ -123,6 +123,110 @@ def powertrain_for(code: str) -> dict:
     return {"has": True, "shares": shares, "period": period}
 
 
+ORIGIN_ORDER = ["Germany", "Japan", "France", "South Korea", "USA", "Czechia",
+                "Spain", "Sweden", "China", "Italy", "United Kingdom", "Other"]
+
+
+def _complete_quarters_from_months(months: set) -> list:
+    q_months: dict[tuple[int, int], set] = defaultdict(set)
+    for (y, m) in months:
+        q_months[(y, _q(m))].add(m)
+    return sorted(q for q, ms in q_months.items() if len(ms) == 3)
+
+
+def _brand_qrows(code):
+    """Return (rows[(y,q,brand_raw,count)], complete_quarters) for a country."""
+    monthly = {"NL": NL_CSV, "FI": FI_CSV, "ES": ES_CSV}
+    if code in monthly and monthly[code].exists():
+        rows_m = []
+        months = set()
+        with monthly[code].open(encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                y, m = int(r["year"]), int(r["month"])
+                months.add((y, m))
+                rows_m.append((y, _q(m), r["brand"].strip(), int(r["count"])))
+        cq = set(_complete_quarters_from_months(months))
+        return [r for r in rows_m if (r[0], r[1]) in cq], sorted(cq)
+    if code == "UK" and UK_CSV.exists():
+        rows, qs = [], set()
+        with UK_CSV.open(encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                y, q = int(r["year"]), int(r["quarter"])
+                qs.add((y, q))
+                rows.append((y, q, r["brand"].strip(), int(r["count"])))
+        return rows, sorted(qs)
+    return [], []
+
+
+def _fuel_qrows(code):
+    monthly = {"FI": FI_PT, "ES": ES_PT}
+    if code in monthly and monthly[code].exists():
+        rows_m, months = [], set()
+        with monthly[code].open(encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                y, m = int(r["year"]), int(r["month"])
+                months.add((y, m))
+                rows_m.append((y, _q(m), r["fuel"].strip(), int(r["count"])))
+        cq = set(_complete_quarters_from_months(months))
+        return [r for r in rows_m if (r[0], r[1]) in cq], sorted(cq)
+    if code == "UK" and UK_PT.exists():
+        rows, qs = [], set()
+        with UK_PT.open(encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                y, q = int(r["year"]), int(r["quarter"])
+                qs.add((y, q))
+                rows.append((y, q, r["fuel"].strip(), int(r["count"])))
+        return rows, sorted(qs)
+    return [], []
+
+
+def _trend_series(rows, quarters, keyfn, order=None, top_n=None):
+    """rows: (y,q,rawkey,count). -> {labels, series:[{name, values}]}."""
+    if not quarters:
+        return None
+    qidx = {q: i for i, q in enumerate(quarters)}
+    n = len(quarters)
+    by_key: dict[str, list[int]] = defaultdict(lambda: [0] * n)
+    totals: dict[str, int] = defaultdict(int)
+    for y, q, raw, c in rows:
+        if (y, q) not in qidx:
+            continue
+        k = keyfn(raw)
+        by_key[k][qidx[(y, q)]] += c
+        totals[k] += c
+    if top_n:
+        keep = [k for k, _ in sorted(totals.items(), key=lambda kv: -kv[1])[:top_n]]
+        other = [0] * n
+        for k, arr in by_key.items():
+            if k not in keep:
+                for i in range(n):
+                    other[i] += arr[i]
+        series = [{"name": k, "values": by_key[k]} for k in keep]
+        if any(other):
+            series.append({"name": "Other", "values": other})
+    else:
+        names = order if order else sorted(totals, key=lambda k: -totals[k])
+        names = [k for k in names if k in by_key]
+        if order:  # append any present-but-unordered keys
+            names += [k for k in by_key if k not in names]
+        series = [{"name": k, "values": by_key[k]} for k in names if any(by_key[k])]
+    labels = [f"Q{q} {y}" for (y, q) in quarters]
+    return {"labels": labels, "series": series}
+
+
+def trends_for(core: dict) -> None:
+    code = core["code"]
+    if not core.get("has_brands") or code == "DE":
+        return
+    bq, cq = _brand_qrows(code)
+    if bq:
+        core["brand_trends"] = _trend_series(bq, cq, canonical, top_n=6)
+        core["origin_trends"] = _trend_series(bq, cq, origin, top_n=7)
+    fq, fcq = _fuel_qrows(code)
+    if fq:
+        core["powertrain_trends"] = _trend_series(fq, fcq, lambda f: f, order=POWERTRAIN_ORDER)
+
+
 def models_for(code: str) -> list[dict]:
     if code == "NL" and NL_MODELS.exists():
         with NL_MODELS.open(encoding="utf-8") as fh:
@@ -325,6 +429,7 @@ def main() -> int:
     for core in countries:
         core["top_models"] = models_for(core["code"]) if core["has_brands"] else []
         core["powertrain"] = powertrain_for(core["code"])
+        trends_for(core)
         # calendar year-to-date (latest year in the quarterly series)
         if core["quarters"]:
             latest_year = int(core["quarters"][-1]["q"][:4])
