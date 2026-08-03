@@ -17,8 +17,11 @@ Countries currently covered:
   Finland *first registrations of passenger cars* by make, via the Traficom
   PxWeb open-data API (no key required).
 - **🇫🇷 France** — [INSEE](https://www.insee.fr/fr/statistiques/serie/010756763)
-  BDM series 010756763, national monthly totals (SDMX). Brand-level detail is
-  not openly published, so France is *total-only*.
+  BDM series 010756763, national monthly totals (SDMX). Brand/model detail is not
+  openly published (processed commercially by AAA Data). Powertrain **is** open,
+  but only **annually** — the SDES "part VP neuves par source d'énergie" dataset
+  on data.gouv.fr — so France shows a national totals trend plus an annual
+  powertrain mix.
 - **🇬🇧 United Kingdom** — UK Department for Transport table
   [VEH0160](https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files)
   (cars registered for the first time, by make). DfT publishes *quarterly*.
@@ -36,7 +39,7 @@ BEV / diesel share), a **powertrain mix**, and top brands + top model series wit
 brand logos (NL via the RDW `handelsbenaming`, FI via the Traficom by-model and
 driving-power tables, UK via the DfT `GenModel` / `Fuel` columns). Where a source
 doesn't publish a field (e.g. NL powertrain, France brand/model), the card says
-so. Country-specific deep dives (German KBA body segments, the supplier
+so; France's powertrain is shown but labelled *annual* (its only open cadence). Country-specific deep dives (German KBA body segments, the supplier
 installation-rate pages) are shown when that country is in scope.
 
 ## Pipeline
