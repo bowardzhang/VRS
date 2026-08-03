@@ -26,6 +26,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "UnitedKingdom"
 OUT_CSV = OUT_DIR / "uk_quarterly_brands.csv"
 MODELS_CSV = OUT_DIR / "uk_models.csv"
+MODELS_LATEST_CSV = OUT_DIR / "uk_models_latest.csv"
 POWERTRAIN_CSV = OUT_DIR / "uk_powertrain.csv"
 MODELS_SINCE = (2023, 3)  # (year, quarter) — brand/model detail window
 
@@ -159,6 +160,41 @@ def parse_powertrain(text: str, from_year: int) -> dict:
     return out
 
 
+def parse_models_latest(text: str):
+    """(year, quarter, make, genmodel, count) for the most recent quarter only."""
+    reader = csv.reader(io.StringIO(text))
+    header = next(reader)
+    latest = None  # (col_index, year, quarter)
+    for i, h in enumerate(header):
+        m = _COL.match(h.strip())
+        if m:
+            yq = (int(m.group(1)), int(m.group(2)))
+            if latest is None or yq > (latest[1], latest[2]):
+                latest = (i, yq[0], yq[1])
+    if not latest:
+        return None, []
+    ci, ly, lq = latest
+    try:
+        bt_i = header.index("BodyType"); mk_i = header.index("Make"); gm_i = header.index("GenModel")
+    except ValueError:
+        return None, []
+    out: dict[tuple[str, str], int] = {}
+    for row in reader:
+        if len(row) <= max(gm_i, ci) or row[bt_i].strip() != "Cars":
+            continue
+        raw = row[ci].strip().replace(",", "")
+        if raw in ("", "-", "[c]", "[x]", "[z]", ".."):
+            continue
+        try:
+            c = int(raw)
+        except ValueError:
+            continue
+        if c:
+            key = (row[mk_i].strip().upper(), row[gm_i].strip().upper())
+            out[key] = out.get(key, 0) + c
+    return (ly, lq), out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--from-year", type=int, default=2019)
@@ -187,6 +223,15 @@ def main() -> int:
         for (mk, md), c in sorted(models.items(), key=lambda kv: -kv[1]):
             w.writerow([mk, md, c])
     print(f"[write] {MODELS_CSV.relative_to(REPO_ROOT)} ({len(models)} brand/model rows)")
+
+    lyq, latest_models = parse_models_latest(text)
+    with MODELS_LATEST_CSV.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "quarter", "brand", "model", "count"])
+        if lyq:
+            for (mk, md), c in sorted(latest_models.items(), key=lambda kv: -kv[1]):
+                w.writerow([lyq[0], lyq[1], mk, md, c])
+    print(f"[write] {MODELS_LATEST_CSV.relative_to(REPO_ROOT)} (latest {lyq}, {len(latest_models)} rows)")
 
     pt = parse_powertrain(text, args.from_year)
     with POWERTRAIN_CSV.open("w", encoding="utf-8", newline="") as fh:

@@ -44,7 +44,13 @@ FR_PT = REPO_ROOT / "data" / "France" / "fr_powertrain_annual.csv"
 ES_CSV = REPO_ROOT / "data" / "Spain" / "es_monthly_brands.csv"
 ES_MODELS = REPO_ROOT / "data" / "Spain" / "es_monthly_models.csv"
 ES_PT = REPO_ROOT / "data" / "Spain" / "es_monthly_powertrain.csv"
+NL_MODELS_LATEST = REPO_ROOT / "data" / "Netherlands" / "rdw_models_latest.csv"
+FI_MODELS_LATEST = REPO_ROOT / "data" / "Finland" / "traficom_models_latest.csv"
+UK_MODELS_LATEST = REPO_ROOT / "data" / "UnitedKingdom" / "uk_models_latest.csv"
 OUT = REPO_ROOT / "docs" / "data" / "countries.json"
+
+MONTH_ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+              "Oct", "Nov", "Dec"]
 
 POWERTRAIN_ORDER = ["BEV", "PHEV", "Hybrid", "Petrol", "Diesel", "Other"]
 
@@ -410,6 +416,107 @@ def uk_core() -> dict | None:
                      quarter_total=q_total, quarter_complete=q_complete, brand_window=brand_window)
 
 
+def _top_brands(pairs, limit: int = 12) -> list[dict]:
+    """pairs: iterable of (brand_raw, count) -> ranked canonical brand list."""
+    agg: dict[str, int] = defaultdict(int)
+    for b, c in pairs:
+        cb = canonical(b)
+        if cb == "OTHER":
+            continue
+        agg[cb] += c
+    return [{"brand": b, "total": t}
+            for b, t in sorted(agg.items(), key=lambda kv: -kv[1])[:limit]]
+
+
+def _latest_models(code: str, y: int, p: int) -> list[dict]:
+    """Top models for the latest period (month for NL/FI/ES, quarter for UK)."""
+    if code == "NL" and NL_MODELS_LATEST.exists():
+        with NL_MODELS_LATEST.open(encoding="utf-8") as fh:
+            return _top_models((canonical(r["brand"]), _clean_model(r["brand"], r["model"]),
+                                int(r["count"])) for r in csv.DictReader(fh))
+    if code == "UK" and UK_MODELS_LATEST.exists():
+        with UK_MODELS_LATEST.open(encoding="utf-8") as fh:
+            return _top_models((canonical(r["brand"]), _clean_model(r["brand"], r["model"]),
+                                int(r["count"])) for r in csv.DictReader(fh))
+    if code == "FI" and FI_MODELS_LATEST.exists():
+        out = []
+        with FI_MODELS_LATEST.open(encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                cb, cm = _split_label(r["model_label"])
+                out.append((cb, cm, int(r["count"])))
+        return _top_models(out)
+    if code == "ES" and ES_MODELS.exists():
+        with ES_MODELS.open(encoding="utf-8") as fh:
+            return _top_models(
+                (canonical(r["brand"]), _clean_model(r["brand"], r["model"]), int(r["count"]))
+                for r in csv.DictReader(fh)
+                if (int(r["year"]), int(r["month"])) == (y, p))
+    return []
+
+
+def _latest_powertrain(code: str, kind: str, y: int, p: int) -> dict:
+    """Powertrain shares for one period (month or quarter). has=False if absent."""
+    agg: dict[str, int] = defaultdict(int)
+    if kind == "month" and code == "FI" and FI_PT.exists():
+        src, key = FI_PT, "month"
+    elif kind == "month" and code == "ES" and ES_PT.exists():
+        src, key = ES_PT, "month"
+    elif kind == "quarter" and code == "UK" and UK_PT.exists():
+        src, key = UK_PT, "quarter"
+    else:
+        return {"has": False, "shares": []}
+    with src.open(encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            if (int(r["year"]), int(r[key])) == (y, p):
+                agg[r["fuel"]] += int(r["count"])
+    tot = sum(agg.values())
+    if not tot:
+        return {"has": False, "shares": []}
+    order = POWERTRAIN_ORDER + [f for f in agg if f not in POWERTRAIN_ORDER]
+    shares = [{"fuel": f, "total": agg[f], "pct": round(100 * agg[f] / tot, 1)}
+              for f in order if agg.get(f)]
+    return {"has": True, "shares": shares}
+
+
+def latest_for(code: str) -> dict | None:
+    """Most-recent single-period snapshot (month for NL/FI/ES, quarter for UK).
+
+    Mirrors Germany's card, which leads with the latest month's top brands /
+    models / powertrain before the historical trends. France is total-only and
+    has no brand/model detail, so it is skipped.
+    """
+    monthly = {"NL": NL_CSV, "FI": FI_CSV, "ES": ES_CSV}
+    if code in monthly and monthly[code].exists():
+        rows = list(csv.DictReader(monthly[code].open(encoding="utf-8")))
+        if not rows:
+            return None
+        y, m = max((int(r["year"]), int(r["month"])) for r in rows)
+        brands = [(r["brand"].strip(), int(r["count"])) for r in rows
+                  if (int(r["year"]), int(r["month"])) == (y, m)]
+        return {
+            "period": f"{MONTH_ABBR[m - 1]} {y}",
+            "total": sum(c for _, c in brands),
+            "top_brands": _top_brands(brands),
+            "top_models": _latest_models(code, y, m),
+            "powertrain": _latest_powertrain(code, "month", y, m),
+        }
+    if code == "UK" and UK_CSV.exists():
+        rows = list(csv.DictReader(UK_CSV.open(encoding="utf-8")))
+        if not rows:
+            return None
+        y, q = max((int(r["year"]), int(r["quarter"])) for r in rows)
+        brands = [(r["brand"].strip(), int(r["count"])) for r in rows
+                  if (int(r["year"]), int(r["quarter"])) == (y, q)]
+        return {
+            "period": f"Q{q} {y}",
+            "total": sum(c for _, c in brands),
+            "top_brands": _top_brands(brands),
+            "top_models": _latest_models("UK", y, q),
+            "powertrain": _latest_powertrain("UK", "quarter", y, q),
+        }
+    return None
+
+
 def main() -> int:
     countries = [germany_core()]
     for core in (
@@ -429,6 +536,10 @@ def main() -> int:
     for core in countries:
         core["top_models"] = models_for(core["code"]) if core["has_brands"] else []
         core["powertrain"] = powertrain_for(core["code"])
+        if core["code"] != "DE" and core["has_brands"]:
+            snap = latest_for(core["code"])
+            if snap:
+                core["latest"] = snap
         trends_for(core)
         # calendar year-to-date (latest year in the quarterly series)
         if core["quarters"]:
