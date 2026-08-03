@@ -21245,7 +21245,7 @@
       return '<span><i style="background:' + colorFn(s.name, i) + '"></i>' + s.name + '</span>';
     }).join("");
   }
-  function drawLines(svg, legEl, T, colorFn) {
+  function drawLines(svg, legEl, tip, T, colorFn) {
     var f = chartFrame(svg), g = el("g", {}); svg.appendChild(g);
     var n = T.labels.length, plotW = f.W - f.padL - f.padR, plotH = f.H - f.padT - f.padB;
     var ymax = niceMax(Math.max.apply(null, T.series.map(function (s) { return Math.max.apply(null, s.values); })));
@@ -21261,8 +21261,9 @@
       g.appendChild(el("path", { d: d, fill: "none", stroke: colorFn(s.name, si), "stroke-width": 1.6 }));
     });
     xTicks(g, T.labels, f); legend(legEl, T.series, colorFn);
+    attachHover(svg, g, tip, f, T.labels, T.series, colorFn, function (s, i) { return fmt(s.values[i]); });
   }
-  function drawStack(svg, legEl, T, colorFn, pct) {
+  function drawStack(svg, legEl, tip, T, colorFn, pct) {
     var f = chartFrame(svg), g = el("g", {}); svg.appendChild(g);
     var n = T.labels.length, plotW = f.W - f.padL - f.padR, plotH = f.H - f.padT - f.padB;
     var totals = T.labels.map(function (_, i) { return T.series.reduce(function (s, se) { return s + se.values[i]; }, 0); });
@@ -21287,10 +21288,34 @@
       g.appendChild(el("path", { d: d, fill: colorFn(s.name, si), "fill-opacity": 0.88 }));
     });
     xTicks(g, T.labels, f); legend(legEl, T.series, colorFn);
+    attachHover(svg, g, tip, f, T.labels, T.series, colorFn, function (s, i) {
+      return pct ? (totals[i] ? (100 * s.values[i] / totals[i]).toFixed(1) + "%" : "0%") : fmt(s.values[i]);
+    });
   }
   function chartCell(title, svgId, legId) {
     return '<div class="cd-chart"><div style="font-size:12px;color:var(--ink-2);margin-bottom:6px;font-weight:600">' + title +
-      '</div><svg id="' + svgId + '" role="img"></svg><div class="clegend" id="' + legId + '"></div></div>';
+      '</div><div class="trend-wrap"><svg id="' + svgId + '" role="img"></svg><div class="tip" id="tip_' + svgId + '"></div></div>' +
+      '<div class="clegend" id="' + legId + '"></div></div>';
+  }
+  function attachHover(svg, g, tip, f, labels, series, colorFn, rowVal) {
+    var n = labels.length, plotW = f.W - f.padL - f.padR, plotH = f.H - f.padT - f.padB;
+    var xAt = function (i) { return f.padL + (n <= 1 ? 0 : plotW * i / (n - 1)); };
+    var cross = el("line", { class: "crosshair", y1: f.padT, y2: f.padT + plotH, opacity: 0 }); g.appendChild(cross);
+    var hit = el("rect", { x: f.padL, y: f.padT, width: plotW, height: plotH, fill: "transparent" }); g.appendChild(hit);
+    hit.addEventListener("mousemove", function (ev) {
+      var rect = svg.getBoundingClientRect();
+      var i = Math.max(0, Math.min(n - 1, Math.round((ev.clientX - rect.left - f.padL) / plotW * (n - 1))));
+      var x = xAt(i);
+      cross.setAttribute("x1", x); cross.setAttribute("x2", x); cross.setAttribute("opacity", 1);
+      var rows = series.slice().reverse().map(function (s) {
+        var si = series.indexOf(s);
+        return '<div class="tt-row"><span><span class="tt-sw" style="background:' + colorFn(s.name, si) +
+          '"></span>' + s.name + '</span><b>' + rowVal(s, i) + '</b></div>';
+      }).join("");
+      tip.innerHTML = '<div class="tt-head">' + labels[i] + '</div>' + rows;
+      tip.style.left = x + "px"; tip.style.top = f.padT + "px"; tip.style.opacity = 1;
+    });
+    hit.addEventListener("mouseleave", function () { cross.setAttribute("opacity", 0); tip.style.opacity = 0; });
   }
   function trendChartsHtml(c) {
     var blocks = "";
@@ -21303,10 +21328,10 @@
   }
   function drawAllTrends(cs) {
     cs.forEach(function (c) {
-      if (c.brand_trends && $("tb_" + c.code)) drawLines($("tb_" + c.code), $("lb_" + c.code),
+      if (c.brand_trends && $("tb_" + c.code)) drawLines($("tb_" + c.code), $("lb_" + c.code), $("tip_tb_" + c.code),
         { labels: c.brand_trends.labels, series: c.brand_trends.series.filter(function (s) { return s.name !== "Other"; }) }, brandColor);
-      if (c.origin_trends && $("to_" + c.code)) drawStack($("to_" + c.code), $("lo_" + c.code), c.origin_trends, function (n) { return ORIGIN_COLOR[n] || "#8f8d86"; }, false);
-      if (c.powertrain_trends && $("tp_" + c.code)) drawStack($("tp_" + c.code), $("lp_" + c.code), c.powertrain_trends, function (n) { return PT_COLOR[n] || "#8f8d86"; }, true);
+      if (c.origin_trends && $("to_" + c.code)) drawStack($("to_" + c.code), $("lo_" + c.code), $("tip_to_" + c.code), c.origin_trends, function (n) { return ORIGIN_COLOR[n] || "#8f8d86"; }, false);
+      if (c.powertrain_trends && $("tp_" + c.code)) drawStack($("tp_" + c.code), $("lp_" + c.code), $("tip_tp_" + c.code), c.powertrain_trends, function (n) { return PT_COLOR[n] || "#8f8d86"; }, true);
     });
   }
 
@@ -21338,8 +21363,8 @@
         '<div class="sub">brand, model &amp; powertrain ' + c.brand_window_label + ' · ' + c.source + '</div>' +
         cdKpis(c) + ptNote +
         trendChartsHtml(c) +
-        '<div class="cd-grid"><div><h4>Top brands</h4><div class="mini-bars">' + cdBarRows(brandItems, base) + '</div></div>' +
-        '<div><h4>Top models</h4><div class="mini-bars">' + cdBarRows(modelItems, base) + '</div></div></div></div>';
+        '<div class="cd-grid"><div><h4>Top brands <span style="text-transform:none;font-weight:400;color:var(--muted)">— cumulative ' + c.brand_window_label + '</span></h4><div class="mini-bars">' + cdBarRows(brandItems, base) + '</div></div>' +
+        '<div><h4>Top models <span style="text-transform:none;font-weight:400;color:var(--muted)">— cumulative ' + c.brand_window_label + '</span></h4><div class="mini-bars">' + cdBarRows(modelItems, base) + '</div></div></div></div>';
     }).join("");
     $("countryDetails").innerHTML = html;
     drawAllTrends(cs);
