@@ -25,6 +25,12 @@ Countries currently covered:
 - **🇬🇧 United Kingdom** — UK Department for Transport table
   [VEH0160](https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files)
   (cars registered for the first time, by make). DfT publishes *quarterly*.
+- **🇪🇸 Spain** — [DGT](https://www.dgt.es/menusecundario/dgt-en-cifras/) monthly
+  registration **microdata** (one fixed-width file per month, MATRABA layout).
+  New passenger cars (`COD_TIPO=40`, `IND_NUEVO_USADO=N`) are aggregated to brand,
+  model and fuel; the raw ~155 MB file is never stored. DGT's fuel code doesn't
+  separate hybrids, so Spain's powertrain buckets are Petrol / Diesel / BEV /
+  Other.
 
 The site aggregates any selected subset of countries — a **🌍 country picker**
 in the top-right (multi-select, defaults to all, saved in a cookie) drives an
@@ -63,6 +69,7 @@ Three small, dependency-light scripts, each runnable on its own:
 | `scripts/download_finland.py` | Fetch monthly first-registration counts by make from the Traficom PxWeb API into `data/Finland/`. |
 | `scripts/download_france.py` | Fetch monthly national registration totals from the INSEE BDM (SDMX) into `data/France/`. |
 | `scripts/download_uk.py` | Fetch quarterly first-registration counts by make from DfT VEH0160 into `data/UnitedKingdom/`. |
+| `scripts/download_spain.py` | Fetch DGT monthly microdata ZIPs and aggregate new passenger cars to brand/model/fuel into `data/Spain/` (incremental). |
 | `scripts/parse_suppliers.py`  | Join `data/vehicle_specs.csv` to the counts and add a per-component supplier installation-rate (`suppliers.dimensions`) block to the JSON. |
 | `scripts/build_supplier_pages.py` | Generate one self-contained secondary page per component (`analysis-soc/adas/radar/power/lidar.html`) from a shared template. |
 | `scripts/build_countries.py`  | Assemble a uniform multi-country core (`docs/data/countries.json`) that powers the country picker + Europe overview. |
