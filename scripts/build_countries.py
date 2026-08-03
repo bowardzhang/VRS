@@ -38,7 +38,11 @@ FI_MODELS = REPO_ROOT / "data" / "Finland" / "traficom_models.csv"
 FR_CSV = REPO_ROOT / "data" / "France" / "insee_monthly_total.csv"
 UK_CSV = REPO_ROOT / "data" / "UnitedKingdom" / "uk_quarterly_brands.csv"
 UK_MODELS = REPO_ROOT / "data" / "UnitedKingdom" / "uk_models.csv"
+FI_PT = REPO_ROOT / "data" / "Finland" / "traficom_powertrain.csv"
+UK_PT = REPO_ROOT / "data" / "UnitedKingdom" / "uk_powertrain.csv"
 OUT = REPO_ROOT / "docs" / "data" / "countries.json"
+
+POWERTRAIN_ORDER = ["BEV", "PHEV", "Hybrid", "Petrol", "Diesel", "Other"]
 
 # Raw brand names (incl. multi-word aliases) longest-first, for splitting a
 # "BRAND MODEL" label and for stripping a brand prefix from a model string.
@@ -75,6 +79,28 @@ def _top_models(triples, limit: int = 15) -> list[dict]:
         agg[(cb, cm)] += t
     return [{"brand": b, "model": m, "total": t}
             for (b, m), t in sorted(agg.items(), key=lambda kv: -kv[1])[:limit]]
+
+
+def powertrain_for(code: str) -> dict:
+    """Canonical powertrain shares over the common recent window (or has=False)."""
+    agg: dict[str, int] = defaultdict(int)
+    if code == "FI" and FI_PT.exists():
+        with FI_PT.open(encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                if (int(r["year"]), int(r["month"])) >= BRAND_WINDOW_START:
+                    agg[r["fuel"]] += int(r["count"])
+    elif code == "UK" and UK_PT.exists():
+        with UK_PT.open(encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                if (int(r["year"]), int(r["quarter"])) >= (BRAND_WINDOW_START[0], _q(BRAND_WINDOW_START[1])):
+                    agg[r["fuel"]] += int(r["count"])
+    else:
+        return {"has": False, "shares": []}
+    tot = sum(agg.values()) or 1
+    order = POWERTRAIN_ORDER + [f for f in agg if f not in POWERTRAIN_ORDER]
+    shares = [{"fuel": f, "total": agg[f], "pct": round(100 * agg[f] / tot, 1)}
+              for f in order if agg.get(f)]
+    return {"has": True, "shares": shares}
 
 
 def models_for(code: str) -> list[dict]:
@@ -269,6 +295,13 @@ def main() -> int:
             countries.append(core)
     for core in countries:
         core["top_models"] = models_for(core["code"]) if core["has_brands"] else []
+        core["powertrain"] = powertrain_for(core["code"])
+        # calendar year-to-date (latest year in the quarterly series)
+        if core["quarters"]:
+            latest_year = int(core["quarters"][-1]["q"][:4])
+            core["ytd"] = sum(q["total"] for q in core["quarters"]
+                              if int(q["q"][:4]) == latest_year)
+            core["ytd_year"] = latest_year
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(countries, ensure_ascii=False, indent=2), encoding="utf-8")
     summary = ", ".join(

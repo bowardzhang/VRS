@@ -226,6 +226,21 @@
   @media (max-width:760px){ .cdetail .cd-grid { grid-template-columns:1fr; } }
   .cdetail h4 { font-size:12px; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); margin:0 0 10px; font-weight:600; }
   .cdetail .none { font-size:13.5px; color:var(--ink-2); }
+  .cd-kpis { display:flex; flex-wrap:wrap; gap:10px; margin:2px 0 18px; }
+  .cd-chip { border:1px solid var(--border); border-radius:10px; padding:9px 13px; background:var(--page); min-width:120px; }
+  .cd-chip .l { font-size:11.5px; color:var(--muted); display:flex; align-items:center; gap:5px; }
+  .cd-chip .l i { width:8px; height:8px; border-radius:2px; display:inline-block; }
+  .cd-chip .v { font-size:19px; font-weight:650; letter-spacing:-.01em; margin-top:2px; }
+  .pt-wrap { margin:0 0 18px; }
+  .pt-bar { display:flex; height:22px; border-radius:5px; overflow:hidden; border:1px solid var(--border); }
+  .pt-seg { height:100%; }
+  .pt-legend { display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; font-size:12px; color:var(--ink-2); }
+  .pt-legend span { display:inline-flex; align-items:center; gap:5px; }
+  .pt-legend i { width:9px; height:9px; border-radius:2px; display:inline-block; }
+  .cd-mark { width:16px; height:16px; border-radius:4px; overflow:hidden; display:inline-flex; align-items:center; justify-content:center; flex:0 0 16px; }
+  .cd-mark img { width:16px; height:16px; object-fit:contain; }
+  .cd-mark span { font-size:8px; font-weight:700; color:#fff; }
+  .mini-bars .lab.withmark { display:flex; align-items:center; gap:6px; }
 </style>
 <button class="cbtn" id="countryBtn" aria-label="Select countries">🌍 <span id="countryBtnLabel">Countries</span> ▾</button>
 <div class="cmenu" id="countryMenu"><h4>Countries in scope</h4><div id="countryChecks"></div><div class="actions"><button id="ctyAll" type="button">All</button><button id="ctyNone" type="button">None</button></div></div>
@@ -13702,7 +13717,13 @@
         "model": "3ER",
         "total": 92321
       }
-    ]
+    ],
+    "powertrain": {
+      "has": false,
+      "shares": []
+    },
+    "ytd": 1484393,
+    "ytd_year": 2026
   },
   {
     "code": "NL",
@@ -14843,7 +14864,13 @@
         "model": "XC60",
         "total": 14859
       }
-    ]
+    ],
+    "powertrain": {
+      "has": false,
+      "shares": []
+    },
+    "ytd": 181464,
+    "ytd_year": 2026
   },
   {
     "code": "FI",
@@ -15392,7 +15419,39 @@
         "model": "ID.7",
         "total": 2684
       }
-    ]
+    ],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 76136,
+          "pct": 36.3
+        },
+        {
+          "fuel": "PHEV",
+          "total": 39990,
+          "pct": 19.1
+        },
+        {
+          "fuel": "Petrol",
+          "total": 83547,
+          "pct": 39.9
+        },
+        {
+          "fuel": "Diesel",
+          "total": 9722,
+          "pct": 4.6
+        },
+        {
+          "fuel": "Other",
+          "total": 231,
+          "pct": 0.1
+        }
+      ]
+    },
+    "ytd": 36585,
+    "ytd_year": 2026
   },
   {
     "code": "FR",
@@ -15559,7 +15618,13 @@
     "total": 13342279,
     "brand_totals": [],
     "origin_totals": [],
-    "top_models": []
+    "top_models": [],
+    "powertrain": {
+      "has": false,
+      "shares": []
+    },
+    "ytd": 867660,
+    "ytd_year": 2026
   },
   {
     "code": "UK",
@@ -16767,14 +16832,52 @@
         "model": "A3",
         "total": 68193
       }
-    ]
+    ],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 1135048,
+          "pct": 20.4
+        },
+        {
+          "fuel": "PHEV",
+          "total": 539545,
+          "pct": 9.7
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 1684316,
+          "pct": 30.3
+        },
+        {
+          "fuel": "Petrol",
+          "total": 1902861,
+          "pct": 34.3
+        },
+        {
+          "fuel": "Diesel",
+          "total": 285123,
+          "pct": 5.1
+        },
+        {
+          "fuel": "Other",
+          "total": 4595,
+          "pct": 0.1
+        }
+      ]
+    },
+    "ytd": 617894,
+    "ytd_year": 2026
   }
 ]</script>
 <script>
 (function () {
   "use strict";
-  var COUNTRIES = [];
+  var COUNTRIES = [], LOGOS = {};
   try { COUNTRIES = JSON.parse(document.getElementById("countries-data").textContent || "[]"); } catch (e) {}
+  try { LOGOS = JSON.parse(document.getElementById("brand-logos").textContent || "{}"); } catch (e) {}
   var $ = function (id) { return document.getElementById(id); };
   var fmt = function (n) { return (n == null ? "–" : Math.round(n).toLocaleString("en-US")); };
   var css = function (v) { return getComputedStyle(document.body).getPropertyValue(v).trim(); };
@@ -16904,14 +17007,49 @@
   }
 
   // ----- per-country brand + model breakdown cards -----
+  var PT_COLOR = { BEV: "#1baf7a", PHEV: "#eda100", Hybrid: "#e87ba4", Petrol: "#eb6834", Diesel: "#2a78d6", Other: "#8f8d86" };
+  function logoMark(brand) {
+    var logo = LOGOS[brand];
+    if (logo) return '<span class="cd-mark"><img src="' + logo + '" alt=""></span>';
+    return '<span class="cd-mark" style="background:' + css("--s1") + '"><span>' + (brand[0] || "?") + '</span></span>';
+  }
   function cdBarRows(items, base) {
     var max = items.length ? items[0].total : 1;
     return items.map(function (it) {
       var w = 100 * it.total / max, share = base ? (100 * it.total / base) : 0;
-      return '<div class="row"><div class="lab">' + it.label + '</div>' +
+      var lab = it.mark
+        ? '<div class="lab withmark">' + logoMark(it.mark) + '<span style="overflow:hidden;text-overflow:ellipsis">' + it.label + '</span></div>'
+        : '<div class="lab">' + it.label + '</div>';
+      return '<div class="row">' + lab +
         '<div class="trk"><div class="fil" style="width:' + w + '%;background:' + it.color + '"></div></div>' +
         '<div class="val">' + share.toFixed(1) + '%&nbsp;·&nbsp;' + fmt(it.total) + '</div></div>';
     }).join("");
+  }
+  function ptBar(pt) {
+    if (!pt || !pt.has || !pt.shares.length) return "";
+    var segs = pt.shares.map(function (s) {
+      return '<div class="pt-seg" style="width:' + s.pct + '%;background:' + (PT_COLOR[s.fuel] || "#8f8d86") + '" title="' + s.fuel + ' ' + s.pct + '%"></div>';
+    }).join("");
+    var leg = pt.shares.map(function (s) {
+      return '<span><i style="background:' + (PT_COLOR[s.fuel] || "#8f8d86") + '"></i>' + s.fuel + ' ' + s.pct + '%</span>';
+    }).join("");
+    return '<div class="pt-wrap"><h4>Powertrain mix</h4><div class="pt-bar">' + segs + '</div><div class="pt-legend">' + leg + '</div></div>';
+  }
+  function cdKpis(c) {
+    var last = c.quarters[c.quarters.length - 1];
+    var chips = [
+      { l: (last ? last.label : "Latest") + " regs", v: fmt(last ? last.total : 0) },
+      { l: (c.ytd_year || "") + " YTD", v: fmt(c.ytd || 0) }
+    ];
+    if (c.powertrain && c.powertrain.has) {
+      var byF = {}; c.powertrain.shares.forEach(function (s) { byF[s.fuel] = s.pct; });
+      chips.push({ l: "BEV share", v: (byF.BEV || 0) + "%", dot: PT_COLOR.BEV });
+      chips.push({ l: "Diesel share", v: (byF.Diesel || 0) + "%", dot: PT_COLOR.Diesel });
+    }
+    return '<div class="cd-kpis">' + chips.map(function (k) {
+      return '<div class="cd-chip"><div class="l">' + (k.dot ? '<i style="background:' + k.dot + '"></i>' : "") + k.l +
+        '</div><div class="v">' + k.v + '</div></div>';
+    }).join("") + '</div>';
   }
   function renderCountryDetails(cs) {
     // Germany keeps its own dedicated section; show cards for the others.
@@ -16919,19 +17057,23 @@
       if (!c.has_brands) {
         return '<div class="cdetail"><h3>' + c.flag + " " + c.name + '</h3>' +
           '<div class="sub">' + c.window + ' · ' + c.source + '</div>' +
-          '<div class="none">National totals only — this source doesn’t publish an open brand/model breakdown.</div></div>';
+          cdKpis(c) +
+          '<div class="none">Brand, model and powertrain breakdowns aren’t openly published for this country — national totals only.</div></div>';
       }
       var base = c.brand_totals.reduce(function (s, r) { return s + r.total; }, 0);
       var brandItems = c.brand_totals.slice(0, 8).map(function (r) {
-        return { label: r.brand, total: r.total, color: css("--s1") };
+        return { label: r.brand, mark: r.brand, total: r.total, color: css("--s1") };
       });
       var modelItems = (c.top_models || []).slice(0, 8).map(function (m) {
         return { label: m.model + ' <span style="color:var(--muted);font-size:11px">' + m.brand + '</span>',
-                 total: m.total, color: ctyColor(c.code) };
+                 mark: m.brand, total: m.total, color: ctyColor(c.code) };
       });
+      var ptNote = (c.powertrain && c.powertrain.has) ? ptBar(c.powertrain)
+        : '<div class="pt-wrap"><h4>Powertrain mix</h4><div class="none" style="font-size:12.5px">Not available from this source.</div></div>';
       return '<div class="cdetail"><h3>' + c.flag + " " + c.name +
         ' <span style="font-weight:500;color:var(--muted);font-size:13px">— detailed breakdown</span></h3>' +
-        '<div class="sub">brand &amp; model ' + c.brand_window_label + ' · ' + c.source + '</div>' +
+        '<div class="sub">brand, model &amp; powertrain ' + c.brand_window_label + ' · ' + c.source + '</div>' +
+        cdKpis(c) + ptNote +
         '<div class="cd-grid"><div><h4>Top brands</h4><div class="mini-bars">' + cdBarRows(brandItems, base) + '</div></div>' +
         '<div><h4>Top models</h4><div class="mini-bars">' + cdBarRows(modelItems, base) + '</div></div></div></div>';
     }).join("");

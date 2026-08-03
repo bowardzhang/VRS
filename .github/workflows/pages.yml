@@ -10,7 +10,7 @@ on:
   # Redeploy after the data-update workflow commits new data (a push made with
   # GITHUB_TOKEN does not itself trigger the "push" event above).
   workflow_run:
-    workflows: ["Update KBA registration data"]
+    workflows: ["Update registration data"]
     types: [completed]
   # Allow manual runs from the Actions tab.
   workflow_dispatch:

@@ -23,6 +23,7 @@ import re
 import sys
 import time
 import urllib.request
+from collections import defaultdict
 from datetime import date
 from pathlib import Path
 
@@ -30,9 +31,20 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "Finland"
 OUT_CSV = OUT_DIR / "traficom_monthly_brands.csv"
 MODELS_CSV = OUT_DIR / "traficom_models.csv"
+POWERTRAIN_CSV = OUT_DIR / "traficom_powertrain.csv"
 
 API = ("https://trafi2.stat.fi/PXWeb/api/v1/en/TraFi/"
        "TraFi__Ensirekisteroinnit/")
+
+# Traficom driving-power label -> canonical powertrain bucket.
+FI_FUEL = {
+    "Petrol": "Petrol", "Petrol/Ethanol": "Petrol",
+    "Diesel": "Diesel", "Diesel/Biodiesel": "Diesel",
+    "Electricity": "BEV",
+    "Petrol/Electricity (plug-in hybrid)": "PHEV",
+    "Diesel/Electricity (plug-in hybrid)": "PHEV",
+    "Hydrogen": "Other", "Natural gas (CNG)": "Other", "Petrol/CNG": "Other",
+}
 MODELS_API = ("https://trafi2.stat.fi/PXWeb/api/v1/en/TraFi/"
               "Ensirekisteroinnit/050_ensirek_tau_105.px")
 MODELS_SINCE = "2023M09"  # brand/model detail window
@@ -165,6 +177,67 @@ def fetch_models(retries: int = 4) -> list[tuple[str, int]]:
     return out
 
 
+def fetch_powertrain(years: list[int], retries: int = 4) -> dict:
+    """Passenger-cars total by driving power and month -> canonical fuel buckets."""
+    query = {
+        "query": [
+            {"code": "Maakunta", "selection": {"filter": "item", "values": ["MA1"]}},
+            {"code": "Merkki", "selection": {"filter": "item", "values": ["YH"]}},
+            {"code": "Käyttövoima", "selection": {"filter": "item",
+             "values": ["01", "02", "04", "05", "13", "38", "39", "40", "44", "48"]}},
+            {"code": "Vuosi", "selection": {"filter": "item", "values": [str(y) for y in years]}},
+            {"code": "Kuukausi", "selection": {"filter": "item",
+             "values": [f"{m:02d}" for m in range(1, 13)]}},
+        ],
+        "response": {"format": "csv"},
+    }
+    body = json.dumps(query).encode("utf-8")
+    delay = 2.0
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(
+                API, data=body,
+                headers={"Content-Type": "application/json", "User-Agent": "VRS/1.0"})
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                text = resp.read().decode("utf-8-sig", errors="replace")
+            break
+        except Exception as exc:  # noqa: BLE001
+            if attempt == retries - 1:
+                raise
+            print(f"  [powertrain retry {attempt+1}] {exc}", file=sys.stderr)
+            time.sleep(delay)
+            delay *= 2
+    reader = csv.reader(io.StringIO(text))
+    header = next(reader)
+    periods = []  # (col, year, month)
+    for i, h in enumerate(header[3:], start=3):
+        parts = h.strip().strip('"').split()
+        if len(parts) == 2 and parts[0].isdigit() and parts[1] in MONTHS:
+            periods.append((i, int(parts[0]), MONTHS[parts[1]]))
+    data: dict[tuple[int, int, str], int] = defaultdict(int)
+    for row in reader:
+        if len(row) < 4:
+            continue
+        fuel = FI_FUEL.get(row[2].strip(), "Other")
+        for i, y, m in periods:
+            raw = row[i].strip()
+            if raw not in ("", "-", ".", ".."):
+                try:
+                    data[(y, m, fuel)] += int(raw.replace(" ", ""))
+                except ValueError:
+                    pass
+    return data
+
+
+def write_powertrain(data: dict) -> None:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    with POWERTRAIN_CSV.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "month", "fuel", "count"])
+        for (y, m, f), c in sorted(data.items()):
+            w.writerow([y, m, f, c])
+
+
 def write_models(rows: list[tuple[str, int]]) -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     with MODELS_CSV.open("w", encoding="utf-8", newline="") as fh:
@@ -207,6 +280,10 @@ def main() -> int:
     models = fetch_models()
     write_models(models)
     print(f"[write] {MODELS_CSV.relative_to(REPO_ROOT)} ({len(models)} model rows)")
+
+    pt = fetch_powertrain(years)
+    write_powertrain(pt)
+    print(f"[write] {POWERTRAIN_CSV.relative_to(REPO_ROOT)} ({len(pt)} rows)")
     return 0
 
 
