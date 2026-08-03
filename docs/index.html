@@ -15448,7 +15448,8 @@
           "total": 231,
           "pct": 0.1
         }
-      ]
+      ],
+      "period": "since Sep 2023"
     },
     "ytd": 36585,
     "ytd_year": 2026
@@ -15620,8 +15621,40 @@
     "origin_totals": [],
     "top_models": [],
     "powertrain": {
-      "has": false,
-      "shares": []
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 331093,
+          "pct": 19.9
+        },
+        {
+          "fuel": "PHEV",
+          "total": 109732,
+          "pct": 6.6
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 723346,
+          "pct": 43.5
+        },
+        {
+          "fuel": "Petrol",
+          "total": 364373,
+          "pct": 21.9
+        },
+        {
+          "fuel": "Diesel",
+          "total": 79753,
+          "pct": 4.8
+        },
+        {
+          "fuel": "Other",
+          "total": 55826,
+          "pct": 3.4
+        }
+      ],
+      "period": "2025 (annual)"
     },
     "ytd": 867660,
     "ytd_year": 2026
@@ -16866,7 +16899,8 @@
           "total": 4595,
           "pct": 0.1
         }
-      ]
+      ],
+      "period": "since Sep 2023"
     },
     "ytd": 617894,
     "ytd_year": 2026
@@ -17033,7 +17067,8 @@
     var leg = pt.shares.map(function (s) {
       return '<span><i style="background:' + (PT_COLOR[s.fuel] || "#8f8d86") + '"></i>' + s.fuel + ' ' + s.pct + '%</span>';
     }).join("");
-    return '<div class="pt-wrap"><h4>Powertrain mix</h4><div class="pt-bar">' + segs + '</div><div class="pt-legend">' + leg + '</div></div>';
+    var per = pt.period ? ' <span style="text-transform:none;font-weight:400;color:var(--muted)">' + pt.period + '</span>' : '';
+    return '<div class="pt-wrap"><h4>Powertrain mix' + per + '</h4><div class="pt-bar">' + segs + '</div><div class="pt-legend">' + leg + '</div></div>';
   }
   function cdKpis(c) {
     var last = c.quarters[c.quarters.length - 1];
@@ -17055,10 +17090,14 @@
     // Germany keeps its own dedicated section; show cards for the others.
     var html = cs.filter(function (c) { return c.code !== "DE"; }).map(function (c) {
       if (!c.has_brands) {
+        var frPt = (c.powertrain && c.powertrain.has) ? ptBar(c.powertrain) : "";
+        var frNote = (c.powertrain && c.powertrain.has)
+          ? 'Brand and model breakdowns aren’t openly published for this country (held commercially); powertrain is national and annual.'
+          : 'Brand, model and powertrain breakdowns aren’t openly published for this country — national totals only.';
         return '<div class="cdetail"><h3>' + c.flag + " " + c.name + '</h3>' +
           '<div class="sub">' + c.window + ' · ' + c.source + '</div>' +
-          cdKpis(c) +
-          '<div class="none">Brand, model and powertrain breakdowns aren’t openly published for this country — national totals only.</div></div>';
+          cdKpis(c) + frPt +
+          '<div class="none">' + frNote + '</div></div>';
       }
       var base = c.brand_totals.reduce(function (s, r) { return s + r.total; }, 0);
       var brandItems = c.brand_totals.slice(0, 8).map(function (r) {

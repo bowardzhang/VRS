@@ -2218,7 +2218,8 @@
           "total": 231,
           "pct": 0.1
         }
-      ]
+      ],
+      "period": "since Sep 2023"
     },
     "ytd": 36585,
     "ytd_year": 2026
@@ -2390,8 +2391,40 @@
     "origin_totals": [],
     "top_models": [],
     "powertrain": {
-      "has": false,
-      "shares": []
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 331093,
+          "pct": 19.9
+        },
+        {
+          "fuel": "PHEV",
+          "total": 109732,
+          "pct": 6.6
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 723346,
+          "pct": 43.5
+        },
+        {
+          "fuel": "Petrol",
+          "total": 364373,
+          "pct": 21.9
+        },
+        {
+          "fuel": "Diesel",
+          "total": 79753,
+          "pct": 4.8
+        },
+        {
+          "fuel": "Other",
+          "total": 55826,
+          "pct": 3.4
+        }
+      ],
+      "period": "2025 (annual)"
     },
     "ytd": 867660,
     "ytd_year": 2026
@@ -3636,7 +3669,8 @@
           "total": 4595,
           "pct": 0.1
         }
-      ]
+      ],
+      "period": "since Sep 2023"
     },
     "ytd": 617894,
     "ytd_year": 2026

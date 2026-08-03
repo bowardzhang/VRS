@@ -40,6 +40,7 @@ UK_CSV = REPO_ROOT / "data" / "UnitedKingdom" / "uk_quarterly_brands.csv"
 UK_MODELS = REPO_ROOT / "data" / "UnitedKingdom" / "uk_models.csv"
 FI_PT = REPO_ROOT / "data" / "Finland" / "traficom_powertrain.csv"
 UK_PT = REPO_ROOT / "data" / "UnitedKingdom" / "uk_powertrain.csv"
+FR_PT = REPO_ROOT / "data" / "France" / "fr_powertrain_annual.csv"
 OUT = REPO_ROOT / "docs" / "data" / "countries.json"
 
 POWERTRAIN_ORDER = ["BEV", "PHEV", "Hybrid", "Petrol", "Diesel", "Other"]
@@ -82,8 +83,9 @@ def _top_models(triples, limit: int = 15) -> list[dict]:
 
 
 def powertrain_for(code: str) -> dict:
-    """Canonical powertrain shares over the common recent window (or has=False)."""
+    """Canonical powertrain shares (or has=False). Period differs by source."""
     agg: dict[str, int] = defaultdict(int)
+    period = _brand_window_label()
     if code == "FI" and FI_PT.exists():
         with FI_PT.open(encoding="utf-8") as fh:
             for r in csv.DictReader(fh):
@@ -94,13 +96,23 @@ def powertrain_for(code: str) -> dict:
             for r in csv.DictReader(fh):
                 if (int(r["year"]), int(r["quarter"])) >= (BRAND_WINDOW_START[0], _q(BRAND_WINDOW_START[1])):
                     agg[r["fuel"]] += int(r["count"])
+    elif code == "FR" and FR_PT.exists():
+        # France open data is annual only — use the latest available year.
+        rows = list(csv.DictReader(FR_PT.open(encoding="utf-8")))
+        if not rows:
+            return {"has": False, "shares": []}
+        latest = max(int(r["year"]) for r in rows)
+        for r in rows:
+            if int(r["year"]) == latest:
+                agg[r["fuel"]] += int(r["count"])
+        period = f"{latest} (annual)"
     else:
         return {"has": False, "shares": []}
     tot = sum(agg.values()) or 1
     order = POWERTRAIN_ORDER + [f for f in agg if f not in POWERTRAIN_ORDER]
     shares = [{"fuel": f, "total": agg[f], "pct": round(100 * agg[f] / tot, 1)}
               for f in order if agg.get(f)]
-    return {"has": True, "shares": shares}
+    return {"has": True, "shares": shares, "period": period}
 
 
 def models_for(code: str) -> list[dict]:
