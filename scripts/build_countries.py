@@ -41,6 +41,9 @@ UK_MODELS = REPO_ROOT / "data" / "UnitedKingdom" / "uk_models.csv"
 FI_PT = REPO_ROOT / "data" / "Finland" / "traficom_powertrain.csv"
 UK_PT = REPO_ROOT / "data" / "UnitedKingdom" / "uk_powertrain.csv"
 FR_PT = REPO_ROOT / "data" / "France" / "fr_powertrain_annual.csv"
+ES_CSV = REPO_ROOT / "data" / "Spain" / "es_monthly_brands.csv"
+ES_MODELS = REPO_ROOT / "data" / "Spain" / "es_monthly_models.csv"
+ES_PT = REPO_ROOT / "data" / "Spain" / "es_monthly_powertrain.csv"
 OUT = REPO_ROOT / "docs" / "data" / "countries.json"
 
 POWERTRAIN_ORDER = ["BEV", "PHEV", "Hybrid", "Petrol", "Diesel", "Other"]
@@ -96,6 +99,11 @@ def powertrain_for(code: str) -> dict:
             for r in csv.DictReader(fh):
                 if (int(r["year"]), int(r["quarter"])) >= (BRAND_WINDOW_START[0], _q(BRAND_WINDOW_START[1])):
                     agg[r["fuel"]] += int(r["count"])
+    elif code == "ES" and ES_PT.exists():
+        with ES_PT.open(encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                if (int(r["year"]), int(r["month"])) >= BRAND_WINDOW_START:
+                    agg[r["fuel"]] += int(r["count"])
     elif code == "FR" and FR_PT.exists():
         # France open data is annual only — use the latest available year.
         rows = list(csv.DictReader(FR_PT.open(encoding="utf-8")))
@@ -131,6 +139,12 @@ def models_for(code: str) -> list[dict]:
                 cb, cm = _split_label(r["model_label"])
                 out.append((cb, cm, int(r["total"])))
             return _top_models(out)
+    if code == "ES" and ES_MODELS.exists():
+        with ES_MODELS.open(encoding="utf-8") as fh:
+            return _top_models(
+                (canonical(r["brand"]), _clean_model(r["brand"], r["model"]), int(r["count"]))
+                for r in csv.DictReader(fh)
+                if (int(r["year"]), int(r["month"])) >= BRAND_WINDOW_START)
     if code == "DE":
         triples = []
         with GERMANY_CSV.open(encoding="utf-8") as fh:
@@ -300,6 +314,9 @@ def main() -> int:
         csv_monthly_brands(FI_CSV, "FI", "Finland", "🇫🇮",
                            "Traficom / Statistics Finland (PxWeb open data)",
                            "https://trafi2.stat.fi/PXWeb/pxweb/en/TraFi/"),
+        csv_monthly_brands(ES_CSV, "ES", "Spain", "🇪🇸",
+                           "DGT microdatos de matriculaciones (mensual)",
+                           "https://www.dgt.es/menusecundario/dgt-en-cifras/"),
         france_core(),
         uk_core(),
     ):
