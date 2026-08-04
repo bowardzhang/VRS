@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data sources & coverage · European car registrations</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --good:#006300; --bad:#c0392b;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --good:#3fbf3f; --bad:#e07a6f;
+  }}
+  :root[data-theme="dark"] {
+    --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --good:#3fbf3f; --bad:#e07a6f;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--page); color:var(--ink); line-height:1.5;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1080px; margin:0 auto; padding:32px 20px 80px; }
+  .eyebrow { font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin:0 0 6px; }
+  .back { color:var(--s1); text-decoration:none; font-size:13px; }
+  .back:hover { text-decoration:underline; }
+  h1 { font-size:clamp(24px,4vw,34px); margin:6px 0 6px; letter-spacing:-0.01em; }
+  .sub { color:var(--ink-2); margin:0; font-size:15px; max-width:70ch; }
+  section.card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px 24px; margin-top:22px; }
+  section.card h2 { font-size:18px; margin:0 0 4px; letter-spacing:-0.01em; }
+  section.card .note { font-size:13px; color:var(--muted); margin:2px 0 16px; max-width:78ch; }
+  .tbl-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:0 -4px; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; min-width:720px; }
+  thead th { text-align:left; font-weight:600; color:var(--ink-2); font-size:12px; text-transform:uppercase;
+    letter-spacing:.03em; padding:10px 12px; border-bottom:2px solid var(--border); white-space:nowrap; }
+  tbody td { padding:12px; border-bottom:1px solid var(--border); vertical-align:top; }
+  tbody tr:last-child td { border-bottom:none; }
+  .ctry { font-weight:650; white-space:nowrap; }
+  .ctry .fl { margin-right:6px; }
+  td a { color:var(--s1); text-decoration:none; }
+  td a:hover { text-decoration:underline; }
+  .pub { color:var(--muted); font-size:12px; display:block; margin-top:2px; }
+  .cad { white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .mark { font-weight:700; font-size:15px; }
+  .yes { color:var(--good); }
+  .no { color:var(--bad); }
+  .part { color:var(--s4); }
+  .cell-sub { display:block; font-size:11.5px; color:var(--muted); margin-top:2px; font-weight:400; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; margin-top:14px; font-size:12.5px; color:var(--ink-2); }
+  .legend span { display:inline-flex; align-items:center; gap:6px; }
+  .legend .mark { font-size:14px; }
+  .fn { font-size:12.5px; color:var(--muted); margin:14px 0 0; padding-left:1.1em; }
+  .fn li { margin:4px 0; }
+  .callout { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--s4);
+    border-radius:10px; padding:14px 18px; margin-top:22px; font-size:13.5px; color:var(--ink-2); }
+  .callout b { color:var(--ink); }
+  footer.site { margin-top:40px; font-size:12.5px; color:var(--muted); }
+  footer.site a { color:var(--s1); }
+  .toggle { position:fixed; top:14px; right:14px; background:var(--surface); border:1px solid var(--border);
+    color:var(--ink-2); border-radius:8px; padding:6px 10px; font-size:12px; cursor:pointer; }
+</style>
+</head>
+<body>
+<button class="toggle" id="themeToggle" aria-label="Toggle theme">◐ Theme</button>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Methodology</p>
+    <a class="back" href="index.html">← Back to European overview</a>
+    <h1>Data sources &amp; coverage</h1>
+    <p class="sub">Where each country's new-passenger-car registration figures come from, how granular they are,
+      and whether brand, model and powertrain detail is available. Every source below is official and free /
+      open; the dashboard normalises them to complete calendar quarters so countries can be compared side by side.</p>
+  </header>
+
+  <section class="card">
+    <h2>Countries in this dashboard</h2>
+    <p class="note">Six national registers are integrated. "Native cadence" is how often the source publishes;
+      the trend charts aggregate everything to complete quarters. "History" is how far back this dashboard holds
+      the series.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Source</th>
+            <th>Access</th>
+            <th>Native<br>cadence</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Power&shy;train</th>
+            <th>History</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ctry"><span class="fl">🇩🇪</span>Germany</td>
+            <td><a href="https://www.kba.de/DE/Statistik/Produktkatalog/produkte/Fahrzeuge/fz10/fz10_gentab.html" target="_blank" rel="noopener">KBA table FZ 10.1</a>
+              <span class="pub">Kraftfahrt-Bundesamt</span></td>
+            <td>Monthly Excel/CSV</td>
+            <td class="cad">Monthly</td>
+            <td><span class="mark yes">✓</span></td>
+            <td><span class="mark yes">✓</span></td>
+            <td><span class="mark yes">✓</span></td>
+            <td class="cad">Sep 2023 →<span class="cell-sub">brand/model detail</span></td>
+          </tr>
+          <tr>
+            <td class="ctry"><span class="fl">🇬🇧</span>United Kingdom</td>
+            <td><a href="https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files" target="_blank" rel="noopener">DfT table VEH0160</a>
+              <span class="pub">Department for Transport</span></td>
+            <td>Bulk CSV</td>
+            <td class="cad">Quarterly</td>
+            <td><span class="mark yes">✓</span></td>
+            <td><span class="mark yes">✓</span></td>
+            <td><span class="mark yes">✓</span></td>
+            <td class="cad">2019 →<span class="cell-sub">source from 2001</span></td>
+          </tr>
+          <tr>
+            <td class="ctry"><span class="fl">🇪🇸</span>Spain</td>
+            <td><a href="https://www.dgt.es/menusecundario/dgt-en-cifras/" target="_blank" rel="noopener">DGT matriculaciones (microdatos)</a>
+              <span class="pub">Dirección General de Tráfico</span></td>
+            <td>Monthly microdata</td>
+            <td class="cad">Monthly</td>
+            <td><span class="mark yes">✓</span></td>
+            <td><span class="mark yes">✓</span></td>
+            <td><span class="mark yes">✓</span></td>
+            <td class="cad">Sep 2023 →<span class="cell-sub">record-level, per month</span></td>
+          </tr>
+          <tr>
+            <td class="ctry"><span class="fl">🇫🇮</span>Finland</td>
+            <td><a href="https://trafi2.stat.fi/PXWeb/pxweb/en/TraFi/" target="_blank" rel="noopener">Traficom PxWeb open data</a>
+              <span class="pub">Traficom / Statistics Finland</span></td>
+            <td>JSON API (PxWeb)</td>
+            <td class="cad">Monthly</td>
+            <td><span class="mark yes">✓</span></td>
+            <td><span class="mark yes">✓</span></td>
+            <td><span class="mark yes">✓</span></td>
+            <td class="cad">2019 →</td>
+          </tr>
+          <tr>
+            <td class="ctry"><span class="fl">🇳🇱</span>Netherlands</td>
+            <td><a href="https://opendata.rdw.nl/" target="_blank" rel="noopener">RDW open data (dataset m9d7-ebf2)</a>
+              <span class="pub">Rijksdienst voor het Wegverkeer</span></td>
+            <td>Socrata SoQL API</td>
+            <td class="cad">Monthly</td>
+            <td><span class="mark yes">✓</span></td>
+            <td><span class="mark yes">✓</span></td>
+            <td><span class="mark no">✗</span><span class="cell-sub">see note 1</span></td>
+            <td class="cad">2019 →</td>
+          </tr>
+          <tr>
+            <td class="ctry"><span class="fl">🇫🇷</span>France</td>
+            <td><a href="https://www.insee.fr/fr/statistiques/serie/010756763" target="_blank" rel="noopener">INSEE series 010756763</a> + SDES
+              <span class="pub">INSEE / SDES (Ministère de la Transition écologique)</span></td>
+            <td>API + open data</td>
+            <td class="cad">Monthly<span class="cell-sub">totals only</span></td>
+            <td><span class="mark no">✗</span><span class="cell-sub">see note 2</span></td>
+            <td><span class="mark no">✗</span></td>
+            <td><span class="mark part">◐</span><span class="cell-sub">annual, note 3</span></td>
+            <td class="cad">2019 →<span class="cell-sub">national total</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span><span class="mark yes">✓</span> available &amp; shown</span>
+      <span><span class="mark part">◐</span> partial (coarser cadence)</span>
+      <span><span class="mark no">✗</span> not available / not integrated</span>
+    </div>
+    <ol class="fn">
+      <li><b>Netherlands powertrain</b> — the RDW register does record fuel type, but in a separate companion
+        dataset. It is not yet joined into this dashboard, so powertrain is shown as unavailable for the Netherlands.</li>
+      <li><b>France brand &amp; model</b> — not published as open data. Make/model registration figures for France
+        are only available commercially (e.g. AAA&nbsp;Data), so the dashboard shows national totals only.</li>
+      <li><b>France powertrain</b> — a national annual fuel-mix is published by SDES; there is no free monthly or
+        per-brand powertrain split, so France's powertrain is annual and country-wide only.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Countries without free open data</h2>
+    <p class="note">Markets where new-car registration detail exists but is not published as a free,
+      machine-readable dataset, so they are not (yet) in the dashboard.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>What's published</th>
+            <th>Why it's excluded</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ctry"><span class="fl">🇮🇹</span>Italy</td>
+            <td>Monthly registration counts, and brand/model breakdowns, exist — but through industry
+              bodies (<a href="https://www.anfia.it/" target="_blank" rel="noopener">ANFIA</a>,
+              <a href="https://www.unrae.it/" target="_blank" rel="noopener">UNRAE</a>) and the
+              Ministero delle Infrastrutture e dei Trasporti / Motorizzazione.</td>
+            <td>No free, bulk, machine-readable feed. Brand/model figures are sold commercially (ANFIA, UNRAE),
+              and the Motorizzazione portal is interactive-only with no downloadable open dataset. ISTAT's
+              "Immatricolazioni" series is business demography (new firms), not vehicle registrations.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="callout">
+    <b>Other European markets.</b> Several countries not listed here — for example Sweden, Norway, Belgium,
+    Austria, Poland, Denmark and Ireland — do publish open registration data through their national registers
+    or statistics offices, and are candidates for future integration. Italy is the notable large market where no
+    free machine-readable feed is currently available. If you know of an open source we've missed, corrections
+    are welcome.
+  </div>
+
+  <footer class="site">
+    <p>Each figure is sourced directly from the official national register or statistics office linked above and
+      refreshed monthly via an automated pipeline. Brand names are canonicalised across registers for comparability.
+      <a href="index.html">← Back to the European overview</a></p>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    try {
+      var saved = localStorage.getItem("vrs-theme");
+      if (saved) root.setAttribute("data-theme", saved);
+    } catch (e) {}
+    document.getElementById("themeToggle").addEventListener("click", function () {
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("vrs-theme", next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
