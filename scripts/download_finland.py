@@ -32,6 +32,7 @@ OUT_DIR = REPO_ROOT / "data" / "Finland"
 OUT_CSV = OUT_DIR / "traficom_monthly_brands.csv"
 MODELS_CSV = OUT_DIR / "traficom_models.csv"
 MODELS_LATEST_CSV = OUT_DIR / "traficom_models_latest.csv"
+MODELS_MONTHLY_CSV = OUT_DIR / "traficom_models_monthly.csv"
 POWERTRAIN_CSV = OUT_DIR / "traficom_powertrain.csv"
 
 API = ("https://trafi2.stat.fi/PXWeb/api/v1/en/TraFi/"
@@ -127,8 +128,8 @@ def parse_wide(text: str, lo: tuple[int, int], hi: tuple[int, int]) -> dict:
     return data
 
 
-def fetch_models(retries: int = 4) -> list[tuple[str, int]]:
-    """(model_label, total) since MODELS_SINCE from the by-Model table (050)."""
+def _models_csv_text(retries: int = 4) -> str:
+    """Fetch the by-Model table (050) CSV: models × the last 40 months."""
     query = {
         "query": [
             {"code": "Alue", "selection": {"filter": "item", "values": ["MA1"]}},
@@ -146,24 +147,30 @@ def fetch_models(retries: int = 4) -> list[tuple[str, int]]:
                 MODELS_API, data=body,
                 headers={"Content-Type": "application/json", "User-Agent": "VRS/1.0"})
             with urllib.request.urlopen(req, timeout=120) as resp:
-                text = resp.read().decode("utf-8-sig", errors="replace")
-            break
+                return resp.read().decode("utf-8-sig", errors="replace")
         except Exception as exc:  # noqa: BLE001
             if attempt == retries - 1:
                 raise
             print(f"  [models retry {attempt+1}] {exc}", file=sys.stderr)
             time.sleep(delay)
             delay *= 2
+    return ""
+
+
+def _is_model_label(label: str) -> bool:
+    return bool(label) and not label.lower().endswith(" total") and label != "Passenger cars total"
+
+
+def fetch_models(text: str | None = None) -> list[tuple[str, int]]:
+    """(model_label, total) since MODELS_SINCE from the by-Model table (050)."""
+    text = text if text is not None else _models_csv_text()
     reader = csv.reader(io.StringIO(text))
     header = next(reader)
     cols = [i for i, h in enumerate(header[3:], start=3)
             if re.match(r"^\d{4}M\d{2}$", h.strip().strip('"')) and h.strip().strip('"') >= MODELS_SINCE]
     out: list[tuple[str, int]] = []
     for row in reader:
-        if len(row) < 4:
-            continue
-        label = row[1].strip()
-        if not label or label.lower().endswith(" total") or label == "Passenger cars total":
+        if len(row) < 4 or not _is_model_label(row[1].strip()):
             continue
         tot = 0
         for i in cols:
@@ -174,8 +181,45 @@ def fetch_models(retries: int = 4) -> list[tuple[str, int]]:
                 except ValueError:
                     pass
         if tot:
-            out.append((label.upper(), tot))
+            out.append((row[1].strip().upper(), tot))
     return out
+
+
+def fetch_models_monthly(text: str | None = None) -> list[tuple[int, int, str, int]]:
+    """(year, month, model_label, count) per month since MODELS_SINCE — the same
+    050 table as fetch_models but keeping the monthly split rather than summing."""
+    text = text if text is not None else _models_csv_text()
+    reader = csv.reader(io.StringIO(text))
+    header = next(reader)
+    months = []  # (col_index, year, month)
+    for i, h in enumerate(header[3:], start=3):
+        code = h.strip().strip('"')
+        if re.match(r"^\d{4}M\d{2}$", code) and code >= MODELS_SINCE:
+            months.append((i, int(code[:4]), int(code[5:])))
+    out: list[tuple[int, int, str, int]] = []
+    for row in reader:
+        if len(row) < 4 or not _is_model_label(row[1].strip()):
+            continue
+        label = row[1].strip().upper()
+        for i, y, m in months:
+            raw = row[i].strip()
+            if raw not in ("", "-", ".", ".."):
+                try:
+                    c = int(raw.replace(" ", ""))
+                except ValueError:
+                    continue
+                if c:
+                    out.append((y, m, label, c))
+    return out
+
+
+def write_models_monthly(rows: list[tuple[int, int, str, int]]) -> None:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    with MODELS_MONTHLY_CSV.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "month", "model_label", "count"])
+        for y, m, label, c in sorted(rows, key=lambda r: (r[0], r[1], -r[3])):
+            w.writerow([y, m, label, c])
 
 
 def fetch_models_latest(retries: int = 4):
@@ -347,9 +391,14 @@ def main() -> int:
     write_csv(data)
     print(f"[write] {OUT_CSV.relative_to(REPO_ROOT)} ({len(data)} rows)")
 
-    models = fetch_models()
+    models_text = _models_csv_text()
+    models = fetch_models(models_text)
     write_models(models)
     print(f"[write] {MODELS_CSV.relative_to(REPO_ROOT)} ({len(models)} model rows)")
+
+    models_monthly = fetch_models_monthly(models_text)
+    write_models_monthly(models_monthly)
+    print(f"[write] {MODELS_MONTHLY_CSV.relative_to(REPO_ROOT)} ({len(models_monthly)} rows)")
 
     mc, latest = fetch_models_latest()
     write_models_latest(mc, latest)

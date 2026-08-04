@@ -120,31 +120,53 @@ def model_counts(country, period):
         for r in _rows(DATA / "Spain" / "es_monthly_models.csv"):
             if _in(period, r["year"], r["month"]):
                 out[r["model"].strip().upper()] += int(r["count"] or 0)
+    elif country == "Finland":
+        for r in _rows(DATA / "Finland" / "traficom_models_monthly.csv"):
+            if _in(period, r["year"], r["month"]):
+                out[r["model_label"].strip().upper()] += int(r["count"] or 0)
+    elif country == "Netherlands":
+        # RDW's handelsbenaming sometimes already carries the brand ("TOYOTA
+        # AYGO X"), sometimes not ("MODEL Y"); strip a redundant leading brand.
+        for r in _rows(DATA / "Netherlands" / "rdw_models_monthly.csv"):
+            if _in(period, r["year"], r["month"]):
+                b = r["brand"].strip().upper()
+                m = _strip_brand(r["model"].strip().upper(), b)
+                out[f"{b} {m}"] += int(r["count"] or 0)
     return out
 
 
+def _strip_brand(model_upper, brand):
+    """Drop a leading brand token a feed bakes into the model string."""
+    pref = brand.strip().upper()
+    if pref and model_upper.startswith(pref + " "):
+        return model_upper[len(pref) + 1:].strip()
+    return model_upper
+
+
 def model_counts_pooled(period):
-    """DE+ES pooled by canonical brand + normalised model (best-effort join)."""
+    """DE+ES+FI+NL pooled by canonical brand + normalised model (best-effort)."""
     out = defaultdict(int)
     disp = {}
+    def add(brand_raw, model_raw, cnt):
+        b = canonical(brand_raw)
+        mm = _strip_brand(model_raw.strip().upper(), brand_raw)
+        key = (b, _norm_model(mm))
+        out[key] += cnt
+        disp.setdefault(key, f"{b} {mm.title()}")
     for r in _rows(DATA / "Germany" / "processed" / "germany_registrations.csv"):
         if r.get("row_type") == "model" and r.get("drivetrain") == "total" and r.get("model"):
             if _in(period, r["year"], r["month"]):
-                b = canonical(r["brand"])
-                key = (b, _norm_model(r["model"]))
-                out[key] += int(r["count_month"] or 0)
-                disp.setdefault(key, f'{b} {r["model"].strip()}')
+                add(r["brand"], r["model"], int(r["count_month"] or 0))
     for r in _rows(DATA / "Spain" / "es_monthly_models.csv"):
         if _in(period, r["year"], r["month"]):
-            m = r["model"].strip()
-            b = canonical(r["brand"])
-            # strip a leading brand token ES bakes into the model string
-            mm = m.upper()
-            if mm.startswith(r["brand"].strip().upper() + " "):
-                mm = mm[len(r["brand"].strip()) + 1:]
-            key = (b, _norm_model(mm))
-            out[key] += int(r["count"] or 0)
-            disp.setdefault(key, f"{b} {mm.title()}")
+            add(r["brand"], r["model"], int(r["count"] or 0))
+    for r in _rows(DATA / "Finland" / "traficom_models_monthly.csv"):
+        if _in(period, r["year"], r["month"]):
+            lbl = r["model_label"].strip()
+            add(lbl.split(" ")[0], lbl, int(r["count"] or 0))
+    for r in _rows(DATA / "Netherlands" / "rdw_models_monthly.csv"):
+        if _in(period, r["year"], r["month"]):
+            add(r["brand"], r["model"], int(r["count"] or 0))
     return {disp[k]: v for k, v in out.items()}
 
 
@@ -189,6 +211,54 @@ def powertrain_rows(cur_map, prior_map):
     return rows
 
 
+# ---------------- body type ----------------
+
+_MONTHNAME = {m: i + 1 for i, m in enumerate(
+    ["January", "February", "March", "April", "May", "June", "July",
+     "August", "September", "October", "November", "December"])}
+
+
+def body_counts(country, period):
+    """category -> count for one country over a period. Native taxonomy per feed."""
+    out = defaultdict(int)
+    if country == "Germany":
+        # KBA FZ 11 size-segments mapped to body categories (segment_trends block).
+        site = REPO_ROOT / "docs" / "data" / "germany.json"
+        if not site.exists():
+            return out
+        st = json.loads(site.read_text(encoding="utf-8")).get("segment_trends") or {}
+        labels = st.get("labels", [])
+        idx = []
+        for i, lab in enumerate(labels):
+            parts = lab.split()
+            if len(parts) == 2 and parts[0] in _MONTHNAME:
+                y, m = int(parts[1]), _MONTHNAME[parts[0]]
+                if _in(period, y, m):
+                    idx.append(i)
+        for s in st.get("series", []):
+            vals = s.get("values", [])
+            out[s["name"]] += sum(vals[i] for i in idx if i < len(vals))
+    elif country == "Netherlands":
+        for r in _rows(DATA / "Netherlands" / "rdw_body_monthly.csv"):
+            if _in(period, r["year"], r["month"]):
+                out[r["body"]] += int(r["count"] or 0)
+    return out
+
+
+def body_rows(cur_map, prior_map):
+    tot_c = sum(cur_map.values()) or 1
+    tot_p = sum(prior_map.values()) or 1
+    rows = []
+    for name in sorted(cur_map, key=lambda k: -cur_map[k]):
+        c, p = cur_map[name], prior_map.get(name, 0)
+        rows.append({
+            "name": name, "cur": c, "prior": p, "yoy": yoy(c, p),
+            "share_cur": round(100 * c / tot_c, 1),
+            "share_prior": round(100 * p / tot_p, 1),
+        })
+    return rows
+
+
 # ---------------- suppliers (Q2 model slice for DE, ES) ----------------
 
 def supplier_model_rows(country, period):
@@ -203,6 +273,19 @@ def supplier_model_rows(country, period):
                         rows.append((r["brand"].strip(), r["model"].strip(), c))
     elif country == "Spain":
         for r in _rows(DATA / "Spain" / "es_monthly_models.csv"):
+            if _in(period, r["year"], r["month"]):
+                c = int(r["count"] or 0)
+                if c > 0:
+                    rows.append((r["brand"].strip(), r["model"].strip(), c))
+    elif country == "Finland":
+        for r in _rows(DATA / "Finland" / "traficom_models_monthly.csv"):
+            if _in(period, r["year"], r["month"]):
+                c = int(r["count"] or 0)
+                if c > 0:
+                    lbl = r["model_label"].strip()
+                    rows.append((lbl.split(" ")[0], lbl, c))
+    elif country == "Netherlands":
+        for r in _rows(DATA / "Netherlands" / "rdw_models_monthly.csv"):
             if _in(period, r["year"], r["month"]):
                 c = int(r["count"] or 0)
                 if c > 0:
@@ -239,7 +322,8 @@ def supplier_dims(specs, matcher, rows_cur, rows_prior):
 def build_payload():
     brand_countries = ["Germany", "Spain", "Finland", "Netherlands", "Austria"]
     pt_countries = ["Germany", "Spain", "Finland", "Sweden"]
-    model_countries = ["Germany", "Spain"]
+    model_countries = ["Germany", "Spain", "Finland", "Netherlands"]
+    body_countries = ["Germany", "Netherlands"]
 
     # cache brand maps
     bc_cur = {c: brand_counts(c, CUR) for c in brand_countries}
@@ -303,6 +387,11 @@ def build_payload():
     powertrain["data"]["Total"] = powertrain_rows(
         pooled(pt_cur), pooled(pt_pri))
 
+    # ---- body type (native taxonomy per country; no pooled Total) ----
+    body = {"countries": body_countries, "data": {}}
+    for c in body_countries:
+        body["data"][c] = body_rows(body_counts(c, CUR), body_counts(c, PRIOR))
+
     # ---- suppliers ----
     specs = psg.load_specs()
     matcher = SupplierMatcher(specs.keys())
@@ -321,13 +410,13 @@ def build_payload():
         "flags": FLAG, "labels": LABEL,
         "overview": overview,
         "brands": brands, "models": models, "origin": origin_d,
-        "powertrain": powertrain, "suppliers": suppliers,
-        "bodytype_available": False,
+        "powertrain": powertrain, "body": body, "suppliers": suppliers,
         "coverage_note": (
             "Brands & origin: DE, ES, FI, NL, AT · Powertrain: DE, ES, FI, SE · "
-            "Models & suppliers: DE, ES (the only monthly model feeds). "
-            "UK omitted (SMMT quarterly data still ends Q1 2026); France total-only; "
-            "Italy not covered. Body type is not published in these open feeds."
+            "Models & suppliers: DE, ES, FI, NL (the monthly model feeds) · "
+            "Body type: DE (KBA size-segments) & NL (RDW body), each in its own "
+            "native taxonomy — not pooled. UK omitted (SMMT quarterly data still "
+            "ends Q1 2026); France total-only; Italy not covered."
         ),
     }
 
