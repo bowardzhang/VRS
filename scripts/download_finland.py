@@ -31,6 +31,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "Finland"
 OUT_CSV = OUT_DIR / "traficom_monthly_brands.csv"
 MODELS_CSV = OUT_DIR / "traficom_models.csv"
+MODELS_LATEST_CSV = OUT_DIR / "traficom_models_latest.csv"
 POWERTRAIN_CSV = OUT_DIR / "traficom_powertrain.csv"
 
 API = ("https://trafi2.stat.fi/PXWeb/api/v1/en/TraFi/"
@@ -177,6 +178,75 @@ def fetch_models(retries: int = 4) -> list[tuple[str, int]]:
     return out
 
 
+def fetch_models_latest(retries: int = 4):
+    """(month_code, [(model_label, count)]) for the single most recent month."""
+    query = {
+        "query": [
+            {"code": "Alue", "selection": {"filter": "item", "values": ["MA1"]}},
+            {"code": "Mallisarja", "selection": {"filter": "all", "values": ["*"]}},
+            {"code": "Käyttövoima", "selection": {"filter": "item", "values": ["YH"]}},
+            {"code": "Kuukausi", "selection": {"filter": "top", "values": ["1"]}},
+        ],
+        "response": {"format": "csv"},
+    }
+    body = json.dumps(query).encode("utf-8")
+    delay = 2.0
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(
+                MODELS_API, data=body,
+                headers={"Content-Type": "application/json", "User-Agent": "VRS/1.0"})
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                text = resp.read().decode("utf-8-sig", errors="replace")
+            break
+        except Exception as exc:  # noqa: BLE001
+            if attempt == retries - 1:
+                raise
+            print(f"  [models-latest retry {attempt+1}] {exc}", file=sys.stderr)
+            time.sleep(delay)
+            delay *= 2
+    reader = csv.reader(io.StringIO(text))
+    header = next(reader)
+    col = None
+    month_code = None
+    for i, h in enumerate(header[3:], start=3):
+        code = h.strip().strip('"')
+        if re.match(r"^\d{4}M\d{2}$", code):
+            col, month_code = i, code
+            break
+    out: list[tuple[str, int]] = []
+    if col is None:
+        return None, out
+    for row in reader:
+        if len(row) <= col:
+            continue
+        label = row[1].strip()
+        if not label or label.lower().endswith(" total") or label == "Passenger cars total":
+            continue
+        raw = row[col].strip()
+        if raw in ("", "-", ".", ".."):
+            continue
+        try:
+            c = int(raw.replace(" ", ""))
+        except ValueError:
+            continue
+        if c:
+            out.append((label.upper(), c))
+    return month_code, out
+
+
+def write_models_latest(month_code: str | None, rows: list[tuple[str, int]]) -> None:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    year, month = ("", "")
+    if month_code:
+        year, month = int(month_code[:4]), int(month_code[5:])
+    with MODELS_LATEST_CSV.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "month", "model_label", "count"])
+        for label, c in sorted(rows, key=lambda r: -r[1]):
+            w.writerow([year, month, label, c])
+
+
 def fetch_powertrain(years: list[int], retries: int = 4) -> dict:
     """Passenger-cars total by driving power and month -> canonical fuel buckets."""
     query = {
@@ -280,6 +350,10 @@ def main() -> int:
     models = fetch_models()
     write_models(models)
     print(f"[write] {MODELS_CSV.relative_to(REPO_ROOT)} ({len(models)} model rows)")
+
+    mc, latest = fetch_models_latest()
+    write_models_latest(mc, latest)
+    print(f"[write] {MODELS_LATEST_CSV.relative_to(REPO_ROOT)} (latest {mc}, {len(latest)} rows)")
 
     pt = fetch_powertrain(years)
     write_powertrain(pt)

@@ -32,6 +32,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "Netherlands"
 OUT_CSV = OUT_DIR / "rdw_monthly_brands.csv"
 MODELS_CSV = OUT_DIR / "rdw_models.csv"
+MODELS_LATEST_CSV = OUT_DIR / "rdw_models_latest.csv"
 
 RESOURCE = "https://opendata.rdw.nl/resource/m9d7-ebf2.json"
 DEFAULT_FROM = (2023, 9)  # align with the German FZ 10.1 window start
@@ -139,6 +140,42 @@ def write_models(rows: list[tuple[str, str, int]]) -> None:
             w.writerow([b, m, c])
 
 
+def fetch_models_month(year: int, month: int, retries: int = 4) -> list[tuple[str, str, int]]:
+    """(brand, model) counts for a single month (latest-period snapshot)."""
+    lo, hi = f"{year:04d}{month:02d}01", f"{year:04d}{month:02d}31"
+    params = {
+        "$select": "merk,handelsbenaming,count(kenteken)",
+        "$where": ("voertuigsoort='Personenauto' AND "
+                   f"datum_eerste_toelating >= '{lo}' AND datum_eerste_toelating <= '{hi}'"),
+        "$group": "merk,handelsbenaming",
+        "$order": "count_kenteken DESC",
+        "$limit": "6000",
+    }
+    url = RESOURCE + "?" + urllib.parse.urlencode(params, safe="", quote_via=urllib.parse.quote)
+    delay = 2.0
+    for attempt in range(retries):
+        try:
+            import json
+            req = urllib.request.Request(url, headers={"User-Agent": "VRS/1.0"})
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                rows = json.load(resp)
+            out = []
+            for r in rows:
+                brand = (r.get("merk") or "").strip().upper()
+                model = (r.get("handelsbenaming") or "").strip().upper()
+                cnt = int(r.get("count_kenteken") or 0)
+                if brand and model and cnt:
+                    out.append((brand, model, cnt))
+            return out
+        except Exception as exc:  # noqa: BLE001
+            if attempt == retries - 1:
+                raise
+            print(f"  [models-latest retry {attempt+1}] {exc}", file=sys.stderr)
+            time.sleep(delay)
+            delay *= 2
+    return []
+
+
 def load_existing() -> dict[tuple[int, int, str], int]:
     data: dict[tuple[int, int, str], int] = {}
     if OUT_CSV.exists():
@@ -202,6 +239,16 @@ def main() -> int:
     models = fetch_models()
     write_models(models)
     print(f"[write] {MODELS_CSV.relative_to(REPO_ROOT)} ({len(models)} brand/model rows)")
+
+    ly, lm = max(data)[:2] if data else last_complete_month()
+    latest = fetch_models_month(ly, lm)
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    with MODELS_LATEST_CSV.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "month", "brand", "model", "count"])
+        for b, mo, c in sorted(latest, key=lambda r: -r[2]):
+            w.writerow([ly, lm, b, mo, c])
+    print(f"[write] {MODELS_LATEST_CSV.relative_to(REPO_ROOT)} (latest {ly}-{lm:02d}, {len(latest)} rows)")
     return 0
 
 
