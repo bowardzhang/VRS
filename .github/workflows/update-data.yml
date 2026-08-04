@@ -79,14 +79,11 @@ jobs:
           python scripts/download_sweden.py
           python scripts/download_austria.py
 
-      - name: Download latest Poland (CEPIK) registrations
-        # CEPIK open register API (record-level). Incremental: re-fetch the
-        # trailing months and merge. Kept non-fatal so a CEPIK outage doesn't
-        # fail the whole refresh for the other countries.
-        continue-on-error: true
-        run: |
-          MONTHS="${{ github.event.inputs.months || '3' }}"
-          python scripts/download_poland.py --last "$MONTHS"
+      # Poland (CEPIK) is intentionally not wired in: the open register exposes
+      # every first-in-country registration — new sales *and* used imports,
+      # which dominate the Polish market — with no clean new-only filter or
+      # server-side aggregation, so it can't yield a comparable new-registration
+      # series. scripts/download_poland.py is kept for reference only.
 
       - name: Parse workbooks and rebuild site
         run: |
@@ -101,7 +98,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/Germany data/Netherlands data/Finland data/France data/UnitedKingdom data/Spain data/Sweden data/Austria data/Poland docs
+          git add -A data docs
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else

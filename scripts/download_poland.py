@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
-"""Download monthly new passenger-car registrations for Poland.
+"""Download monthly car registrations for Poland (reference / not wired in).
 
 Source: CEPIK (Centralna Ewidencja Pojazdów i Kierowców) — the central vehicle
 register — via its public open REST API (``api.cepik.gov.pl``), no key required.
 The ``/pojazdy`` endpoint returns individual vehicle records; we request each
 voivodeship for a month, keep passenger cars (``rodzaj-pojazdu`` =
-``SAMOCHÓD OSOBOWY``) whose *first registration* falls in that month (used
-imports keep an earlier first-registration date and so are excluded), and
-aggregate by make (and make/model).
+``SAMOCHÓD OSOBOWY``) whose first-in-country registration falls in that month,
+and aggregate by make (and make/model).
 
-The API is record-level with no server-side grouping, so this is heavier than
-the other national sources; it downloads incrementally and merges into the
-existing CSVs, re-fetching only the trailing window each run.
+CAVEAT — this is why Poland is *not* part of the dashboard: CEPIK's
+first-registration date captures every vehicle newly registered in Poland,
+which includes the very large used-import market (e.g. a 2024 first-registration
+for a discontinued FIAT BRAVO). There is no clean "new car" filter and no
+server-side aggregation, so this does not yield a new-registration-by-brand
+series comparable to the other countries. The API is also record-level and
+aggressively rate-limited. The script is kept for reference / future work.
+
+CEPIK's TLS endpoint negotiates a small Diffie-Hellman key that modern OpenSSL
+rejects by default, so requests use a context with a lowered security level.
 
 Writes:
 - ``data/Poland/cepik_monthly_brands.csv`` (year,month,brand,count)
@@ -27,6 +33,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import ssl
 import sys
 import time
 import urllib.parse
@@ -34,6 +41,19 @@ import urllib.request
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
+
+
+def _ssl_context() -> ssl.SSLContext:
+    """CEPIK offers a small DH key that modern OpenSSL rejects; lower SECLEVEL."""
+    ctx = ssl.create_default_context()
+    try:
+        ctx.set_ciphers("DEFAULT@SECLEVEL=1")
+    except ssl.SSLError:
+        pass
+    return ctx
+
+
+_SSL = _ssl_context()
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "Poland"
@@ -70,20 +90,29 @@ def _last_day(year: int, month: int) -> int:
     return (date(year, month + 1, 1) - date(year, month, 1)).days
 
 
-def fetch_page(url: str, retries: int = 4) -> dict:
-    delay = 2.0
+def fetch_page(url: str, retries: int = 6) -> dict:
+    delay = 4.0
     for attempt in range(retries):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "VRS/1.0",
                                                        "Accept": "application/json"})
-            with urllib.request.urlopen(req, timeout=120) as resp:
+            with urllib.request.urlopen(req, timeout=120, context=_SSL) as resp:
                 return json.load(resp)
+        except urllib.error.HTTPError as exc:
+            # CEPIK rate-limits aggressively; honour Retry-After and back off.
+            if exc.code == 429 and attempt < retries - 1:
+                wait = float(exc.headers.get("Retry-After") or delay)
+                print(f"  [429] backing off {wait:.0f}s", file=sys.stderr)
+                time.sleep(wait)
+                delay = min(delay * 2, 60)
+                continue
+            raise
         except Exception as exc:  # noqa: BLE001 - network resilience
             if attempt == retries - 1:
                 raise
             print(f"  [retry {attempt+1}] {exc}", file=sys.stderr)
             time.sleep(delay)
-            delay *= 2
+            delay = min(delay * 2, 60)
     return {}
 
 
