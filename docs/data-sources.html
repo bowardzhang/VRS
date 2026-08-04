@@ -78,7 +78,7 @@
 
   <section class="card">
     <h2>Countries in this dashboard</h2>
-    <p class="note">Nine national registers are integrated. "Native cadence" is how often the source publishes;
+    <p class="note">Eight national registers are integrated. "Native cadence" is how often the source publishes;
       the trend charts aggregate everything to complete quarters. "History" is how far back this dashboard holds
       the series.</p>
     <div class="tbl-scroll">
@@ -152,24 +152,13 @@
             <td class="cad">2019 →</td>
           </tr>
           <tr>
-            <td class="ctry"><span class="fl">🇵🇱</span>Poland</td>
-            <td><a href="https://api.cepik.gov.pl/" target="_blank" rel="noopener">CEPIK open register API</a>
-              <span class="pub">Centralna Ewidencja Pojazdów i Kierowców</span></td>
-            <td>REST API (record-level)</td>
-            <td class="cad">Monthly</td>
-            <td><span class="mark yes">✓</span></td>
-            <td><span class="mark yes">✓</span></td>
-            <td><span class="mark no">✗</span></td>
-            <td class="cad">rolling<span class="cell-sub">recent window, note 4</span></td>
-          </tr>
-          <tr>
             <td class="ctry"><span class="fl">🇦🇹</span>Austria</td>
             <td><a href="https://data.statistik.gv.at/web/catalog.jsp" target="_blank" rel="noopener">Statistik Austria OGD (Pkw-Neuzulassungen)</a>
               <span class="pub">Statistik Austria</span></td>
             <td>Open CSV cube</td>
             <td class="cad">Monthly</td>
             <td><span class="mark yes">✓</span></td>
-            <td><span class="mark no">✗</span><span class="cell-sub">see note 5</span></td>
+            <td><span class="mark no">✗</span><span class="cell-sub">see note 4</span></td>
             <td><span class="mark no">✗</span></td>
             <td class="cad">2019 →<span class="cell-sub">source from 2000</span></td>
           </tr>
@@ -179,7 +168,7 @@
               <span class="pub">Statistics Sweden / Trafikanalys</span></td>
             <td>JSON API (PxWeb)</td>
             <td class="cad">Monthly</td>
-            <td><span class="mark no">✗</span><span class="cell-sub">see note 6</span></td>
+            <td><span class="mark no">✗</span><span class="cell-sub">see note 5</span></td>
             <td><span class="mark no">✗</span></td>
             <td><span class="mark yes">✓</span><span class="cell-sub">monthly</span></td>
             <td class="cad">2019 →<span class="cell-sub">totals + fuel</span></td>
@@ -210,9 +199,6 @@
         are only available commercially (e.g. AAA&nbsp;Data), so the dashboard shows national totals only.</li>
       <li><b>France powertrain</b> — a national annual fuel-mix is published by SDES; there is no free monthly or
         per-brand powertrain split, so France's powertrain is annual and country-wide only.</li>
-      <li><b>Poland history</b> — CEPIK is a record-level API with no server-side aggregation, so it is much heavier
-        to pull than the other sources. The dashboard fetches and merges a recent rolling window each month rather
-        than the full back-catalogue.</li>
       <li><b>Austria model / powertrain</b> — the open OGD cube is make-level only; model and powertrain splits
         are not part of it, so Austria is shown at brand level.</li>
       <li><b>Sweden brand / model</b> — SCB's open table gives monthly totals and a fuel split, but not makes;
@@ -244,6 +230,16 @@
             <td>No free, bulk, machine-readable feed. Brand/model figures are sold commercially (ANFIA, UNRAE),
               and the Motorizzazione portal is interactive-only with no downloadable open dataset. ISTAT's
               "Immatricolazioni" series is business demography (new firms), not vehicle registrations.</td>
+          </tr>
+          <tr>
+            <td class="ctry"><span class="fl">🇵🇱</span>Poland</td>
+            <td>The <a href="https://api.cepik.gov.pl/" target="_blank" rel="noopener">CEPIK</a> open register API
+              exposes make/model on individual vehicle records, and industry monthly totals are published by
+              <a href="https://www.pzpm.org.pl/" target="_blank" rel="noopener">PZPM</a> / SAMAR (commercial).</td>
+            <td>CEPIK's first-registration date covers every vehicle newly entered in Poland — new sales <b>and</b>
+              the very large used-import market that dominates it — with no clean "new car" filter and no
+              server-side aggregation. So it can't yield a new-registration-by-brand series comparable to the
+              other countries, and the record-level API is heavily rate-limited.</td>
           </tr>
         </tbody>
       </table>
