@@ -47,6 +47,11 @@ ES_PT = REPO_ROOT / "data" / "Spain" / "es_monthly_powertrain.csv"
 NL_MODELS_LATEST = REPO_ROOT / "data" / "Netherlands" / "rdw_models_latest.csv"
 FI_MODELS_LATEST = REPO_ROOT / "data" / "Finland" / "traficom_models_latest.csv"
 UK_MODELS_LATEST = REPO_ROOT / "data" / "UnitedKingdom" / "uk_models_latest.csv"
+SE_CSV = REPO_ROOT / "data" / "Sweden" / "scb_monthly_total.csv"
+SE_PT = REPO_ROOT / "data" / "Sweden" / "se_powertrain.csv"
+AT_CSV = REPO_ROOT / "data" / "Austria" / "at_monthly_brands.csv"
+PL_CSV = REPO_ROOT / "data" / "Poland" / "cepik_monthly_brands.csv"
+PL_MODELS = REPO_ROOT / "data" / "Poland" / "cepik_models.csv"
 OUT = REPO_ROOT / "docs" / "data" / "countries.json"
 
 MONTH_ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
@@ -110,6 +115,11 @@ def powertrain_for(code: str) -> dict:
             for r in csv.DictReader(fh):
                 if (int(r["year"]), int(r["month"])) >= BRAND_WINDOW_START:
                     agg[r["fuel"]] += int(r["count"])
+    elif code == "SE" and SE_PT.exists():
+        with SE_PT.open(encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                if (int(r["year"]), int(r["month"])) >= BRAND_WINDOW_START:
+                    agg[r["fuel"]] += int(r["count"])
     elif code == "FR" and FR_PT.exists():
         # France open data is annual only — use the latest available year.
         rows = list(csv.DictReader(FR_PT.open(encoding="utf-8")))
@@ -142,7 +152,7 @@ def _complete_quarters_from_months(months: set) -> list:
 
 def _brand_qrows(code):
     """Return (rows[(y,q,brand_raw,count)], complete_quarters) for a country."""
-    monthly = {"NL": NL_CSV, "FI": FI_CSV, "ES": ES_CSV}
+    monthly = {"NL": NL_CSV, "FI": FI_CSV, "ES": ES_CSV, "AT": AT_CSV, "PL": PL_CSV}
     if code in monthly and monthly[code].exists():
         rows_m = []
         months = set()
@@ -165,7 +175,7 @@ def _brand_qrows(code):
 
 
 def _fuel_qrows(code):
-    monthly = {"FI": FI_PT, "ES": ES_PT}
+    monthly = {"FI": FI_PT, "ES": ES_PT, "SE": SE_PT}
     if code in monthly and monthly[code].exists():
         rows_m, months = [], set()
         with monthly[code].open(encoding="utf-8") as fh:
@@ -222,12 +232,15 @@ def _trend_series(rows, quarters, keyfn, order=None, top_n=None):
 
 def trends_for(core: dict) -> None:
     code = core["code"]
-    if not core.get("has_brands") or code == "DE":
+    if code == "DE":
         return
-    bq, cq = _brand_qrows(code)
-    if bq:
-        core["brand_trends"] = _trend_series(bq, cq, canonical, top_n=6)
-        core["origin_trends"] = _trend_series(bq, cq, origin, top_n=7)
+    if core.get("has_brands"):
+        bq, cq = _brand_qrows(code)
+        if bq:
+            core["brand_trends"] = _trend_series(bq, cq, canonical, top_n=6)
+            core["origin_trends"] = _trend_series(bq, cq, origin, top_n=7)
+    # Powertrain trend is available even for total-only countries (e.g. Sweden),
+    # whose whole value-add is a monthly fuel split.
     fq, fcq = _fuel_qrows(code)
     if fq:
         core["powertrain_trends"] = _trend_series(fq, fcq, lambda f: f, order=POWERTRAIN_ORDER)
@@ -255,6 +268,10 @@ def models_for(code: str) -> list[dict]:
                 (canonical(r["brand"]), _clean_model(r["brand"], r["model"]), int(r["count"]))
                 for r in csv.DictReader(fh)
                 if (int(r["year"]), int(r["month"])) >= BRAND_WINDOW_START)
+    if code == "PL" and PL_MODELS.exists():
+        with PL_MODELS.open(encoding="utf-8") as fh:
+            return _top_models((canonical(r["brand"]), _clean_model(r["brand"], r["model"]),
+                                int(r["total"])) for r in csv.DictReader(fh))
     if code == "DE":
         triples = []
         with GERMANY_CSV.open(encoding="utf-8") as fh:
@@ -398,6 +415,19 @@ def france_core() -> dict | None:
                          with_brands=False)
 
 
+def sweden_core() -> dict | None:
+    if not SE_CSV.exists():
+        return None
+    rows = []
+    with SE_CSV.open(encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            rows.append((int(r["year"]), int(r["month"]), None, int(r["total"])))
+    return _from_monthly(rows, "SE", "Sweden", "🇸🇪",
+                         "Statistics Sweden (SCB) / Trafikanalys (PxWeb open data)",
+                         "https://www.statistikdatabasen.scb.se/",
+                         with_brands=False)
+
+
 def uk_core() -> dict | None:
     if not UK_CSV.exists():
         return None
@@ -451,6 +481,11 @@ def _latest_models(code: str, y: int, p: int) -> list[dict]:
                 (canonical(r["brand"]), _clean_model(r["brand"], r["model"]), int(r["count"]))
                 for r in csv.DictReader(fh)
                 if (int(r["year"]), int(r["month"])) == (y, p))
+    if code == "PL" and PL_MODELS.exists():
+        # Poland's model file is a recent-window cumulative total, not per-month.
+        with PL_MODELS.open(encoding="utf-8") as fh:
+            return _top_models((canonical(r["brand"]), _clean_model(r["brand"], r["model"]),
+                                int(r["total"])) for r in csv.DictReader(fh))
     return []
 
 
@@ -461,6 +496,8 @@ def _latest_powertrain(code: str, kind: str, y: int, p: int) -> dict:
         src, key = FI_PT, "month"
     elif kind == "month" and code == "ES" and ES_PT.exists():
         src, key = ES_PT, "month"
+    elif kind == "month" and code == "SE" and SE_PT.exists():
+        src, key = SE_PT, "month"
     elif kind == "quarter" and code == "UK" and UK_PT.exists():
         src, key = UK_PT, "quarter"
     else:
@@ -485,7 +522,7 @@ def latest_for(code: str) -> dict | None:
     models / powertrain before the historical trends. France is total-only and
     has no brand/model detail, so it is skipped.
     """
-    monthly = {"NL": NL_CSV, "FI": FI_CSV, "ES": ES_CSV}
+    monthly = {"NL": NL_CSV, "FI": FI_CSV, "ES": ES_CSV, "AT": AT_CSV, "PL": PL_CSV}
     if code in monthly and monthly[code].exists():
         rows = list(csv.DictReader(monthly[code].open(encoding="utf-8")))
         if not rows:
@@ -528,7 +565,14 @@ def main() -> int:
         csv_monthly_brands(ES_CSV, "ES", "Spain", "🇪🇸",
                            "DGT microdatos de matriculaciones (mensual)",
                            "https://www.dgt.es/menusecundario/dgt-en-cifras/"),
+        csv_monthly_brands(AT_CSV, "AT", "Austria", "🇦🇹",
+                           "Statistik Austria — Kfz-Neuzulassungen (OGD)",
+                           "https://data.statistik.gv.at/web/catalog.jsp"),
+        csv_monthly_brands(PL_CSV, "PL", "Poland", "🇵🇱",
+                           "CEPIK — central vehicle register (open API)",
+                           "https://api.cepik.gov.pl/"),
         france_core(),
+        sweden_core(),
         uk_core(),
     ):
         if core:
