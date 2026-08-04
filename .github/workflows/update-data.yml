@@ -93,6 +93,7 @@ jobs:
           python scripts/parse_suppliers_geo.py
           python scripts/build_supplier_pages.py
           python scripts/build_countries.py
+          python scripts/build_q2_report.py
           python scripts/build_site.py
 
       - name: Commit updated data and site

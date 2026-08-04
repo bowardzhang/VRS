@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 Q2 · European major-market auto analysis</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4;
+    --good:#0a7a34; --bad:#c23a34;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+    --good:#22b055; --bad:#e5675f;
+  }}
+  :root[data-theme="dark"] {
+    --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+    --good:#22b055; --bad:#e5675f;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--page); color:var(--ink); line-height:1.5;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1080px; margin:0 auto; padding:32px 20px 90px; }
+  .eyebrow { font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin:0 0 6px; }
+  .back { color:var(--s1); text-decoration:none; font-size:13px; }
+  .back:hover { text-decoration:underline; }
+  h1 { font-size:clamp(24px,4vw,34px); margin:6px 0 6px; letter-spacing:-0.01em; }
+  h1 .cn { color:var(--muted); font-weight:500; font-size:.62em; }
+  .sub { color:var(--ink-2); margin:0; font-size:15px; }
+  .callout { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--s4);
+    border-radius:10px; padding:13px 17px; margin-top:18px; font-size:13px; color:var(--ink-2); }
+  .callout b { color:var(--ink); }
+  .ov { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin:24px 0 8px; }
+  .ovcard { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px 16px; }
+  .ovcard .c { font-size:20px; }
+  .ovcard .nm { font-size:12.5px; color:var(--ink-2); margin:2px 0 8px; }
+  .ovcard .v { font-size:22px; font-weight:650; letter-spacing:-0.01em; font-variant-numeric:tabular-nums; }
+  .ovcard .y { font-size:12.5px; margin-top:3px; font-variant-numeric:tabular-nums; }
+  .up { color:var(--good); } .dn { color:var(--bad); } .flat { color:var(--muted); }
+  section.card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px 24px; margin-top:22px; }
+  section.card > h2 { font-size:18px; margin:0 0 3px; letter-spacing:-0.01em; }
+  section.card > h2 .cn { color:var(--muted); font-weight:500; font-size:.62em; }
+  section.card .note { font-size:12.5px; color:var(--muted); margin:2px 0 16px; }
+  .pills { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:16px; }
+  .pill { border:1px solid var(--border); background:var(--page); color:var(--ink-2); border-radius:999px;
+    padding:5px 13px; font-size:12.5px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; }
+  .pill:hover { border-color:var(--axis); }
+  .pill[aria-pressed="true"] { background:var(--s1); border-color:var(--s1); color:#fff; }
+  .tbl-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  table.rank { border-collapse:collapse; width:100%; font-size:13px; min-width:440px; }
+  table.rank th, table.rank td { padding:8px 10px; text-align:right; white-space:nowrap; }
+  table.rank th.l, table.rank td.l { text-align:left; }
+  table.rank thead th { color:var(--muted); font-weight:600; font-size:12px; border-bottom:1px solid var(--border); }
+  table.rank tbody td { font-variant-numeric:tabular-nums; }
+  table.rank tbody tr + tr td { border-top:1px solid var(--grid); }
+  table.rank td.rk { color:var(--muted); width:26px; }
+  table.rank .barcell { position:relative; }
+  table.rank .bar { display:block; height:3px; border-radius:2px; margin-top:4px; background:var(--s1); opacity:.85; }
+  .yoy { font-variant-numeric:tabular-nums; }
+  .subgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; }
+  .subcard { border:1px solid var(--border); border-radius:12px; padding:14px 16px; background:var(--page); }
+  .subcard h3 { font-size:14px; margin:0 0 2px; } .subcard h3 .cn { color:var(--muted); font-weight:500; font-size:.7em; }
+  .subcard .cov { font-size:11.5px; color:var(--muted); margin:0 0 10px; }
+  .subcard table.rank { min-width:0; }
+  .subcard table.rank th, .subcard table.rank td { padding:7px 6px; }
+  .na { text-align:center; padding:26px 16px; color:var(--muted); font-size:13.5px; }
+  footer.site { margin-top:42px; font-size:12.5px; color:var(--muted); }
+  footer.site a { color:var(--s1); }
+  .toggle { position:fixed; top:14px; right:14px; background:var(--surface); border:1px solid var(--border);
+    color:var(--ink-2); border-radius:8px; padding:6px 10px; font-size:12px; cursor:pointer; }
+</style>
+</head>
+<body>
+<button class="toggle" id="themeToggle" aria-label="Toggle theme">◐ Theme</button>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Quarterly market analysis</p>
+    <a class="back" href="index.html">← Back to overview</a>
+    <h1 id="pageTitle"></h1>
+    <p class="sub" id="subtitle"></p>
+  </header>
+
+  <div class="callout" id="coverage"></div>
+
+  <div class="ov" id="overview"></div>
+  <p class="note" id="ovNote" style="font-size:12px;color:var(--muted);margin:4px 0 0"></p>
+
+  <section class="card" id="sec-brands"></section>
+  <section class="card" id="sec-models"></section>
+  <section class="card" id="sec-origin"></section>
+  <section class="card" id="sec-powertrain"></section>
+  <section class="card" id="sec-bodytype"></section>
+  <section class="card" id="sec-suppliers"></section>
+
+  <footer class="site"><p id="footerText"></p></footer>
+</div>
+
+<script id="q2-data" type="application/json">{"period": {"cur": "Q2 2026", "prior": "Q2 2025", "note": "Apr–Jun"}, "flags": {"Germany": "🇩🇪", "Spain": "🇪🇸", "Finland": "🇫🇮", "Netherlands": "🇳🇱", "Austria": "🇦🇹", "Sweden": "🇸🇪", "France": "🇫🇷", "Total": "🇪🇺"}, "labels": {"Germany": "Germany", "Spain": "Spain", "Finland": "Finland", "Netherlands": "Netherlands", "Austria": "Austria", "Sweden": "Sweden", "France": "France", "Total": "Total"}, "overview": [{"key": "Germany", "label": "Germany", "flag": "🇩🇪", "cur": 781617, "prior": 735465, "yoy": 6.3}, {"key": "France", "label": "France", "flag": "🇫🇷", "cur": 456844, "prior": 434499, "yoy": 5.1}, {"key": "Spain", "label": "Spain", "flag": "🇪🇸", "cur": 349593, "prior": 331853, "yoy": 5.3}, {"key": "Netherlands", "label": "Netherlands", "flag": "🇳🇱", "cur": 95904, "prior": 111297, "yoy": -13.8}, {"key": "Austria", "label": "Austria", "flag": "🇦🇹", "cur": 87294, "prior": 77034, "yoy": 13.3}, {"key": "Sweden", "label": "Sweden", "flag": "🇸🇪", "cur": 83259, "prior": 80476, "yoy": 3.5}, {"key": "Finland", "label": "Finland", "flag": "🇫🇮", "cur": 19697, "prior": 20127, "yoy": -2.1}], "brands": {"countries": ["Germany", "Spain", "Finland", "Netherlands", "Austria", "Total"], "data": {"Germany": [{"name": "VW", "cur": 142735, "prior": 147645, "yoy": -3.3}, {"name": "BMW", "cur": 68219, "prior": 64920, "yoy": 5.1}, {"name": "MERCEDES", "cur": 66865, "prior": 66388, "yoy": 0.7}, {"name": "SKODA", "cur": 65780, "prior": 58882, "yoy": 11.7}, {"name": "AUDI", "cur": 54836, "prior": 49587, "yoy": 10.6}, {"name": "SEAT", "cur": 41651, "prior": 40014, "yoy": 4.1}, {"name": "OPEL", "cur": 36839, "prior": 37317, "yoy": -1.3}, {"name": "HYUNDAI", "cur": 24600, "prior": 26058, "yoy": -5.6}, {"name": "FORD", "cur": 24350, "prior": 27341, "yoy": -10.9}, {"name": "DACIA", "cur": 20660, "prior": 17993, "yoy": 14.8}], "Spain": [{"name": "TOYOTA", "cur": 27979, "prior": 26961, "yoy": 3.8}, {"name": "VW", "cur": 24279, "prior": 23877, "yoy": 1.7}, {"name": "SEAT", "cur": 20471, "prior": 18601, "yoy": 10.1}, {"name": "RENAULT", "cur": 20056, "prior": 23755, "yoy": -15.6}, {"name": "KIA", "cur": 18475, "prior": 18470, "yoy": 0.0}, {"name": "DACIA", "cur": 18347, "prior": 19184, "yoy": -4.4}, {"name": "PEUGEOT", "cur": 17899, "prior": 19114, "yoy": -6.4}, {"name": "HYUNDAI", "cur": 16649, "prior": 20847, "yoy": -20.1}, {"name": "MG", "cur": 14071, "prior": 12565, "yoy": 12.0}, {"name": "BMW", "cur": 13583, "prior": 12681, "yoy": 7.1}], "Finland": [{"name": "TOYOTA", "cur": 3875, "prior": 2860, "yoy": 35.5}, {"name": "VW", "cur": 2009, "prior": 2822, "yoy": -28.8}, {"name": "SKODA", "cur": 1933, "prior": 1820, "yoy": 6.2}, {"name": "MERCEDES", "cur": 1295, "prior": 881, "yoy": 47.0}, {"name": "VOLVO", "cur": 1239, "prior": 1696, "yoy": -26.9}, {"name": "BMW", "cur": 1052, "prior": 889, "yoy": 18.3}, {"name": "KIA", "cur": 1042, "prior": 1955, "yoy": -46.7}, {"name": "TESLA", "cur": 1032, "prior": 511, "yoy": 102.0}, {"name": "AUDI", "cur": 1028, "prior": 904, "yoy": 13.7}, {"name": "FORD", "cur": 648, "prior": 772, "yoy": -16.1}], "Netherlands": [{"name": "KIA", "cur": 9298, "prior": 9334, "yoy": -0.4}, {"name": "TOYOTA", "cur": 8508, "prior": 8486, "yoy": 0.3}, {"name": "RENAULT", "cur": 6730, "prior": 7393, "yoy": -9.0}, {"name": "VW", "cur": 6615, "prior": 8929, "yoy": -25.9}, {"name": "BMW", "cur": 5926, "prior": 7320, "yoy": -19.0}, {"name": "VOLVO", "cur": 5616, "prior": 6039, "yoy": -7.0}, {"name": "SKODA", "cur": 4772, "prior": 7209, "yoy": -33.8}, {"name": "AUDI", "cur": 3996, "prior": 4770, "yoy": -16.2}, {"name": "TESLA", "cur": 3942, "prior": 3456, "yoy": 14.1}, {"name": "HYUNDAI", "cur": 3897, "prior": 3866, "yoy": 0.8}], "Austria": [{"name": "VW", "cur": 11414, "prior": 10731, "yoy": 6.4}, {"name": "SKODA", "cur": 9064, "prior": 8179, "yoy": 10.8}, {"name": "BMW", "cur": 5671, "prior": 5680, "yoy": -0.2}, {"name": "AUDI", "cur": 5454, "prior": 4776, "yoy": 14.2}, {"name": "SEAT", "cur": 4059, "prior": 3267, "yoy": 24.2}, {"name": "MERCEDES", "cur": 4058, "prior": 3313, "yoy": 22.5}, {"name": "CUPRA", "cur": 3486, "prior": 3941, "yoy": -11.5}, {"name": "HYUNDAI", "cur": 3450, "prior": 2705, "yoy": 27.5}, {"name": "BYD", "cur": 3320, "prior": 1649, "yoy": 101.3}, {"name": "TOYOTA", "cur": 2914, "prior": 3391, "yoy": -14.1}], "Total": [{"name": "VW", "cur": 187052, "prior": 194004, "yoy": -3.6}, {"name": "BMW", "cur": 94451, "prior": 91490, "yoy": 3.2}, {"name": "SKODA", "cur": 94060, "prior": 88173, "yoy": 6.7}, {"name": "MERCEDES", "cur": 89104, "prior": 89632, "yoy": -0.6}, {"name": "AUDI", "cur": 78315, "prior": 70679, "yoy": 10.8}, {"name": "SEAT", "cur": 67534, "prior": 63378, "yoy": 6.6}, {"name": "TOYOTA", "cur": 59776, "prior": 62771, "yoy": -4.8}, {"name": "OPEL", "cur": 52746, "prior": 51824, "yoy": 1.8}, {"name": "RENAULT", "cur": 49470, "prior": 49534, "yoy": -0.1}, {"name": "HYUNDAI", "cur": 48979, "prior": 54216, "yoy": -9.7}]}}, "models": {"countries": ["Germany", "Spain", "Total"], "data": {"Germany": [{"name": "VW GOLF", "cur": 22641, "prior": 21707, "yoy": 4.3}, {"name": "VW T-ROC", "cur": 18384, "prior": 19425, "yoy": -5.4}, {"name": "VW TIGUAN", "cur": 14975, "prior": 15868, "yoy": -5.6}, {"name": "BMW X1", "cur": 13946, "prior": 12882, "yoy": 8.3}, {"name": "OPEL CORSA", "cur": 13121, "prior": 13667, "yoy": -4.0}, {"name": "SKODA OCTAVIA", "cur": 12216, "prior": 11076, "yoy": 10.3}, {"name": "MINI MINI", "cur": 12037, "prior": 8530, "yoy": 41.1}, {"name": "BMW X3", "cur": 11758, "prior": 5853, "yoy": 100.9}, {"name": "MERCEDES GLK, GLC", "cur": 11733, "prior": 8674, "yoy": 35.3}, {"name": "AUDI A6", "cur": 10689, "prior": 11264, "yoy": -5.1}], "Spain": [{"name": "SANDERO", "cur": 11009, "prior": 11248, "yoy": -2.1}, {"name": "IBIZA", "cur": 8584, "prior": 6553, "yoy": 31.0}, {"name": "TOYOTA C-HR", "cur": 7515, "prior": 5191, "yoy": 44.8}, {"name": "TOYOTA COROLLA", "cur": 7458, "prior": 5985, "yoy": 24.6}, {"name": "MG ZS", "cur": 6905, "prior": 6782, "yoy": 1.8}, {"name": "ARONA", "cur": 6280, "prior": 6243, "yoy": 0.6}, {"name": "TUCSON", "cur": 6046, "prior": 5551, "yoy": 8.9}, {"name": "TOYOTA YARIS CROSS", "cur": 5492, "prior": 5614, "yoy": -2.2}, {"name": "T-ROC", "cur": 5028, "prior": 5267, "yoy": -4.5}, {"name": "CLIO", "cur": 4945, "prior": 6471, "yoy": -23.6}], "Total": [{"name": "VW GOLF", "cur": 25446, "prior": 24012, "yoy": 6.0}, {"name": "VW T-ROC", "cur": 23412, "prior": 24692, "yoy": -5.2}, {"name": "VW TIGUAN", "cur": 18668, "prior": 19467, "yoy": -4.1}, {"name": "DACIA SANDERO", "cur": 17938, "prior": 18102, "yoy": -0.9}, {"name": "BMW X1", "cur": 13946, "prior": 12883, "yoy": 8.3}, {"name": "VW T-CROSS", "cur": 13336, "prior": 12504, "yoy": 6.7}, {"name": "HYUNDAI TUCSON", "cur": 13296, "prior": 11002, "yoy": 20.9}, {"name": "SKODA OCTAVIA", "cur": 13177, "prior": 12046, "yoy": 9.4}, {"name": "OPEL CORSA", "cur": 13121, "prior": 13667, "yoy": -4.0}, {"name": "SEAT IBIZA", "cur": 12914, "prior": 10794, "yoy": 19.6}]}}, "origin": {"countries": ["Germany", "Spain", "Finland", "Netherlands", "Austria", "Total"], "data": {"Germany": [{"name": "Germany", "cur": 379788, "prior": 375702, "yoy": 1.1}, {"name": "France", "cur": 71614, "prior": 61709, "yoy": 16.1}, {"name": "Czechia", "cur": 65780, "prior": 58882, "yoy": 11.7}, {"name": "Japan", "cur": 48700, "prior": 55985, "yoy": -13.0}, {"name": "USA", "cur": 43514, "prior": 34812, "yoy": 25.0}, {"name": "South Korea", "cur": 41880, "prior": 42910, "yoy": -2.4}, {"name": "Spain", "cur": 41651, "prior": 40014, "yoy": 4.1}, {"name": "China", "cur": 36011, "prior": 15094, "yoy": 138.6}], "Spain": [{"name": "Germany", "cur": 75144, "prior": 71715, "yoy": 4.8}, {"name": "France", "cur": 67084, "prior": 75355, "yoy": -11.0}, {"name": "Japan", "cur": 48715, "prior": 48151, "yoy": 1.2}, {"name": "China", "cur": 44289, "prior": 26522, "yoy": 67.0}, {"name": "South Korea", "cur": 36202, "prior": 40158, "yoy": -9.9}, {"name": "Spain", "cur": 30288, "prior": 27154, "yoy": 11.5}, {"name": "USA", "cur": 15576, "prior": 16680, "yoy": -6.6}, {"name": "Czechia", "cur": 12511, "prior": 12083, "yoy": 3.5}], "Finland": [{"name": "Germany", "cur": 6021, "prior": 5767, "yoy": 4.4}, {"name": "Japan", "cur": 4969, "prior": 4308, "yoy": 15.3}, {"name": "Czechia", "cur": 1933, "prior": 1820, "yoy": 6.2}, {"name": "USA", "cur": 1687, "prior": 1311, "yoy": 28.7}, {"name": "Sweden", "cur": 1636, "prior": 2129, "yoy": -23.2}, {"name": "South Korea", "cur": 1436, "prior": 2700, "yoy": -46.8}, {"name": "France", "cur": 865, "prior": 1273, "yoy": -32.1}, {"name": "China", "cur": 634, "prior": 230, "yoy": 175.7}], "Netherlands": [{"name": "Germany", "cur": 23438, "prior": 29299, "yoy": -20.0}, {"name": "Japan", "cur": 13691, "prior": 15190, "yoy": -9.9}, {"name": "France", "cur": 13526, "prior": 16335, "yoy": -17.2}, {"name": "South Korea", "cur": 13217, "prior": 13205, "yoy": 0.1}, {"name": "USA", "cur": 7564, "prior": 8596, "yoy": -12.0}, {"name": "China", "cur": 7275, "prior": 6552, "yoy": 11.0}, {"name": "Sweden", "cur": 6088, "prior": 6828, "yoy": -10.8}, {"name": "Czechia", "cur": 4772, "prior": 7209, "yoy": -33.8}], "Austria": [{"name": "Germany", "cur": 29989, "prior": 27392, "yoy": 9.5}, {"name": "France", "cur": 10113, "prior": 10333, "yoy": -2.1}, {"name": "Czechia", "cur": 9064, "prior": 8179, "yoy": 10.8}, {"name": "China", "cur": 7896, "prior": 3453, "yoy": 128.7}, {"name": "Japan", "cur": 7730, "prior": 7928, "yoy": -2.5}, {"name": "Spain", "cur": 7545, "prior": 7208, "yoy": 4.7}, {"name": "South Korea", "cur": 5863, "prior": 4229, "yoy": 38.6}, {"name": "USA", "cur": 4858, "prior": 4702, "yoy": 3.3}], "Total": [{"name": "Germany", "cur": 514380, "prior": 509875, "yoy": 0.9}, {"name": "France", "cur": 163202, "prior": 165005, "yoy": -1.1}, {"name": "Japan", "cur": 123805, "prior": 131562, "yoy": -5.9}, {"name": "South Korea", "cur": 98598, "prior": 103202, "yoy": -4.5}, {"name": "China", "cur": 96105, "prior": 51851, "yoy": 85.3}, {"name": "Czechia", "cur": 94060, "prior": 88173, "yoy": 6.7}, {"name": "Spain", "cur": 82449, "prior": 77642, "yoy": 6.2}, {"name": "USA", "cur": 73199, "prior": 66101, "yoy": 10.7}]}}, "powertrain": {"countries": ["Germany", "Spain", "Finland", "Sweden", "Total"], "data": {"Germany": [{"name": "BEV", "cur": 208376, "prior": 135758, "yoy": 53.5, "share_cur": 37.0, "share_prior": 25.6}, {"name": "PHEV", "cur": 87679, "prior": 75106, "yoy": 16.7, "share_cur": 15.5, "share_prior": 14.2}, {"name": "Petrol", "cur": 171021, "prior": 211233, "yoy": -19.0, "share_cur": 30.3, "share_prior": 39.8}, {"name": "Diesel", "cur": 96846, "prior": 108420, "yoy": -10.7, "share_cur": 17.2, "share_prior": 20.4}], "Spain": [{"name": "BEV", "cur": 36962, "prior": 27656, "yoy": 33.6, "share_cur": 10.6, "share_prior": 8.3}, {"name": "Petrol", "cur": 269452, "prior": 251639, "yoy": 7.1, "share_cur": 77.1, "share_prior": 75.8}, {"name": "Diesel", "cur": 28373, "prior": 35129, "yoy": -19.2, "share_cur": 8.1, "share_prior": 10.6}, {"name": "Other", "cur": 14806, "prior": 17429, "yoy": -15.0, "share_cur": 4.2, "share_prior": 5.3}], "Finland": [{"name": "BEV", "cur": 9735, "prior": 7088, "yoy": 37.3, "share_cur": 48.5, "share_prior": 34.5}, {"name": "PHEV", "cur": 2270, "prior": 4286, "yoy": -47.0, "share_cur": 11.3, "share_prior": 20.9}, {"name": "Petrol", "cur": 7323, "prior": 8321, "yoy": -12.0, "share_cur": 36.5, "share_prior": 40.5}, {"name": "Diesel", "cur": 725, "prior": 858, "yoy": -15.5, "share_cur": 3.6, "share_prior": 4.2}], "Sweden": [{"name": "BEV", "cur": 33718, "prior": 28977, "yoy": 16.4, "share_cur": 40.5, "share_prior": 36.0}, {"name": "PHEV", "cur": 20103, "prior": 20958, "yoy": -4.1, "share_cur": 24.1, "share_prior": 26.0}, {"name": "HEV", "cur": 6095, "prior": 5867, "yoy": 3.9, "share_cur": 7.3, "share_prior": 7.3}, {"name": "Petrol", "cur": 16462, "prior": 18210, "yoy": -9.6, "share_cur": 19.8, "share_prior": 22.6}, {"name": "Diesel", "cur": 6579, "prior": 6428, "yoy": 2.3, "share_cur": 7.9, "share_prior": 8.0}, {"name": "Other", "cur": 302, "prior": 36, "yoy": 738.9, "share_cur": 0.4, "share_prior": 0.0}], "Total": [{"name": "BEV", "cur": 288791, "prior": 199479, "yoy": 44.8, "share_cur": 28.4, "share_prior": 20.7}, {"name": "PHEV", "cur": 110052, "prior": 100350, "yoy": 9.7, "share_cur": 10.8, "share_prior": 10.4}, {"name": "HEV", "cur": 6095, "prior": 5867, "yoy": 3.9, "share_cur": 0.6, "share_prior": 0.6}, {"name": "Petrol", "cur": 464258, "prior": 489403, "yoy": -5.1, "share_cur": 45.7, "share_prior": 50.8}, {"name": "Diesel", "cur": 132523, "prior": 150835, "yoy": -12.1, "share_cur": 13.0, "share_prior": 15.7}, {"name": "Other", "cur": 15108, "prior": 17467, "yoy": -13.5, "share_cur": 1.5, "share_prior": 1.8}]}}, "suppliers": {"countries": ["Germany", "Spain", "Total"], "data": {"Germany": [{"key": "soc", "title": "Cockpit SoC", "cn": "座舱域控芯片", "coverage": 90.0, "rows": [{"name": "Renesas", "share_cur": 31.65, "share_prior": 33.14, "delta": -1.5}, {"name": "Qualcomm", "share_cur": 22.06, "share_prior": 19.26, "delta": 2.8}, {"name": "Undisclosed", "share_cur": 17.58, "share_prior": 19.61, "delta": -2.0}, {"name": "Samsung", "share_cur": 14.07, "share_prior": 13.24, "delta": 0.8}, {"name": "NVIDIA", "share_cur": 7.18, "share_prior": 7.97, "delta": -0.8}, {"name": "MediaTek", "share_cur": 2.94, "share_prior": 2.63, "delta": 0.3}, {"name": "AMD", "share_cur": 2.26, "share_prior": 0.57, "delta": 1.7}, {"name": "None", "share_cur": 2.09, "share_prior": 3.41, "delta": -1.3}, {"name": "NXP", "share_cur": 0.17, "share_prior": 0.16, "delta": 0.0}]}, {"key": "adas", "title": "ADAS / perception SoC", "cn": "智驾感知芯片", "coverage": 90.0, "rows": [{"name": "Mobileye", "share_cur": 78.69, "share_prior": 80.65, "delta": -2.0}, {"name": "NVIDIA", "share_cur": 9.46, "share_prior": 9.64, "delta": -0.2}, {"name": "None", "share_cur": 5.03, "share_prior": 5.44, "delta": -0.4}, {"name": "Undisclosed", "share_cur": 2.91, "share_prior": 1.43, "delta": 1.5}, {"name": "Tesla", "share_cur": 2.26, "share_prior": 0.57, "delta": 1.7}, {"name": "Denso", "share_cur": 1.65, "share_prior": 2.27, "delta": -0.6}]}, {"key": "radar", "title": "Front-radar Tier-1", "cn": "前向毫米波雷达", "coverage": 90.0, "rows": [{"name": "Continental", "share_cur": 58.12, "share_prior": 58.19, "delta": -0.1}, {"name": "Bosch", "share_cur": 15.5, "share_prior": 14.83, "delta": 0.7}, {"name": "Valeo", "share_cur": 11.14, "share_prior": 11.67, "delta": -0.5}, {"name": "None", "share_cur": 5.2, "share_prior": 3.21, "delta": 2.0}, {"name": "HL Klemove", "share_cur": 4.72, "share_prior": 5.81, "delta": -1.1}, {"name": "Denso", "share_cur": 3.42, "share_prior": 4.05, "delta": -0.6}, {"name": "Veoneer/Magna", "share_cur": 1.9, "share_prior": 2.24, "delta": -0.3}]}], "Spain": [{"key": "soc", "title": "Cockpit SoC", "cn": "座舱域控芯片", "coverage": 72.7, "rows": [{"name": "Renesas", "share_cur": 40.49, "share_prior": 37.99, "delta": 2.5}, {"name": "Qualcomm", "share_cur": 22.72, "share_prior": 23.58, "delta": -0.9}, {"name": "Undisclosed", "share_cur": 17.69, "share_prior": 18.02, "delta": -0.3}, {"name": "MediaTek", "share_cur": 7.22, "share_prior": 7.58, "delta": -0.4}, {"name": "None", "share_cur": 4.72, "share_prior": 6.15, "delta": -1.4}, {"name": "NVIDIA", "share_cur": 2.85, "share_prior": 3.32, "delta": -0.5}, {"name": "Samsung", "share_cur": 2.44, "share_prior": 1.78, "delta": 0.7}, {"name": "AMD", "share_cur": 1.88, "share_prior": 1.58, "delta": 0.3}, {"name": "NXP", "share_cur": 0.0, "share_prior": 0.0, "delta": 0.0}]}, {"key": "adas", "title": "ADAS / perception SoC", "cn": "智驾感知芯片", "coverage": 72.7, "rows": [{"name": "Mobileye", "share_cur": 67.36, "share_prior": 66.57, "delta": 0.8}, {"name": "None", "share_cur": 11.94, "share_prior": 13.73, "delta": -1.8}, {"name": "Denso", "share_cur": 10.35, "share_prior": 9.75, "delta": 0.6}, {"name": "Undisclosed", "share_cur": 4.97, "share_prior": 4.58, "delta": 0.4}, {"name": "NVIDIA", "share_cur": 3.5, "share_prior": 3.79, "delta": -0.3}, {"name": "Tesla", "share_cur": 1.88, "share_prior": 1.58, "delta": 0.3}]}, {"key": "radar", "title": "Front-radar Tier-1", "cn": "前向毫米波雷达", "coverage": 72.7, "rows": [{"name": "Continental", "share_cur": 42.4, "share_prior": 41.93, "delta": 0.5}, {"name": "Denso", "share_cur": 12.81, "share_prior": 11.62, "delta": 1.2}, {"name": "Valeo", "share_cur": 12.01, "share_prior": 10.15, "delta": 1.9}, {"name": "HL Klemove", "share_cur": 11.92, "share_prior": 14.38, "delta": -2.5}, {"name": "Bosch", "share_cur": 10.77, "share_prior": 11.67, "delta": -0.9}, {"name": "None", "share_cur": 9.1, "share_prior": 9.15, "delta": -0.1}, {"name": "Veoneer/Magna", "share_cur": 0.98, "share_prior": 1.09, "delta": -0.1}]}], "Total": [{"key": "soc", "title": "Cockpit SoC", "cn": "座舱域控芯片", "coverage": 84.6, "rows": [{"name": "Renesas", "share_cur": 33.99, "share_prior": 34.45, "delta": -0.5}, {"name": "Qualcomm", "share_cur": 22.23, "share_prior": 20.43, "delta": 1.8}, {"name": "Undisclosed", "share_cur": 17.61, "share_prior": 19.18, "delta": -1.6}, {"name": "Samsung", "share_cur": 10.98, "share_prior": 10.14, "delta": 0.8}, {"name": "NVIDIA", "share_cur": 6.03, "share_prior": 6.71, "delta": -0.7}, {"name": "MediaTek", "share_cur": 4.07, "share_prior": 3.97, "delta": 0.1}, {"name": "None", "share_cur": 2.79, "share_prior": 4.15, "delta": -1.4}, {"name": "AMD", "share_cur": 2.16, "share_prior": 0.85, "delta": 1.3}, {"name": "NXP", "share_cur": 0.13, "share_prior": 0.12, "delta": 0.0}]}, {"key": "adas", "title": "ADAS / perception SoC", "cn": "智驾感知芯片", "coverage": 84.6, "rows": [{"name": "Mobileye", "share_cur": 75.69, "share_prior": 76.84, "delta": -1.2}, {"name": "NVIDIA", "share_cur": 7.88, "share_prior": 8.05, "delta": -0.2}, {"name": "None", "share_cur": 6.86, "share_prior": 7.68, "delta": -0.8}, {"name": "Denso", "share_cur": 3.96, "share_prior": 4.3, "delta": -0.3}, {"name": "Undisclosed", "share_cur": 3.46, "share_prior": 2.28, "delta": 1.2}, {"name": "Tesla", "share_cur": 2.16, "share_prior": 0.85, "delta": 1.3}]}, {"key": "radar", "title": "Front-radar Tier-1", "cn": "前向毫米波雷达", "coverage": 84.6, "rows": [{"name": "Continental", "share_cur": 53.95, "share_prior": 53.79, "delta": 0.2}, {"name": "Bosch", "share_cur": 14.25, "share_prior": 13.98, "delta": 0.3}, {"name": "Valeo", "share_cur": 11.37, "share_prior": 11.26, "delta": 0.1}, {"name": "HL Klemove", "share_cur": 6.63, "share_prior": 8.13, "delta": -1.5}, {"name": "None", "share_cur": 6.23, "share_prior": 4.82, "delta": 1.4}, {"name": "Denso", "share_cur": 5.91, "share_prior": 6.1, "delta": -0.2}, {"name": "Veoneer/Magna", "share_cur": 1.66, "share_prior": 1.93, "delta": -0.3}]}]}}, "bodytype_available": false, "coverage_note": "Brands & origin: DE, ES, FI, NL, AT · Powertrain: DE, ES, FI, SE · Models & suppliers: DE, ES (the only monthly model feeds). UK omitted (SMMT quarterly data still ends Q1 2026); France total-only; Italy not covered. Body type is not published in these open feeds."}</script>
+<script>
+(function () {
+  "use strict";
+  var D = {};
+  try { D = JSON.parse(document.getElementById("q2-data").textContent || "{}"); } catch (e) {}
+  var $ = function (id) { return document.getElementById(id); };
+  var root = document.documentElement;
+  $("themeToggle").addEventListener("click", function () {
+    root.setAttribute("data-theme", root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+  });
+  var fmt = function (n) { return (n == null ? "–" : Number(n).toLocaleString("en-US")); };
+  var flag = function (k) { return (D.flags || {})[k] || ""; };
+  var label = function (k) { return (D.labels || {})[k] || k; };
+
+  function yoyHtml(v) {
+    if (v == null) return '<span class="flat">n/a</span>';
+    var cls = v > 0.05 ? "up" : (v < -0.05 ? "dn" : "flat");
+    var s = (v > 0 ? "+" : "") + v.toFixed(1) + "%";
+    return '<span class="' + cls + '">' + s + '</span>';
+  }
+  function ppHtml(v) {
+    if (v == null) return '<span class="flat">new</span>';
+    var cls = v > 0.05 ? "up" : (v < -0.05 ? "dn" : "flat");
+    return '<span class="' + cls + '">' + (v > 0 ? "+" : "") + v.toFixed(1) + ' pp</span>';
+  }
+
+  // ---------- header ----------
+  var P = D.period || {};
+  $("pageTitle").innerHTML = P.cur + " · European major-market auto analysis " +
+    '<span class="cn">欧洲主要国家汽车市场分析</span>';
+  document.title = P.cur + " · European major-market auto analysis";
+  $("subtitle").textContent = "New passenger-car registrations, " + P.cur + " (" + P.note +
+    ") with year-on-year change vs " + P.prior + ".";
+  $("coverage").innerHTML = "<b>Coverage.</b> " + (D.coverage_note || "") +
+    " Everything below is a real slice of the same national registration feeds used across this site.";
+
+  // ---------- overview ----------
+  $("overview").innerHTML = (D.overview || []).map(function (o) {
+    return '<div class="ovcard"><div class="c">' + o.flag + '</div>' +
+      '<div class="nm">' + o.label + '</div>' +
+      '<div class="v">' + fmt(o.cur) + '</div>' +
+      '<div class="y">YoY ' + yoyHtml(o.yoy) + '</div></div>';
+  }).join("");
+  $("ovNote").textContent = "Q2 2026 new registrations by country, largest first. " +
+    "UK not shown — its quarterly data still ends Q1 2026.";
+
+  // ---------- generic ranked-dimension section (count + YoY) ----------
+  function rankSection(secId, block, opts) {
+    opts = opts || {};
+    var sec = $(secId);
+    var state = { country: block.countries.indexOf("Total") >= 0 ? "Total" : block.countries[0] };
+    sec.innerHTML =
+      '<h2>' + opts.title + ' <span class="cn">' + opts.cn + '</span></h2>' +
+      '<p class="note">' + opts.note + '</p>' +
+      '<div class="pills"></div><div class="tbl-scroll"><table class="rank" id="' + secId + '-t"></table></div>';
+    var pills = sec.querySelector(".pills");
+    pills.innerHTML = block.countries.map(function (c) {
+      return '<button class="pill" data-c="' + c + '">' + flag(c) + ' ' + label(c) + '</button>';
+    }).join("");
+    function draw() {
+      Array.prototype.forEach.call(pills.children, function (b) {
+        b.setAttribute("aria-pressed", b.getAttribute("data-c") === state.country);
+      });
+      var rows = block.data[state.country] || [];
+      var max = rows.reduce(function (m, r) { return Math.max(m, r.cur); }, 1);
+      var head = '<thead><tr><th class="l">#</th><th class="l">' + opts.col + '</th>' +
+        '<th>' + P.cur + '</th><th>' + P.prior + '</th><th>YoY</th></tr></thead>';
+      var body = rows.map(function (r, i) {
+        return '<tr><td class="rk">' + (i + 1) + '</td>' +
+          '<td class="l barcell">' + r.name +
+            '<span class="bar" style="width:' + (100 * r.cur / max) + '%"></span></td>' +
+          '<td>' + fmt(r.cur) + '</td><td>' + fmt(r.prior) + '</td>' +
+          '<td class="yoy">' + yoyHtml(r.yoy) + '</td></tr>';
+      }).join("");
+      $(secId + "-t").innerHTML = head + "<tbody>" + body + "</tbody>";
+    }
+    pills.addEventListener("click", function (e) {
+      var b = e.target.closest(".pill"); if (!b) return;
+      state.country = b.getAttribute("data-c"); draw();
+    });
+    draw();
+  }
+
+  rankSection("sec-brands", D.brands, {
+    title: "Top-10 brands", cn: "品牌 Top10", col: "Brand",
+    note: "Ranked by Q2 2026 registrations. " + D.brands.countries.filter(function(c){return c!=="Total";}).length +
+      " countries; Total pools them."
+  });
+  rankSection("sec-models", D.models, {
+    title: "Top-10 models", cn: "车型 Top10", col: "Model",
+    note: "Only Germany and Spain publish monthly model-level data; Total is DE+ES pooled by normalised model name."
+  });
+  rankSection("sec-origin", D.origin, {
+    title: "Top-8 brand origin countries", cn: "厂商所属国 Top8", col: "Origin",
+    note: "Registrations grouped by each marque's country of origin (the car's nationality, not the owner group)."
+  });
+
+  // ---------- powertrain (share + count + YoY) ----------
+  (function () {
+    var block = D.powertrain, secId = "sec-powertrain";
+    var sec = $(secId);
+    var state = { country: "Total" };
+    sec.innerHTML = '<h2>Powertrain mix <span class="cn">动力类型分布</span></h2>' +
+      '<p class="note">Share of Q2 registrations by powertrain, with the YoY change in volume. ' +
+      'Bucket granularity differs by national feed (e.g. Germany reports no separate HEV; Spain folds hybrids into “Other”).</p>' +
+      '<div class="pills"></div><div class="tbl-scroll"><table class="rank" id="' + secId + '-t"></table></div>';
+    var pills = sec.querySelector(".pills");
+    pills.innerHTML = block.countries.map(function (c) {
+      return '<button class="pill" data-c="' + c + '">' + flag(c) + ' ' + label(c) + '</button>';
+    }).join("");
+    var COL = { BEV:"#1baf7a", PHEV:"#2a78d6", HEV:"#7b5cd6", Petrol:"#eb6834", Diesel:"#8f8d86", Other:"#c3c2b7" };
+    function draw() {
+      Array.prototype.forEach.call(pills.children, function (b) {
+        b.setAttribute("aria-pressed", b.getAttribute("data-c") === state.country);
+      });
+      var rows = block.data[state.country] || [];
+      var head = '<thead><tr><th class="l">Powertrain</th><th>' + P.cur + ' share</th>' +
+        '<th>' + P.cur + '</th><th>' + P.prior + ' share</th><th>YoY vol</th></tr></thead>';
+      var body = rows.map(function (r) {
+        return '<tr><td class="l barcell"><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:' +
+            (COL[r.name] || "#8f8d86") + ';margin-right:7px"></span>' + r.name +
+            '<span class="bar" style="width:' + r.share_cur + '%;background:' + (COL[r.name] || "#8f8d86") + '"></span></td>' +
+          '<td><b>' + r.share_cur.toFixed(1) + '%</b></td>' +
+          '<td>' + fmt(r.cur) + '</td>' +
+          '<td>' + r.share_prior.toFixed(1) + '%</td>' +
+          '<td class="yoy">' + yoyHtml(r.yoy) + '</td></tr>';
+      }).join("");
+      $(secId + "-t").innerHTML = head + "<tbody>" + body + "</tbody>";
+    }
+    pills.addEventListener("click", function (e) {
+      var b = e.target.closest(".pill"); if (!b) return;
+      state.country = b.getAttribute("data-c"); draw();
+    });
+    draw();
+  })();
+
+  // ---------- body type (not available) ----------
+  $("sec-bodytype").innerHTML = '<h2>Body type <span class="cn">车身类型分布</span></h2>' +
+    '<div class="na"><b>Not available.</b> None of the open national registration feeds in this ' +
+    'dataset break new registrations down by body type (hatchback / SUV / saloon / estate / MPV). ' +
+    'Adding it would require a different source per country (e.g. RDW body-code, DGT microdata) and is not sourced here.</div>';
+
+  // ---------- suppliers (installation rate + YoY pp) ----------
+  (function () {
+    var block = D.suppliers, secId = "sec-suppliers";
+    var sec = $(secId);
+    var COL = { Qualcomm:"#2a78d6", Samsung:"#4a3aa7", NVIDIA:"#1baf7a", Renesas:"#eb6834",
+      AMD:"#e34948", NXP:"#eda100", MediaTek:"#e87ba4", Undisclosed:"#8f8d86", None:"#c3c2b7",
+      Mobileye:"#00a7b5", Tesla:"#e34948", Denso:"#7b5cd6", Continental:"#2a78d6", Bosch:"#e34948",
+      Valeo:"#1baf7a", "HL Klemove":"#eda100", "Veoneer/Magna":"#e87ba4" };
+    var state = { country: "Total" };
+    sec.innerHTML = '<h2>Supplier installation rate <span class="cn">汽车供应商上装率</span></h2>' +
+      '<p class="note">Estimated supplier share of classified registrations per component (座舱/智驾/雷达), ' +
+      'Q2 2026 with the YoY change in percentage points. Estimate from <code>data/vehicle_specs.csv</code>; ' +
+      'Germany & Spain only (the monthly model feeds). LiDAR omitted — fitment is ≈0% in these markets.</p>' +
+      '<div class="pills"></div><div class="subgrid" id="' + secId + '-grid"></div>';
+    var pills = sec.querySelector(".pills");
+    pills.innerHTML = block.countries.map(function (c) {
+      return '<button class="pill" data-c="' + c + '">' + flag(c) + ' ' + label(c) + '</button>';
+    }).join("");
+    function draw() {
+      Array.prototype.forEach.call(pills.children, function (b) {
+        b.setAttribute("aria-pressed", b.getAttribute("data-c") === state.country);
+      });
+      var dims = block.data[state.country] || [];
+      $(secId + "-grid").innerHTML = dims.map(function (d) {
+        var rows = d.rows.slice(0, 6);
+        var max = rows.reduce(function (m, r) { return Math.max(m, r.share_cur); }, 1);
+        var body = rows.map(function (r) {
+          var col = COL[r.name] || "#8f8d86";
+          return '<tr><td class="l barcell"><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:' +
+              col + ';margin-right:7px"></span>' + r.name +
+              '<span class="bar" style="width:' + (100 * r.share_cur / max) + '%;background:' + col + '"></span></td>' +
+            '<td><b>' + r.share_cur.toFixed(1) + '%</b></td>' +
+            '<td class="yoy">' + ppHtml(r.delta) + '</td></tr>';
+        }).join("");
+        return '<div class="subcard"><h3>' + d.title + ' <span class="cn">' + d.cn + '</span></h3>' +
+          '<p class="cov">' + Math.round(d.coverage) + '% classified coverage</p>' +
+          '<div class="tbl-scroll"><table class="rank"><thead><tr><th class="l">Supplier</th>' +
+          '<th>' + P.cur + '</th><th>vs ' + P.prior + '</th></tr></thead><tbody>' + body + '</tbody></table></div></div>';
+      }).join("");
+    }
+    pills.addEventListener("click", function (e) {
+      var b = e.target.closest(".pill"); if (!b) return;
+      state.country = b.getAttribute("data-c"); draw();
+    });
+    draw();
+  })();
+
+  $("footerText").innerHTML = "Sources: KBA (DE), DGT (ES), Traficom (FI), RDW (NL), Statistik Austria (AT), " +
+    "SCB/Trafikanalys (SE), SDES (FR). Supplier mapping is an independent estimate " +
+    "(<code>data/vehicle_specs.csv</code>). Q2 2026 = Apr–Jun; YoY vs Q2 2025.";
+})();
+</script>
+</body>
+</html>
