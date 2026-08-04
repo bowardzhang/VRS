@@ -33,6 +33,16 @@ OUT_DIR = REPO_ROOT / "data" / "Netherlands"
 OUT_CSV = OUT_DIR / "rdw_monthly_brands.csv"
 MODELS_CSV = OUT_DIR / "rdw_models.csv"
 MODELS_LATEST_CSV = OUT_DIR / "rdw_models_latest.csv"
+MODELS_MONTHLY_CSV = OUT_DIR / "rdw_models_monthly.csv"
+BODY_MONTHLY_CSV = OUT_DIR / "rdw_body_monthly.csv"
+
+# RDW "inrichting" (body configuration) -> comparable body category. RDW has no
+# distinct SUV code (it files them under MPV/stationwagen), so the categories are
+# RDW-native and NOT directly comparable to the German KBA size-segments.
+NL_BODY = {
+    "hatchback": "Hatchback", "sedan": "Sedan", "stationwagen": "Estate",
+    "MPV": "MPV", "coupe": "Coupé", "cabriolet": "Convertible",
+}
 
 RESOURCE = "https://opendata.rdw.nl/resource/m9d7-ebf2.json"
 DEFAULT_FROM = (2023, 9)  # align with the German FZ 10.1 window start
@@ -176,6 +186,59 @@ def fetch_models_month(year: int, month: int, retries: int = 4) -> list[tuple[st
     return []
 
 
+def fetch_body_month(year: int, month: int, retries: int = 4) -> list[tuple[str, int]]:
+    """(body_category, count) for one month, grouped by RDW 'inrichting'."""
+    lo, hi = f"{year:04d}{month:02d}01", f"{year:04d}{month:02d}31"
+    params = {
+        "$select": "inrichting,count(kenteken)",
+        "$where": ("voertuigsoort='Personenauto' AND "
+                   f"datum_eerste_toelating >= '{lo}' AND datum_eerste_toelating <= '{hi}'"),
+        "$group": "inrichting",
+        "$limit": "200",
+    }
+    url = RESOURCE + "?" + urllib.parse.urlencode(params, safe="", quote_via=urllib.parse.quote)
+    delay = 2.0
+    for attempt in range(retries):
+        try:
+            import json
+            req = urllib.request.Request(url, headers={"User-Agent": "VRS/1.0"})
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                rows = json.load(resp)
+            agg: dict[str, int] = {}
+            for r in rows:
+                cat = NL_BODY.get((r.get("inrichting") or "").strip(), "Other")
+                agg[cat] = agg.get(cat, 0) + int(r.get("count_kenteken") or 0)
+            return sorted(agg.items(), key=lambda kv: -kv[1])
+        except Exception as exc:  # noqa: BLE001
+            if attempt == retries - 1:
+                raise
+            print(f"  [body retry {attempt+1}] {exc}", file=sys.stderr)
+            time.sleep(delay)
+            delay *= 2
+    return []
+
+
+def _load_keyed(path, cols) -> dict:
+    """Load an incremental (year,month,*keys)->count CSV, keyed for replace-by-month."""
+    data: dict = {}
+    if path.exists():
+        with path.open(encoding="utf-8") as fh:
+            for row in csv.DictReader(fh):
+                key = (int(row["year"]), int(row["month"])) + tuple(row[c] for c in cols)
+                data[key] = int(row["count"])
+    return data
+
+
+def _write_keyed(path, cols, data) -> None:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    rows = sorted(data.items(), key=lambda kv: (kv[0][0], kv[0][1], -kv[1]))
+    with path.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "month"] + cols + ["count"])
+        for key, c in rows:
+            w.writerow(list(key) + [c])
+
+
 def load_existing() -> dict[tuple[int, int, str], int]:
     data: dict[tuple[int, int, str], int] = {}
     if OUT_CSV.exists():
@@ -221,6 +284,8 @@ def main() -> int:
         start = DEFAULT_FROM
 
     data = load_existing()
+    model_m = _load_keyed(MODELS_MONTHLY_CSV, ["brand", "model"])
+    body_m = _load_keyed(BODY_MONTHLY_CSV, ["body"])
     months = list(month_range(start, end))
     print(f"[nl] fetching {len(months)} month(s) {start[0]}-{start[1]:02d} .. {end[0]}-{end[1]:02d}")
     for y, m in months:
@@ -230,11 +295,27 @@ def main() -> int:
             del data[key]
         for brand, cnt in rows:
             data[(y, m, brand)] = cnt
-        print(f"  {y}-{m:02d}: {len(rows)} brands, {sum(c for _, c in rows):,} cars")
+        # monthly model detail (brand, model) for the same month
+        for key in [k for k in model_m if k[0] == y and k[1] == m]:
+            del model_m[key]
+        mrows = fetch_models_month(y, m)
+        for b, mo, c in mrows:
+            model_m[(y, m, b, mo)] = c
+        # monthly body-type split for the same month
+        for key in [k for k in body_m if k[0] == y and k[1] == m]:
+            del body_m[key]
+        for cat, c in fetch_body_month(y, m):
+            body_m[(y, m, cat)] = c
+        print(f"  {y}-{m:02d}: {len(rows)} brands, {len(mrows)} models, "
+              f"{sum(c for _, c in rows):,} cars")
         time.sleep(0.3)
 
     write_csv(data)
     print(f"[write] {OUT_CSV.relative_to(REPO_ROOT)} ({len(data)} rows)")
+    _write_keyed(MODELS_MONTHLY_CSV, ["brand", "model"], model_m)
+    print(f"[write] {MODELS_MONTHLY_CSV.relative_to(REPO_ROOT)} ({len(model_m)} rows)")
+    _write_keyed(BODY_MONTHLY_CSV, ["body"], body_m)
+    print(f"[write] {BODY_MONTHLY_CSV.relative_to(REPO_ROOT)} ({len(body_m)} rows)")
 
     models = fetch_models()
     write_models(models)

@@ -72,7 +72,7 @@ PAGE = r"""<!doctype html>
   table.rank .barcell { position:relative; }
   table.rank .bar { display:block; height:3px; border-radius:2px; margin-top:4px; background:var(--s1); opacity:.85; }
   .yoy { font-variant-numeric:tabular-nums; }
-  .subgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; }
+  .subgrid { display:grid; grid-template-columns:1fr; gap:16px; }
   .subcard { border:1px solid var(--border); border-radius:12px; padding:14px 16px; background:var(--page); }
   .subcard h3 { font-size:14px; margin:0 0 2px; } .subcard h3 .cn { color:var(--muted); font-weight:500; font-size:.7em; }
   .subcard .cov { font-size:11.5px; color:var(--muted); margin:0 0 10px; }
@@ -247,11 +247,48 @@ PAGE = r"""<!doctype html>
     draw();
   })();
 
-  // ---------- body type (not available) ----------
-  $("sec-bodytype").innerHTML = '<h2>Body type <span class="cn">车身类型分布</span></h2>' +
-    '<div class="na"><b>Not available.</b> None of the open national registration feeds in this ' +
-    'dataset break new registrations down by body type (hatchback / SUV / saloon / estate / MPV). ' +
-    'Adding it would require a different source per country (e.g. RDW body-code, DGT microdata) and is not sourced here.</div>';
+  // ---------- body type (native taxonomy per country) ----------
+  (function () {
+    var block = D.body, secId = "sec-bodytype";
+    var sec = $(secId);
+    if (!block || !block.countries || !block.countries.length) { sec.style.display = "none"; return; }
+    var state = { country: block.countries[0] };
+    sec.innerHTML = '<h2>Body type <span class="cn">车身类型分布</span></h2>' +
+      '<p class="note">Share of Q2 registrations by body type, with the YoY change in volume. ' +
+      'Taxonomies differ by source and are <b>not pooled</b>: Germany uses KBA size-segments ' +
+      '(includes an SUV class); the Netherlands uses RDW body codes (no distinct SUV — filed under estate/MPV).</p>' +
+      '<div class="pills"></div><div class="tbl-scroll"><table class="rank" id="' + secId + '-t"></table></div>';
+    var pills = sec.querySelector(".pills");
+    pills.innerHTML = block.countries.map(function (c) {
+      return '<button class="pill" data-c="' + c + '">' + flag(c) + ' ' + label(c) + '</button>';
+    }).join("");
+    var COL = { "Sedan & hatch":"#2a78d6", "SUV":"#1baf7a", "MPV & van":"#eda100",
+      "Sports":"#e87ba4", "Other":"#c3c2b7", "Hatchback":"#2a78d6", "Sedan":"#4a3aa7",
+      "Estate":"#1baf7a", "MPV":"#eda100", "Coupé":"#e87ba4", "Convertible":"#eb6834" };
+    function draw() {
+      Array.prototype.forEach.call(pills.children, function (b) {
+        b.setAttribute("aria-pressed", b.getAttribute("data-c") === state.country);
+      });
+      var rows = block.data[state.country] || [];
+      var head = '<thead><tr><th class="l">Body type</th><th>' + P.cur + ' share</th>' +
+        '<th>' + P.cur + '</th><th>' + P.prior + ' share</th><th>YoY vol</th></tr></thead>';
+      var body = rows.map(function (r) {
+        var col = COL[r.name] || "#8f8d86";
+        return '<tr><td class="l barcell"><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:' +
+            col + ';margin-right:7px"></span>' + r.name +
+            '<span class="bar" style="width:' + r.share_cur + '%;background:' + col + '"></span></td>' +
+          '<td><b>' + r.share_cur.toFixed(1) + '%</b></td><td>' + fmt(r.cur) + '</td>' +
+          '<td>' + r.share_prior.toFixed(1) + '%</td>' +
+          '<td class="yoy">' + yoyHtml(r.yoy) + '</td></tr>';
+      }).join("");
+      $(secId + "-t").innerHTML = head + "<tbody>" + body + "</tbody>";
+    }
+    pills.addEventListener("click", function (e) {
+      var b = e.target.closest(".pill"); if (!b) return;
+      state.country = b.getAttribute("data-c"); draw();
+    });
+    draw();
+  })();
 
   // ---------- suppliers (installation rate + YoY pp) ----------
   (function () {
@@ -265,7 +302,7 @@ PAGE = r"""<!doctype html>
     sec.innerHTML = '<h2>Supplier installation rate <span class="cn">汽车供应商上装率</span></h2>' +
       '<p class="note">Estimated supplier share of classified registrations per component (座舱/智驾/雷达), ' +
       'Q2 2026 with the YoY change in percentage points. Estimate from <code>data/vehicle_specs.csv</code>; ' +
-      'Germany & Spain only (the monthly model feeds). LiDAR omitted — fitment is ≈0% in these markets.</p>' +
+      'Germany, Spain, Finland &amp; Netherlands (the monthly model feeds). LiDAR omitted — fitment is ≈0% in these markets.</p>' +
       '<div class="pills"></div><div class="subgrid" id="' + secId + '-grid"></div>';
     var pills = sec.querySelector(".pills");
     pills.innerHTML = block.countries.map(function (c) {
