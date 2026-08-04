@@ -71,6 +71,23 @@ jobs:
         # are fetched + the trailing month re-fetched for revisions.
         run: python scripts/download_spain.py --refresh-last 1
 
+      - name: Download latest Sweden (SCB) + Austria (Statistik Austria) registrations
+        # Sweden: SCB PxWeb national monthly totals + fuel split. Austria:
+        # Statistik Austria OGD make-level monthly cube. Both open, no key,
+        # full re-fetch each run.
+        run: |
+          python scripts/download_sweden.py
+          python scripts/download_austria.py
+
+      - name: Download latest Poland (CEPIK) registrations
+        # CEPIK open register API (record-level). Incremental: re-fetch the
+        # trailing months and merge. Kept non-fatal so a CEPIK outage doesn't
+        # fail the whole refresh for the other countries.
+        continue-on-error: true
+        run: |
+          MONTHS="${{ github.event.inputs.months || '3' }}"
+          python scripts/download_poland.py --last "$MONTHS"
+
       - name: Parse workbooks and rebuild site
         run: |
           python scripts/parse_germany.py
@@ -84,7 +101,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/Germany data/Netherlands data/Finland data/France data/UnitedKingdom data/Spain docs
+          git add data/Germany data/Netherlands data/Finland data/France data/UnitedKingdom data/Spain data/Sweden data/Austria data/Poland docs
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else

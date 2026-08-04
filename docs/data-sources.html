@@ -78,7 +78,7 @@
 
   <section class="card">
     <h2>Countries in this dashboard</h2>
-    <p class="note">Six national registers are integrated. "Native cadence" is how often the source publishes;
+    <p class="note">Nine national registers are integrated. "Native cadence" is how often the source publishes;
       the trend charts aggregate everything to complete quarters. "History" is how far back this dashboard holds
       the series.</p>
     <div class="tbl-scroll">
@@ -152,6 +152,39 @@
             <td class="cad">2019 →</td>
           </tr>
           <tr>
+            <td class="ctry"><span class="fl">🇵🇱</span>Poland</td>
+            <td><a href="https://api.cepik.gov.pl/" target="_blank" rel="noopener">CEPIK open register API</a>
+              <span class="pub">Centralna Ewidencja Pojazdów i Kierowców</span></td>
+            <td>REST API (record-level)</td>
+            <td class="cad">Monthly</td>
+            <td><span class="mark yes">✓</span></td>
+            <td><span class="mark yes">✓</span></td>
+            <td><span class="mark no">✗</span></td>
+            <td class="cad">rolling<span class="cell-sub">recent window, note 4</span></td>
+          </tr>
+          <tr>
+            <td class="ctry"><span class="fl">🇦🇹</span>Austria</td>
+            <td><a href="https://data.statistik.gv.at/web/catalog.jsp" target="_blank" rel="noopener">Statistik Austria OGD (Pkw-Neuzulassungen)</a>
+              <span class="pub">Statistik Austria</span></td>
+            <td>Open CSV cube</td>
+            <td class="cad">Monthly</td>
+            <td><span class="mark yes">✓</span></td>
+            <td><span class="mark no">✗</span><span class="cell-sub">see note 5</span></td>
+            <td><span class="mark no">✗</span></td>
+            <td class="cad">2019 →<span class="cell-sub">source from 2000</span></td>
+          </tr>
+          <tr>
+            <td class="ctry"><span class="fl">🇸🇪</span>Sweden</td>
+            <td><a href="https://www.statistikdatabasen.scb.se/" target="_blank" rel="noopener">SCB PxWeb (table PersBilarDrivMedel)</a>
+              <span class="pub">Statistics Sweden / Trafikanalys</span></td>
+            <td>JSON API (PxWeb)</td>
+            <td class="cad">Monthly</td>
+            <td><span class="mark no">✗</span><span class="cell-sub">see note 6</span></td>
+            <td><span class="mark no">✗</span></td>
+            <td><span class="mark yes">✓</span><span class="cell-sub">monthly</span></td>
+            <td class="cad">2019 →<span class="cell-sub">totals + fuel</span></td>
+          </tr>
+          <tr>
             <td class="ctry"><span class="fl">🇫🇷</span>France</td>
             <td><a href="https://www.insee.fr/fr/statistiques/serie/010756763" target="_blank" rel="noopener">INSEE series 010756763</a> + SDES
               <span class="pub">INSEE / SDES (Ministère de la Transition écologique)</span></td>
@@ -177,6 +210,14 @@
         are only available commercially (e.g. AAA&nbsp;Data), so the dashboard shows national totals only.</li>
       <li><b>France powertrain</b> — a national annual fuel-mix is published by SDES; there is no free monthly or
         per-brand powertrain split, so France's powertrain is annual and country-wide only.</li>
+      <li><b>Poland history</b> — CEPIK is a record-level API with no server-side aggregation, so it is much heavier
+        to pull than the other sources. The dashboard fetches and merges a recent rolling window each month rather
+        than the full back-catalogue.</li>
+      <li><b>Austria model / powertrain</b> — the open OGD cube is make-level only; model and powertrain splits
+        are not part of it, so Austria is shown at brand level.</li>
+      <li><b>Sweden brand / model</b> — SCB's open table gives monthly totals and a fuel split, but not makes;
+        Trafikanalys releases brand-level figures only as spreadsheets, so Sweden is shown as totals + monthly
+        powertrain.</li>
     </ol>
   </section>
 
@@ -210,11 +251,10 @@
   </section>
 
   <div class="callout">
-    <b>Other European markets.</b> Several countries not listed here — for example Sweden, Norway, Belgium,
-    Austria, Poland, Denmark and Ireland — do publish open registration data through their national registers
-    or statistics offices, and are candidates for future integration. Italy is the notable large market where no
-    free machine-readable feed is currently available. If you know of an open source we've missed, corrections
-    are welcome.
+    <b>Other European markets.</b> A few more countries not listed here — for example Norway, Belgium, Denmark and
+    Ireland — also publish open registration data through their national registers or statistics offices, and are
+    candidates for future integration. Italy is the notable large market where no free machine-readable feed is
+    currently available. If you know of an open source we've missed, corrections are welcome.
   </div>
 
   <footer class="site">
