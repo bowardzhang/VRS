@@ -107,6 +107,24 @@ TEMPLATE = r"""<!doctype html>
   .mrow .cnt { font-size:11.5px; color:var(--muted); font-variant-numeric:tabular-nums; }
   .callout { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--s4); border-radius:10px; padding:14px 18px; margin-top:20px; font-size:13.5px; color:var(--ink-2); }
   .callout b { color:var(--ink); }
+  /* cross-country comparison matrix */
+  .geo-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  table.geo { border-collapse:collapse; width:100%; min-width:560px; font-size:12.5px; }
+  table.geo th, table.geo td { padding:8px 10px; text-align:right; white-space:nowrap; }
+  table.geo th.sup, table.geo td.sup { text-align:left; }
+  table.geo thead th { color:var(--ink-2); font-weight:600; font-size:12.5px; line-height:1.25; border-bottom:1px solid var(--border); vertical-align:bottom; }
+  table.geo thead th .flag { font-size:15px; }
+  table.geo thead th .code { font-weight:500; color:var(--muted); font-size:11px; }
+  table.geo tbody td { font-variant-numeric:tabular-nums; }
+  table.geo tbody tr + tr td { border-top:1px solid var(--grid); }
+  table.geo td.sup { display:table-cell; }
+  table.geo td.sup .swatch { margin-right:6px; }
+  table.geo .cellbar { display:block; height:3px; border-radius:2px; margin-top:3px; margin-left:auto; }
+  table.geo tr.meta td { color:var(--muted); font-size:11.5px; border-top:1px solid var(--border); }
+  table.geo th.eu, table.geo td.eu { background:rgba(42,120,214,0.07); }
+  :root[data-theme="dark"] table.geo th.eu, :root[data-theme="dark"] table.geo td.eu { background:rgba(57,135,229,0.12); }
+  table.geo td.eu { font-weight:600; }
+  .geo-foot { font-size:12px; color:var(--muted); margin:14px 0 0; }
   footer.site { margin-top:40px; font-size:12.5px; color:var(--muted); }
   footer.site a { color:var(--s1); }
   .toggle { position:fixed; top:14px; right:14px; background:var(--surface); border:1px solid var(--border); color:var(--ink-2); border-radius:8px; padding:6px 10px; font-size:12px; cursor:pointer; }
@@ -131,6 +149,13 @@ TEMPLATE = r"""<!doctype html>
     <div class="bars" id="shareBars"></div>
   </section>
 
+  <section class="card" id="geoCard" style="display:none">
+    <h2 id="geoTitle">Installation rate by country</h2>
+    <p class="note" id="geoNote"></p>
+    <div class="geo-scroll"><table class="geo" id="geoTable"></table></div>
+    <p class="geo-foot" id="geoFoot"></p>
+  </section>
+
   <section class="card" id="trendCard" style="display:none">
     <h2 id="trendTitle">Over time</h2>
     <p class="note" id="trendNote"></p>
@@ -150,13 +175,15 @@ TEMPLATE = r"""<!doctype html>
 <script id="component" type="application/json">{"key":"__COMPONENT_KEY__"}</script>
 <script id="germany-data" type="application/json">{}</script>
 <script id="brand-logos" type="application/json">{}</script>
+<script id="suppliers-geo" type="application/json">{}</script>
 <script>
 (function () {
   "use strict";
-  var DATA = {}, LOGOS = {}, CFG = {};
+  var DATA = {}, LOGOS = {}, CFG = {}, GEO = {};
   try { DATA = JSON.parse(document.getElementById("germany-data").textContent || "{}"); } catch (e) {}
   try { LOGOS = JSON.parse(document.getElementById("brand-logos").textContent || "{}"); } catch (e) {}
   try { CFG = JSON.parse(document.getElementById("component").textContent || "{}"); } catch (e) {}
+  try { GEO = JSON.parse(document.getElementById("suppliers-geo").textContent || "{}"); } catch (e) {}
   var $ = function (id) { return document.getElementById(id); };
   var fmt = function (n) { return (n == null ? "–" : n.toLocaleString("en-US")); };
   var root = document.documentElement;
@@ -229,6 +256,67 @@ TEMPLATE = r"""<!doctype html>
       '</div><div class="bar-track"><div class="bar-fill" style="width:'+w+'%;background:'+colorFor(r.brand)+'"></div></div>'+
       '<div class="bar-val">'+(r.share_classified||0).toFixed(1)+'%&nbsp;·&nbsp;'+fmt(r.total)+'</div></div>';
   }).join("");
+
+  // ----- cross-country installation-rate matrix -----
+  var GEO_CODE = { Germany:"DE", UnitedKingdom:"UK", Spain:"ES", Finland:"FI",
+    Netherlands:"NL", France:"FR", Italy:"IT", Sweden:"SE", Austria:"AT", Europe:"EU" };
+  (function renderGeo() {
+    var dims = GEO && GEO.dimensions;
+    var gd = dims ? dims.filter(function (d) { return d.key === CFG.key; })[0] : null;
+    var cols = GEO && GEO.countries;
+    if (!gd || !cols || !cols.length) return;   // power page has no geo block
+    var bc = gd.by_country;
+    var isPen = gd.kind === "penetration";
+    // order suppliers by the pooled-Europe share (fall back to first column)
+    var ref = (bc.Europe || bc[cols[0].key] || {}).share || [];
+    var names = ref.map(function (s) { return s.brand; }).slice(0, 6);
+    if (!names.length) return;
+
+    var head = '<thead><tr><th class="sup">Supplier</th>' + cols.map(function (c) {
+      return '<th class="' + (c.key === "Europe" ? "eu" : "") + '"><span class="flag">' +
+        c.flag + '</span><br><span class="code">' + (GEO_CODE[c.key] || c.key) + '</span></th>';
+    }).join("") + '</tr></thead>';
+
+    var body = names.map(function (nm) {
+      var tds = cols.map(function (c) {
+        var s = ((bc[c.key] || {}).share || []).filter(function (x) { return x.brand === nm; })[0];
+        var v = s ? s.share_classified : 0;
+        var cls = c.key === "Europe" ? "eu" : "";
+        var cell = v ? v.toFixed(1) + "%" : "·";
+        var bar = v ? '<span class="cellbar" style="width:' + Math.min(v, 100) + '%;background:' + colorFor(nm) + '"></span>' : "";
+        return '<td class="' + cls + '">' + cell + bar + '</td>';
+      }).join("");
+      return '<tr><td class="sup"><span class="swatch" style="background:' + colorFor(nm) + '"></span>' + nm + '</td>' + tds + '</tr>';
+    }).join("");
+
+    // For the penetration (LiDAR) dimension, "classified" == the tiny equipped
+    // volume, so a coverage row would just echo the fitment rate and read as
+    // "0%" — show only the fitment rate there. For share dimensions, show the
+    // name-coverage row instead.
+    var metaRows;
+    if (isPen) {
+      metaRows = '<tr class="meta"><td class="sup">Fitment rate</td>' + cols.map(function (c) {
+        return '<td class="' + (c.key === "Europe" ? "eu" : "") + '">' +
+          ((bc[c.key] || {}).penetration_pct || 0).toFixed(2) + '%</td>';
+      }).join("") + '</tr>';
+    } else {
+      metaRows = '<tr class="meta"><td class="sup">Classified coverage</td>' + cols.map(function (c) {
+        return '<td class="' + (c.key === "Europe" ? "eu" : "") + '">' +
+          Math.round((bc[c.key] || {}).coverage_pct || 0) + '%</td>';
+      }).join("") + '</tr>';
+    }
+
+    $("geoTable").innerHTML = head + '<tbody>' + body + metaRows + '</tbody>';
+    $("geoTitle").innerHTML = 'Installation rate by country ' +
+      '<span style="color:var(--muted);font-weight:500;font-size:.6em">' + DIM.cn + '</span>';
+    $("geoNote").textContent = isPen
+      ? "LiDAR fitment rate and — among equipped cars — the supplier split, by market. Penetration is near zero everywhere, so the supplier split is indicative only."
+      : "Estimated supplier share of classified registrations, by market. Cells are share within each country's classified volume.";
+    $("geoFoot").innerHTML = "Same per-model estimate (<code>data/vehicle_specs.csv</code>) projected onto each market's model-level registrations. " +
+      "Registration windows differ by country, so compare <b>shares across a row</b>, not columns of raw volume. " +
+      "The <b>classified coverage</b> row shows how much of each market the estimate could name.";
+    $("geoCard").style.display = "";
+  })();
 
   // ----- per-supplier top-model columns -----
   $("cols").innerHTML = suppliers.map(function (s) {
