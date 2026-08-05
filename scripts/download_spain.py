@@ -37,10 +37,23 @@ OUT_DIR = REPO_ROOT / "data" / "Spain"
 BRANDS_CSV = OUT_DIR / "es_monthly_brands.csv"
 MODELS_CSV = OUT_DIR / "es_monthly_models.csv"
 POWERTRAIN_CSV = OUT_DIR / "es_monthly_powertrain.csv"
+BODY_CSV = OUT_DIR / "es_monthly_body.csv"
+
+# CARROCERIA (field 49, offset 430:434) holds the EU body-type code
+# (Directive 2007/46/EC Annex II). Like the EU codes generally it has NO
+# distinct SUV bucket — SUVs fall under AF (multi-purpose), mixed with MPVs.
+ES_BODY = {
+    "AA": "Sedan", "AB": "Hatchback", "AC": "Estate", "AD": "Coupé",
+    "AE": "Convertible", "AF": "MPV & SUV",
+}  # anything else (vans, special, blank) -> Other
 
 URL = ("https://www.dgt.es/microdatos/salida/{y}/{m}/vehiculos/"
        "matriculaciones/export_mensual_mat_{y}{m:02d}.zip")
 DEFAULT_FROM = (2023, 9)
+# Body type was added later; only maintained from here on (each raw file is
+# ~155 MB, so we don't re-fetch the full brand/model history just for it). This
+# still spans Q2 2025 (the YoY base) and beyond.
+BODY_SINCE = (2025, 4)
 
 FUEL = {"0": "Petrol", "1": "Diesel", "2": "BEV"}  # else -> Other
 
@@ -84,6 +97,7 @@ def fetch_month(year: int, month: int, retries: int = 3):
     brands: dict[str, int] = defaultdict(int)
     models: dict[tuple[str, str], int] = defaultdict(int)
     fuels: dict[str, int] = defaultdict(int)
+    bodies: dict[str, int] = defaultdict(int)
     with zipfile.ZipFile(io.BytesIO(blob)) as z:
         name = z.namelist()[0]
         with z.open(name) as raw:
@@ -99,7 +113,8 @@ def fetch_month(year: int, month: int, retries: int = 3):
                 if model:
                     models[(brand, model)] += 1
                 fuels[FUEL.get(line[93:94], "Other")] += 1
-    return brands, models, fuels
+                bodies[ES_BODY.get(line[430:434].strip(), "Other")] += 1
+    return brands, models, fuels, bodies
 
 
 def _load(path, keycols):
@@ -127,22 +142,30 @@ def main() -> int:
     brand_rows = _load(BRANDS_CSV, 3)
     model_rows = _load(MODELS_CSV, 4)
     fuel_rows = _load(POWERTRAIN_CSV, 3)
+    body_rows = _load(BODY_CSV, 3)
 
     have = sorted({(int(k[0]), int(k[1])) for k in brand_rows})
+    body_have = {(int(k[0]), int(k[1])) for k in body_rows}
     all_months = list(month_range(start, end))
     missing = [ym for ym in all_months if ym not in have]
     refresh = have[-args.refresh_last:] if args.refresh_last and have else []
-    todo = sorted(set(missing) | set(m for m in refresh if start <= m <= end))
+    # months that have brand data but are still missing the (later-added) body
+    # split, bounded to BODY_SINCE so we never re-fetch the full history.
+    body_backfill = [ym for ym in all_months
+                     if ym >= BODY_SINCE and ym in have and ym not in body_have]
+    todo = sorted(set(missing) | set(body_backfill)
+                  | set(m for m in refresh if start <= m <= end))
     print(f"[es] {len(have)} months stored; fetching {len(todo)} "
-          f"({len(missing)} new, {len(set(refresh) & set(todo))} refresh)")
+          f"({len(missing)} new, {len(body_backfill)} body-backfill, "
+          f"{len(set(refresh) & set(todo))} refresh)")
 
     for y, m in todo:
         res = fetch_month(y, m)
         if res is None:
             print(f"  {y}-{m:02d}: not published yet, skipping")
             continue
-        brands, models, fuels = res
-        for d, keyn in ((brand_rows, 3), (model_rows, 4), (fuel_rows, 3)):
+        brands, models, fuels, bodies = res
+        for d in (brand_rows, model_rows, fuel_rows, body_rows):
             for k in [kk for kk in d if int(kk[0]) == y and int(kk[1]) == m]:
                 del d[k]
         for b, c in brands.items():
@@ -151,6 +174,8 @@ def main() -> int:
             model_rows[(str(y), str(m), b, mo)] = [y, m, b, mo, c]
         for fl, c in fuels.items():
             fuel_rows[(str(y), str(m), fl)] = [y, m, fl, c]
+        for bd, c in bodies.items():
+            body_rows[(str(y), str(m), bd)] = [y, m, bd, c]
         print(f"  {y}-{m:02d}: {sum(brands.values()):,} cars, "
               f"{len(brands)} brands, {len(models)} models")
 
@@ -165,8 +190,10 @@ def main() -> int:
     write(BRANDS_CSV, ["year", "month", "brand", "count"], brand_rows)
     write(MODELS_CSV, ["year", "month", "brand", "model", "count"], model_rows)
     write(POWERTRAIN_CSV, ["year", "month", "fuel", "count"], fuel_rows)
+    write(BODY_CSV, ["year", "month", "body", "count"], body_rows)
     print(f"[write] {BRANDS_CSV.relative_to(REPO_ROOT)} ({len(brand_rows)}), "
-          f"models ({len(model_rows)}), powertrain ({len(fuel_rows)})")
+          f"models ({len(model_rows)}), powertrain ({len(fuel_rows)}), "
+          f"body ({len(body_rows)})")
     return 0
 
 

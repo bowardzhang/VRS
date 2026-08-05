@@ -492,6 +492,10 @@
       "has": false,
       "shares": []
     },
+    "body": {
+      "has": false,
+      "shares": []
+    },
     "ytd": 1484393,
     "ytd_year": 2026
   },
@@ -1638,6 +1642,47 @@
     "powertrain": {
       "has": false,
       "shares": []
+    },
+    "body": {
+      "has": true,
+      "shares": [
+        {
+          "body": "Hatchback",
+          "total": 174520,
+          "pct": 32.3
+        },
+        {
+          "body": "Estate",
+          "total": 192065,
+          "pct": 35.5
+        },
+        {
+          "body": "Sedan",
+          "total": 21613,
+          "pct": 4.0
+        },
+        {
+          "body": "MPV",
+          "total": 143572,
+          "pct": 26.6
+        },
+        {
+          "body": "Coupé",
+          "total": 960,
+          "pct": 0.2
+        },
+        {
+          "body": "Convertible",
+          "total": 1668,
+          "pct": 0.3
+        },
+        {
+          "body": "Other",
+          "total": 6306,
+          "pct": 1.2
+        }
+      ],
+      "period": "Apr 2025 – Jul 2026"
     },
     "latest": {
       "period": "Jul 2026",
@@ -2952,6 +2997,10 @@
         }
       ],
       "period": "since Sep 2023"
+    },
+    "body": {
+      "has": false,
+      "shares": []
     },
     "latest": {
       "period": "Jun 2026",
@@ -5467,6 +5516,47 @@
       ],
       "period": "since Sep 2023"
     },
+    "body": {
+      "has": true,
+      "shares": [
+        {
+          "body": "Hatchback",
+          "total": 673861,
+          "pct": 44.2
+        },
+        {
+          "body": "Estate",
+          "total": 429304,
+          "pct": 28.2
+        },
+        {
+          "body": "Sedan",
+          "total": 45467,
+          "pct": 3.0
+        },
+        {
+          "body": "MPV & SUV",
+          "total": 363276,
+          "pct": 23.8
+        },
+        {
+          "body": "Coupé",
+          "total": 3793,
+          "pct": 0.2
+        },
+        {
+          "body": "Convertible",
+          "total": 5361,
+          "pct": 0.4
+        },
+        {
+          "body": "Other",
+          "total": 3908,
+          "pct": 0.3
+        }
+      ],
+      "period": "Apr 2025 – Jun 2026"
+    },
     "latest": {
       "period": "Jun 2026",
       "total": 129231,
@@ -6541,6 +6631,10 @@
       "has": false,
       "shares": []
     },
+    "body": {
+      "has": false,
+      "shares": []
+    },
     "latest": {
       "period": "Jun 2026",
       "total": 34256,
@@ -7402,6 +7496,10 @@
       ],
       "period": "2025 (annual)"
     },
+    "body": {
+      "has": false,
+      "shares": []
+    },
     "ytd": 867660,
     "ytd_year": 2026
   },
@@ -7606,6 +7704,10 @@
         }
       ],
       "period": "since Sep 2023"
+    },
+    "body": {
+      "has": false,
+      "shares": []
     },
     "powertrain_trends": {
       "labels": [
@@ -9098,6 +9200,10 @@
         }
       ],
       "period": "since Sep 2023"
+    },
+    "body": {
+      "has": false,
+      "shares": []
     },
     "latest": {
       "period": "Q1 2026",
