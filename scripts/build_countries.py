@@ -44,6 +44,8 @@ FR_PT = REPO_ROOT / "data" / "France" / "fr_powertrain_annual.csv"
 ES_CSV = REPO_ROOT / "data" / "Spain" / "es_monthly_brands.csv"
 ES_MODELS = REPO_ROOT / "data" / "Spain" / "es_monthly_models.csv"
 ES_PT = REPO_ROOT / "data" / "Spain" / "es_monthly_powertrain.csv"
+ES_BODY = REPO_ROOT / "data" / "Spain" / "es_monthly_body.csv"
+NL_BODY = REPO_ROOT / "data" / "Netherlands" / "rdw_body_monthly.csv"
 NL_MODELS_LATEST = REPO_ROOT / "data" / "Netherlands" / "rdw_models_latest.csv"
 FI_MODELS_LATEST = REPO_ROOT / "data" / "Finland" / "traficom_models_latest.csv"
 UK_MODELS_LATEST = REPO_ROOT / "data" / "UnitedKingdom" / "uk_models_latest.csv"
@@ -136,6 +138,42 @@ def powertrain_for(code: str) -> dict:
     order = POWERTRAIN_ORDER + [f for f in agg if f not in POWERTRAIN_ORDER]
     shares = [{"fuel": f, "total": agg[f], "pct": round(100 * agg[f] / tot, 1)}
               for f in order if agg.get(f)]
+    return {"has": True, "shares": shares, "period": period}
+
+
+BODY_ORDER = ["Hatchback", "Estate", "Sedan", "MPV & SUV", "MPV", "SUV",
+              "Coupé", "Convertible", "Sedan & hatch", "MPV & van", "Sports", "Other"]
+_MONTH_ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+               "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+
+def body_for(code: str) -> dict:
+    """Body-type shares over the comparable window, where openly published.
+
+    Spain (EU body codes) and the Netherlands (RDW body codes) publish it;
+    neither has a distinct SUV bucket. Germany keeps its own KBA size-segment
+    chart, so it is not duplicated here.
+    """
+    src = {"ES": ES_BODY, "NL": NL_BODY}.get(code)
+    if not src or not src.exists():
+        return {"has": False, "shares": []}
+    agg: dict[str, int] = defaultdict(int)
+    months: set = set()
+    with src.open(encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            ym = (int(r["year"]), int(r["month"]))
+            if ym >= BRAND_WINDOW_START:
+                agg[r["body"]] += int(r["count"])
+                months.add(ym)
+    if not agg:
+        return {"has": False, "shares": []}
+    tot = sum(agg.values()) or 1
+    order = [b for b in BODY_ORDER if b in agg] + [b for b in agg if b not in BODY_ORDER]
+    shares = [{"body": b, "total": agg[b], "pct": round(100 * agg[b] / tot, 1)}
+              for b in order if agg.get(b)]
+    lo, hi = min(months), max(months)
+    period = (f"{_MONTH_ABBR[lo[1] - 1]} {lo[0]} – {_MONTH_ABBR[hi[1] - 1]} {hi[0]}"
+              if lo != hi else f"{_MONTH_ABBR[lo[1] - 1]} {lo[0]}")
     return {"has": True, "shares": shares, "period": period}
 
 
@@ -580,6 +618,7 @@ def main() -> int:
     for core in countries:
         core["top_models"] = models_for(core["code"]) if core["has_brands"] else []
         core["powertrain"] = powertrain_for(core["code"])
+        core["body"] = body_for(core["code"])
         if core["code"] != "DE" and core["has_brands"]:
             snap = latest_for(core["code"])
             if snap:

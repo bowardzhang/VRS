@@ -256,7 +256,8 @@ PAGE = r"""<!doctype html>
     sec.innerHTML = '<h2>Body type <span class="cn">车身类型分布</span></h2>' +
       '<p class="note">Share of Q2 registrations by body type, with the YoY change in volume. ' +
       'Taxonomies differ by source and are <b>not pooled</b>: Germany uses KBA size-segments ' +
-      '(includes an SUV class); the Netherlands uses RDW body codes (no distinct SUV — filed under estate/MPV).</p>' +
+      '(has an explicit SUV class); the Netherlands (RDW) and Spain (EU body codes) have no ' +
+      'distinct SUV code — SUVs fall under MPV / estate.</p>' +
       '<div class="pills"></div><div class="tbl-scroll"><table class="rank" id="' + secId + '-t"></table></div>';
     var pills = sec.querySelector(".pills");
     pills.innerHTML = block.countries.map(function (c) {
@@ -264,7 +265,8 @@ PAGE = r"""<!doctype html>
     }).join("");
     var COL = { "Sedan & hatch":"#2a78d6", "SUV":"#1baf7a", "MPV & van":"#eda100",
       "Sports":"#e87ba4", "Other":"#c3c2b7", "Hatchback":"#2a78d6", "Sedan":"#4a3aa7",
-      "Estate":"#1baf7a", "MPV":"#eda100", "Coupé":"#e87ba4", "Convertible":"#eb6834" };
+      "Estate":"#1baf7a", "MPV":"#eda100", "MPV & SUV":"#eda100", "Coupé":"#e87ba4",
+      "Convertible":"#eb6834" };
     function draw() {
       Array.prototype.forEach.call(pills.children, function (b) {
         b.setAttribute("aria-pressed", b.getAttribute("data-c") === state.country);

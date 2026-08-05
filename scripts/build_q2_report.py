@@ -242,6 +242,10 @@ def body_counts(country, period):
         for r in _rows(DATA / "Netherlands" / "rdw_body_monthly.csv"):
             if _in(period, r["year"], r["month"]):
                 out[r["body"]] += int(r["count"] or 0)
+    elif country == "Spain":
+        for r in _rows(DATA / "Spain" / "es_monthly_body.csv"):
+            if _in(period, r["year"], r["month"]):
+                out[r["body"]] += int(r["count"] or 0)
     return out
 
 
@@ -323,7 +327,7 @@ def build_payload():
     brand_countries = ["Germany", "Spain", "Finland", "Netherlands", "Austria"]
     pt_countries = ["Germany", "Spain", "Finland", "Sweden"]
     model_countries = ["Germany", "Spain", "Finland", "Netherlands"]
-    body_countries = ["Germany", "Netherlands"]
+    body_countries = ["Germany", "Netherlands", "Spain"]
 
     # cache brand maps
     bc_cur = {c: brand_counts(c, CUR) for c in brand_countries}
@@ -414,9 +418,10 @@ def build_payload():
         "coverage_note": (
             "Brands & origin: DE, ES, FI, NL, AT · Powertrain: DE, ES, FI, SE · "
             "Models & suppliers: DE, ES, FI, NL (the monthly model feeds) · "
-            "Body type: DE (KBA size-segments) & NL (RDW body), each in its own "
-            "native taxonomy — not pooled. UK omitted (SMMT quarterly data still "
-            "ends Q1 2026); France total-only; Italy not covered."
+            "Body type: DE (KBA size-segments), NL (RDW body) & ES (EU body "
+            "codes), each in its own native taxonomy — not pooled. UK omitted "
+            "(SMMT quarterly data still ends Q1 2026); France total-only; Italy "
+            "not covered."
         ),
     }
 
