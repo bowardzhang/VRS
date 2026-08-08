@@ -88,6 +88,12 @@ jobs:
         # per-country / powertrain / manufacturer detail.
         run: python scripts/download_ecb_eu.py
 
+      - name: Download ACEA per-market registrations (via PZPM)
+        # ACEA's monthly workbook (all European markets × powertrain), hosted as
+        # .xlsx by PZPM. Fills every market without its own national feed (tier 2:
+        # total + powertrain). © ACEA — credited as the source on the site.
+        run: python scripts/download_pzpm_acea.py
+
       # Poland (CEPIK) is intentionally not wired in: the open register exposes
       # every first-in-country registration — new sales *and* used imports,
       # which dominate the Polish market — with no clean new-only filter or

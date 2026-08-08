@@ -46,6 +46,40 @@ ES_MODELS = REPO_ROOT / "data" / "Spain" / "es_monthly_models.csv"
 ES_PT = REPO_ROOT / "data" / "Spain" / "es_monthly_powertrain.csv"
 ES_BODY = REPO_ROOT / "data" / "Spain" / "es_monthly_body.csv"
 NL_BODY = REPO_ROOT / "data" / "Netherlands" / "rdw_body_monthly.csv"
+ACEA_CSV = REPO_ROOT / "data" / "Europe" / "acea_market.csv"
+
+# ACEA country name -> (code, flag). The eight tier-1 markets keep their national
+# feeds; every other European market is filled from ACEA (tier 2: country total +
+# powertrain, no brand/model). Poland is here too (its national register can't
+# yield a comparable new-car series).
+ACEA_META = {
+    "Belgium": ("BE", "🇧🇪"), "Bulgaria": ("BG", "🇧🇬"), "Croatia": ("HR", "🇭🇷"),
+    "Cyprus": ("CY", "🇨🇾"), "Czechia": ("CZ", "🇨🇿"), "Denmark": ("DK", "🇩🇰"),
+    "Estonia": ("EE", "🇪🇪"), "Greece": ("GR", "🇬🇷"), "Hungary": ("HU", "🇭🇺"),
+    "Ireland": ("IE", "🇮🇪"), "Italy": ("IT", "🇮🇹"), "Latvia": ("LV", "🇱🇻"),
+    "Lithuania": ("LT", "🇱🇹"), "Luxembourg": ("LU", "🇱🇺"), "Malta": ("MT", "🇲🇹"),
+    "Poland": ("PL", "🇵🇱"), "Portugal": ("PT", "🇵🇹"), "Romania": ("RO", "🇷🇴"),
+    "Slovakia": ("SK", "🇸🇰"), "Slovenia": ("SI", "🇸🇮"), "Iceland": ("IS", "🇮🇸"),
+    "Norway": ("NO", "🇳🇴"), "Switzerland": ("CH", "🇨🇭"),
+}
+ACEA_FUEL = {"bev": "BEV", "phev": "PHEV", "hev": "Hybrid",
+             "petrol": "Petrol", "diesel": "Diesel", "other": "Other"}
+ACEA_SOURCE = "ACEA — new-car registrations (via PZPM)"
+ACEA_URL = ("https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/"
+            "PASSENGER-CARS")
+# code -> ACEA country name, for the powertrain/trend lookups.
+_CODE2ACEA = {code: name for name, (code, _f) in ACEA_META.items()}
+
+
+def _acea_rows():
+    """Yield (country, year, month, {fuel: count, 'total': n}) from the ACEA CSV."""
+    if not ACEA_CSV.exists():
+        return
+    with ACEA_CSV.open(encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            yield (r["country"], int(r["year"]), int(r["month"]),
+                   {k: int(r[k] or 0) for k in ("bev", "phev", "hev", "other",
+                                                "petrol", "diesel", "total")})
 NL_MODELS_LATEST = REPO_ROOT / "data" / "Netherlands" / "rdw_models_latest.csv"
 FI_MODELS_LATEST = REPO_ROOT / "data" / "Finland" / "traficom_models_latest.csv"
 UK_MODELS_LATEST = REPO_ROOT / "data" / "UnitedKingdom" / "uk_models_latest.csv"
@@ -132,6 +166,18 @@ def powertrain_for(code: str) -> dict:
             if int(r["year"]) == latest:
                 agg[r["fuel"]] += int(r["count"])
         period = f"{latest} (annual)"
+    elif code in _CODE2ACEA:
+        name = _CODE2ACEA[code]
+        seen = []
+        for cty, y, m, rec in _acea_rows():
+            if cty == name and (y, m) >= BRAND_WINDOW_START:
+                seen.append((y, m))
+                for k, bucket in ACEA_FUEL.items():
+                    agg[bucket] += rec[k]
+        if seen:
+            lo, hi = min(seen), max(seen)
+            period = (f"{_MONTH_ABBR[lo[1]-1]} {lo[0]} – {_MONTH_ABBR[hi[1]-1]} {hi[0]}"
+                      if lo != hi else f"{_MONTH_ABBR[lo[1]-1]} {lo[0]}")
     else:
         return {"has": False, "shares": []}
     tot = sum(agg.values()) or 1
@@ -231,6 +277,18 @@ def _fuel_qrows(code):
                 qs.add((y, q))
                 rows.append((y, q, r["fuel"].strip(), int(r["count"])))
         return rows, sorted(qs)
+    if code in _CODE2ACEA:
+        name = _CODE2ACEA[code]
+        rows_m, months = [], set()
+        for cty, y, m, rec in _acea_rows():
+            if cty != name:
+                continue
+            months.add((y, m))
+            for k, bucket in ACEA_FUEL.items():
+                if rec[k]:
+                    rows_m.append((y, _q(m), bucket, rec[k]))
+        cq = set(_complete_quarters_from_months(months))
+        return [r for r in rows_m if (r[0], r[1]) in cq], sorted(cq)
     return [], []
 
 
@@ -592,6 +650,26 @@ def latest_for(code: str) -> dict | None:
     return None
 
 
+def acea_tier2_cores() -> list:
+    """One total-only core per European market not covered by a national feed,
+    from the ACEA (PZPM) workbook. Powertrain + trends attach via the generic
+    loop (which now has an ACEA branch keyed by country code)."""
+    if not ACEA_CSV.exists():
+        return []
+    by_country: dict[str, list] = defaultdict(list)
+    for cty, y, m, rec in _acea_rows():
+        by_country[cty].append((y, m, rec["total"]))
+    cores = []
+    for name, (code, flag) in ACEA_META.items():
+        rows = [(y, m, None, tot) for (y, m, tot) in by_country.get(name, [])]
+        if not rows:
+            continue
+        core = _from_monthly(rows, code, name, flag, ACEA_SOURCE, ACEA_URL, with_brands=False)
+        core["tier"] = 2
+        cores.append(core)
+    return cores
+
+
 def main() -> int:
     countries = [germany_core()]
     for core in (
@@ -615,6 +693,9 @@ def main() -> int:
     ):
         if core:
             countries.append(core)
+    for core in countries:
+        core["tier"] = 1
+    countries.extend(acea_tier2_cores())
     for core in countries:
         core["top_models"] = models_for(core["code"]) if core["has_brands"] else []
         core["powertrain"] = powertrain_for(core["code"])

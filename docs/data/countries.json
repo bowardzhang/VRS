@@ -411,6 +411,7 @@
         "total": 4164
       }
     ],
+    "tier": 1,
     "top_models": [
       {
         "brand": "VW",
@@ -1562,6 +1563,7 @@
         "total": 10599
       }
     ],
+    "tier": 1,
     "top_models": [
       {
         "brand": "TESLA",
@@ -2898,6 +2900,7 @@
         "total": 91
       }
     ],
+    "tier": 1,
     "top_models": [
       {
         "brand": "TOYOTA",
@@ -5421,6 +5424,7 @@
         "total": 26918
       }
     ],
+    "tier": 1,
     "top_models": [
       {
         "brand": "DACIA",
@@ -6634,6 +6638,7 @@
         "total": 1098
       }
     ],
+    "tier": 1,
     "top_models": [],
     "powertrain": {
       "has": false,
@@ -7467,6 +7472,7 @@
     "total": 13342279,
     "brand_totals": [],
     "origin_totals": [],
+    "tier": 1,
     "top_models": [],
     "powertrain": {
       "has": true,
@@ -7676,6 +7682,7 @@
     "total": 2289921,
     "brand_totals": [],
     "origin_totals": [],
+    "tier": 1,
     "top_models": [],
     "powertrain": {
       "has": true,
@@ -9096,6 +9103,7 @@
         "total": 10549
       }
     ],
+    "tier": 1,
     "top_models": [
       {
         "brand": "FORD",
@@ -10199,6 +10207,2673 @@
       ]
     },
     "ytd": 617894,
+    "ytd_year": 2026
+  },
+  {
+    "code": "BE",
+    "name": "Belgium",
+    "flag": "🇧🇪",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 120939
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 113805
+      }
+    ],
+    "total": 234744,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 116729,
+          "pct": 33.4
+        },
+        {
+          "fuel": "PHEV",
+          "total": 27209,
+          "pct": 7.8
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 40757,
+          "pct": 11.7
+        },
+        {
+          "fuel": "Petrol",
+          "total": 150765,
+          "pct": 43.2
+        },
+        {
+          "fuel": "Diesel",
+          "total": 11260,
+          "pct": 3.2
+        },
+        {
+          "fuel": "Other",
+          "total": 2545,
+          "pct": 0.7
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            40402,
+            39469
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            9862,
+            6450
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            14892,
+            14088
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            50944,
+            50541
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            3931,
+            2621
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            908,
+            636
+          ]
+        }
+      ]
+    },
+    "ytd": 113805,
+    "ytd_year": 2026
+  },
+  {
+    "code": "BG",
+    "name": "Bulgaria",
+    "flag": "🇧🇬",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 11606
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 11465
+      }
+    ],
+    "total": 23071,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 1962,
+          "pct": 5.6
+        },
+        {
+          "fuel": "PHEV",
+          "total": 465,
+          "pct": 1.3
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 1480,
+          "pct": 4.2
+        },
+        {
+          "fuel": "Petrol",
+          "total": 26637,
+          "pct": 76.0
+        },
+        {
+          "fuel": "Diesel",
+          "total": 4465,
+          "pct": 12.7
+        },
+        {
+          "fuel": "Other",
+          "total": 37,
+          "pct": 0.1
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            498,
+            746
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            110,
+            188
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            302,
+            644
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            9302,
+            8614
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            1372,
+            1265
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            22,
+            8
+          ]
+        }
+      ]
+    },
+    "ytd": 11465,
+    "ytd_year": 2026
+  },
+  {
+    "code": "HR",
+    "name": "Croatia",
+    "flag": "🇭🇷",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 15145
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 16895
+      }
+    ],
+    "total": 32040,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 1639,
+          "pct": 2.8
+        },
+        {
+          "fuel": "PHEV",
+          "total": 2330,
+          "pct": 4.0
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 20412,
+          "pct": 35.0
+        },
+        {
+          "fuel": "Petrol",
+          "total": 24343,
+          "pct": 41.8
+        },
+        {
+          "fuel": "Diesel",
+          "total": 8637,
+          "pct": 14.8
+        },
+        {
+          "fuel": "Other",
+          "total": 930,
+          "pct": 1.6
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            204,
+            780
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            445,
+            1094
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            5329,
+            6289
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            6540,
+            6348
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            2234,
+            2176
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            393,
+            208
+          ]
+        }
+      ]
+    },
+    "ytd": 16895,
+    "ytd_year": 2026
+  },
+  {
+    "code": "CY",
+    "name": "Cyprus",
+    "flag": "🇨🇾",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 4450
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 3670
+      }
+    ],
+    "total": 8120,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 1098,
+          "pct": 9.4
+        },
+        {
+          "fuel": "PHEV",
+          "total": 583,
+          "pct": 5.0
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 5485,
+          "pct": 46.9
+        },
+        {
+          "fuel": "Petrol",
+          "total": 4219,
+          "pct": 36.1
+        },
+        {
+          "fuel": "Diesel",
+          "total": 317,
+          "pct": 2.7
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            361,
+            425
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            234,
+            191
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            1953,
+            1855
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            1770,
+            1101
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            132,
+            98
+          ]
+        }
+      ]
+    },
+    "ytd": 3670,
+    "ytd_year": 2026
+  },
+  {
+    "code": "CZ",
+    "name": "Czechia",
+    "flag": "🇨🇿",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 59686
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 60550
+      }
+    ],
+    "total": 120236,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 10212,
+          "pct": 5.6
+        },
+        {
+          "fuel": "PHEV",
+          "total": 7369,
+          "pct": 4.0
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 41441,
+          "pct": 22.6
+        },
+        {
+          "fuel": "Petrol",
+          "total": 85658,
+          "pct": 46.7
+        },
+        {
+          "fuel": "Diesel",
+          "total": 35071,
+          "pct": 19.1
+        },
+        {
+          "fuel": "Other",
+          "total": 3844,
+          "pct": 2.1
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            3113,
+            3439
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            2175,
+            2783
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            12715,
+            14557
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            28916,
+            26997
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            11319,
+            11636
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            1448,
+            1138
+          ]
+        }
+      ]
+    },
+    "ytd": 60550,
+    "ytd_year": 2026
+  },
+  {
+    "code": "DK",
+    "name": "Denmark",
+    "flag": "🇩🇰",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 37420
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 43703
+      }
+    ],
+    "total": 81123,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 90018,
+          "pct": 70.6
+        },
+        {
+          "fuel": "PHEV",
+          "total": 2705,
+          "pct": 2.1
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 16683,
+          "pct": 13.1
+        },
+        {
+          "fuel": "Petrol",
+          "total": 14862,
+          "pct": 11.7
+        },
+        {
+          "fuel": "Diesel",
+          "total": 3293,
+          "pct": 2.6
+        },
+        {
+          "fuel": "Other",
+          "total": 2,
+          "pct": 0.0
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            24523,
+            34970
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            1045,
+            411
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            5053,
+            5129
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            5809,
+            2252
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            990,
+            939
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            0,
+            2
+          ]
+        }
+      ]
+    },
+    "ytd": 43703,
+    "ytd_year": 2026
+  },
+  {
+    "code": "EE",
+    "name": "Estonia",
+    "flag": "🇪🇪",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 2121
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 4250
+      }
+    ],
+    "total": 6371,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 801,
+          "pct": 7.1
+        },
+        {
+          "fuel": "PHEV",
+          "total": 945,
+          "pct": 8.4
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 6094,
+          "pct": 54.1
+        },
+        {
+          "fuel": "Petrol",
+          "total": 2144,
+          "pct": 19.0
+        },
+        {
+          "fuel": "Diesel",
+          "total": 1271,
+          "pct": 11.3
+        },
+        {
+          "fuel": "Other",
+          "total": 10,
+          "pct": 0.1
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            224,
+            260
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            241,
+            403
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            1092,
+            2286
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            396,
+            817
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            168,
+            484
+          ]
+        }
+      ]
+    },
+    "ytd": 4250,
+    "ytd_year": 2026
+  },
+  {
+    "code": "GR",
+    "name": "Greece",
+    "flag": "🇬🇷",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 33196
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 34812
+      }
+    ],
+    "total": 68008,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 6044,
+          "pct": 5.5
+        },
+        {
+          "fuel": "PHEV",
+          "total": 6676,
+          "pct": 6.0
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 57303,
+          "pct": 51.8
+        },
+        {
+          "fuel": "Petrol",
+          "total": 34426,
+          "pct": 31.1
+        },
+        {
+          "fuel": "Diesel",
+          "total": 4149,
+          "pct": 3.7
+        },
+        {
+          "fuel": "Other",
+          "total": 2094,
+          "pct": 1.9
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            2020,
+            2294
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            2033,
+            2315
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            16172,
+            19938
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            11321,
+            8556
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            1210,
+            895
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            440,
+            814
+          ]
+        }
+      ]
+    },
+    "ytd": 34812,
+    "ytd_year": 2026
+  },
+  {
+    "code": "HU",
+    "name": "Hungary",
+    "flag": "🇭🇺",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 32904
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 36459
+      }
+    ],
+    "total": 69363,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 8506,
+          "pct": 8.4
+        },
+        {
+          "fuel": "PHEV",
+          "total": 5708,
+          "pct": 5.6
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 52313,
+          "pct": 51.5
+        },
+        {
+          "fuel": "Petrol",
+          "total": 23321,
+          "pct": 23.0
+        },
+        {
+          "fuel": "Diesel",
+          "total": 11276,
+          "pct": 11.1
+        },
+        {
+          "fuel": "Other",
+          "total": 389,
+          "pct": 0.4
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            2408,
+            3193
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            1169,
+            2417
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            17082,
+            20293
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            7876,
+            7200
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            4189,
+            3269
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            180,
+            87
+          ]
+        }
+      ]
+    },
+    "ytd": 36459,
+    "ytd_year": 2026
+  },
+  {
+    "code": "IE",
+    "name": "Ireland",
+    "flag": "🇮🇪",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 64784
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 64918
+      }
+    ],
+    "total": 129702,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 29070,
+          "pct": 18.8
+        },
+        {
+          "fuel": "PHEV",
+          "total": 22627,
+          "pct": 14.6
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 41209,
+          "pct": 26.6
+        },
+        {
+          "fuel": "Petrol",
+          "total": 38356,
+          "pct": 24.8
+        },
+        {
+          "fuel": "Diesel",
+          "total": 23638,
+          "pct": 15.3
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            9964,
+            13992
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            9420,
+            9690
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            16777,
+            19058
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            17774,
+            13788
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            10849,
+            8390
+          ]
+        }
+      ]
+    },
+    "ytd": 64918,
+    "ytd_year": 2026
+  },
+  {
+    "code": "IT",
+    "name": "Italy",
+    "flag": "🇮🇹",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 443792
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 484498
+      }
+    ],
+    "total": 928290,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 85958,
+          "pct": 6.3
+        },
+        {
+          "fuel": "PHEV",
+          "total": 85615,
+          "pct": 6.3
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 640086,
+          "pct": 47.0
+        },
+        {
+          "fuel": "Petrol",
+          "total": 328525,
+          "pct": 24.1
+        },
+        {
+          "fuel": "Diesel",
+          "total": 124152,
+          "pct": 9.1
+        },
+        {
+          "fuel": "Other",
+          "total": 97670,
+          "pct": 7.2
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            22983,
+            38085
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            19061,
+            39984
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            198221,
+            249462
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            117943,
+            96012
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            44541,
+            34067
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            41043,
+            26888
+          ]
+        }
+      ]
+    },
+    "ytd": 484498,
+    "ytd_year": 2026
+  },
+  {
+    "code": "LV",
+    "name": "Latvia",
+    "flag": "🇱🇻",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 4777
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 4993
+      }
+    ],
+    "total": 9770,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 988,
+          "pct": 6.4
+        },
+        {
+          "fuel": "PHEV",
+          "total": 1430,
+          "pct": 9.3
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 585,
+          "pct": 3.8
+        },
+        {
+          "fuel": "Petrol",
+          "total": 9775,
+          "pct": 63.3
+        },
+        {
+          "fuel": "Diesel",
+          "total": 2359,
+          "pct": 15.3
+        },
+        {
+          "fuel": "Other",
+          "total": 295,
+          "pct": 1.9
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            294,
+            323
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            480,
+            487
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            3009,
+            3427
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            909,
+            626
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            85,
+            130
+          ]
+        }
+      ]
+    },
+    "ytd": 4993,
+    "ytd_year": 2026
+  },
+  {
+    "code": "LT",
+    "name": "Lithuania",
+    "flag": "🇱🇹",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 8935
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 9571
+      }
+    ],
+    "total": 18506,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 1959,
+          "pct": 6.5
+        },
+        {
+          "fuel": "PHEV",
+          "total": 2840,
+          "pct": 9.4
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 15394,
+          "pct": 51.2
+        },
+        {
+          "fuel": "Petrol",
+          "total": 5281,
+          "pct": 17.6
+        },
+        {
+          "fuel": "Diesel",
+          "total": 4141,
+          "pct": 13.8
+        },
+        {
+          "fuel": "Other",
+          "total": 466,
+          "pct": 1.5
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            485,
+            758
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            725,
+            1162
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            4599,
+            4910
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            1481,
+            1636
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            1482,
+            983
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            163,
+            122
+          ]
+        }
+      ]
+    },
+    "ytd": 9571,
+    "ytd_year": 2026
+  },
+  {
+    "code": "LU",
+    "name": "Luxembourg",
+    "flag": "🇱🇺",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 12668
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 12538
+      }
+    ],
+    "total": 25206,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 10636,
+          "pct": 27.7
+        },
+        {
+          "fuel": "PHEV",
+          "total": 2669,
+          "pct": 7.0
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 11371,
+          "pct": 29.7
+        },
+        {
+          "fuel": "Petrol",
+          "total": 9731,
+          "pct": 25.4
+        },
+        {
+          "fuel": "Diesel",
+          "total": 3932,
+          "pct": 10.3
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            3733,
+            3381
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            996,
+            707
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            3467,
+            4218
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            3115,
+            2981
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            1357,
+            1251
+          ]
+        }
+      ]
+    },
+    "ytd": 12538,
+    "ytd_year": 2026
+  },
+  {
+    "code": "MT",
+    "name": "Malta",
+    "flag": "🇲🇹",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 1275
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 1660
+      }
+    ],
+    "total": 2935,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 1217,
+          "pct": 24.9
+        },
+        {
+          "fuel": "PHEV",
+          "total": 266,
+          "pct": 5.5
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 1339,
+          "pct": 27.4
+        },
+        {
+          "fuel": "Petrol",
+          "total": 1810,
+          "pct": 37.1
+        },
+        {
+          "fuel": "Diesel",
+          "total": 245,
+          "pct": 5.0
+        },
+        {
+          "fuel": "Other",
+          "total": 1,
+          "pct": 0.0
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            302,
+            386
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            85,
+            76
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            336,
+            514
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            493,
+            618
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            59,
+            66
+          ]
+        }
+      ]
+    },
+    "ytd": 1660,
+    "ytd_year": 2026
+  },
+  {
+    "code": "PL",
+    "name": "Poland",
+    "flag": "🇵🇱",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 142105
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 151639
+      }
+    ],
+    "total": 293744,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 20443,
+          "pct": 4.7
+        },
+        {
+          "fuel": "PHEV",
+          "total": 26127,
+          "pct": 6.0
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 218765,
+          "pct": 50.2
+        },
+        {
+          "fuel": "Petrol",
+          "total": 129256,
+          "pct": 29.6
+        },
+        {
+          "fuel": "Diesel",
+          "total": 30186,
+          "pct": 6.9
+        },
+        {
+          "fuel": "Other",
+          "total": 11423,
+          "pct": 2.6
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            5107,
+            8841
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            5768,
+            11573
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            72976,
+            75439
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            43664,
+            42368
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            10798,
+            9203
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            3792,
+            4215
+          ]
+        }
+      ]
+    },
+    "ytd": 151639,
+    "ytd_year": 2026
+  },
+  {
+    "code": "PT",
+    "name": "Portugal",
+    "flag": "🇵🇹",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 58545
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 64059
+      }
+    ],
+    "total": 122604,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 39190,
+          "pct": 21.4
+        },
+        {
+          "fuel": "PHEV",
+          "total": 23815,
+          "pct": 13.0
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 48908,
+          "pct": 26.8
+        },
+        {
+          "fuel": "Petrol",
+          "total": 48559,
+          "pct": 26.6
+        },
+        {
+          "fuel": "Diesel",
+          "total": 9856,
+          "pct": 5.4
+        },
+        {
+          "fuel": "Other",
+          "total": 12470,
+          "pct": 6.8
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            12175,
+            15136
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            6760,
+            8584
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            14327,
+            20764
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            17170,
+            13802
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            3239,
+            2691
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            4874,
+            3082
+          ]
+        }
+      ]
+    },
+    "ytd": 64059,
+    "ytd_year": 2026
+  },
+  {
+    "code": "RO",
+    "name": "Romania",
+    "flag": "🇷🇴",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 33692
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 27275
+      }
+    ],
+    "total": 60967,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 6361,
+          "pct": 6.6
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 48221,
+          "pct": 49.8
+        },
+        {
+          "fuel": "Petrol",
+          "total": 23632,
+          "pct": 24.4
+        },
+        {
+          "fuel": "Diesel",
+          "total": 9047,
+          "pct": 9.3
+        },
+        {
+          "fuel": "Other",
+          "total": 9550,
+          "pct": 9.9
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            2161,
+            2587
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            15788,
+            15740
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            8589,
+            4893
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            3167,
+            2025
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            3987,
+            2030
+          ]
+        }
+      ]
+    },
+    "ytd": 27275,
+    "ytd_year": 2026
+  },
+  {
+    "code": "SK",
+    "name": "Slovakia",
+    "flag": "🇸🇰",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 20377
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 20042
+      }
+    ],
+    "total": 40419,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 2850,
+          "pct": 4.5
+        },
+        {
+          "fuel": "PHEV",
+          "total": 2317,
+          "pct": 3.7
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 21349,
+          "pct": 33.9
+        },
+        {
+          "fuel": "Petrol",
+          "total": 26672,
+          "pct": 42.3
+        },
+        {
+          "fuel": "Diesel",
+          "total": 8710,
+          "pct": 13.8
+        },
+        {
+          "fuel": "Other",
+          "total": 1094,
+          "pct": 1.7
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            831,
+            1014
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            817,
+            712
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            6597,
+            7551
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            8574,
+            8131
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            3140,
+            2379
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            418,
+            255
+          ]
+        }
+      ]
+    },
+    "ytd": 20042,
+    "ytd_year": 2026
+  },
+  {
+    "code": "SI",
+    "name": "Slovenia",
+    "flag": "🇸🇮",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 14672
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 16501
+      }
+    ],
+    "total": 31173,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 5307,
+          "pct": 10.9
+        },
+        {
+          "fuel": "PHEV",
+          "total": 1770,
+          "pct": 3.6
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 7955,
+          "pct": 16.4
+        },
+        {
+          "fuel": "Petrol",
+          "total": 25647,
+          "pct": 52.7
+        },
+        {
+          "fuel": "Diesel",
+          "total": 7554,
+          "pct": 15.5
+        },
+        {
+          "fuel": "Other",
+          "total": 397,
+          "pct": 0.8
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            1289,
+            2297
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            508,
+            734
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            1855,
+            2666
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            8252,
+            8400
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            2672,
+            2250
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            96,
+            154
+          ]
+        }
+      ]
+    },
+    "ytd": 16501,
+    "ytd_year": 2026
+  },
+  {
+    "code": "IS",
+    "name": "Iceland",
+    "flag": "🇮🇸",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 2271
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 3483
+      }
+    ],
+    "total": 5754,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 3038,
+          "pct": 29.6
+        },
+        {
+          "fuel": "PHEV",
+          "total": 2329,
+          "pct": 22.7
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 2716,
+          "pct": 26.5
+        },
+        {
+          "fuel": "Petrol",
+          "total": 1117,
+          "pct": 10.9
+        },
+        {
+          "fuel": "Diesel",
+          "total": 1050,
+          "pct": 10.2
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            956,
+            1122
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            480,
+            1069
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            476,
+            1013
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            169,
+            134
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            190,
+            145
+          ]
+        }
+      ]
+    },
+    "ytd": 3483,
+    "ytd_year": 2026
+  },
+  {
+    "code": "NO",
+    "name": "Norway",
+    "flag": "🇳🇴",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 32156
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 27175
+      }
+    ],
+    "total": 59331,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 85027,
+          "pct": 92.4
+        },
+        {
+          "fuel": "PHEV",
+          "total": 2815,
+          "pct": 3.1
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 2234,
+          "pct": 2.4
+        },
+        {
+          "fuel": "Petrol",
+          "total": 397,
+          "pct": 0.4
+        },
+        {
+          "fuel": "Diesel",
+          "total": 1500,
+          "pct": 1.6
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            28623,
+            26617
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            2001,
+            189
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            841,
+            37
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            171,
+            41
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            520,
+            291
+          ]
+        }
+      ]
+    },
+    "ytd": 27175,
+    "ytd_year": 2026
+  },
+  {
+    "code": "CH",
+    "name": "Switzerland",
+    "flag": "🇨🇭",
+    "source": "ACEA — new-car registrations (via PZPM)",
+    "source_url": "https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS",
+    "granularity": "quarterly",
+    "has_brands": false,
+    "brand_window_label": "",
+    "window": "Q1 2025 – Q1 2026",
+    "quarters": [
+      {
+        "q": "2025-Q1",
+        "label": "Q1 2025",
+        "total": 52690
+      },
+      {
+        "q": "2026-Q1",
+        "label": "Q1 2026",
+        "total": 52982
+      }
+    ],
+    "total": 105672,
+    "brand_totals": [],
+    "origin_totals": [],
+    "tier": 2,
+    "top_models": [],
+    "powertrain": {
+      "has": true,
+      "shares": [
+        {
+          "fuel": "BEV",
+          "total": 33878,
+          "pct": 20.6
+        },
+        {
+          "fuel": "PHEV",
+          "total": 17385,
+          "pct": 10.6
+        },
+        {
+          "fuel": "Hybrid",
+          "total": 60234,
+          "pct": 36.7
+        },
+        {
+          "fuel": "Petrol",
+          "total": 40841,
+          "pct": 24.9
+        },
+        {
+          "fuel": "Diesel",
+          "total": 11870,
+          "pct": 7.2
+        },
+        {
+          "fuel": "Other",
+          "total": 11,
+          "pct": 0.0
+        }
+      ],
+      "period": "May 2024 – Apr 2026"
+    },
+    "body": {
+      "has": false,
+      "shares": []
+    },
+    "powertrain_trends": {
+      "labels": [
+        "Q1 2025",
+        "Q1 2026"
+      ],
+      "series": [
+        {
+          "name": "BEV",
+          "values": [
+            10733,
+            11414
+          ]
+        },
+        {
+          "name": "PHEV",
+          "values": [
+            4900,
+            6432
+          ]
+        },
+        {
+          "name": "Hybrid",
+          "values": [
+            19737,
+            20450
+          ]
+        },
+        {
+          "name": "Petrol",
+          "values": [
+            13212,
+            11681
+          ]
+        },
+        {
+          "name": "Diesel",
+          "values": [
+            4102,
+            3004
+          ]
+        },
+        {
+          "name": "Other",
+          "values": [
+            6,
+            1
+          ]
+        }
+      ]
+    },
+    "ytd": 52982,
     "ytd_year": 2026
   }
 ]
