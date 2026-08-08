@@ -27,6 +27,7 @@ OUT_DIR = REPO_ROOT / "data" / "UnitedKingdom"
 OUT_CSV = OUT_DIR / "uk_quarterly_brands.csv"
 MODELS_CSV = OUT_DIR / "uk_models.csv"
 MODELS_LATEST_CSV = OUT_DIR / "uk_models_latest.csv"
+MODELS_QUARTERLY_CSV = OUT_DIR / "uk_models_quarterly.csv"
 POWERTRAIN_CSV = OUT_DIR / "uk_powertrain.csv"
 MODELS_SINCE = (2023, 3)  # (year, quarter) — brand/model detail window
 
@@ -127,6 +128,43 @@ def parse_models(text: str) -> dict[tuple[str, str], int]:
                         pass
         if tot:
             out[(make, model)] = out.get((make, model), 0) + tot
+    return out
+
+
+def parse_models_quarterly(text: str) -> dict[tuple[int, int, str, str], int]:
+    """(year, quarter, make, genmodel) counts per quarter over the detail window."""
+    reader = csv.reader(io.StringIO(text))
+    header = next(reader)
+    periods = []  # (col_index, year, quarter)
+    for i, h in enumerate(header):
+        m = _COL.match(h.strip())
+        if m and (int(m.group(1)), int(m.group(2))) >= MODELS_SINCE:
+            periods.append((i, int(m.group(1)), int(m.group(2))))
+    try:
+        bt_i = header.index("BodyType"); mk_i = header.index("Make"); gm_i = header.index("GenModel")
+    except ValueError:
+        return {}
+    out: dict[tuple[int, int, str, str], int] = {}
+    for row in reader:
+        if len(row) <= gm_i or row[bt_i].strip() != "Cars":
+            continue
+        make = row[mk_i].strip().upper()
+        model = row[gm_i].strip().upper()
+        if not make or not model:
+            continue
+        for i, y, q in periods:
+            if i >= len(row):
+                continue
+            raw = row[i].strip().replace(",", "")
+            if raw in ("", "-", "[c]", "[x]", "[z]", ".."):
+                continue
+            try:
+                cnt = int(raw)
+            except ValueError:
+                continue
+            if cnt:
+                key = (y, q, make, model)
+                out[key] = out.get(key, 0) + cnt
     return out
 
 
@@ -232,6 +270,14 @@ def main() -> int:
             for (mk, md), c in sorted(latest_models.items(), key=lambda kv: -kv[1]):
                 w.writerow([lyq[0], lyq[1], mk, md, c])
     print(f"[write] {MODELS_LATEST_CSV.relative_to(REPO_ROOT)} (latest {lyq}, {len(latest_models)} rows)")
+
+    mq = parse_models_quarterly(text)
+    with MODELS_QUARTERLY_CSV.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "quarter", "brand", "model", "count"])
+        for (y, q, mk, md), c in sorted(mq.items(), key=lambda kv: (kv[0][0], kv[0][1], -kv[1])):
+            w.writerow([y, q, mk, md, c])
+    print(f"[write] {MODELS_QUARTERLY_CSV.relative_to(REPO_ROOT)} ({len(mq)} rows)")
 
     pt = parse_powertrain(text, args.from_year)
     with POWERTRAIN_CSV.open("w", encoding="utf-8", newline="") as fh:

@@ -43,16 +43,31 @@ CUR = (2026, (4, 5, 6))
 PRIOR = (2025, (4, 5, 6))
 
 FLAG = {"Germany": "🇩🇪", "Spain": "🇪🇸", "Finland": "🇫🇮", "Netherlands": "🇳🇱",
-        "Austria": "🇦🇹", "Sweden": "🇸🇪", "France": "🇫🇷", "Total": "🇪🇺"}
+        "Austria": "🇦🇹", "Sweden": "🇸🇪", "France": "🇫🇷",
+        "UnitedKingdom": "🇬🇧", "Total": "🇪🇺"}
 LABEL = {"Germany": "Germany", "Spain": "Spain", "Finland": "Finland",
          "Netherlands": "Netherlands", "Austria": "Austria", "Sweden": "Sweden",
-         "France": "France", "Total": "Total"}
+         "France": "France", "UnitedKingdom": "United Kingdom", "Total": "Total"}
 
 
 def yoy(cur, prior):
     if not prior:
         return None
     return round(100 * (cur - prior) / prior, 1)
+
+
+def _period_q(period):
+    """Map a monthly Q2 period -> (year, quarter). Months (4,5,6) -> Q2."""
+    return (period[0], (period[1][0] - 1) // 3 + 1)
+
+
+def uk_available() -> bool:
+    """True once the UK source has the CURRENT quarter (e.g. 2026 Q2)."""
+    y, q = _period_q(CUR)
+    for r in _rows(DATA / "UnitedKingdom" / "uk_quarterly_brands.csv"):
+        if int(r["year"]) == y and int(r["quarter"]) == q:
+            return True
+    return False
 
 
 def _rows(path):
@@ -88,6 +103,12 @@ def brand_counts(country, period):
                 continue
             if _in(period, r["year"], r["month"]):
                 out[canonical(r["brand"])] += int(r["count_month"] or 0)
+        return out
+    if country == "UnitedKingdom":
+        y, q = _period_q(period)
+        for r in _rows(DATA / "UnitedKingdom" / "uk_quarterly_brands.csv"):
+            if int(r["year"]) == y and int(r["quarter"]) == q:
+                out[canonical(r["brand"])] += int(r["count"] or 0)
         return out
     spec = BRAND_FEEDS[country]
     path, bcol, ccol = spec
@@ -132,6 +153,14 @@ def model_counts(country, period):
                 b = r["brand"].strip().upper()
                 m = _strip_brand(r["model"].strip().upper(), b)
                 out[f"{b} {m}"] += int(r["count"] or 0)
+    elif country == "UnitedKingdom":
+        # DfT GenModel already carries the make ("FORD PUMA"); strip it.
+        y, q = _period_q(period)
+        for r in _rows(DATA / "UnitedKingdom" / "uk_models_quarterly.csv"):
+            if int(r["year"]) == y and int(r["quarter"]) == q:
+                b = r["brand"].strip().upper()
+                m = _strip_brand(r["model"].strip().upper(), b)
+                out[f"{b} {m}"] += int(r["count"] or 0)
     return out
 
 
@@ -167,6 +196,10 @@ def model_counts_pooled(period):
     for r in _rows(DATA / "Netherlands" / "rdw_models_monthly.csv"):
         if _in(period, r["year"], r["month"]):
             add(r["brand"], r["model"], int(r["count"] or 0))
+    yq, qq = _period_q(period)
+    for r in _rows(DATA / "UnitedKingdom" / "uk_models_quarterly.csv"):
+        if int(r["year"]) == yq and int(r["quarter"]) == qq:
+            add(r["brand"], r["model"], int(r["count"] or 0))
     return {disp[k]: v for k, v in out.items()}
 
 
@@ -181,6 +214,12 @@ def powertrain_counts(country, period):
             if _in(period, r["year"], r["month"]):
                 for col, bucket in MAP.items():
                     out[bucket] += int(r[col] or 0)
+    elif country == "UnitedKingdom":
+        y, q = _period_q(period)
+        for r in _rows(DATA / "UnitedKingdom" / "uk_powertrain.csv"):
+            if int(r["year"]) == y and int(r["quarter"]) == q:
+                b = "HEV" if r["fuel"] == "Hybrid" else r["fuel"]
+                out[b] += int(r["count"] or 0)
     else:
         path = {"Spain": DATA / "Spain" / "es_monthly_powertrain.csv",
                 "Finland": DATA / "Finland" / "traficom_powertrain.csv",
@@ -294,6 +333,13 @@ def supplier_model_rows(country, period):
                 c = int(r["count"] or 0)
                 if c > 0:
                     rows.append((r["brand"].strip(), r["model"].strip(), c))
+    elif country == "UnitedKingdom":
+        y, q = _period_q(period)
+        for r in _rows(DATA / "UnitedKingdom" / "uk_models_quarterly.csv"):
+            if int(r["year"]) == y and int(r["quarter"]) == q:
+                c = int(r["count"] or 0)
+                if c > 0:
+                    rows.append((r["brand"].strip(), r["model"].strip(), c))
     return rows
 
 
@@ -328,6 +374,12 @@ def build_payload():
     pt_countries = ["Germany", "Spain", "Finland", "Sweden"]
     model_countries = ["Germany", "Spain", "Finland", "Netherlands"]
     body_countries = ["Germany", "Netherlands", "Spain"]
+    # The UK (DfT, quarterly) is included automatically once the source has the
+    # current quarter — until then it has no Q2 data and would show as zeros.
+    if uk_available():
+        brand_countries.append("UnitedKingdom")
+        pt_countries.append("UnitedKingdom")
+        model_countries.append("UnitedKingdom")
 
     # cache brand maps
     bc_cur = {c: brand_counts(c, CUR) for c in brand_countries}
@@ -419,9 +471,10 @@ def build_payload():
             "Brands & origin: DE, ES, FI, NL, AT · Powertrain: DE, ES, FI, SE · "
             "Models & suppliers: DE, ES, FI, NL (the monthly model feeds) · "
             "Body type: DE (KBA size-segments), NL (RDW body) & ES (EU body "
-            "codes), each in its own native taxonomy — not pooled. UK omitted "
-            "(SMMT quarterly data still ends Q1 2026); France total-only; Italy "
-            "not covered."
+            "codes), each in its own native taxonomy — not pooled. The UK (DfT, "
+            "quarterly) joins the brand/model/origin/powertrain/supplier "
+            "dimensions automatically once it publishes the quarter; France is "
+            "total-only; Italy not covered."
         ),
     }
 
