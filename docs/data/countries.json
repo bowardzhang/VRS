@@ -10241,36 +10241,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 116729,
-          "pct": 33.4
+          "total": 225943,
+          "pct": 31.1
         },
         {
           "fuel": "PHEV",
-          "total": 27209,
-          "pct": 7.8
+          "total": 88742,
+          "pct": 12.2
         },
         {
           "fuel": "Hybrid",
-          "total": 40757,
-          "pct": 11.7
+          "total": 76645,
+          "pct": 10.6
         },
         {
           "fuel": "Petrol",
-          "total": 150765,
-          "pct": 43.2
+          "total": 299829,
+          "pct": 41.3
         },
         {
           "fuel": "Diesel",
-          "total": 11260,
-          "pct": 3.2
+          "total": 29369,
+          "pct": 4.0
         },
         {
           "fuel": "Other",
-          "total": 2545,
+          "total": 5255,
           "pct": 0.7
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -10292,21 +10292,21 @@
         {
           "name": "PHEV",
           "values": [
-            9862,
+            10017,
             6450
           ]
         },
         {
           "name": "Hybrid",
           "values": [
-            14892,
+            14737,
             14088
           ]
         },
         {
           "name": "Petrol",
           "values": [
-            50944,
+            50943,
             50541
           ]
         },
@@ -10320,7 +10320,7 @@
         {
           "name": "Other",
           "values": [
-            908,
+            909,
             636
           ]
         }
@@ -10361,36 +10361,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 1962,
-          "pct": 5.6
+          "total": 3611,
+          "pct": 5.1
         },
         {
           "fuel": "PHEV",
-          "total": 465,
-          "pct": 1.3
+          "total": 857,
+          "pct": 1.2
         },
         {
           "fuel": "Hybrid",
-          "total": 1480,
-          "pct": 4.2
+          "total": 2541,
+          "pct": 3.6
         },
         {
           "fuel": "Petrol",
-          "total": 26637,
-          "pct": 76.0
+          "total": 54551,
+          "pct": 76.7
         },
         {
           "fuel": "Diesel",
-          "total": 4465,
-          "pct": 12.7
+          "total": 9285,
+          "pct": 13.1
         },
         {
           "fuel": "Other",
-          "total": 37,
-          "pct": 0.1
+          "total": 268,
+          "pct": 0.4
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -10405,7 +10405,7 @@
         {
           "name": "BEV",
           "values": [
-            498,
+            507,
             746
           ]
         },
@@ -10426,14 +10426,14 @@
         {
           "name": "Petrol",
           "values": [
-            9302,
+            9346,
             8614
           ]
         },
         {
           "name": "Diesel",
           "values": [
-            1372,
+            1319,
             1265
           ]
         },
@@ -10463,7 +10463,7 @@
       {
         "q": "2025-Q1",
         "label": "Q1 2025",
-        "total": 15145
+        "total": 15143
       },
       {
         "q": "2026-Q1",
@@ -10471,7 +10471,7 @@
         "total": 16895
       }
     ],
-    "total": 32040,
+    "total": 32038,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -10481,36 +10481,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 1639,
-          "pct": 2.8
+          "total": 2773,
+          "pct": 2.5
         },
         {
           "fuel": "PHEV",
-          "total": 2330,
-          "pct": 4.0
+          "total": 4041,
+          "pct": 3.6
         },
         {
           "fuel": "Hybrid",
-          "total": 20412,
-          "pct": 35.0
+          "total": 35864,
+          "pct": 32.2
         },
         {
           "fuel": "Petrol",
-          "total": 24343,
-          "pct": 41.8
+          "total": 48905,
+          "pct": 44.0
         },
         {
           "fuel": "Diesel",
-          "total": 8637,
-          "pct": 14.8
+          "total": 17487,
+          "pct": 15.7
         },
         {
           "fuel": "Other",
-          "total": 930,
-          "pct": 1.6
+          "total": 2172,
+          "pct": 2.0
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -10553,7 +10553,7 @@
         {
           "name": "Diesel",
           "values": [
-            2234,
+            2232,
             2176
           ]
         },
@@ -10583,7 +10583,7 @@
       {
         "q": "2025-Q1",
         "label": "Q1 2025",
-        "total": 4450
+        "total": 4451
       },
       {
         "q": "2026-Q1",
@@ -10591,7 +10591,7 @@
         "total": 3670
       }
     ],
-    "total": 8120,
+    "total": 8121,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -10601,31 +10601,31 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 1098,
-          "pct": 9.4
+          "total": 2304,
+          "pct": 9.1
         },
         {
           "fuel": "PHEV",
-          "total": 583,
-          "pct": 5.0
+          "total": 1187,
+          "pct": 4.7
         },
         {
           "fuel": "Hybrid",
-          "total": 5485,
-          "pct": 46.9
+          "total": 11506,
+          "pct": 45.6
         },
         {
           "fuel": "Petrol",
-          "total": 4219,
-          "pct": 36.1
+          "total": 9585,
+          "pct": 38.0
         },
         {
           "fuel": "Diesel",
-          "total": 317,
-          "pct": 2.7
+          "total": 634,
+          "pct": 2.5
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -10661,7 +10661,7 @@
         {
           "name": "Petrol",
           "values": [
-            1770,
+            1771,
             1101
           ]
         },
@@ -10709,36 +10709,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 10212,
-          "pct": 5.6
+          "total": 19852,
+          "pct": 5.2
         },
         {
           "fuel": "PHEV",
-          "total": 7369,
-          "pct": 4.0
+          "total": 13533,
+          "pct": 3.5
         },
         {
           "fuel": "Hybrid",
-          "total": 41441,
-          "pct": 22.6
+          "total": 82998,
+          "pct": 21.7
         },
         {
           "fuel": "Petrol",
-          "total": 85658,
-          "pct": 46.7
+          "total": 183051,
+          "pct": 47.9
         },
         {
           "fuel": "Diesel",
-          "total": 35071,
-          "pct": 19.1
+          "total": 74895,
+          "pct": 19.6
         },
         {
           "fuel": "Other",
-          "total": 3844,
+          "total": 8010,
           "pct": 2.1
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -10811,7 +10811,7 @@
       {
         "q": "2025-Q1",
         "label": "Q1 2025",
-        "total": 37420
+        "total": 37426
       },
       {
         "q": "2026-Q1",
@@ -10819,7 +10819,7 @@
         "total": 43703
       }
     ],
-    "total": 81123,
+    "total": 81129,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -10829,28 +10829,28 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 90018,
-          "pct": 70.6
+          "total": 171088,
+          "pct": 61.4
         },
         {
           "fuel": "PHEV",
-          "total": 2705,
-          "pct": 2.1
+          "total": 9596,
+          "pct": 3.4
         },
         {
           "fuel": "Hybrid",
-          "total": 16683,
-          "pct": 13.1
+          "total": 41426,
+          "pct": 14.9
         },
         {
           "fuel": "Petrol",
-          "total": 14862,
-          "pct": 11.7
+          "total": 47987,
+          "pct": 17.2
         },
         {
           "fuel": "Diesel",
-          "total": 3293,
-          "pct": 2.6
+          "total": 8411,
+          "pct": 3.0
         },
         {
           "fuel": "Other",
@@ -10858,7 +10858,7 @@
           "pct": 0.0
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -10873,7 +10873,7 @@
         {
           "name": "BEV",
           "values": [
-            24523,
+            24528,
             34970
           ]
         },
@@ -10894,7 +10894,7 @@
         {
           "name": "Petrol",
           "values": [
-            5809,
+            5810,
             2252
           ]
         },
@@ -10949,36 +10949,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 801,
-          "pct": 7.1
+          "total": 1831,
+          "pct": 6.4
         },
         {
           "fuel": "PHEV",
-          "total": 945,
-          "pct": 8.4
+          "total": 1939,
+          "pct": 6.8
         },
         {
           "fuel": "Hybrid",
-          "total": 6094,
-          "pct": 54.1
+          "total": 13917,
+          "pct": 49.0
         },
         {
           "fuel": "Petrol",
-          "total": 2144,
-          "pct": 19.0
+          "total": 6911,
+          "pct": 24.3
         },
         {
           "fuel": "Diesel",
-          "total": 1271,
-          "pct": 11.3
+          "total": 3727,
+          "pct": 13.1
         },
         {
           "fuel": "Other",
-          "total": 10,
-          "pct": 0.1
+          "total": 63,
+          "pct": 0.2
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -11062,36 +11062,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 6044,
-          "pct": 5.5
+          "total": 12996,
+          "pct": 5.6
         },
         {
           "fuel": "PHEV",
-          "total": 6676,
-          "pct": 6.0
+          "total": 16178,
+          "pct": 7.0
         },
         {
           "fuel": "Hybrid",
-          "total": 57303,
-          "pct": 51.8
+          "total": 107190,
+          "pct": 46.6
         },
         {
           "fuel": "Petrol",
-          "total": 34426,
-          "pct": 31.1
+          "total": 75435,
+          "pct": 32.8
         },
         {
           "fuel": "Diesel",
-          "total": 4149,
-          "pct": 3.7
+          "total": 12494,
+          "pct": 5.4
         },
         {
           "fuel": "Other",
-          "total": 2094,
-          "pct": 1.9
+          "total": 5781,
+          "pct": 2.5
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -11182,36 +11182,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 8506,
-          "pct": 8.4
+          "total": 15930,
+          "pct": 7.9
         },
         {
           "fuel": "PHEV",
-          "total": 5708,
-          "pct": 5.6
+          "total": 10495,
+          "pct": 5.2
         },
         {
           "fuel": "Hybrid",
-          "total": 52313,
-          "pct": 51.5
+          "total": 100437,
+          "pct": 49.8
         },
         {
           "fuel": "Petrol",
-          "total": 23321,
-          "pct": 23.0
+          "total": 51395,
+          "pct": 25.5
         },
         {
           "fuel": "Diesel",
-          "total": 11276,
-          "pct": 11.1
+          "total": 22596,
+          "pct": 11.2
         },
         {
           "fuel": "Other",
-          "total": 389,
+          "total": 740,
           "pct": 0.4
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -11226,7 +11226,7 @@
         {
           "name": "BEV",
           "values": [
-            2408,
+            2409,
             3193
           ]
         },
@@ -11254,7 +11254,7 @@
         {
           "name": "Diesel",
           "values": [
-            4189,
+            4188,
             3269
           ]
         },
@@ -11284,7 +11284,7 @@
       {
         "q": "2025-Q1",
         "label": "Q1 2025",
-        "total": 64784
+        "total": 64805
       },
       {
         "q": "2026-Q1",
@@ -11292,7 +11292,7 @@
         "total": 64918
       }
     ],
-    "total": 129702,
+    "total": 129723,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -11302,31 +11302,31 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 29070,
-          "pct": 18.8
+          "total": 43412,
+          "pct": 18.2
         },
         {
           "fuel": "PHEV",
-          "total": 22627,
-          "pct": 14.6
+          "total": 31953,
+          "pct": 13.4
         },
         {
           "fuel": "Hybrid",
-          "total": 41209,
-          "pct": 26.6
+          "total": 59589,
+          "pct": 25.0
         },
         {
           "fuel": "Petrol",
-          "total": 38356,
-          "pct": 24.8
+          "total": 62359,
+          "pct": 26.1
         },
         {
           "fuel": "Diesel",
-          "total": 23638,
-          "pct": 15.3
+          "total": 41250,
+          "pct": 17.3
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -11341,35 +11341,35 @@
         {
           "name": "BEV",
           "values": [
-            9964,
+            9970,
             13992
           ]
         },
         {
           "name": "PHEV",
           "values": [
-            9420,
+            9421,
             9690
           ]
         },
         {
           "name": "Hybrid",
           "values": [
-            16777,
+            16739,
             19058
           ]
         },
         {
           "name": "Petrol",
           "values": [
-            17774,
+            17815,
             13788
           ]
         },
         {
           "name": "Diesel",
           "values": [
-            10849,
+            10860,
             8390
           ]
         }
@@ -11392,7 +11392,7 @@
       {
         "q": "2025-Q1",
         "label": "Q1 2025",
-        "total": 443792
+        "total": 443866
       },
       {
         "q": "2026-Q1",
@@ -11400,7 +11400,7 @@
         "total": 484498
       }
     ],
-    "total": 928290,
+    "total": 928364,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -11410,36 +11410,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 85958,
-          "pct": 6.3
+          "total": 140192,
+          "pct": 5.2
         },
         {
           "fuel": "PHEV",
-          "total": 85615,
-          "pct": 6.3
+          "total": 147701,
+          "pct": 5.4
         },
         {
           "fuel": "Hybrid",
-          "total": 640086,
-          "pct": 47.0
+          "total": 1201328,
+          "pct": 44.2
         },
         {
           "fuel": "Petrol",
-          "total": 328525,
-          "pct": 24.1
+          "total": 704498,
+          "pct": 25.9
         },
         {
           "fuel": "Diesel",
-          "total": 124152,
-          "pct": 9.1
+          "total": 300640,
+          "pct": 11.1
         },
         {
           "fuel": "Other",
-          "total": 97670,
-          "pct": 7.2
+          "total": 222817,
+          "pct": 8.2
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -11454,42 +11454,42 @@
         {
           "name": "BEV",
           "values": [
-            22983,
+            22985,
             38085
           ]
         },
         {
           "name": "PHEV",
           "values": [
-            19061,
+            18796,
             39984
           ]
         },
         {
           "name": "Hybrid",
           "values": [
-            198221,
+            198491,
             249462
           ]
         },
         {
           "name": "Petrol",
           "values": [
-            117943,
+            117997,
             96012
           ]
         },
         {
           "name": "Diesel",
           "values": [
-            44541,
+            44556,
             34067
           ]
         },
         {
           "name": "Other",
           "values": [
-            41043,
+            41041,
             26888
           ]
         }
@@ -11530,36 +11530,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 988,
-          "pct": 6.4
+          "total": 2275,
+          "pct": 7.2
         },
         {
           "fuel": "PHEV",
-          "total": 1430,
-          "pct": 9.3
+          "total": 2607,
+          "pct": 8.3
         },
         {
           "fuel": "Hybrid",
-          "total": 585,
-          "pct": 3.8
+          "total": 3355,
+          "pct": 10.7
         },
         {
           "fuel": "Petrol",
-          "total": 9775,
-          "pct": 63.3
+          "total": 17984,
+          "pct": 57.1
         },
         {
           "fuel": "Diesel",
-          "total": 2359,
-          "pct": 15.3
+          "total": 4636,
+          "pct": 14.7
         },
         {
           "fuel": "Other",
-          "total": 295,
-          "pct": 1.9
+          "total": 632,
+          "pct": 2.0
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -11625,7 +11625,7 @@
       {
         "q": "2025-Q1",
         "label": "Q1 2025",
-        "total": 8935
+        "total": 8934
       },
       {
         "q": "2026-Q1",
@@ -11633,7 +11633,7 @@
         "total": 9571
       }
     ],
-    "total": 18506,
+    "total": 18505,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -11643,36 +11643,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 1959,
-          "pct": 6.5
+          "total": 4288,
+          "pct": 7.3
         },
         {
           "fuel": "PHEV",
-          "total": 2840,
-          "pct": 9.4
+          "total": 4692,
+          "pct": 8.0
         },
         {
           "fuel": "Hybrid",
-          "total": 15394,
-          "pct": 51.2
+          "total": 28389,
+          "pct": 48.2
         },
         {
           "fuel": "Petrol",
-          "total": 5281,
-          "pct": 17.6
+          "total": 12940,
+          "pct": 22.0
         },
         {
           "fuel": "Diesel",
-          "total": 4141,
-          "pct": 13.8
+          "total": 7711,
+          "pct": 13.1
         },
         {
           "fuel": "Other",
-          "total": 466,
+          "total": 882,
           "pct": 1.5
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -11701,7 +11701,7 @@
         {
           "name": "Hybrid",
           "values": [
-            4599,
+            4598,
             4910
           ]
         },
@@ -11763,31 +11763,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 10636,
-          "pct": 27.7
+          "total": 21662,
+          "pct": 27.6
         },
         {
           "fuel": "PHEV",
-          "total": 2669,
-          "pct": 7.0
+          "total": 6097,
+          "pct": 7.8
         },
         {
           "fuel": "Hybrid",
-          "total": 11371,
-          "pct": 29.7
+          "total": 21003,
+          "pct": 26.8
         },
         {
           "fuel": "Petrol",
-          "total": 9731,
-          "pct": 25.4
+          "total": 21131,
+          "pct": 26.9
         },
         {
           "fuel": "Diesel",
-          "total": 3932,
-          "pct": 10.3
+          "total": 8578,
+          "pct": 10.9
+        },
+        {
+          "fuel": "Other",
+          "total": 1,
+          "pct": 0.0
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -11853,7 +11858,7 @@
       {
         "q": "2025-Q1",
         "label": "Q1 2025",
-        "total": 1275
+        "total": 1040
       },
       {
         "q": "2026-Q1",
@@ -11861,7 +11866,7 @@
         "total": 1660
       }
     ],
-    "total": 2935,
+    "total": 2700,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -11871,36 +11876,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 1217,
-          "pct": 24.9
+          "total": 2620,
+          "pct": 24.8
         },
         {
           "fuel": "PHEV",
-          "total": 266,
-          "pct": 5.5
+          "total": 778,
+          "pct": 7.4
         },
         {
           "fuel": "Hybrid",
-          "total": 1339,
-          "pct": 27.4
+          "total": 2555,
+          "pct": 24.1
         },
         {
           "fuel": "Petrol",
-          "total": 1810,
-          "pct": 37.1
+          "total": 3884,
+          "pct": 36.7
         },
         {
           "fuel": "Diesel",
-          "total": 245,
-          "pct": 5.0
+          "total": 742,
+          "pct": 7.0
         },
         {
           "fuel": "Other",
-          "total": 1,
+          "total": 3,
           "pct": 0.0
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -11915,28 +11920,28 @@
         {
           "name": "BEV",
           "values": [
-            302,
+            274,
             386
           ]
         },
         {
           "name": "PHEV",
           "values": [
-            85,
+            68,
             76
           ]
         },
         {
           "name": "Hybrid",
           "values": [
-            336,
+            249,
             514
           ]
         },
         {
           "name": "Petrol",
           "values": [
-            493,
+            391,
             618
           ]
         },
@@ -11984,36 +11989,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 20443,
+          "total": 41870,
           "pct": 4.7
         },
         {
           "fuel": "PHEV",
-          "total": 26127,
-          "pct": 6.0
+          "total": 43466,
+          "pct": 4.9
         },
         {
           "fuel": "Hybrid",
-          "total": 218765,
-          "pct": 50.2
+          "total": 423692,
+          "pct": 47.5
         },
         {
           "fuel": "Petrol",
-          "total": 129256,
-          "pct": 29.6
+          "total": 289542,
+          "pct": 32.5
         },
         {
           "fuel": "Diesel",
-          "total": 30186,
-          "pct": 6.9
+          "total": 68072,
+          "pct": 7.6
         },
         {
           "fuel": "Other",
-          "total": 11423,
-          "pct": 2.6
+          "total": 25438,
+          "pct": 2.9
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -12035,35 +12040,35 @@
         {
           "name": "PHEV",
           "values": [
-            5768,
+            5735,
             11573
           ]
         },
         {
           "name": "Hybrid",
           "values": [
-            72976,
+            72514,
             75439
           ]
         },
         {
           "name": "Petrol",
           "values": [
-            43664,
+            44167,
             42368
           ]
         },
         {
           "name": "Diesel",
           "values": [
-            10798,
+            10789,
             9203
           ]
         },
         {
           "name": "Other",
           "values": [
-            3792,
+            3793,
             4215
           ]
         }
@@ -12104,36 +12109,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 39190,
-          "pct": 21.4
+          "total": 75396,
+          "pct": 21.3
         },
         {
           "fuel": "PHEV",
-          "total": 23815,
-          "pct": 13.0
+          "total": 49957,
+          "pct": 14.1
         },
         {
           "fuel": "Hybrid",
-          "total": 48908,
-          "pct": 26.8
+          "total": 79933,
+          "pct": 22.6
         },
         {
           "fuel": "Petrol",
-          "total": 48559,
-          "pct": 26.6
+          "total": 98655,
+          "pct": 27.9
         },
         {
           "fuel": "Diesel",
-          "total": 9856,
-          "pct": 5.4
+          "total": 23544,
+          "pct": 6.7
         },
         {
           "fuel": "Other",
-          "total": 12470,
-          "pct": 6.8
+          "total": 26138,
+          "pct": 7.4
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -12224,31 +12229,31 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 6361,
-          "pct": 6.6
+          "total": 14917,
+          "pct": 7.1
         },
         {
           "fuel": "Hybrid",
-          "total": 48221,
-          "pct": 49.8
+          "total": 94198,
+          "pct": 44.8
         },
         {
           "fuel": "Petrol",
-          "total": 23632,
-          "pct": 24.4
+          "total": 57215,
+          "pct": 27.2
         },
         {
           "fuel": "Diesel",
-          "total": 9047,
-          "pct": 9.3
+          "total": 21124,
+          "pct": 10.0
         },
         {
           "fuel": "Other",
-          "total": 9550,
-          "pct": 9.9
+          "total": 22810,
+          "pct": 10.8
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -12314,7 +12319,7 @@
       {
         "q": "2025-Q1",
         "label": "Q1 2025",
-        "total": 20377
+        "total": 20317
       },
       {
         "q": "2026-Q1",
@@ -12322,7 +12327,7 @@
         "total": 20042
       }
     ],
-    "total": 40419,
+    "total": 40359,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -12332,36 +12337,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 2850,
-          "pct": 4.5
+          "total": 5409,
+          "pct": 3.9
         },
         {
           "fuel": "PHEV",
-          "total": 2317,
-          "pct": 3.7
+          "total": 4940,
+          "pct": 3.5
         },
         {
           "fuel": "Hybrid",
-          "total": 21349,
-          "pct": 33.9
+          "total": 45531,
+          "pct": 32.4
         },
         {
           "fuel": "Petrol",
-          "total": 26672,
-          "pct": 42.3
+          "total": 60960,
+          "pct": 43.4
         },
         {
           "fuel": "Diesel",
-          "total": 8710,
-          "pct": 13.8
+          "total": 20948,
+          "pct": 14.9
         },
         {
           "fuel": "Other",
-          "total": 1094,
-          "pct": 1.7
+          "total": 2548,
+          "pct": 1.8
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -12376,42 +12381,42 @@
         {
           "name": "BEV",
           "values": [
-            831,
+            830,
             1014
           ]
         },
         {
           "name": "PHEV",
           "values": [
-            817,
+            816,
             712
           ]
         },
         {
           "name": "Hybrid",
           "values": [
-            6597,
+            6565,
             7551
           ]
         },
         {
           "name": "Petrol",
           "values": [
-            8574,
+            8564,
             8131
           ]
         },
         {
           "name": "Diesel",
           "values": [
-            3140,
+            3123,
             2379
           ]
         },
         {
           "name": "Other",
           "values": [
-            418,
+            419,
             255
           ]
         }
@@ -12452,36 +12457,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 5307,
-          "pct": 10.9
+          "total": 9410,
+          "pct": 9.9
         },
         {
           "fuel": "PHEV",
-          "total": 1770,
-          "pct": 3.6
+          "total": 3027,
+          "pct": 3.2
         },
         {
           "fuel": "Hybrid",
-          "total": 7955,
-          "pct": 16.4
+          "total": 13534,
+          "pct": 14.3
         },
         {
           "fuel": "Petrol",
-          "total": 25647,
-          "pct": 52.7
+          "total": 52761,
+          "pct": 55.8
         },
         {
           "fuel": "Diesel",
-          "total": 7554,
-          "pct": 15.5
+          "total": 14911,
+          "pct": 15.8
         },
         {
           "fuel": "Other",
-          "total": 397,
-          "pct": 0.8
+          "total": 980,
+          "pct": 1.0
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -12510,14 +12515,14 @@
         {
           "name": "Hybrid",
           "values": [
-            1855,
+            1755,
             2666
           ]
         },
         {
           "name": "Petrol",
           "values": [
-            8252,
+            8352,
             8400
           ]
         },
@@ -12554,7 +12559,7 @@
       {
         "q": "2025-Q1",
         "label": "Q1 2025",
-        "total": 2271
+        "total": 2262
       },
       {
         "q": "2026-Q1",
@@ -12562,7 +12567,7 @@
         "total": 3483
       }
     ],
-    "total": 5754,
+    "total": 5745,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -12572,31 +12577,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 3038,
-          "pct": 29.6
+          "total": 7037,
+          "pct": 35.4
         },
         {
           "fuel": "PHEV",
-          "total": 2329,
-          "pct": 22.7
+          "total": 3994,
+          "pct": 20.1
         },
         {
           "fuel": "Hybrid",
-          "total": 2716,
-          "pct": 26.5
+          "total": 4405,
+          "pct": 22.2
         },
         {
           "fuel": "Petrol",
-          "total": 1117,
-          "pct": 10.9
+          "total": 2079,
+          "pct": 10.5
         },
         {
           "fuel": "Diesel",
-          "total": 1050,
-          "pct": 10.2
+          "total": 2346,
+          "pct": 11.8
+        },
+        {
+          "fuel": "Other",
+          "total": 4,
+          "pct": 0.0
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -12618,7 +12628,7 @@
         {
           "name": "PHEV",
           "values": [
-            480,
+            471,
             1069
           ]
         },
@@ -12662,7 +12672,7 @@
       {
         "q": "2025-Q1",
         "label": "Q1 2025",
-        "total": 32156
+        "total": 31596
       },
       {
         "q": "2026-Q1",
@@ -12670,7 +12680,7 @@
         "total": 27175
       }
     ],
-    "total": 59331,
+    "total": 58771,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -12680,31 +12690,31 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 85027,
-          "pct": 92.4
+          "total": 186697,
+          "pct": 92.8
         },
         {
           "fuel": "PHEV",
-          "total": 2815,
-          "pct": 3.1
+          "total": 4663,
+          "pct": 2.3
         },
         {
           "fuel": "Hybrid",
-          "total": 2234,
-          "pct": 2.4
+          "total": 5377,
+          "pct": 2.7
         },
         {
           "fuel": "Petrol",
-          "total": 397,
-          "pct": 0.4
+          "total": 1052,
+          "pct": 0.5
         },
         {
           "fuel": "Diesel",
-          "total": 1500,
-          "pct": 1.6
+          "total": 3334,
+          "pct": 1.7
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
@@ -12726,7 +12736,7 @@
         {
           "name": "PHEV",
           "values": [
-            2001,
+            1441,
             189
           ]
         },
@@ -12788,36 +12798,36 @@
       "shares": [
         {
           "fuel": "BEV",
-          "total": 33878,
-          "pct": 20.6
+          "total": 75482,
+          "pct": 20.8
         },
         {
           "fuel": "PHEV",
-          "total": 17385,
-          "pct": 10.6
+          "total": 37502,
+          "pct": 10.4
         },
         {
           "fuel": "Hybrid",
-          "total": 60234,
-          "pct": 36.7
+          "total": 124298,
+          "pct": 34.3
         },
         {
           "fuel": "Petrol",
-          "total": 40841,
-          "pct": 24.9
+          "total": 96738,
+          "pct": 26.7
         },
         {
           "fuel": "Diesel",
-          "total": 11870,
-          "pct": 7.2
+          "total": 28207,
+          "pct": 7.8
         },
         {
           "fuel": "Other",
-          "total": 11,
+          "total": 29,
           "pct": 0.0
         }
       ],
-      "period": "May 2024 – Apr 2026"
+      "period": "Sep 2023 – Apr 2026"
     },
     "body": {
       "has": false,
