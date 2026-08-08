@@ -1,11 +1,11 @@
-name: Update registration data
+name: Daily data update + notify
 
 on:
-  # Monthly, on the 8th at 06:00 UTC — KBA publishes the previous month's
-  # FZ 10 workbook within the first days of each month, so this leaves margin.
-  # RDW (Netherlands) open data is updated continuously; the same run refreshes it.
+  # Daily at 06:00 UTC. Sources publish on their own cadence (KBA monthly, RDW
+  # continuously, DfT quarterly …); this checks every day and only emails when a
+  # country actually advances to a new month/quarter.
   schedule:
-    - cron: "0 6 8 * *"
+    - cron: "0 6 * * *"
   # Manual runs: use a large "months" value (e.g. 36) for the initial backfill.
   workflow_dispatch:
     inputs:
@@ -36,6 +36,9 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Snapshot committed latest periods (before download)
+        run: python scripts/check_updates.py --write /tmp/before-periods.json
 
       - name: Download latest KBA workbooks
         # Scheduled runs fetch the trailing 3 months (skipping ones already on
@@ -85,16 +88,47 @@ jobs:
       # server-side aggregation, so it can't yield a comparable new-registration
       # series. scripts/download_poland.py is kept for reference only.
 
-      - name: Parse workbooks and rebuild site
+      - name: Parse raw period data
+        # Rebuilds the German per-model CSV + body segments from the workbooks so
+        # the update check below sees Germany's true latest month.
         run: |
           python scripts/parse_germany.py
           python scripts/parse_segments.py
+
+      - name: Detect per-country updates
+        id: detect
+        run: python scripts/check_updates.py --compare /tmp/before-periods.json
+
+      - name: Rebuild site
+        run: |
           python scripts/parse_suppliers.py
           python scripts/parse_suppliers_geo.py
           python scripts/build_supplier_pages.py
           python scripts/build_countries.py
           python scripts/build_q2_report.py
           python scripts/build_site.py
+
+      - name: Email notification (only when a country advanced)
+        if: steps.detect.outputs.updated == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: bowardzhang@gmail.com
+          password: ${{ secrets.GMAIL_PASSWORD }}
+          from: VRS Watch <bowardzhang@gmail.com>
+          to: bowardzhang@gmail.com
+          subject: "VRS: ${{ steps.detect.outputs.count }} country data update(s)"
+          body: |
+            New registration data has been published for:
+
+            ${{ steps.detect.outputs.summary }}
+
+            The VRS site has been rebuilt with the new data.
+            Overview: https://bowardzhang.github.io/VRS/
+
+            — automated daily by the update-data workflow
 
       - name: Commit updated data and site
         run: |
@@ -104,6 +138,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "chore(data): refresh KBA registration data and site"
+            git commit -m "chore(data): daily registration data refresh"
             git push
           fi
