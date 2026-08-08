@@ -1,0 +1,42 @@
+name: Email data status report
+
+# On-demand: emails the current per-country data status (coverage window, latest
+# period, cars in the latest period, cumulative total) to bowardzhang@gmail.com.
+# Same table template the daily update-notify email uses. Trigger from the
+# Actions tab (Run workflow) or via the API.
+
+on:
+  workflow_dispatch:
+    inputs:
+      note:
+        description: "Optional note shown at the top of the email"
+        required: false
+        default: "Current VRS data status."
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build status report
+        id: report
+        run: python scripts/check_updates.py --report --note "${{ github.event.inputs.note }}"
+
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: bowardzhang@gmail.com
+          password: ${{ secrets.GMAIL_PASSWORD }}
+          from: VRS Watch <bowardzhang@gmail.com>
+          to: bowardzhang@gmail.com
+          subject: "VRS data status report"
+          html_body: ${{ steps.report.outputs.report_html }}
+          body: ${{ steps.report.outputs.report_text }}

@@ -120,15 +120,10 @@ jobs:
           from: VRS Watch <bowardzhang@gmail.com>
           to: bowardzhang@gmail.com
           subject: "VRS: ${{ steps.detect.outputs.count }} country data update(s)"
-          body: |
-            New registration data has been published for:
-
-            ${{ steps.detect.outputs.summary }}
-
-            The VRS site has been rebuilt with the new data.
-            Overview: https://bowardzhang.github.io/VRS/
-
-            — automated daily by the update-data workflow
+          # Same per-country table template as the on-demand report; the detect
+          # step bakes the "new data published for …" note into report_html.
+          html_body: ${{ steps.detect.outputs.report_html }}
+          body: ${{ steps.detect.outputs.report_text }}
 
       - name: Commit updated data and site
         run: |
