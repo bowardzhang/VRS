@@ -33,14 +33,23 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "Europe"
 OUT_CSV = OUT_DIR / "acea_market.csv"
 
-LISTING = ("https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/"
-           "PASSENGER-CARS/Year-{year}")
 BASE = "https://www.pzpm.org.pl"
+ROOT = "/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) VRS/1.0"
 
-MONTHS = {m: i for i, m in enumerate(
-    ["January", "February", "March", "April", "May", "June", "July",
-     "August", "September", "October", "November", "December"], start=1)}
+_FULL = ["january", "february", "march", "april", "may", "june", "july",
+         "august", "september", "october", "november", "december"]
+# The filenames mix full and 3-letter month names (e.g. "Jan_2024", "May_2024").
+MONTHS = {}
+for _i, _name in enumerate(_FULL, start=1):
+    MONTHS[_name] = _i
+    MONTHS[_name[:3]] = _i
+MONTHS["sept"] = 9
+
+# Year-archive slugs are irregular on the site (Year-20222, Year-20252, …); we
+# both discover them from the pages and probe a fixed set.
+_YEAR_SLUGS = ["Year-2020", "Year-2021", "Year-2022", "Year-20222", "Year-2023",
+               "Year-2024", "Year-20242", "Year-2025", "Year-20252", "Year-2026"]
 
 # Aggregate rows in the sheet that are not individual countries.
 AGGREGATES = {"EUROPEAN UNION", "EFTA", "EU + EFTA + UK", "EU15", "EU12",
@@ -69,25 +78,63 @@ def _get(url: str, retries: int = 4) -> bytes:
     return b""
 
 
-def list_month_files(year: int) -> dict[tuple[int, int], str]:
-    """{(year, month): absolute xlsx url} for a PZPM year listing page."""
+# Known historical workbook URLs (from a one-time crawl of the site's per-month
+# article pages, whose numeric download IDs aren't otherwise discoverable). The
+# light scrape below adds new months as PZPM posts them; this seed carries the
+# back-history. (year, month) -> "download/<id>/<id>" path.
+SEED_FILES = {
+    (2023, 9): "/en/content/download/17654/224028",
+    (2023, 10): "/en/content/download/17824/225570",
+    (2024, 1): "/en/content/download/20410/250652",
+    (2024, 3): "/en/content/download/20401/250574",
+    (2024, 4): "/en/content/download/22059/265901",
+    (2024, 5): "/en/content/download/19038/237712",
+    (2024, 9): "/en/content/download/20431/250834",
+    (2025, 3): "/en/content/download/22047/265797",
+    (2025, 5): "/en/content/download/22056/265875",
+    (2025, 9): "/en/content/download/22074/266031",
+    (2025, 10): "/en/content/download/22077/266057",
+    (2026, 1): "/en/content/download/18379/231085",
+    (2026, 2): "/en/content/download/18361/230869",
+    (2026, 3): "/en/content/download/18358/230833",
+    (2026, 4): "/en/content/download/18382/231121",
+}
+
+
+def _seed_url(path: str, y: int, m: int) -> str:
+    return f"{BASE}{path}/file/Press_release_car_registrations_{_FULL[m-1].title()}_{y}.xlsx"
+
+
+def _get_text(path: str) -> str:
     try:
-        html = _get(LISTING.format(year=year)).decode("utf-8", "replace")
+        return _get(path if path.startswith("http") else BASE + path).decode("utf-8", "replace")
     except Exception as exc:  # noqa: BLE001
-        print(f"  [warn] year {year} listing failed: {exc}", file=sys.stderr)
-        return {}
-    out: dict[tuple[int, int], str] = {}
-    for href in re.findall(r'href="([^"]*Press_release_car_registrations[^"]*\.xlsx)"', html):
-        m = re.search(r"registrations_([A-Za-z]+)_(\d{4})\.xlsx", href)
-        if not m:
-            continue
-        mon = MONTHS.get(m.group(1))
-        yr = int(m.group(2))
-        if not mon:
-            continue
-        url = href if href.startswith("http") else BASE + href
-        out[(yr, mon)] = url
-    return out
+        print(f"  [warn] fetch {path} failed: {exc}", file=sys.stderr)
+        return ""
+
+
+def _scan_xlsx(html: str, into: dict) -> None:
+    for path, mon, yr in re.findall(
+            r'(/en/content/download/\d+/\d+/file/Press_release_car_registrations_([A-Za-z]+)_(\d{4})\.xlsx)', html):
+        i = MONTHS.get(mon.lower())
+        if i:
+            into[(int(yr), i)] = BASE + path
+
+
+def discover_month_files() -> dict[tuple[int, int], str]:
+    """Seed the known historical files, then a light scrape of the root + recent
+    year pages to catch newly posted months (keeps the daily run fast)."""
+    found: dict[tuple[int, int], str] = {
+        (y, m): _seed_url(p, y, m) for (y, m), p in SEED_FILES.items()}
+    root_html = _get_text(ROOT)
+    _scan_xlsx(root_html, found)
+    recent = {f"{ROOT}/Year-{y}" for y in (2025, 2026)}
+    for yl in re.findall(r'"(' + re.escape(ROOT) + r'/Year-[0-9]+)"', root_html):
+        recent.add(yl)
+    for yl in sorted(recent):
+        _scan_xlsx(_get_text(yl), found)
+        time.sleep(0.1)
+    return found
 
 
 def parse_workbook(blob: bytes, file_year: int, month: int) -> list[tuple]:
@@ -138,21 +185,20 @@ FIELDS = ["year", "month", "country", "total", "bev", "phev", "hev", "other", "p
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--years", default="2024,2025,2026",
-                    help="comma-separated PZPM listing years to scan")
-    args = ap.parse_args()
-    years = [int(y) for y in args.years.split(",")]
+    ap.parse_args()
 
     # (year, month, country) -> row dict, and whether it came from a current-year
     # reading (which takes precedence over a year-earlier reading of the same key).
     existing = {k: (v, True) for k, v in load_existing().items()}
+    known_file_months = {(k[0], k[1]) for k in existing}
 
-    available: dict[tuple[int, int], str] = {}
-    for y in years:
-        available.update(list_month_files(y))
-    print(f"[acea] listing found {len(available)} monthly file(s) to fetch")
+    available = discover_month_files()
+    # Re-fetch the two most recent file-months (revisions) plus any not yet parsed.
+    refresh = set(sorted(available)[-2:])
+    new = sorted(k for k in available if k not in known_file_months or k in refresh)
+    print(f"[acea] {len(available)} file(s) available; {len(new)} to fetch")
 
-    for (fy, fm) in sorted(available):
+    for (fy, fm) in new:
         try:
             recs = parse_workbook(_get(available[(fy, fm)]), fy, fm)
         except Exception as exc:  # noqa: BLE001
