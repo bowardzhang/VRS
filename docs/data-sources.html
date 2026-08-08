@@ -208,9 +208,10 @@
   </section>
 
   <section class="card">
-    <h2>Countries without free open data</h2>
-    <p class="note">Markets where new-car registration detail exists but is not published as a free,
-      machine-readable dataset, so they are not (yet) in the dashboard.</p>
+    <h2>Countries without free <em>brand-level</em> open data</h2>
+    <p class="note">Markets where <b>brand/model</b> detail isn't published as a free, machine-readable dataset.
+      They are still shown on the dashboard at <b>country total + powertrain</b> level via the ACEA workbook
+      (second tier, below) — only the make/model breakdown is missing.</p>
     <div class="tbl-scroll">
       <table>
         <thead>
@@ -247,8 +248,10 @@
   </section>
 
   <section class="card">
-    <h2>European aggregate</h2>
-    <p class="note">A pan-European headline total, shown on the overview alongside the national feeds.</p>
+    <h2>European coverage (ACEA)</h2>
+    <p class="note">Two pan-European sources round out the eight national feeds above. The national feeds are the
+      first tier (with brand/model detail); ACEA fills every other European market as a second tier
+      (country total + powertrain, no brand/model).</p>
     <div class="tbl-scroll">
       <table>
         <thead>
@@ -256,22 +259,29 @@
         </thead>
         <tbody>
           <tr>
-            <td class="ctry"><span class="fl">🇪🇺</span>Euro area</td>
+            <td class="ctry"><span class="fl">🇪🇺</span>Euro area total</td>
             <td><a href="https://data.ecb.europa.eu/data/datasets/CAR" target="_blank" rel="noopener">ECB Data Portal, dataset CAR</a>
-              — new passenger-car registrations, euro-area aggregate
-              <span class="pub">ACEA figures, redistributed by the ECB</span></td>
+              — euro-area headline total <span class="pub">ACEA figures, redistributed by the ECB</span></td>
             <td>SDMX / CSV API</td>
-            <td class="cad">Monthly<span class="cell-sub">aggregate only</span></td>
-            <td>Euro-area total only — no per-country, powertrain or manufacturer split.</td>
+            <td class="cad">Monthly<span class="cell-sub">aggregate</span></td>
+            <td>Euro-area total only, shown on the overview.</td>
+          </tr>
+          <tr>
+            <td class="ctry"><span class="fl">🇪🇺</span>All markets<br>(2nd tier)</td>
+            <td><a href="https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS" target="_blank" rel="noopener">ACEA monthly workbook, via PZPM</a>
+              — every European market (EU27 + EFTA + UK), total + powertrain
+              <span class="pub">© ACEA (Polish assoc. PZPM mirror)</span></td>
+            <td>.xlsx download</td>
+            <td class="cad">Monthly<span class="cell-sub">total + powertrain</span></td>
+            <td>Fills the ~23 markets without a national feed (Italy, Poland, Belgium, Norway, …). No brand/model.</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="note" style="margin-top:12px">The richer <a href="https://www.acea.auto/" target="_blank" rel="noopener">ACEA</a>
-      press releases do break registrations down by market, power source and manufacturer group, but that detail is
-      published only in copyright-restricted PDFs ("reproduction not permitted without prior written consent"), so it
-      is <b>not</b> reproduced here. The ECB redistributes the euro-area aggregate under open reuse terms, which is what
-      the overview shows, with attribution to ACEA.</p>
+    <p class="note" style="margin-top:12px">ACEA's richer PDF press releases also break registrations down by manufacturer
+      group, but that is published only under a "reproduction not permitted without prior written consent" notice, so
+      it is <b>not</b> reproduced here. The euro-area aggregate (ECB) and the per-market workbook (PZPM) are shown with
+      attribution to <a href="https://www.acea.auto/" target="_blank" rel="noopener">ACEA</a> as the source.</p>
   </section>
 
   <div class="callout">
