@@ -1,0 +1,108 @@
+name: Watch UK quarterly registrations
+
+# Checks the UK DfT source once a day. The moment DfT publishes a new quarter
+# (e.g. 2026 Q2), it ingests the data, rebuilds the site so the UK appears in
+# the Q2 report + country pages, emails bowardzhang@gmail.com, and opens a
+# notification issue. Once the new quarter is committed the check stops firing,
+# so you are notified exactly once per quarter.
+
+on:
+  schedule:
+    - cron: "0 7 * * *"        # daily, 07:00 UTC
+  workflow_dispatch:            # allow manual runs / testing
+
+permissions:
+  contents: write               # commit the refreshed data + site
+  issues: write                 # open the notification issue
+
+concurrency:
+  group: uk-q2-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check the UK source for a new quarter
+        id: check
+        run: python scripts/check_uk_quarter.py
+
+      - name: Ingest new quarter and rebuild site
+        if: steps.check.outputs.new_quarter == 'true'
+        run: |
+          pip install -r requirements.txt
+          python scripts/download_uk.py
+          python scripts/build_countries.py
+          python scripts/build_q2_report.py
+          python scripts/build_site.py
+
+      - name: Email notification
+        if: steps.check.outputs.new_quarter == 'true'
+        continue-on-error: true   # best-effort: needs MAIL_USERNAME/MAIL_PASSWORD secrets
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: VRS Watch <${{ secrets.MAIL_USERNAME }}>
+          to: bowardzhang@gmail.com
+          subject: "UK ${{ steps.check.outputs.quarter }} car registrations are now published"
+          body: |
+            The UK Department for Transport has published new-car registrations for ${{ steps.check.outputs.quarter }}
+            (previously the latest available was ${{ steps.check.outputs.latest_committed }}).
+
+            The VRS site has been rebuilt so the United Kingdom now appears in the
+            Q2 European market analysis (brands, models, origin, powertrain and
+            supplier installation rate) and in the country pages.
+
+            Q2 report: https://bowardzhang.github.io/VRS/analysis-q2-2026.html
+
+            — automated by the uk-q2-watch GitHub Action
+
+      - name: Open notification issue (no-setup fallback)
+        if: steps.check.outputs.new_quarter == 'true'
+        uses: actions/github-script@v7
+        env:
+          UK_QUARTER: ${{ steps.check.outputs.quarter }}
+          UK_PREV: ${{ steps.check.outputs.latest_committed }}
+        with:
+          script: |
+            const q = process.env.UK_QUARTER;
+            const prev = process.env.UK_PREV;
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `UK ${q} car registrations are now published`,
+              body: [
+                `The UK DfT source now exposes **${q}** (previously ${prev}).`,
+                '',
+                'The site has been rebuilt so the United Kingdom now appears in the',
+                '[Q2 European market analysis](https://bowardzhang.github.io/VRS/analysis-q2-2026.html)',
+                'and the country pages.',
+                '',
+                '_Automated by the `uk-q2-watch` workflow._'
+              ].join('\n')
+            });
+
+      - name: Commit refreshed data and site
+        if: steps.check.outputs.new_quarter == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data docs
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore(data): ingest UK ${{ steps.check.outputs.quarter }} registrations"
+            git push
+          fi
