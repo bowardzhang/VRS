@@ -82,6 +82,12 @@ jobs:
           python scripts/download_sweden.py
           python scripts/download_austria.py
 
+      - name: Download euro-area total (ACEA via ECB Data Portal)
+        # ECB dataset CAR, euro-area aggregate of new passenger-car registrations
+        # (ACEA figures, reusable with attribution). Aggregate only — no
+        # per-country / powertrain / manufacturer detail.
+        run: python scripts/download_ecb_eu.py
+
       # Poland (CEPIK) is intentionally not wired in: the open register exposes
       # every first-in-country registration — new sales *and* used imports,
       # which dominate the Polish market — with no clean new-only filter or
@@ -106,6 +112,7 @@ jobs:
           python scripts/build_supplier_pages.py
           python scripts/build_countries.py
           python scripts/build_q2_report.py
+          python scripts/build_europe.py
           python scripts/build_site.py
 
       - name: Email notification (only when a country advanced)

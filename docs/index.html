@@ -276,6 +276,7 @@
     <h2>Europe overview <span class="h2hint" id="euCountriesLabel"></span></h2>
     <p class="note" id="euNote"></p>
     <div class="kpis" id="euKpis" style="margin:6px 0 20px"></div>
+    <div id="eaHeadline"></div>
     <h3>Registration trend by country <span style="font-weight:500;color:var(--muted)">— quarterly, each country over its own history</span></h3>
     <div class="eu-sm" id="euTrends"></div>
     <div class="eu-grid">
@@ -23488,12 +23489,219 @@
     "ytd_year": 2026
   }
 ]</script>
+<script id="europe-data" type="application/json">{
+  "label": "Euro area (21)",
+  "source": "ACEA, via ECB Data Portal (dataset CAR)",
+  "source_url": "https://data.ecb.europa.eu/data/datasets/CAR",
+  "note": "Official euro-area total of new passenger-car registrations. ACEA figures redistributed by the ECB; a euro-area aggregate only — no per-country, powertrain or manufacturer detail.",
+  "latest_period": "Jun 2026",
+  "latest": 979505,
+  "yoy": 12.7,
+  "ytd": 5070514,
+  "ytd_year": 2026,
+  "ytd_yoy": 5.6,
+  "series": [
+    {
+      "label": "Jul 2022",
+      "value": 641529
+    },
+    {
+      "label": "Aug 2022",
+      "value": 544050
+    },
+    {
+      "label": "Sep 2022",
+      "value": 680732
+    },
+    {
+      "label": "Oct 2022",
+      "value": 645444
+    },
+    {
+      "label": "Nov 2022",
+      "value": 718506
+    },
+    {
+      "label": "Dec 2022",
+      "value": 773254
+    },
+    {
+      "label": "Jan 2023",
+      "value": 661807
+    },
+    {
+      "label": "Feb 2023",
+      "value": 694431
+    },
+    {
+      "label": "Mar 2023",
+      "value": 944520
+    },
+    {
+      "label": "Apr 2023",
+      "value": 697614
+    },
+    {
+      "label": "May 2023",
+      "value": 814733
+    },
+    {
+      "label": "Jun 2023",
+      "value": 912569
+    },
+    {
+      "label": "Jul 2023",
+      "value": 747995
+    },
+    {
+      "label": "Aug 2023",
+      "value": 673062
+    },
+    {
+      "label": "Sep 2023",
+      "value": 742630
+    },
+    {
+      "label": "Oct 2023",
+      "value": 737744
+    },
+    {
+      "label": "Nov 2023",
+      "value": 764022
+    },
+    {
+      "label": "Dec 2023",
+      "value": 740951
+    },
+    {
+      "label": "Jan 2024",
+      "value": 742694
+    },
+    {
+      "label": "Feb 2024",
+      "value": 766812
+    },
+    {
+      "label": "Mar 2024",
+      "value": 899375
+    },
+    {
+      "label": "Apr 2024",
+      "value": 788203
+    },
+    {
+      "label": "May 2024",
+      "value": 782707
+    },
+    {
+      "label": "Jun 2024",
+      "value": 938679
+    },
+    {
+      "label": "Jul 2024",
+      "value": 740951
+    },
+    {
+      "label": "Aug 2024",
+      "value": 538659
+    },
+    {
+      "label": "Sep 2024",
+      "value": 688394
+    },
+    {
+      "label": "Oct 2024",
+      "value": 735452
+    },
+    {
+      "label": "Nov 2024",
+      "value": 737780
+    },
+    {
+      "label": "Dec 2024",
+      "value": 766456
+    },
+    {
+      "label": "Jan 2025",
+      "value": 716441
+    },
+    {
+      "label": "Feb 2025",
+      "value": 736898
+    },
+    {
+      "label": "Mar 2025",
+      "value": 890840
+    },
+    {
+      "label": "Apr 2025",
+      "value": 796286
+    },
+    {
+      "label": "May 2025",
+      "value": 794061
+    },
+    {
+      "label": "Jun 2025",
+      "value": 869260
+    },
+    {
+      "label": "Jul 2025",
+      "value": 784347
+    },
+    {
+      "label": "Aug 2025",
+      "value": 560109
+    },
+    {
+      "label": "Sep 2025",
+      "value": 751155
+    },
+    {
+      "label": "Oct 2025",
+      "value": 776174
+    },
+    {
+      "label": "Nov 2025",
+      "value": 755110
+    },
+    {
+      "label": "Dec 2025",
+      "value": 797729
+    },
+    {
+      "label": "Jan 2026",
+      "value": 695685
+    },
+    {
+      "label": "Feb 2026",
+      "value": 747895
+    },
+    {
+      "label": "Mar 2026",
+      "value": 996552
+    },
+    {
+      "label": "Apr 2026",
+      "value": 834563
+    },
+    {
+      "label": "May 2026",
+      "value": 816314
+    },
+    {
+      "label": "Jun 2026",
+      "value": 979505
+    }
+  ]
+}</script>
 <script>
 (function () {
   "use strict";
-  var COUNTRIES = [], LOGOS = {};
+  var COUNTRIES = [], LOGOS = {}, EUROPE = {};
   try { COUNTRIES = JSON.parse(document.getElementById("countries-data").textContent || "[]"); } catch (e) {}
   try { LOGOS = JSON.parse(document.getElementById("brand-logos").textContent || "{}"); } catch (e) {}
+  try { EUROPE = JSON.parse(document.getElementById("europe-data").textContent || "{}"); } catch (e) {}
   var $ = function (id) { return document.getElementById(id); };
   var fmt = function (n) { return (n == null ? "–" : Math.round(n).toLocaleString("en-US")); };
   var css = function (v) { return getComputedStyle(document.body).getPropertyValue(v).trim(); };
@@ -23605,6 +23813,44 @@
       '<polyline points="' + pts.join(" ") + '" fill="none" stroke="' + color + '" stroke-width="1.6"/>' +
       '<circle cx="' + xAt(n - 1) + '" cy="' + yAt(last) + '" r="2.6" fill="' + color + '"/>' +
       '</svg>';
+  }
+
+  // ----- euro-area official headline (ACEA via ECB) -----
+  function yoyBadge(v) {
+    if (v == null) return "";
+    var up = v >= 0, c = up ? "var(--good)" : "var(--s2)";
+    return '<span style="color:' + c + ';font-weight:600">' + (up ? "▲" : "▼") + Math.abs(v).toFixed(1) + '%</span>';
+  }
+  function eaSparkline(series) {
+    var vals = series.map(function (s) { return s.value; });
+    var n = vals.length; if (!n) return "";
+    var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+    var W = 320, H = 46;
+    var xAt = function (i) { return n <= 1 ? 0 : (W * i) / (n - 1); };
+    var yAt = function (v) { return max === min ? H / 2 : H - 3 - (H - 6) * (v - min) / (max - min); };
+    var pts = vals.map(function (v, i) { return xAt(i) + "," + yAt(v); });
+    return '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" style="width:100%;height:46px;display:block">' +
+      '<path d="M0,' + H + ' L' + pts.join(" L") + ' L' + W + ',' + H + ' Z" fill="var(--s1)" fill-opacity="0.10"/>' +
+      '<polyline points="' + pts.join(" ") + '" fill="none" stroke="var(--s1)" stroke-width="1.6"/>' +
+      '<circle cx="' + xAt(n - 1) + '" cy="' + yAt(vals[n - 1]) + '" r="2.6" fill="var(--s1)"/></svg>';
+  }
+  function renderEuroArea() {
+    var E = EUROPE, box = $("eaHeadline");
+    if (!box || !E || !E.latest) return;
+    box.innerHTML =
+      '<div class="card" style="background:var(--page);border-left:3px solid var(--s1);margin:0 0 20px;padding:16px 18px">' +
+        '<div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between">' +
+          '<div style="min-width:200px">' +
+            '<div style="font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em">🇪🇺 ' + E.label + ' — official total</div>' +
+            '<div style="font-size:26px;font-weight:650;letter-spacing:-.01em">' + fmt(E.latest) +
+              ' <span style="font-size:13px;font-weight:500;color:var(--muted)">' + E.latest_period + '</span> ' + yoyBadge(E.yoy) + '</div>' +
+            '<div style="font-size:12.5px;color:var(--ink-2);margin-top:2px">' + E.ytd_year + ' YTD ' + fmt(E.ytd) + ' &nbsp;' + yoyBadge(E.ytd_yoy) + '</div>' +
+          '</div>' +
+          '<div style="flex:1;min-width:220px;max-width:360px">' + eaSparkline(E.series || []) + '</div>' +
+        '</div>' +
+        '<div style="font-size:11.5px;color:var(--muted);margin-top:10px">' + E.note +
+          ' Source: <a href="' + E.source_url + '" style="color:var(--s1)">' + E.source + '</a>.</div>' +
+      '</div>';
   }
   function renderTrends(cs) {
     $("euTrends").innerHTML = cs.map(function (c) {
@@ -23895,6 +24141,7 @@
       $("euNote").textContent = ""; $("euKpis").innerHTML = ""; $("euTrends").innerHTML = "";
       $("euBrands").innerHTML = ""; $("euOrigin").innerHTML = ""; $("euSrc").innerHTML = ""; $("euBrandsWin").textContent = "";
       $("countryDetails").innerHTML = "";
+      renderEuroArea();
       return;
     }
 
@@ -23929,6 +24176,7 @@
         '</p><div class="value">' + k.value + '</div><div class="foot">' + k.foot + '</div></div>';
     }).join("");
 
+    renderEuroArea();
     renderTrends(cs);
     renderCountryDetails(cs);
     var win = brandCs.length ? brandCs[0].brand_window_label : "";

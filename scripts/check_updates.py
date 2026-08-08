@@ -34,6 +34,7 @@ SOURCES = {
     "Austria":       ("🇦🇹", "data/Austria/at_monthly_brands.csv", "month"),
     "France":        ("🇫🇷", "data/France/insee_monthly_total.csv", "month"),
     "UnitedKingdom": ("🇬🇧", "data/UnitedKingdom/uk_quarterly_brands.csv", "quarter"),
+    "Euro area":     ("🇪🇺", "data/Europe/ecb_ea_total.csv", "month"),
 }
 
 
