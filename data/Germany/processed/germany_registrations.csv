@@ -85386,3 +85386,2870 @@ year,month,brand,model,row_type,drivetrain,count_month,count_ytd,share_pct
 2026,6,NEUZULASSUNGEN INSGESAMT,,aggregate,bev,84057,368006,100
 2026,6,NEUZULASSUNGEN INSGESAMT,,aggregate,awd,71512,360885,100
 2026,6,NEUZULASSUNGEN INSGESAMT,,aggregate,cabriolet,3557,20129,100
+2026,7,ALFA ROMEO,GIULIA,model,total,31,211,7.4
+2026,7,ALFA ROMEO,GIULIA,model,diesel,5,22,9.1
+2026,7,ALFA ROMEO,GIULIA,model,awd,20,155,17.9
+2026,7,ALFA ROMEO,JUNIOR,model,total,205,1702,59.9
+2026,7,ALFA ROMEO,JUNIOR,model,hybrid_incl_plugin,155,1401,79.1
+2026,7,ALFA ROMEO,JUNIOR,model,petrol_hybrid_incl_plugin,155,1401,79.1
+2026,7,ALFA ROMEO,JUNIOR,model,hybrid_excl_plugin,155,1401,80.2
+2026,7,ALFA ROMEO,JUNIOR,model,petrol_hybrid_excl_plugin,155,1401,80.2
+2026,7,ALFA ROMEO,JUNIOR,model,bev,50,301,100
+2026,7,ALFA ROMEO,JUNIOR,model,awd,9,177,20.4
+2026,7,ALFA ROMEO,STELVIO,model,total,50,510,18
+2026,7,ALFA ROMEO,STELVIO,model,diesel,14,174,71.9
+2026,7,ALFA ROMEO,STELVIO,model,awd,50,510,58.8
+2026,7,ALFA ROMEO,TONALE,model,total,43,417,14.7
+2026,7,ALFA ROMEO,TONALE,model,diesel,11,46,19
+2026,7,ALFA ROMEO,TONALE,model,hybrid_incl_plugin,32,371,20.9
+2026,7,ALFA ROMEO,TONALE,model,petrol_hybrid_incl_plugin,32,371,20.9
+2026,7,ALFA ROMEO,TONALE,model,hybrid_excl_plugin,29,346,19.8
+2026,7,ALFA ROMEO,TONALE,model,petrol_hybrid_excl_plugin,29,346,19.8
+2026,7,ALFA ROMEO,TONALE,model,plugin_hybrid,3,25,100
+2026,7,ALFA ROMEO,TONALE,model,petrol_plugin_hybrid,3,25,100
+2026,7,ALFA ROMEO,TONALE,model,awd,3,25,2.9
+2026,7,ALFA ROMEO,,brand_total,total,329,2840,0.2
+2026,7,ALFA ROMEO,,brand_total,diesel,30,242,0.1
+2026,7,ALFA ROMEO,,brand_total,hybrid_incl_plugin,187,1772,0.3
+2026,7,ALFA ROMEO,,brand_total,petrol_hybrid_incl_plugin,187,1772,0.3
+2026,7,ALFA ROMEO,,brand_total,hybrid_excl_plugin,184,1747,0.3
+2026,7,ALFA ROMEO,,brand_total,petrol_hybrid_excl_plugin,184,1747,0.4
+2026,7,ALFA ROMEO,,brand_total,plugin_hybrid,3,25,0
+2026,7,ALFA ROMEO,,brand_total,petrol_plugin_hybrid,3,25,0
+2026,7,ALFA ROMEO,,brand_total,bev,50,301,0.1
+2026,7,ALFA ROMEO,,brand_total,awd,82,867,0.2
+2026,7,ALPINE,A110,model,total,8,93,9.9
+2026,7,ALPINE,A290,model,total,96,665,70.7
+2026,7,ALPINE,A290,model,bev,96,665,81.9
+2026,7,ALPINE,A390,model,total,32,147,15.6
+2026,7,ALPINE,A390,model,bev,32,147,18.1
+2026,7,ALPINE,A390,model,awd,32,147,100
+2026,7,ALPINE,SONSTIGE,model,total,1,35,3.7
+2026,7,ALPINE,,brand_total,total,137,940,0.1
+2026,7,ALPINE,,brand_total,bev,128,812,0.2
+2026,7,ALPINE,,brand_total,awd,32,147,0
+2026,7,ASTON MARTIN,SONSTIGE,model,total,39,361,100
+2026,7,ASTON MARTIN,SONSTIGE,model,hybrid_incl_plugin,,16,100
+2026,7,ASTON MARTIN,SONSTIGE,model,petrol_hybrid_incl_plugin,,16,100
+2026,7,ASTON MARTIN,SONSTIGE,model,plugin_hybrid,,16,100
+2026,7,ASTON MARTIN,SONSTIGE,model,petrol_plugin_hybrid,,16,100
+2026,7,ASTON MARTIN,SONSTIGE,model,awd,10,109,100
+2026,7,ASTON MARTIN,SONSTIGE,model,cabriolet,11,113,100
+2026,7,ASTON MARTIN,,brand_total,total,39,361,0
+2026,7,ASTON MARTIN,,brand_total,hybrid_incl_plugin,,16,0
+2026,7,ASTON MARTIN,,brand_total,petrol_hybrid_incl_plugin,,16,0
+2026,7,ASTON MARTIN,,brand_total,plugin_hybrid,,16,0
+2026,7,ASTON MARTIN,,brand_total,petrol_plugin_hybrid,,16,0
+2026,7,ASTON MARTIN,,brand_total,awd,10,109,0
+2026,7,ASTON MARTIN,,brand_total,cabriolet,11,113,0.5
+2026,7,AUDI,A1,model,total,148,6350,5.1
+2026,7,AUDI,A3,model,total,3243,17068,13.8
+2026,7,AUDI,A3,model,diesel,330,2334,33.6
+2026,7,AUDI,A3,model,hybrid_incl_plugin,2229,9535,16.1
+2026,7,AUDI,A3,model,petrol_hybrid_incl_plugin,2229,9535,23.1
+2026,7,AUDI,A3,model,hybrid_excl_plugin,1542,6032,17.9
+2026,7,AUDI,A3,model,petrol_hybrid_excl_plugin,1542,6032,38.2
+2026,7,AUDI,A3,model,plugin_hybrid,687,3503,13.8
+2026,7,AUDI,A3,model,petrol_plugin_hybrid,687,3503,13.8
+2026,7,AUDI,A3,model,awd,553,4332,6.8
+2026,7,AUDI,A4,model,total,,8,0
+2026,7,AUDI,A4,model,awd,,8,0
+2026,7,AUDI,A5,model,total,2531,18986,15.3
+2026,7,AUDI,A5,model,diesel,5,26,0.4
+2026,7,AUDI,A5,model,hybrid_incl_plugin,1920,14426,24.4
+2026,7,AUDI,A5,model,petrol_hybrid_incl_plugin,1412,8595,20.8
+2026,7,AUDI,A5,model,diesel_hybrid_incl_plugin,508,5831,32.4
+2026,7,AUDI,A5,model,hybrid_excl_plugin,700,7299,21.6
+2026,7,AUDI,A5,model,petrol_hybrid_excl_plugin,192,1468,9.3
+2026,7,AUDI,A5,model,diesel_hybrid_excl_plugin,508,5831,32.4
+2026,7,AUDI,A5,model,plugin_hybrid,1220,7127,28
+2026,7,AUDI,A5,model,petrol_plugin_hybrid,1220,7127,28
+2026,7,AUDI,A5,model,awd,1808,12825,20.2
+2026,7,AUDI,A5,model,cabriolet,,1,100
+2026,7,AUDI,A6,model,total,3776,24765,20
+2026,7,AUDI,A6,model,diesel,8,51,0.7
+2026,7,AUDI,A6,model,hybrid_incl_plugin,1726,11461,19.4
+2026,7,AUDI,A6,model,petrol_hybrid_incl_plugin,1080,6187,15
+2026,7,AUDI,A6,model,diesel_hybrid_incl_plugin,646,5274,29.3
+2026,7,AUDI,A6,model,hybrid_excl_plugin,794,6702,19.8
+2026,7,AUDI,A6,model,petrol_hybrid_excl_plugin,148,1428,9
+2026,7,AUDI,A6,model,diesel_hybrid_excl_plugin,646,5274,29.3
+2026,7,AUDI,A6,model,plugin_hybrid,932,4759,18.7
+2026,7,AUDI,A6,model,petrol_plugin_hybrid,932,4759,18.7
+2026,7,AUDI,A6,model,bev,1898,11812,39.5
+2026,7,AUDI,A6,model,awd,2225,14695,23.1
+2026,7,AUDI,A7,model,total,,18,0
+2026,7,AUDI,A7,model,hybrid_incl_plugin,,18,0
+2026,7,AUDI,A7,model,petrol_hybrid_incl_plugin,,15,0
+2026,7,AUDI,A7,model,diesel_hybrid_incl_plugin,,3,0
+2026,7,AUDI,A7,model,hybrid_excl_plugin,,14,0
+2026,7,AUDI,A7,model,petrol_hybrid_excl_plugin,,11,0.1
+2026,7,AUDI,A7,model,diesel_hybrid_excl_plugin,,3,0
+2026,7,AUDI,A7,model,plugin_hybrid,,4,0
+2026,7,AUDI,A7,model,petrol_plugin_hybrid,,4,0
+2026,7,AUDI,A7,model,awd,,18,0
+2026,7,AUDI,A8,model,total,29,581,0.5
+2026,7,AUDI,A8,model,hybrid_incl_plugin,29,580,1
+2026,7,AUDI,A8,model,petrol_hybrid_incl_plugin,17,416,1
+2026,7,AUDI,A8,model,diesel_hybrid_incl_plugin,12,164,0.9
+2026,7,AUDI,A8,model,hybrid_excl_plugin,22,320,0.9
+2026,7,AUDI,A8,model,petrol_hybrid_excl_plugin,10,156,1
+2026,7,AUDI,A8,model,diesel_hybrid_excl_plugin,12,164,0.9
+2026,7,AUDI,A8,model,plugin_hybrid,7,260,1
+2026,7,AUDI,A8,model,petrol_plugin_hybrid,7,260,1
+2026,7,AUDI,A8,model,awd,29,581,0.9
+2026,7,AUDI,E-TRON GT,model,total,65,522,0.4
+2026,7,AUDI,E-TRON GT,model,bev,65,522,1.7
+2026,7,AUDI,E-TRON GT,model,awd,65,522,0.8
+2026,7,AUDI,Q2,model,total,165,8846,7.1
+2026,7,AUDI,Q2,model,diesel,21,2148,30.9
+2026,7,AUDI,Q2,model,awd,22,1695,2.7
+2026,7,AUDI,Q3,model,total,1450,10317,8.3
+2026,7,AUDI,Q3,model,diesel,409,2287,32.9
+2026,7,AUDI,Q3,model,hybrid_incl_plugin,740,5318,9
+2026,7,AUDI,Q3,model,petrol_hybrid_incl_plugin,740,5318,12.9
+2026,7,AUDI,Q3,model,hybrid_excl_plugin,272,1968,5.8
+2026,7,AUDI,Q3,model,petrol_hybrid_excl_plugin,272,1968,12.5
+2026,7,AUDI,Q3,model,plugin_hybrid,468,3350,13.2
+2026,7,AUDI,Q3,model,petrol_plugin_hybrid,468,3350,13.2
+2026,7,AUDI,Q3,model,awd,486,2559,4
+2026,7,AUDI,Q4,model,total,977,6917,5.6
+2026,7,AUDI,Q4,model,bev,977,6917,23.1
+2026,7,AUDI,Q4,model,awd,409,2674,4.2
+2026,7,AUDI,Q5,model,total,1896,11378,9.2
+2026,7,AUDI,Q5,model,diesel,9,35,0.5
+2026,7,AUDI,Q5,model,hybrid_incl_plugin,1862,11240,19
+2026,7,AUDI,Q5,model,petrol_hybrid_incl_plugin,1187,6971,16.9
+2026,7,AUDI,Q5,model,diesel_hybrid_incl_plugin,675,4269,23.8
+2026,7,AUDI,Q5,model,hybrid_excl_plugin,1242,7705,22.8
+2026,7,AUDI,Q5,model,petrol_hybrid_excl_plugin,567,3436,21.8
+2026,7,AUDI,Q5,model,diesel_hybrid_excl_plugin,675,4269,23.8
+2026,7,AUDI,Q5,model,plugin_hybrid,620,3535,13.9
+2026,7,AUDI,Q5,model,petrol_plugin_hybrid,620,3535,13.9
+2026,7,AUDI,Q5,model,awd,1739,10707,16.9
+2026,7,AUDI,Q6,model,total,2083,10586,8.5
+2026,7,AUDI,Q6,model,bev,2083,10586,35.4
+2026,7,AUDI,Q6,model,awd,1134,5486,8.6
+2026,7,AUDI,Q7,model,total,536,3202,2.6
+2026,7,AUDI,Q7,model,diesel,4,5,0.1
+2026,7,AUDI,Q7,model,hybrid_incl_plugin,500,2848,4.8
+2026,7,AUDI,Q7,model,petrol_hybrid_incl_plugin,54,1529,3.7
+2026,7,AUDI,Q7,model,diesel_hybrid_incl_plugin,446,1319,7.3
+2026,7,AUDI,Q7,model,hybrid_excl_plugin,449,1511,4.5
+2026,7,AUDI,Q7,model,petrol_hybrid_excl_plugin,3,192,1.2
+2026,7,AUDI,Q7,model,diesel_hybrid_excl_plugin,446,1319,7.3
+2026,7,AUDI,Q7,model,plugin_hybrid,51,1337,5.3
+2026,7,AUDI,Q7,model,petrol_plugin_hybrid,51,1337,5.3
+2026,7,AUDI,Q7,model,awd,536,3202,5
+2026,7,AUDI,Q8,model,total,503,4033,3.3
+2026,7,AUDI,Q8,model,hybrid_incl_plugin,473,3697,6.2
+2026,7,AUDI,Q8,model,petrol_hybrid_incl_plugin,338,2584,6.3
+2026,7,AUDI,Q8,model,diesel_hybrid_incl_plugin,135,1113,6.2
+2026,7,AUDI,Q8,model,hybrid_excl_plugin,244,2215,6.6
+2026,7,AUDI,Q8,model,petrol_hybrid_excl_plugin,109,1102,7
+2026,7,AUDI,Q8,model,diesel_hybrid_excl_plugin,135,1113,6.2
+2026,7,AUDI,Q8,model,plugin_hybrid,229,1482,5.8
+2026,7,AUDI,Q8,model,petrol_plugin_hybrid,229,1482,5.8
+2026,7,AUDI,Q8,model,bev,,3,0
+2026,7,AUDI,Q8,model,awd,503,4033,6.3
+2026,7,AUDI,Q9,model,total,11,11,0
+2026,7,AUDI,Q9,model,diesel,3,3,0
+2026,7,AUDI,Q9,model,hybrid_incl_plugin,4,4,0
+2026,7,AUDI,Q9,model,petrol_hybrid_incl_plugin,4,4,0
+2026,7,AUDI,Q9,model,plugin_hybrid,4,4,0
+2026,7,AUDI,Q9,model,petrol_plugin_hybrid,4,4,0
+2026,7,AUDI,Q9,model,awd,11,11,0
+2026,7,AUDI,SONSTIGE,model,total,19,266,0.2
+2026,7,AUDI,SONSTIGE,model,diesel,,53,0.8
+2026,7,AUDI,SONSTIGE,model,hybrid_incl_plugin,7,86,0.1
+2026,7,AUDI,SONSTIGE,model,petrol_hybrid_incl_plugin,7,86,0.2
+2026,7,AUDI,SONSTIGE,model,plugin_hybrid,7,86,0.3
+2026,7,AUDI,SONSTIGE,model,petrol_plugin_hybrid,7,86,0.3
+2026,7,AUDI,SONSTIGE,model,bev,12,101,0.3
+2026,7,AUDI,SONSTIGE,model,awd,9,185,0.3
+2026,7,AUDI,,brand_total,total,17432,123854,7.1
+2026,7,AUDI,,brand_total,diesel,789,6942,3.1
+2026,7,AUDI,,brand_total,hybrid_incl_plugin,9490,59213,8.5
+2026,7,AUDI,,brand_total,petrol_hybrid_incl_plugin,7068,41240,7
+2026,7,AUDI,,brand_total,diesel_hybrid_incl_plugin,2422,17973,17.1
+2026,7,AUDI,,brand_total,hybrid_excl_plugin,5265,33766,6.7
+2026,7,AUDI,,brand_total,petrol_hybrid_excl_plugin,2843,15793,3.9
+2026,7,AUDI,,brand_total,diesel_hybrid_excl_plugin,2422,17973,19.2
+2026,7,AUDI,,brand_total,plugin_hybrid,4225,25447,13.1
+2026,7,AUDI,,brand_total,petrol_plugin_hybrid,4225,25447,13.9
+2026,7,AUDI,,brand_total,bev,5035,29941,6.7
+2026,7,AUDI,,brand_total,awd,9529,63533,14.8
+2026,7,AUDI,,brand_total,cabriolet,,1,0
+2026,7,BENTLEY,BENTAYGA,model,total,10,82,30.3
+2026,7,BENTLEY,BENTAYGA,model,hybrid_incl_plugin,,12,7.1
+2026,7,BENTLEY,BENTAYGA,model,petrol_hybrid_incl_plugin,,12,7.1
+2026,7,BENTLEY,BENTAYGA,model,hybrid_excl_plugin,,1,11.1
+2026,7,BENTLEY,BENTAYGA,model,petrol_hybrid_excl_plugin,,1,11.1
+2026,7,BENTLEY,BENTAYGA,model,plugin_hybrid,,11,6.8
+2026,7,BENTLEY,BENTAYGA,model,petrol_plugin_hybrid,,11,6.8
+2026,7,BENTLEY,BENTAYGA,model,awd,10,79,29.9
+2026,7,BENTLEY,CONTINENTAL,model,total,29,188,69.4
+2026,7,BENTLEY,CONTINENTAL,model,hybrid_incl_plugin,19,158,92.9
+2026,7,BENTLEY,CONTINENTAL,model,petrol_hybrid_incl_plugin,19,158,92.9
+2026,7,BENTLEY,CONTINENTAL,model,hybrid_excl_plugin,3,8,88.9
+2026,7,BENTLEY,CONTINENTAL,model,petrol_hybrid_excl_plugin,3,8,88.9
+2026,7,BENTLEY,CONTINENTAL,model,plugin_hybrid,16,150,93.2
+2026,7,BENTLEY,CONTINENTAL,model,petrol_plugin_hybrid,16,150,93.2
+2026,7,BENTLEY,CONTINENTAL,model,awd,28,184,69.7
+2026,7,BENTLEY,CONTINENTAL,model,cabriolet,13,64,100
+2026,7,BENTLEY,SONSTIGE,model,total,,1,0.4
+2026,7,BENTLEY,SONSTIGE,model,awd,,1,0.4
+2026,7,BENTLEY,,brand_total,total,39,271,0
+2026,7,BENTLEY,,brand_total,hybrid_incl_plugin,19,170,0
+2026,7,BENTLEY,,brand_total,petrol_hybrid_incl_plugin,19,170,0
+2026,7,BENTLEY,,brand_total,hybrid_excl_plugin,3,9,0
+2026,7,BENTLEY,,brand_total,petrol_hybrid_excl_plugin,3,9,0
+2026,7,BENTLEY,,brand_total,plugin_hybrid,16,161,0.1
+2026,7,BENTLEY,,brand_total,petrol_plugin_hybrid,16,161,0.1
+2026,7,BENTLEY,,brand_total,awd,38,264,0.1
+2026,7,BENTLEY,,brand_total,cabriolet,13,64,0.3
+2026,7,BMW,1ER,model,total,1740,13414,8.9
+2026,7,BMW,1ER,model,diesel,71,715,29.2
+2026,7,BMW,1ER,model,hybrid_incl_plugin,1403,10915,12.2
+2026,7,BMW,1ER,model,petrol_hybrid_incl_plugin,1270,10068,19.1
+2026,7,BMW,1ER,model,diesel_hybrid_incl_plugin,133,847,2.3
+2026,7,BMW,1ER,model,hybrid_excl_plugin,1403,10915,15.8
+2026,7,BMW,1ER,model,petrol_hybrid_excl_plugin,1270,10068,31.1
+2026,7,BMW,1ER,model,diesel_hybrid_excl_plugin,133,847,2.3
+2026,7,BMW,1ER,model,awd,271,1871,2.1
+2026,7,BMW,2ER,model,total,1472,11159,7.4
+2026,7,BMW,2ER,model,diesel,65,554,22.6
+2026,7,BMW,2ER,model,hybrid_incl_plugin,813,6403,7.2
+2026,7,BMW,2ER,model,petrol_hybrid_incl_plugin,726,5554,10.6
+2026,7,BMW,2ER,model,diesel_hybrid_incl_plugin,87,849,2.3
+2026,7,BMW,2ER,model,hybrid_excl_plugin,777,6123,8.8
+2026,7,BMW,2ER,model,petrol_hybrid_excl_plugin,690,5274,16.3
+2026,7,BMW,2ER,model,diesel_hybrid_excl_plugin,87,849,2.3
+2026,7,BMW,2ER,model,plugin_hybrid,36,280,1.4
+2026,7,BMW,2ER,model,petrol_plugin_hybrid,36,280,1.4
+2026,7,BMW,2ER,model,awd,300,1740,1.9
+2026,7,BMW,3ER,model,total,2842,16755,11.1
+2026,7,BMW,3ER,model,hybrid_incl_plugin,1288,8886,9.9
+2026,7,BMW,3ER,model,petrol_hybrid_incl_plugin,387,2615,5
+2026,7,BMW,3ER,model,diesel_hybrid_incl_plugin,901,6271,17
+2026,7,BMW,3ER,model,hybrid_excl_plugin,1093,7551,10.9
+2026,7,BMW,3ER,model,petrol_hybrid_excl_plugin,192,1280,3.9
+2026,7,BMW,3ER,model,diesel_hybrid_excl_plugin,901,6271,17
+2026,7,BMW,3ER,model,plugin_hybrid,195,1335,6.6
+2026,7,BMW,3ER,model,petrol_plugin_hybrid,195,1335,6.6
+2026,7,BMW,3ER,model,bev,46,46,0.1
+2026,7,BMW,3ER,model,awd,1270,7866,8.7
+2026,7,BMW,4ER,model,total,2419,14038,9.3
+2026,7,BMW,4ER,model,diesel,1,1,0
+2026,7,BMW,4ER,model,hybrid_incl_plugin,535,3403,3.8
+2026,7,BMW,4ER,model,petrol_hybrid_incl_plugin,219,1412,2.7
+2026,7,BMW,4ER,model,diesel_hybrid_incl_plugin,316,1991,5.4
+2026,7,BMW,4ER,model,hybrid_excl_plugin,535,3403,4.9
+2026,7,BMW,4ER,model,petrol_hybrid_excl_plugin,219,1412,4.4
+2026,7,BMW,4ER,model,diesel_hybrid_excl_plugin,316,1991,5.4
+2026,7,BMW,4ER,model,bev,1464,7477,19.3
+2026,7,BMW,4ER,model,awd,1487,8599,9.5
+2026,7,BMW,4ER,model,cabriolet,248,2272,61.5
+2026,7,BMW,5ER,model,total,2719,18301,12.1
+2026,7,BMW,5ER,model,diesel,,2,0.1
+2026,7,BMW,5ER,model,hybrid_incl_plugin,1875,12257,13.7
+2026,7,BMW,5ER,model,petrol_hybrid_incl_plugin,947,6314,12
+2026,7,BMW,5ER,model,diesel_hybrid_incl_plugin,928,5943,16.1
+2026,7,BMW,5ER,model,hybrid_excl_plugin,1042,6757,9.8
+2026,7,BMW,5ER,model,petrol_hybrid_excl_plugin,114,814,2.5
+2026,7,BMW,5ER,model,diesel_hybrid_excl_plugin,928,5943,16.1
+2026,7,BMW,5ER,model,plugin_hybrid,833,5500,27.3
+2026,7,BMW,5ER,model,petrol_plugin_hybrid,833,5500,27.3
+2026,7,BMW,5ER,model,bev,844,6042,15.6
+2026,7,BMW,5ER,model,awd,1771,11475,12.7
+2026,7,BMW,7ER,model,total,403,1680,1.1
+2026,7,BMW,7ER,model,hybrid_incl_plugin,208,879,1
+2026,7,BMW,7ER,model,petrol_hybrid_incl_plugin,94,348,0.7
+2026,7,BMW,7ER,model,diesel_hybrid_incl_plugin,114,531,1.4
+2026,7,BMW,7ER,model,hybrid_excl_plugin,156,579,0.8
+2026,7,BMW,7ER,model,petrol_hybrid_excl_plugin,42,48,0.1
+2026,7,BMW,7ER,model,diesel_hybrid_excl_plugin,114,531,1.4
+2026,7,BMW,7ER,model,plugin_hybrid,52,300,1.5
+2026,7,BMW,7ER,model,petrol_plugin_hybrid,52,300,1.5
+2026,7,BMW,7ER,model,bev,183,783,2
+2026,7,BMW,7ER,model,awd,342,1176,1.3
+2026,7,BMW,8ER,model,total,3,33,0
+2026,7,BMW,8ER,model,hybrid_incl_plugin,,4,0
+2026,7,BMW,8ER,model,diesel_hybrid_incl_plugin,,4,0
+2026,7,BMW,8ER,model,hybrid_excl_plugin,,4,0
+2026,7,BMW,8ER,model,diesel_hybrid_excl_plugin,,4,0
+2026,7,BMW,8ER,model,awd,3,32,0
+2026,7,BMW,8ER,model,cabriolet,,15,0.4
+2026,7,BMW,I3,model,total,,1,0
+2026,7,BMW,I3,model,bev,,1,0
+2026,7,BMW,IX,model,total,429,2734,1.8
+2026,7,BMW,IX,model,bev,429,2734,7.1
+2026,7,BMW,IX,model,awd,429,2734,3
+2026,7,BMW,X1,model,total,5529,30093,19.9
+2026,7,BMW,X1,model,diesel,146,1046,42.7
+2026,7,BMW,X1,model,hybrid_incl_plugin,2125,14408,16.1
+2026,7,BMW,X1,model,petrol_hybrid_incl_plugin,1396,10019,19.1
+2026,7,BMW,X1,model,diesel_hybrid_incl_plugin,729,4389,11.9
+2026,7,BMW,X1,model,hybrid_excl_plugin,1542,10864,15.7
+2026,7,BMW,X1,model,petrol_hybrid_excl_plugin,813,6475,20
+2026,7,BMW,X1,model,diesel_hybrid_excl_plugin,729,4389,11.9
+2026,7,BMW,X1,model,plugin_hybrid,583,3544,17.6
+2026,7,BMW,X1,model,petrol_plugin_hybrid,583,3544,17.6
+2026,7,BMW,X1,model,bev,2901,13061,33.8
+2026,7,BMW,X1,model,awd,2217,14826,16.4
+2026,7,BMW,X2,model,total,626,3441,2.3
+2026,7,BMW,X2,model,diesel,9,134,5.5
+2026,7,BMW,X2,model,hybrid_incl_plugin,315,1787,2
+2026,7,BMW,X2,model,petrol_hybrid_incl_plugin,164,730,1.4
+2026,7,BMW,X2,model,diesel_hybrid_incl_plugin,151,1057,2.9
+2026,7,BMW,X2,model,hybrid_excl_plugin,315,1787,2.6
+2026,7,BMW,X2,model,petrol_hybrid_excl_plugin,164,730,2.3
+2026,7,BMW,X2,model,diesel_hybrid_excl_plugin,151,1057,2.9
+2026,7,BMW,X2,model,bev,230,1092,2.8
+2026,7,BMW,X2,model,awd,270,1656,1.8
+2026,7,BMW,X3,model,total,4409,25358,16.7
+2026,7,BMW,X3,model,hybrid_incl_plugin,2761,17906,20
+2026,7,BMW,X3,model,petrol_hybrid_incl_plugin,1501,10571,20.1
+2026,7,BMW,X3,model,diesel_hybrid_incl_plugin,1260,7335,19.9
+2026,7,BMW,X3,model,hybrid_excl_plugin,1965,11872,17.1
+2026,7,BMW,X3,model,petrol_hybrid_excl_plugin,705,4537,14
+2026,7,BMW,X3,model,diesel_hybrid_excl_plugin,1260,7335,19.9
+2026,7,BMW,X3,model,plugin_hybrid,796,6034,29.9
+2026,7,BMW,X3,model,petrol_plugin_hybrid,796,6034,29.9
+2026,7,BMW,X3,model,bev,1648,7452,19.3
+2026,7,BMW,X3,model,awd,4371,25319,28
+2026,7,BMW,X4,model,total,5,296,0.2
+2026,7,BMW,X4,model,hybrid_incl_plugin,4,286,0.3
+2026,7,BMW,X4,model,petrol_hybrid_incl_plugin,1,20,0
+2026,7,BMW,X4,model,diesel_hybrid_incl_plugin,3,266,0.7
+2026,7,BMW,X4,model,hybrid_excl_plugin,4,286,0.4
+2026,7,BMW,X4,model,petrol_hybrid_excl_plugin,1,20,0.1
+2026,7,BMW,X4,model,diesel_hybrid_excl_plugin,3,266,0.7
+2026,7,BMW,X4,model,awd,5,296,0.3
+2026,7,BMW,X5,model,total,1393,8680,5.7
+2026,7,BMW,X5,model,hybrid_incl_plugin,1393,8677,9.7
+2026,7,BMW,X5,model,petrol_hybrid_incl_plugin,611,3662,7
+2026,7,BMW,X5,model,diesel_hybrid_incl_plugin,782,5015,13.6
+2026,7,BMW,X5,model,hybrid_excl_plugin,934,5975,8.6
+2026,7,BMW,X5,model,petrol_hybrid_excl_plugin,152,960,3
+2026,7,BMW,X5,model,diesel_hybrid_excl_plugin,782,5015,13.6
+2026,7,BMW,X5,model,plugin_hybrid,459,2702,13.4
+2026,7,BMW,X5,model,petrol_plugin_hybrid,459,2702,13.4
+2026,7,BMW,X5,model,awd,1393,8680,9.6
+2026,7,BMW,X6,model,total,222,1278,0.8
+2026,7,BMW,X6,model,hybrid_incl_plugin,222,1275,1.4
+2026,7,BMW,X6,model,petrol_hybrid_incl_plugin,46,323,0.6
+2026,7,BMW,X6,model,diesel_hybrid_incl_plugin,176,952,2.6
+2026,7,BMW,X6,model,hybrid_excl_plugin,222,1275,1.8
+2026,7,BMW,X6,model,petrol_hybrid_excl_plugin,46,323,1
+2026,7,BMW,X6,model,diesel_hybrid_excl_plugin,176,952,2.6
+2026,7,BMW,X6,model,awd,222,1278,1.4
+2026,7,BMW,X7,model,total,266,1691,1.1
+2026,7,BMW,X7,model,hybrid_incl_plugin,266,1691,1.9
+2026,7,BMW,X7,model,petrol_hybrid_incl_plugin,68,429,0.8
+2026,7,BMW,X7,model,diesel_hybrid_incl_plugin,198,1262,3.4
+2026,7,BMW,X7,model,hybrid_excl_plugin,266,1691,2.4
+2026,7,BMW,X7,model,petrol_hybrid_excl_plugin,68,429,1.3
+2026,7,BMW,X7,model,diesel_hybrid_excl_plugin,198,1262,3.4
+2026,7,BMW,X7,model,awd,266,1691,1.9
+2026,7,BMW,XM,model,total,74,460,0.3
+2026,7,BMW,XM,model,hybrid_incl_plugin,74,460,0.5
+2026,7,BMW,XM,model,petrol_hybrid_incl_plugin,74,460,0.9
+2026,7,BMW,XM,model,plugin_hybrid,74,460,2.3
+2026,7,BMW,XM,model,petrol_plugin_hybrid,74,460,2.3
+2026,7,BMW,XM,model,awd,74,460,0.5
+2026,7,BMW,Z4,model,total,46,1400,0.9
+2026,7,BMW,Z4,model,cabriolet,46,1400,37.9
+2026,7,BMW,SONSTIGE,model,total,47,598,0.4
+2026,7,BMW,SONSTIGE,model,hybrid_incl_plugin,12,173,0.2
+2026,7,BMW,SONSTIGE,model,petrol_hybrid_incl_plugin,8,58,0.1
+2026,7,BMW,SONSTIGE,model,diesel_hybrid_incl_plugin,4,115,0.3
+2026,7,BMW,SONSTIGE,model,hybrid_excl_plugin,8,156,0.2
+2026,7,BMW,SONSTIGE,model,petrol_hybrid_excl_plugin,4,41,0.1
+2026,7,BMW,SONSTIGE,model,diesel_hybrid_excl_plugin,4,115,0.3
+2026,7,BMW,SONSTIGE,model,plugin_hybrid,4,17,0.1
+2026,7,BMW,SONSTIGE,model,petrol_plugin_hybrid,4,17,0.1
+2026,7,BMW,SONSTIGE,model,awd,38,580,0.6
+2026,7,BMW,SONSTIGE,model,cabriolet,,6,0.2
+2026,7,BMW,,brand_total,total,24644,151410,8.6
+2026,7,BMW,,brand_total,diesel,292,2452,1.1
+2026,7,BMW,,brand_total,hybrid_incl_plugin,13294,89410,12.8
+2026,7,BMW,,brand_total,petrol_hybrid_incl_plugin,7512,52583,8.9
+2026,7,BMW,,brand_total,diesel_hybrid_incl_plugin,5782,36827,35.1
+2026,7,BMW,,brand_total,hybrid_excl_plugin,10262,69238,13.8
+2026,7,BMW,,brand_total,petrol_hybrid_excl_plugin,4480,32411,8
+2026,7,BMW,,brand_total,diesel_hybrid_excl_plugin,5782,36827,39.3
+2026,7,BMW,,brand_total,plugin_hybrid,3032,20172,10.4
+2026,7,BMW,,brand_total,petrol_plugin_hybrid,3032,20172,11
+2026,7,BMW,,brand_total,bev,7745,38688,8.7
+2026,7,BMW,,brand_total,awd,14729,90279,21.1
+2026,7,BMW,,brand_total,cabriolet,294,3693,16.1
+2026,7,BYD,ATTO 2,model,total,1113,6827,21.7
+2026,7,BYD,ATTO 2,model,hybrid_incl_plugin,906,5705,29.8
+2026,7,BYD,ATTO 2,model,petrol_hybrid_incl_plugin,906,5705,29.8
+2026,7,BYD,ATTO 2,model,plugin_hybrid,906,5705,29.8
+2026,7,BYD,ATTO 2,model,petrol_plugin_hybrid,906,5705,29.8
+2026,7,BYD,ATTO 2,model,bev,207,1122,9.1
+2026,7,BYD,ATTO 3,model,total,341,1555,4.9
+2026,7,BYD,ATTO 3,model,bev,341,1555,12.6
+2026,7,BYD,ATTO 3,model,awd,135,616,12.9
+2026,7,BYD,DOLPHIN,model,total,334,917,2.9
+2026,7,BYD,DOLPHIN,model,hybrid_incl_plugin,113,186,1
+2026,7,BYD,DOLPHIN,model,petrol_hybrid_incl_plugin,113,186,1
+2026,7,BYD,DOLPHIN,model,plugin_hybrid,113,186,1
+2026,7,BYD,DOLPHIN,model,petrol_plugin_hybrid,113,186,1
+2026,7,BYD,DOLPHIN,model,bev,221,731,5.9
+2026,7,BYD,DOLPHIN SURF,model,total,360,4343,13.8
+2026,7,BYD,DOLPHIN SURF,model,bev,360,4343,35.2
+2026,7,BYD,SEAL,model,total,776,7051,22.4
+2026,7,BYD,SEAL,model,hybrid_incl_plugin,449,5124,26.7
+2026,7,BYD,SEAL,model,petrol_hybrid_incl_plugin,449,5124,26.7
+2026,7,BYD,SEAL,model,plugin_hybrid,449,5124,26.7
+2026,7,BYD,SEAL,model,petrol_plugin_hybrid,449,5124,26.7
+2026,7,BYD,SEAL,model,bev,327,1927,15.6
+2026,7,BYD,SEAL,model,awd,125,726,15.2
+2026,7,BYD,SEAL U,model,total,2003,8984,28.5
+2026,7,BYD,SEAL U,model,hybrid_incl_plugin,1821,8144,42.5
+2026,7,BYD,SEAL U,model,petrol_hybrid_incl_plugin,1821,8144,42.5
+2026,7,BYD,SEAL U,model,plugin_hybrid,1821,8144,42.5
+2026,7,BYD,SEAL U,model,petrol_plugin_hybrid,1821,8144,42.5
+2026,7,BYD,SEAL U,model,bev,182,840,6.8
+2026,7,BYD,SEAL U,model,awd,350,2082,43.6
+2026,7,BYD,SEALION 7,model,total,296,1664,5.3
+2026,7,BYD,SEALION 7,model,bev,296,1664,13.5
+2026,7,BYD,SEALION 7,model,awd,206,1195,25.1
+2026,7,BYD,TANG,model,total,17,149,0.5
+2026,7,BYD,TANG,model,bev,17,149,1.2
+2026,7,BYD,TANG,model,awd,17,149,3.1
+2026,7,BYD,SONSTIGE,model,total,,2,0
+2026,7,BYD,SONSTIGE,model,hybrid_incl_plugin,,1,0
+2026,7,BYD,SONSTIGE,model,petrol_hybrid_incl_plugin,,1,0
+2026,7,BYD,SONSTIGE,model,hybrid_excl_plugin,,1,100
+2026,7,BYD,SONSTIGE,model,petrol_hybrid_excl_plugin,,1,100
+2026,7,BYD,SONSTIGE,model,bev,,1,0
+2026,7,BYD,SONSTIGE,model,awd,,2,0
+2026,7,BYD,,brand_total,total,5240,31492,1.8
+2026,7,BYD,,brand_total,hybrid_incl_plugin,3289,19160,2.8
+2026,7,BYD,,brand_total,petrol_hybrid_incl_plugin,3289,19160,3.3
+2026,7,BYD,,brand_total,hybrid_excl_plugin,,1,0
+2026,7,BYD,,brand_total,petrol_hybrid_excl_plugin,,1,0
+2026,7,BYD,,brand_total,plugin_hybrid,3289,19159,9.9
+2026,7,BYD,,brand_total,petrol_plugin_hybrid,3289,19159,10.5
+2026,7,BYD,,brand_total,bev,1951,12332,2.8
+2026,7,BYD,,brand_total,awd,833,4770,1.1
+2026,7,CADILLAC,ESCALADE,model,total,3,22,64.7
+2026,7,CADILLAC,ESCALADE,model,awd,3,22,64.7
+2026,7,CADILLAC,OPTIQ,model,total,,11,32.4
+2026,7,CADILLAC,OPTIQ,model,bev,,11,100
+2026,7,CADILLAC,OPTIQ,model,awd,,11,32.4
+2026,7,CADILLAC,SONSTIGE,model,total,,1,2.9
+2026,7,CADILLAC,SONSTIGE,model,awd,,1,2.9
+2026,7,CADILLAC,,brand_total,total,3,34,0
+2026,7,CADILLAC,,brand_total,bev,,11,0
+2026,7,CADILLAC,,brand_total,awd,3,34,0
+2026,7,CHERY,TIGGO9,model,total,1,1,100
+2026,7,CHERY,TIGGO9,model,hybrid_incl_plugin,1,1,100
+2026,7,CHERY,TIGGO9,model,petrol_hybrid_incl_plugin,1,1,100
+2026,7,CHERY,TIGGO9,model,plugin_hybrid,1,1,100
+2026,7,CHERY,TIGGO9,model,petrol_plugin_hybrid,1,1,100
+2026,7,CHERY,TIGGO9,model,awd,1,1,100
+2026,7,CHERY,,brand_total,total,1,1,0
+2026,7,CHERY,,brand_total,hybrid_incl_plugin,1,1,0
+2026,7,CHERY,,brand_total,petrol_hybrid_incl_plugin,1,1,0
+2026,7,CHERY,,brand_total,plugin_hybrid,1,1,0
+2026,7,CHERY,,brand_total,petrol_plugin_hybrid,1,1,0
+2026,7,CHERY,,brand_total,awd,1,1,0
+2026,7,CITROEN,BERLINGO,model,total,345,1329,4.2
+2026,7,CITROEN,BERLINGO,model,diesel,319,1058,10.3
+2026,7,CITROEN,BERLINGO,model,bev,15,145,1.7
+2026,7,CITROEN,C3,model,total,2482,14483,45.4
+2026,7,CITROEN,C3,model,hybrid_incl_plugin,520,3923,40.2
+2026,7,CITROEN,C3,model,petrol_hybrid_incl_plugin,520,3923,40.2
+2026,7,CITROEN,C3,model,hybrid_excl_plugin,520,3923,41.2
+2026,7,CITROEN,C3,model,petrol_hybrid_excl_plugin,520,3923,41.2
+2026,7,CITROEN,C3,model,bev,1625,7872,92.7
+2026,7,CITROEN,C4,model,total,325,2424,7.6
+2026,7,CITROEN,C4,model,hybrid_incl_plugin,287,1732,17.8
+2026,7,CITROEN,C4,model,petrol_hybrid_incl_plugin,287,1732,17.8
+2026,7,CITROEN,C4,model,hybrid_excl_plugin,287,1732,18.2
+2026,7,CITROEN,C4,model,petrol_hybrid_excl_plugin,287,1732,18.2
+2026,7,CITROEN,C4,model,bev,32,128,1.5
+2026,7,CITROEN,C5,model,total,412,4625,14.5
+2026,7,CITROEN,C5,model,diesel,1,216,2.1
+2026,7,CITROEN,C5,model,hybrid_incl_plugin,360,4096,42
+2026,7,CITROEN,C5,model,petrol_hybrid_incl_plugin,360,4096,42
+2026,7,CITROEN,C5,model,hybrid_excl_plugin,324,3860,40.6
+2026,7,CITROEN,C5,model,petrol_hybrid_excl_plugin,324,3860,40.6
+2026,7,CITROEN,C5,model,plugin_hybrid,36,236,100
+2026,7,CITROEN,C5,model,petrol_plugin_hybrid,36,236,100
+2026,7,CITROEN,C5,model,bev,51,312,3.7
+2026,7,CITROEN,C5,model,awd,,1,2.8
+2026,7,CITROEN,JUMPER,model,total,816,6164,19.3
+2026,7,CITROEN,JUMPER,model,diesel,814,6158,59.9
+2026,7,CITROEN,JUMPER,model,awd,7,33,91.7
+2026,7,CITROEN,JUMPY,model,total,303,2878,9
+2026,7,CITROEN,JUMPY,model,diesel,297,2846,27.7
+2026,7,CITROEN,JUMPY,model,bev,6,32,0.4
+2026,7,CITROEN,JUMPY,model,awd,1,2,5.6
+2026,7,CITROEN,SONSTIGE,model,total,1,1,0
+2026,7,CITROEN,SONSTIGE,model,diesel,1,1,0
+2026,7,CITROEN,,brand_total,total,4684,31904,1.8
+2026,7,CITROEN,,brand_total,diesel,1432,10279,4.6
+2026,7,CITROEN,,brand_total,hybrid_incl_plugin,1167,9751,1.4
+2026,7,CITROEN,,brand_total,petrol_hybrid_incl_plugin,1167,9751,1.7
+2026,7,CITROEN,,brand_total,hybrid_excl_plugin,1131,9515,1.9
+2026,7,CITROEN,,brand_total,petrol_hybrid_excl_plugin,1131,9515,2.3
+2026,7,CITROEN,,brand_total,plugin_hybrid,36,236,0.1
+2026,7,CITROEN,,brand_total,petrol_plugin_hybrid,36,236,0.1
+2026,7,CITROEN,,brand_total,bev,1729,8489,1.9
+2026,7,CITROEN,,brand_total,awd,8,36,0
+2026,7,DACIA,BIGSTER,model,total,1443,9835,24.1
+2026,7,DACIA,BIGSTER,model,hybrid_incl_plugin,1431,9383,56.3
+2026,7,DACIA,BIGSTER,model,petrol_hybrid_incl_plugin,983,7330,54.4
+2026,7,DACIA,BIGSTER,model,hybrid_excl_plugin,1431,9383,56.3
+2026,7,DACIA,BIGSTER,model,petrol_hybrid_excl_plugin,983,7330,54.4
+2026,7,DACIA,BIGSTER,model,awd,342,1787,58.1
+2026,7,DACIA,DUSTER,model,total,1103,7073,17.3
+2026,7,DACIA,DUSTER,model,hybrid_incl_plugin,846,5462,32.8
+2026,7,DACIA,DUSTER,model,petrol_hybrid_incl_plugin,664,4341,32.2
+2026,7,DACIA,DUSTER,model,hybrid_excl_plugin,846,5462,32.8
+2026,7,DACIA,DUSTER,model,petrol_hybrid_excl_plugin,664,4341,32.2
+2026,7,DACIA,DUSTER,model,awd,187,1286,41.8
+2026,7,DACIA,JOGGER,model,total,680,5581,13.7
+2026,7,DACIA,JOGGER,model,hybrid_incl_plugin,189,1811,10.9
+2026,7,DACIA,JOGGER,model,petrol_hybrid_incl_plugin,189,1811,13.4
+2026,7,DACIA,JOGGER,model,hybrid_excl_plugin,189,1811,10.9
+2026,7,DACIA,JOGGER,model,petrol_hybrid_excl_plugin,189,1811,13.4
+2026,7,DACIA,LOGAN,model,total,,1,0
+2026,7,DACIA,SANDERO,model,total,2247,14011,34.3
+2026,7,DACIA,SPRING,model,total,940,4334,10.6
+2026,7,DACIA,SPRING,model,bev,940,4334,100
+2026,7,DACIA,SONSTIGE,model,total,1,9,0
+2026,7,DACIA,SONSTIGE,model,hybrid_incl_plugin,,3,0
+2026,7,DACIA,SONSTIGE,model,petrol_hybrid_incl_plugin,,2,0
+2026,7,DACIA,SONSTIGE,model,hybrid_excl_plugin,,3,0
+2026,7,DACIA,SONSTIGE,model,petrol_hybrid_excl_plugin,,2,0
+2026,7,DACIA,SONSTIGE,model,bev,,2,0
+2026,7,DACIA,SONSTIGE,model,awd,,1,0
+2026,7,DACIA,,brand_total,total,6414,40844,2.3
+2026,7,DACIA,,brand_total,hybrid_incl_plugin,2466,16659,2.4
+2026,7,DACIA,,brand_total,petrol_hybrid_incl_plugin,1836,13484,2.3
+2026,7,DACIA,,brand_total,hybrid_excl_plugin,2466,16659,3.3
+2026,7,DACIA,,brand_total,petrol_hybrid_excl_plugin,1836,13484,3.3
+2026,7,DACIA,,brand_total,bev,940,4336,1
+2026,7,DACIA,,brand_total,awd,529,3074,0.7
+2026,7,DAF TRUCKS,XF,model,total,,1,50
+2026,7,DAF TRUCKS,XF,model,diesel,,1,50
+2026,7,DAF TRUCKS,SONSTIGE,model,total,,1,50
+2026,7,DAF TRUCKS,SONSTIGE,model,diesel,,1,50
+2026,7,DAF TRUCKS,,brand_total,total,,2,0
+2026,7,DAF TRUCKS,,brand_total,diesel,,2,0
+2026,7,DEEPAL,S05,model,total,10,47,73.4
+2026,7,DEEPAL,S05,model,bev,10,47,73.4
+2026,7,DEEPAL,S05,model,awd,5,20,100
+2026,7,DEEPAL,S07,model,total,5,17,26.6
+2026,7,DEEPAL,S07,model,bev,5,17,26.6
+2026,7,DEEPAL,,brand_total,total,15,64,0
+2026,7,DEEPAL,,brand_total,bev,15,64,0
+2026,7,DEEPAL,,brand_total,awd,5,20,0
+2026,7,DONGFENG,BOX,model,total,6,24,100
+2026,7,DONGFENG,BOX,model,bev,6,24,100
+2026,7,DONGFENG,,brand_total,total,6,24,0
+2026,7,DONGFENG,,brand_total,bev,6,24,0
+2026,7,DS,3,model,total,,3,0.2
+2026,7,DS,3,model,hybrid_incl_plugin,,2,1.1
+2026,7,DS,3,model,petrol_hybrid_incl_plugin,,2,1.1
+2026,7,DS,3,model,hybrid_excl_plugin,,2,3
+2026,7,DS,3,model,petrol_hybrid_excl_plugin,,2,3
+2026,7,DS,3,model,bev,,1,0.8
+2026,7,DS,4,model,total,16,145,10.7
+2026,7,DS,4,model,diesel,5,45,4.3
+2026,7,DS,4,model,hybrid_incl_plugin,5,76,43.4
+2026,7,DS,4,model,petrol_hybrid_incl_plugin,5,76,43.4
+2026,7,DS,4,model,hybrid_excl_plugin,3,58,86.6
+2026,7,DS,4,model,petrol_hybrid_excl_plugin,3,58,86.6
+2026,7,DS,4,model,plugin_hybrid,2,18,16.7
+2026,7,DS,4,model,petrol_plugin_hybrid,2,18,16.7
+2026,7,DS,4,model,bev,6,24,18
+2026,7,DS,7,model,total,208,1106,81.9
+2026,7,DS,7,model,diesel,188,997,95.7
+2026,7,DS,7,model,hybrid_incl_plugin,8,97,55.4
+2026,7,DS,7,model,petrol_hybrid_incl_plugin,8,97,55.4
+2026,7,DS,7,model,hybrid_excl_plugin,7,7,10.4
+2026,7,DS,7,model,petrol_hybrid_excl_plugin,7,7,10.4
+2026,7,DS,7,model,plugin_hybrid,1,90,83.3
+2026,7,DS,7,model,petrol_plugin_hybrid,1,90,83.3
+2026,7,DS,7,model,bev,12,12,9
+2026,7,DS,7,model,awd,1,30,50
+2026,7,DS,8,model,total,25,96,7.1
+2026,7,DS,8,model,bev,25,96,72.2
+2026,7,DS,8,model,awd,8,30,50
+2026,7,DS,,brand_total,total,249,1350,0.1
+2026,7,DS,,brand_total,diesel,193,1042,0.5
+2026,7,DS,,brand_total,hybrid_incl_plugin,13,175,0
+2026,7,DS,,brand_total,petrol_hybrid_incl_plugin,13,175,0
+2026,7,DS,,brand_total,hybrid_excl_plugin,10,67,0
+2026,7,DS,,brand_total,petrol_hybrid_excl_plugin,10,67,0
+2026,7,DS,,brand_total,plugin_hybrid,3,108,0.1
+2026,7,DS,,brand_total,petrol_plugin_hybrid,3,108,0.1
+2026,7,DS,,brand_total,bev,43,133,0
+2026,7,DS,,brand_total,awd,9,60,0
+2026,7,FERRARI,12CILINDRI,model,total,30,255,23.3
+2026,7,FERRARI,12CILINDRI,model,cabriolet,13,138,32.5
+2026,7,FERRARI,296,model,total,32,196,17.9
+2026,7,FERRARI,296,model,hybrid_incl_plugin,31,192,64
+2026,7,FERRARI,296,model,petrol_hybrid_incl_plugin,31,192,64
+2026,7,FERRARI,296,model,hybrid_excl_plugin,,2,18.2
+2026,7,FERRARI,296,model,petrol_hybrid_excl_plugin,,2,18.2
+2026,7,FERRARI,296,model,plugin_hybrid,31,190,65.7
+2026,7,FERRARI,296,model,petrol_plugin_hybrid,31,190,65.7
+2026,7,FERRARI,296,model,cabriolet,14,107,25.2
+2026,7,FERRARI,612 SCAGLIETTI,model,total,,1,0.1
+2026,7,FERRARI,849 TESTAROSSA,model,total,16,53,4.8
+2026,7,FERRARI,849 TESTAROSSA,model,hybrid_incl_plugin,16,52,17.3
+2026,7,FERRARI,849 TESTAROSSA,model,petrol_hybrid_incl_plugin,16,52,17.3
+2026,7,FERRARI,849 TESTAROSSA,model,plugin_hybrid,16,52,18
+2026,7,FERRARI,849 TESTAROSSA,model,petrol_plugin_hybrid,16,52,18
+2026,7,FERRARI,849 TESTAROSSA,model,awd,16,53,13.9
+2026,7,FERRARI,AMALFI,model,total,13,102,9.3
+2026,7,FERRARI,PUROSANGUE,model,total,48,266,24.3
+2026,7,FERRARI,PUROSANGUE,model,awd,48,265,69.4
+2026,7,FERRARI,ROMA,model,total,3,154,14.1
+2026,7,FERRARI,ROMA,model,awd,,1,0.3
+2026,7,FERRARI,ROMA,model,cabriolet,3,153,36
+2026,7,FERRARI,SF90,model,total,2,48,4.4
+2026,7,FERRARI,SF90,model,hybrid_incl_plugin,2,46,15.3
+2026,7,FERRARI,SF90,model,petrol_hybrid_incl_plugin,2,46,15.3
+2026,7,FERRARI,SF90,model,plugin_hybrid,2,46,15.9
+2026,7,FERRARI,SF90,model,petrol_plugin_hybrid,2,46,15.9
+2026,7,FERRARI,SF90,model,awd,2,48,12.6
+2026,7,FERRARI,SF90,model,cabriolet,1,25,5.9
+2026,7,FERRARI,SONSTIGE,model,total,2,18,1.6
+2026,7,FERRARI,SONSTIGE,model,hybrid_incl_plugin,2,10,3.3
+2026,7,FERRARI,SONSTIGE,model,petrol_hybrid_incl_plugin,2,10,3.3
+2026,7,FERRARI,SONSTIGE,model,hybrid_excl_plugin,2,9,81.8
+2026,7,FERRARI,SONSTIGE,model,petrol_hybrid_excl_plugin,2,9,81.8
+2026,7,FERRARI,SONSTIGE,model,plugin_hybrid,,1,0.3
+2026,7,FERRARI,SONSTIGE,model,petrol_plugin_hybrid,,1,0.3
+2026,7,FERRARI,SONSTIGE,model,awd,2,15,3.9
+2026,7,FERRARI,SONSTIGE,model,cabriolet,,2,0.5
+2026,7,FERRARI,,brand_total,total,146,1093,0.1
+2026,7,FERRARI,,brand_total,hybrid_incl_plugin,51,300,0
+2026,7,FERRARI,,brand_total,petrol_hybrid_incl_plugin,51,300,0.1
+2026,7,FERRARI,,brand_total,hybrid_excl_plugin,2,11,0
+2026,7,FERRARI,,brand_total,petrol_hybrid_excl_plugin,2,11,0
+2026,7,FERRARI,,brand_total,plugin_hybrid,49,289,0.1
+2026,7,FERRARI,,brand_total,petrol_plugin_hybrid,49,289,0.2
+2026,7,FERRARI,,brand_total,awd,68,382,0.1
+2026,7,FERRARI,,brand_total,cabriolet,31,425,1.9
+2026,7,FIAT,500,model,total,1709,9256,22.1
+2026,7,FIAT,500,model,hybrid_incl_plugin,923,3313,36.1
+2026,7,FIAT,500,model,petrol_hybrid_incl_plugin,923,3313,36.1
+2026,7,FIAT,500,model,hybrid_excl_plugin,923,3313,36.1
+2026,7,FIAT,500,model,petrol_hybrid_excl_plugin,923,3313,36.1
+2026,7,FIAT,500,model,bev,786,5942,66.4
+2026,7,FIAT,600,model,total,662,3352,8
+2026,7,FIAT,600,model,hybrid_incl_plugin,266,2710,29.5
+2026,7,FIAT,600,model,petrol_hybrid_incl_plugin,266,2710,29.5
+2026,7,FIAT,600,model,hybrid_excl_plugin,266,2710,29.5
+2026,7,FIAT,600,model,petrol_hybrid_excl_plugin,266,2710,29.5
+2026,7,FIAT,600,model,bev,43,247,2.8
+2026,7,FIAT,DOBLO,model,total,2,15,0
+2026,7,FIAT,DOBLO,model,diesel,2,15,0.1
+2026,7,FIAT,DUCATO,model,total,2422,21124,50.4
+2026,7,FIAT,DUCATO,model,diesel,2413,21052,93.8
+2026,7,FIAT,DUCATO,model,awd,16,157,100
+2026,7,FIAT,GRANDE PANDA,model,total,1014,5576,13.3
+2026,7,FIAT,GRANDE PANDA,model,hybrid_incl_plugin,148,1932,21
+2026,7,FIAT,GRANDE PANDA,model,petrol_hybrid_incl_plugin,148,1932,21
+2026,7,FIAT,GRANDE PANDA,model,hybrid_excl_plugin,148,1932,21
+2026,7,FIAT,GRANDE PANDA,model,petrol_hybrid_excl_plugin,148,1932,21
+2026,7,FIAT,GRANDE PANDA,model,bev,659,2754,30.8
+2026,7,FIAT,PANDA,model,total,115,1231,2.9
+2026,7,FIAT,PANDA,model,hybrid_incl_plugin,115,1231,13.4
+2026,7,FIAT,PANDA,model,petrol_hybrid_incl_plugin,115,1231,13.4
+2026,7,FIAT,PANDA,model,hybrid_excl_plugin,115,1231,13.4
+2026,7,FIAT,PANDA,model,petrol_hybrid_excl_plugin,115,1231,13.4
+2026,7,FIAT,QUBO,model,total,86,159,0.4
+2026,7,FIAT,QUBO,model,diesel,86,159,0.7
+2026,7,FIAT,SCUDO,model,total,4,10,0
+2026,7,FIAT,SCUDO,model,diesel,4,10,0
+2026,7,FIAT,TIPO,model,total,8,701,1.7
+2026,7,FIAT,TIPO,model,diesel,8,701,3.1
+2026,7,FIAT,ULYSSE,model,total,88,518,1.2
+2026,7,FIAT,ULYSSE,model,diesel,88,517,2.3
+2026,7,FIAT,ULYSSE,model,bev,,1,0
+2026,7,FIAT,,brand_total,total,6110,41942,2.4
+2026,7,FIAT,,brand_total,diesel,2601,22454,10
+2026,7,FIAT,,brand_total,hybrid_incl_plugin,1452,9186,1.3
+2026,7,FIAT,,brand_total,petrol_hybrid_incl_plugin,1452,9186,1.6
+2026,7,FIAT,,brand_total,hybrid_excl_plugin,1452,9186,1.8
+2026,7,FIAT,,brand_total,petrol_hybrid_excl_plugin,1452,9186,2.3
+2026,7,FIAT,,brand_total,bev,1488,8944,2
+2026,7,FIAT,,brand_total,awd,16,157,0
+2026,7,FISKER,OCEAN,model,total,3,4,100
+2026,7,FISKER,OCEAN,model,bev,3,4,100
+2026,7,FISKER,OCEAN,model,awd,3,4,100
+2026,7,FISKER,,brand_total,total,3,4,0
+2026,7,FISKER,,brand_total,bev,3,4,0
+2026,7,FISKER,,brand_total,awd,3,4,0
+2026,7,FORD,CAPRI,model,total,507,2532,4.4
+2026,7,FORD,CAPRI,model,bev,507,2532,18
+2026,7,FORD,CAPRI,model,awd,138,596,10.6
+2026,7,FORD,EXPLORER,model,total,1767,6216,10.8
+2026,7,FORD,EXPLORER,model,bev,1767,6216,44.1
+2026,7,FORD,EXPLORER,model,awd,320,1252,22.2
+2026,7,FORD,FIESTA,model,total,,1,0
+2026,7,FORD,FOCUS,model,total,39,2716,4.7
+2026,7,FORD,FOCUS,model,diesel,15,528,2.9
+2026,7,FORD,FOCUS,model,hybrid_incl_plugin,24,1952,9.5
+2026,7,FORD,FOCUS,model,petrol_hybrid_incl_plugin,24,1952,9.5
+2026,7,FORD,FOCUS,model,hybrid_excl_plugin,24,1952,17.2
+2026,7,FORD,FOCUS,model,petrol_hybrid_excl_plugin,24,1952,17.2
+2026,7,FORD,KUGA,model,total,1483,8566,14.8
+2026,7,FORD,KUGA,model,hybrid_incl_plugin,1159,7604,36.9
+2026,7,FORD,KUGA,model,petrol_hybrid_incl_plugin,1159,7604,36.9
+2026,7,FORD,KUGA,model,hybrid_excl_plugin,354,2556,22.5
+2026,7,FORD,KUGA,model,petrol_hybrid_excl_plugin,354,2556,22.5
+2026,7,FORD,KUGA,model,plugin_hybrid,805,5048,54.3
+2026,7,FORD,KUGA,model,petrol_plugin_hybrid,805,5048,54.3
+2026,7,FORD,KUGA,model,awd,149,1125,20
+2026,7,FORD,MUSTANG,model,total,117,879,1.5
+2026,7,FORD,MUSTANG,model,cabriolet,31,279,100
+2026,7,FORD,MUSTANG MACH-E,model,total,48,415,0.7
+2026,7,FORD,MUSTANG MACH-E,model,bev,48,415,2.9
+2026,7,FORD,MUSTANG MACH-E,model,awd,17,200,3.6
+2026,7,FORD,PUMA,model,total,1851,10418,18
+2026,7,FORD,PUMA,model,hybrid_incl_plugin,897,6828,33.1
+2026,7,FORD,PUMA,model,petrol_hybrid_incl_plugin,897,6828,33.1
+2026,7,FORD,PUMA,model,hybrid_excl_plugin,897,6828,60.2
+2026,7,FORD,PUMA,model,petrol_hybrid_excl_plugin,897,6828,60.2
+2026,7,FORD,PUMA,model,bev,954,3590,25.5
+2026,7,FORD,TRANSIT CONNECT,model,total,561,4449,7.7
+2026,7,FORD,TRANSIT CONNECT,model,diesel,252,2443,13.4
+2026,7,FORD,TRANSIT CONNECT,model,hybrid_incl_plugin,177,1141,5.5
+2026,7,FORD,TRANSIT CONNECT,model,petrol_hybrid_incl_plugin,177,1141,5.5
+2026,7,FORD,TRANSIT CONNECT,model,plugin_hybrid,177,1141,12.3
+2026,7,FORD,TRANSIT CONNECT,model,petrol_plugin_hybrid,177,1141,12.3
+2026,7,FORD,TRANSIT CONNECT,model,awd,11,477,8.5
+2026,7,FORD,TRANSIT COURIER,model,total,349,2355,4.1
+2026,7,FORD,TRANSIT COURIER,model,bev,103,494,3.5
+2026,7,FORD,TRANSIT CUSTOM,model,total,1908,12517,21.6
+2026,7,FORD,TRANSIT CUSTOM,model,diesel,1235,8567,46.9
+2026,7,FORD,TRANSIT CUSTOM,model,hybrid_incl_plugin,480,3098,15
+2026,7,FORD,TRANSIT CUSTOM,model,petrol_hybrid_incl_plugin,480,3098,15
+2026,7,FORD,TRANSIT CUSTOM,model,hybrid_excl_plugin,1,2,0
+2026,7,FORD,TRANSIT CUSTOM,model,petrol_hybrid_excl_plugin,1,2,0
+2026,7,FORD,TRANSIT CUSTOM,model,plugin_hybrid,479,3096,33.3
+2026,7,FORD,TRANSIT CUSTOM,model,petrol_plugin_hybrid,479,3096,33.3
+2026,7,FORD,TRANSIT CUSTOM,model,bev,192,844,6
+2026,7,FORD,TRANSIT CUSTOM,model,awd,190,1637,29.1
+2026,7,FORD,"TRANSIT, TOURNEO",model,total,918,6637,11.5
+2026,7,FORD,"TRANSIT, TOURNEO",model,diesel,913,6602,36.2
+2026,7,FORD,"TRANSIT, TOURNEO",model,bev,1,4,0
+2026,7,FORD,"TRANSIT, TOURNEO",model,awd,25,336,6
+2026,7,FORD,SONSTIGE,model,total,19,121,0.2
+2026,7,FORD,SONSTIGE,model,diesel,16,109,0.6
+2026,7,FORD,SONSTIGE,model,hybrid_incl_plugin,2,5,0
+2026,7,FORD,SONSTIGE,model,petrol_hybrid_incl_plugin,2,5,0
+2026,7,FORD,SONSTIGE,model,hybrid_excl_plugin,1,1,0
+2026,7,FORD,SONSTIGE,model,petrol_hybrid_excl_plugin,1,1,0
+2026,7,FORD,SONSTIGE,model,plugin_hybrid,1,4,0
+2026,7,FORD,SONSTIGE,model,petrol_plugin_hybrid,1,4,0
+2026,7,FORD,SONSTIGE,model,bev,,4,0
+2026,7,FORD,SONSTIGE,model,awd,,10,0.2
+2026,7,FORD,,brand_total,total,9567,57822,3.3
+2026,7,FORD,,brand_total,diesel,2431,18249,8.1
+2026,7,FORD,,brand_total,hybrid_incl_plugin,2739,20628,3
+2026,7,FORD,,brand_total,petrol_hybrid_incl_plugin,2739,20628,3.5
+2026,7,FORD,,brand_total,hybrid_excl_plugin,1277,11339,2.3
+2026,7,FORD,,brand_total,petrol_hybrid_excl_plugin,1277,11339,2.8
+2026,7,FORD,,brand_total,plugin_hybrid,1462,9289,4.8
+2026,7,FORD,,brand_total,petrol_plugin_hybrid,1462,9289,5.1
+2026,7,FORD,,brand_total,bev,3572,14099,3.2
+2026,7,FORD,,brand_total,awd,850,5633,1.3
+2026,7,FORD,,brand_total,cabriolet,31,279,1.2
+2026,7,GEELY,E5,model,total,119,173,21.5
+2026,7,GEELY,E5,model,bev,119,173,96.6
+2026,7,GEELY,STARRAY,model,total,344,608,75.5
+2026,7,GEELY,STARRAY,model,hybrid_incl_plugin,344,608,98.4
+2026,7,GEELY,STARRAY,model,petrol_hybrid_incl_plugin,344,608,98.4
+2026,7,GEELY,STARRAY,model,plugin_hybrid,344,608,99.2
+2026,7,GEELY,STARRAY,model,petrol_plugin_hybrid,344,608,99.2
+2026,7,GEELY,SONSTIGE,model,total,16,24,3
+2026,7,GEELY,SONSTIGE,model,hybrid_incl_plugin,8,10,1.6
+2026,7,GEELY,SONSTIGE,model,petrol_hybrid_incl_plugin,8,10,1.6
+2026,7,GEELY,SONSTIGE,model,hybrid_excl_plugin,5,5,100
+2026,7,GEELY,SONSTIGE,model,petrol_hybrid_excl_plugin,5,5,100
+2026,7,GEELY,SONSTIGE,model,plugin_hybrid,3,5,0.8
+2026,7,GEELY,SONSTIGE,model,petrol_plugin_hybrid,3,5,0.8
+2026,7,GEELY,SONSTIGE,model,bev,1,6,3.4
+2026,7,GEELY,SONSTIGE,model,awd,1,1,100
+2026,7,GEELY,,brand_total,total,479,805,0
+2026,7,GEELY,,brand_total,hybrid_incl_plugin,352,618,0.1
+2026,7,GEELY,,brand_total,petrol_hybrid_incl_plugin,352,618,0.1
+2026,7,GEELY,,brand_total,hybrid_excl_plugin,5,5,0
+2026,7,GEELY,,brand_total,petrol_hybrid_excl_plugin,5,5,0
+2026,7,GEELY,,brand_total,plugin_hybrid,347,613,0.3
+2026,7,GEELY,,brand_total,petrol_plugin_hybrid,347,613,0.3
+2026,7,GEELY,,brand_total,bev,120,179,0
+2026,7,GEELY,,brand_total,awd,1,1,0
+2026,7,GWM,ORA 03,model,total,,9,1.1
+2026,7,GWM,ORA 07,model,total,,10,1.2
+2026,7,GWM,ORA 07,model,bev,,10,62.5
+2026,7,GWM,ORA 07,model,awd,,3,1.8
+2026,7,GWM,WEY 03,model,total,6,63,7.8
+2026,7,GWM,WEY 03,model,hybrid_incl_plugin,6,63,14.9
+2026,7,GWM,WEY 03,model,petrol_hybrid_incl_plugin,6,63,15.1
+2026,7,GWM,WEY 03,model,plugin_hybrid,6,63,36
+2026,7,GWM,WEY 03,model,petrol_plugin_hybrid,6,63,36.4
+2026,7,GWM,WEY 03,model,awd,5,55,33.5
+2026,7,GWM,WEY 05,model,total,8,97,12
+2026,7,GWM,WEY 05,model,hybrid_incl_plugin,8,97,23
+2026,7,GWM,WEY 05,model,petrol_hybrid_incl_plugin,8,97,23.2
+2026,7,GWM,WEY 05,model,plugin_hybrid,8,97,55.4
+2026,7,GWM,WEY 05,model,petrol_plugin_hybrid,8,97,56.1
+2026,7,GWM,WEY 05,model,awd,8,97,59.1
+2026,7,GWM,SONSTIGE,model,total,96,629,77.8
+2026,7,GWM,SONSTIGE,model,hybrid_incl_plugin,32,262,62.1
+2026,7,GWM,SONSTIGE,model,petrol_hybrid_incl_plugin,32,258,61.7
+2026,7,GWM,SONSTIGE,model,diesel_hybrid_incl_plugin,,3,100
+2026,7,GWM,SONSTIGE,model,hybrid_excl_plugin,31,247,100
+2026,7,GWM,SONSTIGE,model,petrol_hybrid_excl_plugin,31,245,100
+2026,7,GWM,SONSTIGE,model,diesel_hybrid_excl_plugin,,2,100
+2026,7,GWM,SONSTIGE,model,plugin_hybrid,1,15,8.6
+2026,7,GWM,SONSTIGE,model,petrol_plugin_hybrid,1,13,7.5
+2026,7,GWM,SONSTIGE,model,diesel_plugin_hybrid,,1,100
+2026,7,GWM,SONSTIGE,model,bev,,6,37.5
+2026,7,GWM,SONSTIGE,model,awd,1,9,5.5
+2026,7,GWM,,brand_total,total,110,808,0
+2026,7,GWM,,brand_total,hybrid_incl_plugin,46,422,0.1
+2026,7,GWM,,brand_total,petrol_hybrid_incl_plugin,46,418,0.1
+2026,7,GWM,,brand_total,diesel_hybrid_incl_plugin,,3,0
+2026,7,GWM,,brand_total,hybrid_excl_plugin,31,247,0
+2026,7,GWM,,brand_total,petrol_hybrid_excl_plugin,31,245,0.1
+2026,7,GWM,,brand_total,diesel_hybrid_excl_plugin,,2,0
+2026,7,GWM,,brand_total,plugin_hybrid,15,175,0.1
+2026,7,GWM,,brand_total,petrol_plugin_hybrid,15,173,0.1
+2026,7,GWM,,brand_total,diesel_plugin_hybrid,,1,0
+2026,7,GWM,,brand_total,bev,,16,0
+2026,7,GWM,,brand_total,awd,14,164,0
+2026,7,HONDA,CIVIC,model,total,125,517,11.1
+2026,7,HONDA,CIVIC,model,hybrid_incl_plugin,124,466,10.2
+2026,7,HONDA,CIVIC,model,petrol_hybrid_incl_plugin,124,466,10.2
+2026,7,HONDA,CIVIC,model,hybrid_excl_plugin,124,466,10.8
+2026,7,HONDA,CIVIC,model,petrol_hybrid_excl_plugin,124,466,10.8
+2026,7,HONDA,CR-V,model,total,94,963,20.7
+2026,7,HONDA,CR-V,model,hybrid_incl_plugin,94,963,21.2
+2026,7,HONDA,CR-V,model,petrol_hybrid_incl_plugin,94,963,21.2
+2026,7,HONDA,CR-V,model,hybrid_excl_plugin,59,743,17.2
+2026,7,HONDA,CR-V,model,petrol_hybrid_excl_plugin,59,743,17.2
+2026,7,HONDA,CR-V,model,plugin_hybrid,35,220,100
+2026,7,HONDA,CR-V,model,petrol_plugin_hybrid,35,220,100
+2026,7,HONDA,CR-V,model,awd,29,381,100
+2026,7,HONDA,E:NY1,model,total,1,49,1.1
+2026,7,HONDA,E:NY1,model,bev,1,49,100
+2026,7,HONDA,HR-V,model,total,108,1250,26.9
+2026,7,HONDA,HR-V,model,hybrid_incl_plugin,108,1250,27.5
+2026,7,HONDA,HR-V,model,petrol_hybrid_incl_plugin,108,1250,27.5
+2026,7,HONDA,HR-V,model,hybrid_excl_plugin,108,1250,28.9
+2026,7,HONDA,HR-V,model,petrol_hybrid_excl_plugin,108,1250,28.9
+2026,7,HONDA,JAZZ,model,total,167,1179,25.4
+2026,7,HONDA,JAZZ,model,hybrid_incl_plugin,167,1179,25.9
+2026,7,HONDA,JAZZ,model,petrol_hybrid_incl_plugin,167,1179,25.9
+2026,7,HONDA,JAZZ,model,hybrid_excl_plugin,167,1179,27.2
+2026,7,HONDA,JAZZ,model,petrol_hybrid_excl_plugin,167,1179,27.2
+2026,7,HONDA,PRELUDE,model,total,33,246,5.3
+2026,7,HONDA,PRELUDE,model,hybrid_incl_plugin,33,246,5.4
+2026,7,HONDA,PRELUDE,model,petrol_hybrid_incl_plugin,33,246,5.4
+2026,7,HONDA,PRELUDE,model,hybrid_excl_plugin,33,246,5.7
+2026,7,HONDA,PRELUDE,model,petrol_hybrid_excl_plugin,33,246,5.7
+2026,7,HONDA,ZR-V,model,total,47,443,9.5
+2026,7,HONDA,ZR-V,model,hybrid_incl_plugin,47,443,9.7
+2026,7,HONDA,ZR-V,model,petrol_hybrid_incl_plugin,47,443,9.7
+2026,7,HONDA,ZR-V,model,hybrid_excl_plugin,47,443,10.2
+2026,7,HONDA,ZR-V,model,petrol_hybrid_excl_plugin,47,443,10.2
+2026,7,HONDA,,brand_total,total,575,4647,0.3
+2026,7,HONDA,,brand_total,hybrid_incl_plugin,573,4547,0.7
+2026,7,HONDA,,brand_total,petrol_hybrid_incl_plugin,573,4547,0.8
+2026,7,HONDA,,brand_total,hybrid_excl_plugin,538,4327,0.9
+2026,7,HONDA,,brand_total,petrol_hybrid_excl_plugin,538,4327,1.1
+2026,7,HONDA,,brand_total,plugin_hybrid,35,220,0.1
+2026,7,HONDA,,brand_total,petrol_plugin_hybrid,35,220,0.1
+2026,7,HONDA,,brand_total,bev,1,49,0
+2026,7,HONDA,,brand_total,awd,29,381,0.1
+2026,7,HYUNDAI,BAYON,model,total,207,1832,3.2
+2026,7,HYUNDAI,G80,model,total,4,10,0
+2026,7,HYUNDAI,G80,model,bev,4,10,0.1
+2026,7,HYUNDAI,G80,model,awd,4,10,0.1
+2026,7,HYUNDAI,G90,model,total,,1,0
+2026,7,HYUNDAI,G90,model,awd,,1,0
+2026,7,HYUNDAI,GV60,model,total,35,256,0.4
+2026,7,HYUNDAI,GV60,model,bev,35,256,1.4
+2026,7,HYUNDAI,GV60,model,awd,21,209,2.7
+2026,7,HYUNDAI,GV70,model,total,39,239,0.4
+2026,7,HYUNDAI,GV70,model,hybrid_incl_plugin,1,6,0.1
+2026,7,HYUNDAI,GV70,model,petrol_hybrid_incl_plugin,1,6,0.1
+2026,7,HYUNDAI,GV70,model,hybrid_excl_plugin,1,6,0.1
+2026,7,HYUNDAI,GV70,model,petrol_hybrid_excl_plugin,1,6,0.1
+2026,7,HYUNDAI,GV70,model,bev,37,232,1.3
+2026,7,HYUNDAI,GV70,model,awd,39,237,3.1
+2026,7,HYUNDAI,I 10,model,total,23,1614,2.8
+2026,7,HYUNDAI,I 20,model,total,1175,7470,13.1
+2026,7,HYUNDAI,I 20,model,awd,,1,0
+2026,7,HYUNDAI,I 30,model,total,762,4230,7.4
+2026,7,HYUNDAI,I 30,model,hybrid_incl_plugin,33,1144,10.2
+2026,7,HYUNDAI,I 30,model,petrol_hybrid_incl_plugin,33,1144,11
+2026,7,HYUNDAI,I 30,model,hybrid_excl_plugin,33,1144,13.5
+2026,7,HYUNDAI,I 30,model,petrol_hybrid_excl_plugin,33,1144,15
+2026,7,HYUNDAI,INSTER,model,total,1294,8354,14.6
+2026,7,HYUNDAI,INSTER,model,bev,1294,8351,47.1
+2026,7,HYUNDAI,IONIQ 9,model,total,98,890,1.6
+2026,7,HYUNDAI,IONIQ 9,model,bev,98,890,5
+2026,7,HYUNDAI,IONIQ 9,model,awd,85,766,10.1
+2026,7,HYUNDAI,IONIQ5,model,total,578,3337,5.8
+2026,7,HYUNDAI,IONIQ5,model,bev,578,3337,18.8
+2026,7,HYUNDAI,IONIQ5,model,awd,166,936,12.3
+2026,7,HYUNDAI,IONIQ6,model,total,94,510,0.9
+2026,7,HYUNDAI,IONIQ6,model,bev,94,510,2.9
+2026,7,HYUNDAI,IONIQ6,model,awd,66,378,5
+2026,7,HYUNDAI,KONA,model,total,1626,9527,16.7
+2026,7,HYUNDAI,KONA,model,hybrid_incl_plugin,205,1635,14.5
+2026,7,HYUNDAI,KONA,model,petrol_hybrid_incl_plugin,205,1635,15.7
+2026,7,HYUNDAI,KONA,model,hybrid_excl_plugin,205,1635,19.3
+2026,7,HYUNDAI,KONA,model,petrol_hybrid_excl_plugin,205,1635,21.4
+2026,7,HYUNDAI,KONA,model,bev,749,4108,23.2
+2026,7,HYUNDAI,KONA,model,awd,30,238,3.1
+2026,7,HYUNDAI,NEXO,model,total,2,7,0
+2026,7,HYUNDAI,SANTA FE,model,total,169,1074,1.9
+2026,7,HYUNDAI,SANTA FE,model,hybrid_incl_plugin,168,1073,9.5
+2026,7,HYUNDAI,SANTA FE,model,petrol_hybrid_incl_plugin,168,1073,10.3
+2026,7,HYUNDAI,SANTA FE,model,hybrid_excl_plugin,123,679,8
+2026,7,HYUNDAI,SANTA FE,model,petrol_hybrid_excl_plugin,123,679,8.9
+2026,7,HYUNDAI,SANTA FE,model,plugin_hybrid,45,394,14.3
+2026,7,HYUNDAI,SANTA FE,model,petrol_plugin_hybrid,45,394,14.3
+2026,7,HYUNDAI,SANTA FE,model,awd,135,849,11.2
+2026,7,HYUNDAI,STARIA,model,total,59,678,1.2
+2026,7,HYUNDAI,STARIA,model,hybrid_incl_plugin,58,672,6
+2026,7,HYUNDAI,STARIA,model,petrol_hybrid_incl_plugin,58,672,6.5
+2026,7,HYUNDAI,STARIA,model,hybrid_excl_plugin,58,672,7.9
+2026,7,HYUNDAI,STARIA,model,petrol_hybrid_excl_plugin,58,672,8.8
+2026,7,HYUNDAI,STARIA,model,bev,1,6,0
+2026,7,HYUNDAI,TUCSON,model,total,2655,17042,29.8
+2026,7,HYUNDAI,TUCSON,model,hybrid_incl_plugin,981,6696,59.6
+2026,7,HYUNDAI,TUCSON,model,petrol_hybrid_incl_plugin,864,5853,56.3
+2026,7,HYUNDAI,TUCSON,model,diesel_hybrid_incl_plugin,117,843,100
+2026,7,HYUNDAI,TUCSON,model,hybrid_excl_plugin,613,4331,51.1
+2026,7,HYUNDAI,TUCSON,model,petrol_hybrid_excl_plugin,496,3488,45.7
+2026,7,HYUNDAI,TUCSON,model,diesel_hybrid_excl_plugin,117,843,100
+2026,7,HYUNDAI,TUCSON,model,plugin_hybrid,368,2365,85.6
+2026,7,HYUNDAI,TUCSON,model,petrol_plugin_hybrid,368,2365,85.6
+2026,7,HYUNDAI,TUCSON,model,awd,567,3956,52
+2026,7,HYUNDAI,SONSTIGE,model,total,4,59,0.1
+2026,7,HYUNDAI,SONSTIGE,model,hybrid_incl_plugin,,17,0.2
+2026,7,HYUNDAI,SONSTIGE,model,petrol_hybrid_incl_plugin,,17,0.2
+2026,7,HYUNDAI,SONSTIGE,model,hybrid_excl_plugin,,13,0.2
+2026,7,HYUNDAI,SONSTIGE,model,petrol_hybrid_excl_plugin,,13,0.2
+2026,7,HYUNDAI,SONSTIGE,model,plugin_hybrid,,4,0.1
+2026,7,HYUNDAI,SONSTIGE,model,petrol_plugin_hybrid,,4,0.1
+2026,7,HYUNDAI,SONSTIGE,model,bev,4,29,0.2
+2026,7,HYUNDAI,SONSTIGE,model,awd,3,25,0.3
+2026,7,HYUNDAI,,brand_total,total,8824,57130,3.3
+2026,7,HYUNDAI,,brand_total,hybrid_incl_plugin,1446,11243,1.6
+2026,7,HYUNDAI,,brand_total,petrol_hybrid_incl_plugin,1329,10400,1.8
+2026,7,HYUNDAI,,brand_total,diesel_hybrid_incl_plugin,117,843,0.8
+2026,7,HYUNDAI,,brand_total,hybrid_excl_plugin,1033,8480,1.7
+2026,7,HYUNDAI,,brand_total,petrol_hybrid_excl_plugin,916,7637,1.9
+2026,7,HYUNDAI,,brand_total,diesel_hybrid_excl_plugin,117,843,0.9
+2026,7,HYUNDAI,,brand_total,plugin_hybrid,413,2763,1.4
+2026,7,HYUNDAI,,brand_total,petrol_plugin_hybrid,413,2763,1.5
+2026,7,HYUNDAI,,brand_total,bev,2894,17729,4
+2026,7,HYUNDAI,,brand_total,awd,1116,7606,1.8
+2026,7,INEOS,GRENADIER,model,total,34,232,100
+2026,7,INEOS,GRENADIER,model,diesel,24,180,100
+2026,7,INEOS,GRENADIER,model,awd,34,232,100
+2026,7,INEOS,,brand_total,total,34,232,0
+2026,7,INEOS,,brand_total,diesel,24,180,0.1
+2026,7,INEOS,,brand_total,awd,34,232,0.1
+2026,7,IVECO,DAILY,model,total,74,587,93.8
+2026,7,IVECO,DAILY,model,diesel,74,587,93.8
+2026,7,IVECO,DAILY,model,awd,5,32,94.1
+2026,7,IVECO,EUROCARGO,model,total,1,12,1.9
+2026,7,IVECO,EUROCARGO,model,diesel,1,12,1.9
+2026,7,IVECO,EUROCARGO,model,awd,,2,5.9
+2026,7,IVECO,STRALIS,model,total,6,23,3.7
+2026,7,IVECO,STRALIS,model,diesel,6,23,3.7
+2026,7,IVECO,SONSTIGE,model,total,1,4,0.6
+2026,7,IVECO,SONSTIGE,model,diesel,1,4,0.6
+2026,7,IVECO,,brand_total,total,82,626,0
+2026,7,IVECO,,brand_total,diesel,82,626,0.3
+2026,7,IVECO,,brand_total,awd,5,34,0
+2026,7,JAC,SONSTIGE,model,total,2,6,100
+2026,7,JAC,SONSTIGE,model,bev,2,6,100
+2026,7,JAC,,brand_total,total,2,6,0
+2026,7,JAC,,brand_total,bev,2,6,0
+2026,7,JAECOO,5,model,total,12,14,4.9
+2026,7,JAECOO,5,model,hybrid_incl_plugin,10,11,3.9
+2026,7,JAECOO,5,model,petrol_hybrid_incl_plugin,10,11,3.9
+2026,7,JAECOO,5,model,hybrid_excl_plugin,10,11,100
+2026,7,JAECOO,5,model,petrol_hybrid_excl_plugin,10,11,100
+2026,7,JAECOO,5,model,bev,2,3,100
+2026,7,JAECOO,7,model,total,34,274,95.1
+2026,7,JAECOO,7,model,hybrid_incl_plugin,34,273,96.1
+2026,7,JAECOO,7,model,petrol_hybrid_incl_plugin,34,273,96.1
+2026,7,JAECOO,7,model,plugin_hybrid,34,273,100
+2026,7,JAECOO,7,model,petrol_plugin_hybrid,34,273,100
+2026,7,JAECOO,,brand_total,total,46,288,0
+2026,7,JAECOO,,brand_total,hybrid_incl_plugin,44,284,0
+2026,7,JAECOO,,brand_total,petrol_hybrid_incl_plugin,44,284,0
+2026,7,JAECOO,,brand_total,hybrid_excl_plugin,10,11,0
+2026,7,JAECOO,,brand_total,petrol_hybrid_excl_plugin,10,11,0
+2026,7,JAECOO,,brand_total,plugin_hybrid,34,273,0.1
+2026,7,JAECOO,,brand_total,petrol_plugin_hybrid,34,273,0.1
+2026,7,JAECOO,,brand_total,bev,2,3,0
+2026,7,JEEP,AVENGER,model,total,591,4389,64.2
+2026,7,JEEP,AVENGER,model,hybrid_incl_plugin,445,3017,66.1
+2026,7,JEEP,AVENGER,model,petrol_hybrid_incl_plugin,445,3017,66.1
+2026,7,JEEP,AVENGER,model,hybrid_excl_plugin,445,3017,68.4
+2026,7,JEEP,AVENGER,model,petrol_hybrid_excl_plugin,445,3017,68.4
+2026,7,JEEP,AVENGER,model,bev,130,730,74.6
+2026,7,JEEP,AVENGER,model,awd,80,649,49.2
+2026,7,JEEP,COMPASS,model,total,314,1726,25.2
+2026,7,JEEP,COMPASS,model,hybrid_incl_plugin,288,1477,32.4
+2026,7,JEEP,COMPASS,model,petrol_hybrid_incl_plugin,288,1477,32.4
+2026,7,JEEP,COMPASS,model,hybrid_excl_plugin,225,1341,30.4
+2026,7,JEEP,COMPASS,model,petrol_hybrid_excl_plugin,225,1341,30.4
+2026,7,JEEP,COMPASS,model,plugin_hybrid,63,136,90.7
+2026,7,JEEP,COMPASS,model,petrol_plugin_hybrid,63,136,90.7
+2026,7,JEEP,COMPASS,model,bev,25,248,25.4
+2026,7,JEEP,COMPASS,model,awd,,1,0.1
+2026,7,JEEP,GRAND CHEROKEE,model,total,,6,0.1
+2026,7,JEEP,GRAND CHEROKEE,model,hybrid_incl_plugin,,6,0.1
+2026,7,JEEP,GRAND CHEROKEE,model,petrol_hybrid_incl_plugin,,6,0.1
+2026,7,JEEP,GRAND CHEROKEE,model,plugin_hybrid,,6,4
+2026,7,JEEP,GRAND CHEROKEE,model,petrol_plugin_hybrid,,6,4
+2026,7,JEEP,GRAND CHEROKEE,model,awd,,6,0.5
+2026,7,JEEP,RENEGADE,model,total,,59,0.9
+2026,7,JEEP,RENEGADE,model,hybrid_incl_plugin,,59,1.3
+2026,7,JEEP,RENEGADE,model,petrol_hybrid_incl_plugin,,59,1.3
+2026,7,JEEP,RENEGADE,model,hybrid_excl_plugin,,56,1.3
+2026,7,JEEP,RENEGADE,model,petrol_hybrid_excl_plugin,,56,1.3
+2026,7,JEEP,RENEGADE,model,plugin_hybrid,,3,2
+2026,7,JEEP,RENEGADE,model,petrol_plugin_hybrid,,3,2
+2026,7,JEEP,RENEGADE,model,awd,,3,0.2
+2026,7,JEEP,WRANGLER,model,total,44,661,9.7
+2026,7,JEEP,WRANGLER,model,diesel,,1,100
+2026,7,JEEP,WRANGLER,model,hybrid_incl_plugin,,5,0.1
+2026,7,JEEP,WRANGLER,model,petrol_hybrid_incl_plugin,,5,0.1
+2026,7,JEEP,WRANGLER,model,plugin_hybrid,,5,3.3
+2026,7,JEEP,WRANGLER,model,petrol_plugin_hybrid,,5,3.3
+2026,7,JEEP,WRANGLER,model,awd,44,661,50.1
+2026,7,JEEP,WRANGLER,model,cabriolet,9,41,100
+2026,7,JEEP,,brand_total,total,949,6841,0.4
+2026,7,JEEP,,brand_total,diesel,,1,0
+2026,7,JEEP,,brand_total,hybrid_incl_plugin,733,4564,0.7
+2026,7,JEEP,,brand_total,petrol_hybrid_incl_plugin,733,4564,0.8
+2026,7,JEEP,,brand_total,hybrid_excl_plugin,670,4414,0.9
+2026,7,JEEP,,brand_total,petrol_hybrid_excl_plugin,670,4414,1.1
+2026,7,JEEP,,brand_total,plugin_hybrid,63,150,0.1
+2026,7,JEEP,,brand_total,petrol_plugin_hybrid,63,150,0.1
+2026,7,JEEP,,brand_total,bev,155,978,0.2
+2026,7,JEEP,,brand_total,awd,124,1320,0.3
+2026,7,JEEP,,brand_total,cabriolet,9,41,0.2
+2026,7,KGM,ACTYON,model,total,62,353,21.9
+2026,7,KGM,ACTYON,model,hybrid_incl_plugin,12,80,40
+2026,7,KGM,ACTYON,model,petrol_hybrid_incl_plugin,12,80,40
+2026,7,KGM,ACTYON,model,hybrid_excl_plugin,12,80,40
+2026,7,KGM,ACTYON,model,petrol_hybrid_excl_plugin,12,80,40
+2026,7,KGM,ACTYON,model,awd,25,118,22.6
+2026,7,KGM,KORANDO,model,total,35,220,13.6
+2026,7,KGM,KORANDO,model,awd,5,19,3.6
+2026,7,KGM,REXTON,model,total,45,296,18.3
+2026,7,KGM,REXTON,model,diesel,45,296,100
+2026,7,KGM,REXTON,model,awd,45,296,56.6
+2026,7,KGM,TIVOLI,model,total,68,460,28.5
+2026,7,KGM,TIVOLI,model,awd,10,54,10.3
+2026,7,KGM,TORRES,model,total,36,285,17.6
+2026,7,KGM,TORRES,model,hybrid_incl_plugin,15,120,60
+2026,7,KGM,TORRES,model,petrol_hybrid_incl_plugin,15,120,60
+2026,7,KGM,TORRES,model,hybrid_excl_plugin,15,120,60
+2026,7,KGM,TORRES,model,petrol_hybrid_excl_plugin,15,120,60
+2026,7,KGM,TORRES,model,bev,9,62,100
+2026,7,KGM,TORRES,model,awd,4,35,6.7
+2026,7,KGM,SONSTIGE,model,total,,1,0.1
+2026,7,KGM,SONSTIGE,model,awd,,1,0.2
+2026,7,KGM,,brand_total,total,246,1615,0.1
+2026,7,KGM,,brand_total,diesel,45,296,0.1
+2026,7,KGM,,brand_total,hybrid_incl_plugin,27,200,0
+2026,7,KGM,,brand_total,petrol_hybrid_incl_plugin,27,200,0
+2026,7,KGM,,brand_total,hybrid_excl_plugin,27,200,0
+2026,7,KGM,,brand_total,petrol_hybrid_excl_plugin,27,200,0
+2026,7,KGM,,brand_total,bev,9,62,0
+2026,7,KGM,,brand_total,awd,89,523,0.1
+2026,7,KIA,CEED,model,total,523,5342,14.2
+2026,7,KIA,CEED,model,hybrid_incl_plugin,,1155,23
+2026,7,KIA,CEED,model,petrol_hybrid_incl_plugin,,1155,26
+2026,7,KIA,CEED,model,hybrid_excl_plugin,,1154,26.8
+2026,7,KIA,CEED,model,petrol_hybrid_excl_plugin,,1154,31
+2026,7,KIA,CEED,model,plugin_hybrid,,1,0.1
+2026,7,KIA,CEED,model,petrol_plugin_hybrid,,1,0.1
+2026,7,KIA,EV2,model,total,1119,3222,8.6
+2026,7,KIA,EV2,model,bev,1119,3222,19.4
+2026,7,KIA,EV3,model,total,951,5041,13.4
+2026,7,KIA,EV3,model,hybrid_incl_plugin,,3,0.1
+2026,7,KIA,EV3,model,petrol_hybrid_incl_plugin,,3,0.1
+2026,7,KIA,EV3,model,hybrid_excl_plugin,,3,0.1
+2026,7,KIA,EV3,model,petrol_hybrid_excl_plugin,,3,0.1
+2026,7,KIA,EV3,model,bev,951,5038,30.4
+2026,7,KIA,EV3,model,awd,14,15,0.3
+2026,7,KIA,EV4,model,total,786,3023,8.1
+2026,7,KIA,EV4,model,bev,786,3023,18.2
+2026,7,KIA,EV4,model,awd,15,17,0.4
+2026,7,KIA,EV5,model,total,235,1669,4.4
+2026,7,KIA,EV5,model,bev,235,1669,10.1
+2026,7,KIA,EV5,model,awd,20,23,0.5
+2026,7,KIA,EV6,model,total,152,1176,3.1
+2026,7,KIA,EV6,model,bev,152,1176,7.1
+2026,7,KIA,EV6,model,awd,99,743,17.1
+2026,7,KIA,EV9,model,total,70,677,1.8
+2026,7,KIA,EV9,model,bev,70,677,4.1
+2026,7,KIA,EV9,model,awd,58,567,13
+2026,7,KIA,K4,model,total,248,1028,2.7
+2026,7,KIA,K4,model,hybrid_incl_plugin,1,5,0.1
+2026,7,KIA,K4,model,petrol_hybrid_incl_plugin,1,5,0.1
+2026,7,KIA,K4,model,hybrid_excl_plugin,1,5,0.1
+2026,7,KIA,K4,model,petrol_hybrid_excl_plugin,1,5,0.1
+2026,7,KIA,NIRO,model,total,26,321,0.9
+2026,7,KIA,NIRO,model,hybrid_incl_plugin,26,321,6.4
+2026,7,KIA,NIRO,model,petrol_hybrid_incl_plugin,26,321,7.2
+2026,7,KIA,NIRO,model,hybrid_excl_plugin,23,232,5.4
+2026,7,KIA,NIRO,model,petrol_hybrid_excl_plugin,23,232,6.2
+2026,7,KIA,NIRO,model,plugin_hybrid,3,89,12.2
+2026,7,KIA,NIRO,model,petrol_plugin_hybrid,3,89,12.2
+2026,7,KIA,PICANTO,model,total,700,4835,12.9
+2026,7,KIA,PV5,model,total,311,1752,4.7
+2026,7,KIA,PV5,model,bev,311,1752,10.6
+2026,7,KIA,SELTOS,model,total,267,345,0.9
+2026,7,KIA,SELTOS,model,hybrid_incl_plugin,,2,0
+2026,7,KIA,SELTOS,model,petrol_hybrid_incl_plugin,,2,0
+2026,7,KIA,SELTOS,model,hybrid_excl_plugin,,2,0
+2026,7,KIA,SELTOS,model,petrol_hybrid_excl_plugin,,2,0.1
+2026,7,KIA,SELTOS,model,awd,175,215,4.9
+2026,7,KIA,SORENTO,model,total,107,760,2
+2026,7,KIA,SORENTO,model,diesel,70,519,100
+2026,7,KIA,SORENTO,model,hybrid_incl_plugin,37,241,4.8
+2026,7,KIA,SORENTO,model,petrol_hybrid_incl_plugin,37,241,5.4
+2026,7,KIA,SORENTO,model,hybrid_excl_plugin,12,62,1.4
+2026,7,KIA,SORENTO,model,petrol_hybrid_excl_plugin,12,62,1.7
+2026,7,KIA,SORENTO,model,plugin_hybrid,25,179,24.6
+2026,7,KIA,SORENTO,model,petrol_plugin_hybrid,25,179,24.6
+2026,7,KIA,SORENTO,model,awd,105,742,17.1
+2026,7,KIA,SOUL,model,total,,6,0
+2026,7,KIA,SOUL,model,bev,,6,0
+2026,7,KIA,SPORTAGE,model,total,922,6676,17.8
+2026,7,KIA,SPORTAGE,model,hybrid_incl_plugin,331,2406,47.8
+2026,7,KIA,SPORTAGE,model,petrol_hybrid_incl_plugin,261,1822,41
+2026,7,KIA,SPORTAGE,model,diesel_hybrid_incl_plugin,70,584,100
+2026,7,KIA,SPORTAGE,model,hybrid_excl_plugin,224,1947,45.3
+2026,7,KIA,SPORTAGE,model,petrol_hybrid_excl_plugin,154,1363,36.7
+2026,7,KIA,SPORTAGE,model,diesel_hybrid_excl_plugin,70,584,100
+2026,7,KIA,SPORTAGE,model,plugin_hybrid,107,459,63
+2026,7,KIA,SPORTAGE,model,petrol_plugin_hybrid,107,459,63
+2026,7,KIA,SPORTAGE,model,awd,311,2010,46.2
+2026,7,KIA,STONIC,model,total,191,1625,4.3
+2026,7,KIA,STONIC,model,hybrid_incl_plugin,99,877,17.4
+2026,7,KIA,STONIC,model,petrol_hybrid_incl_plugin,99,877,19.7
+2026,7,KIA,STONIC,model,hybrid_excl_plugin,99,877,20.4
+2026,7,KIA,STONIC,model,petrol_hybrid_excl_plugin,99,877,23.6
+2026,7,KIA,SONSTIGE,model,total,5,42,0.1
+2026,7,KIA,SONSTIGE,model,hybrid_incl_plugin,1,19,0.4
+2026,7,KIA,SONSTIGE,model,petrol_hybrid_incl_plugin,1,19,0.4
+2026,7,KIA,SONSTIGE,model,hybrid_excl_plugin,1,19,0.4
+2026,7,KIA,SONSTIGE,model,petrol_hybrid_excl_plugin,1,19,0.5
+2026,7,KIA,SONSTIGE,model,bev,3,13,0.1
+2026,7,KIA,SONSTIGE,model,awd,1,15,0.3
+2026,7,KIA,,brand_total,total,6613,37540,2.1
+2026,7,KIA,,brand_total,diesel,70,519,0.2
+2026,7,KIA,,brand_total,hybrid_incl_plugin,495,5029,0.7
+2026,7,KIA,,brand_total,petrol_hybrid_incl_plugin,425,4445,0.8
+2026,7,KIA,,brand_total,diesel_hybrid_incl_plugin,70,584,0.6
+2026,7,KIA,,brand_total,hybrid_excl_plugin,360,4301,0.9
+2026,7,KIA,,brand_total,petrol_hybrid_excl_plugin,290,3717,0.9
+2026,7,KIA,,brand_total,diesel_hybrid_excl_plugin,70,584,0.6
+2026,7,KIA,,brand_total,plugin_hybrid,135,728,0.4
+2026,7,KIA,,brand_total,petrol_plugin_hybrid,135,728,0.4
+2026,7,KIA,,brand_total,bev,3627,16576,3.7
+2026,7,KIA,,brand_total,awd,798,4347,1
+2026,7,LADA,NIVA,model,total,,4,40
+2026,7,LADA,NIVA,model,awd,,4,40
+2026,7,LADA,SONSTIGE,model,total,,6,60
+2026,7,LADA,SONSTIGE,model,awd,,6,60
+2026,7,LADA,,brand_total,total,,10,0
+2026,7,LADA,,brand_total,awd,,10,0
+2026,7,LAMBORGHINI,URUS,model,total,65,470,59
+2026,7,LAMBORGHINI,URUS,model,hybrid_incl_plugin,59,430,60.3
+2026,7,LAMBORGHINI,URUS,model,petrol_hybrid_incl_plugin,59,429,60.3
+2026,7,LAMBORGHINI,URUS,model,hybrid_excl_plugin,1,5,45.5
+2026,7,LAMBORGHINI,URUS,model,petrol_hybrid_excl_plugin,1,5,45.5
+2026,7,LAMBORGHINI,URUS,model,plugin_hybrid,58,425,60.5
+2026,7,LAMBORGHINI,URUS,model,petrol_plugin_hybrid,58,424,60.5
+2026,7,LAMBORGHINI,URUS,model,awd,65,464,59.6
+2026,7,LAMBORGHINI,SONSTIGE,model,total,71,326,41
+2026,7,LAMBORGHINI,SONSTIGE,model,hybrid_incl_plugin,63,283,39.7
+2026,7,LAMBORGHINI,SONSTIGE,model,petrol_hybrid_incl_plugin,63,283,39.7
+2026,7,LAMBORGHINI,SONSTIGE,model,hybrid_excl_plugin,1,6,54.5
+2026,7,LAMBORGHINI,SONSTIGE,model,petrol_hybrid_excl_plugin,1,6,54.5
+2026,7,LAMBORGHINI,SONSTIGE,model,plugin_hybrid,62,277,39.5
+2026,7,LAMBORGHINI,SONSTIGE,model,petrol_plugin_hybrid,62,277,39.5
+2026,7,LAMBORGHINI,SONSTIGE,model,awd,69,315,40.4
+2026,7,LAMBORGHINI,SONSTIGE,model,cabriolet,,1,100
+2026,7,LAMBORGHINI,,brand_total,total,136,796,0
+2026,7,LAMBORGHINI,,brand_total,hybrid_incl_plugin,122,713,0.1
+2026,7,LAMBORGHINI,,brand_total,petrol_hybrid_incl_plugin,122,712,0.1
+2026,7,LAMBORGHINI,,brand_total,hybrid_excl_plugin,2,11,0
+2026,7,LAMBORGHINI,,brand_total,petrol_hybrid_excl_plugin,2,11,0
+2026,7,LAMBORGHINI,,brand_total,plugin_hybrid,120,702,0.4
+2026,7,LAMBORGHINI,,brand_total,petrol_plugin_hybrid,120,701,0.4
+2026,7,LAMBORGHINI,,brand_total,awd,134,779,0.2
+2026,7,LAMBORGHINI,,brand_total,cabriolet,,1,0
+2026,7,LAND ROVER,DEFENDER,model,total,513,3091,35.1
+2026,7,LAND ROVER,DEFENDER,model,hybrid_incl_plugin,485,2891,33.6
+2026,7,LAND ROVER,DEFENDER,model,petrol_hybrid_incl_plugin,131,603,16.5
+2026,7,LAND ROVER,DEFENDER,model,diesel_hybrid_incl_plugin,354,2288,46.2
+2026,7,LAND ROVER,DEFENDER,model,hybrid_excl_plugin,391,2506,44.2
+2026,7,LAND ROVER,DEFENDER,model,petrol_hybrid_excl_plugin,37,218,30.4
+2026,7,LAND ROVER,DEFENDER,model,diesel_hybrid_excl_plugin,354,2288,46.2
+2026,7,LAND ROVER,DEFENDER,model,plugin_hybrid,94,385,13.1
+2026,7,LAND ROVER,DEFENDER,model,petrol_plugin_hybrid,94,385,13.1
+2026,7,LAND ROVER,DEFENDER,model,awd,513,3091,35.3
+2026,7,LAND ROVER,DISCOVERY,model,total,12,117,1.3
+2026,7,LAND ROVER,DISCOVERY,model,hybrid_incl_plugin,12,117,1.4
+2026,7,LAND ROVER,DISCOVERY,model,diesel_hybrid_incl_plugin,12,117,2.4
+2026,7,LAND ROVER,DISCOVERY,model,hybrid_excl_plugin,12,117,2.1
+2026,7,LAND ROVER,DISCOVERY,model,diesel_hybrid_excl_plugin,12,117,2.4
+2026,7,LAND ROVER,DISCOVERY,model,awd,12,117,1.3
+2026,7,LAND ROVER,DISCOVERY SPORT,model,total,10,218,2.5
+2026,7,LAND ROVER,DISCOVERY SPORT,model,hybrid_incl_plugin,10,218,2.5
+2026,7,LAND ROVER,DISCOVERY SPORT,model,petrol_hybrid_incl_plugin,1,61,1.7
+2026,7,LAND ROVER,DISCOVERY SPORT,model,diesel_hybrid_incl_plugin,9,157,3.2
+2026,7,LAND ROVER,DISCOVERY SPORT,model,hybrid_excl_plugin,9,157,2.8
+2026,7,LAND ROVER,DISCOVERY SPORT,model,diesel_hybrid_excl_plugin,9,157,3.2
+2026,7,LAND ROVER,DISCOVERY SPORT,model,plugin_hybrid,1,61,2.1
+2026,7,LAND ROVER,DISCOVERY SPORT,model,petrol_plugin_hybrid,1,61,2.1
+2026,7,LAND ROVER,DISCOVERY SPORT,model,awd,10,218,2.5
+2026,7,LAND ROVER,RANGE ROVER,model,total,171,1111,12.6
+2026,7,LAND ROVER,RANGE ROVER,model,diesel,,1,25
+2026,7,LAND ROVER,RANGE ROVER,model,hybrid_incl_plugin,171,1109,12.9
+2026,7,LAND ROVER,RANGE ROVER,model,petrol_hybrid_incl_plugin,132,784,21.5
+2026,7,LAND ROVER,RANGE ROVER,model,diesel_hybrid_incl_plugin,39,325,6.6
+2026,7,LAND ROVER,RANGE ROVER,model,hybrid_excl_plugin,69,584,10.3
+2026,7,LAND ROVER,RANGE ROVER,model,petrol_hybrid_excl_plugin,30,259,36.2
+2026,7,LAND ROVER,RANGE ROVER,model,diesel_hybrid_excl_plugin,39,325,6.6
+2026,7,LAND ROVER,RANGE ROVER,model,plugin_hybrid,102,525,17.9
+2026,7,LAND ROVER,RANGE ROVER,model,petrol_plugin_hybrid,102,525,17.9
+2026,7,LAND ROVER,RANGE ROVER,model,awd,171,1111,12.7
+2026,7,LAND ROVER,RANGE ROVER EVOQUE,model,total,181,1742,19.8
+2026,7,LAND ROVER,RANGE ROVER EVOQUE,model,hybrid_incl_plugin,181,1742,20.2
+2026,7,LAND ROVER,RANGE ROVER EVOQUE,model,petrol_hybrid_incl_plugin,85,619,17
+2026,7,LAND ROVER,RANGE ROVER EVOQUE,model,diesel_hybrid_incl_plugin,96,1123,22.7
+2026,7,LAND ROVER,RANGE ROVER EVOQUE,model,hybrid_excl_plugin,105,1172,20.7
+2026,7,LAND ROVER,RANGE ROVER EVOQUE,model,petrol_hybrid_excl_plugin,9,49,6.8
+2026,7,LAND ROVER,RANGE ROVER EVOQUE,model,diesel_hybrid_excl_plugin,96,1123,22.7
+2026,7,LAND ROVER,RANGE ROVER EVOQUE,model,plugin_hybrid,76,570,19.4
+2026,7,LAND ROVER,RANGE ROVER EVOQUE,model,petrol_plugin_hybrid,76,570,19.4
+2026,7,LAND ROVER,RANGE ROVER EVOQUE,model,awd,172,1693,19.3
+2026,7,LAND ROVER,RANGE ROVER SPORT,model,total,220,1986,22.5
+2026,7,LAND ROVER,RANGE ROVER SPORT,model,diesel,,3,75
+2026,7,LAND ROVER,RANGE ROVER SPORT,model,hybrid_incl_plugin,220,1983,23.1
+2026,7,LAND ROVER,RANGE ROVER SPORT,model,petrol_hybrid_incl_plugin,158,1426,39.1
+2026,7,LAND ROVER,RANGE ROVER SPORT,model,diesel_hybrid_incl_plugin,62,557,11.2
+2026,7,LAND ROVER,RANGE ROVER SPORT,model,hybrid_excl_plugin,84,713,12.6
+2026,7,LAND ROVER,RANGE ROVER SPORT,model,petrol_hybrid_excl_plugin,22,156,21.8
+2026,7,LAND ROVER,RANGE ROVER SPORT,model,diesel_hybrid_excl_plugin,62,557,11.2
+2026,7,LAND ROVER,RANGE ROVER SPORT,model,plugin_hybrid,136,1270,43.3
+2026,7,LAND ROVER,RANGE ROVER SPORT,model,petrol_plugin_hybrid,136,1270,43.3
+2026,7,LAND ROVER,RANGE ROVER SPORT,model,awd,220,1986,22.7
+2026,7,LAND ROVER,RANGE ROVER VELAR,model,total,46,542,6.2
+2026,7,LAND ROVER,RANGE ROVER VELAR,model,hybrid_incl_plugin,46,542,6.3
+2026,7,LAND ROVER,RANGE ROVER VELAR,model,petrol_hybrid_incl_plugin,8,154,4.2
+2026,7,LAND ROVER,RANGE ROVER VELAR,model,diesel_hybrid_incl_plugin,38,388,7.8
+2026,7,LAND ROVER,RANGE ROVER VELAR,model,hybrid_excl_plugin,42,422,7.4
+2026,7,LAND ROVER,RANGE ROVER VELAR,model,petrol_hybrid_excl_plugin,4,34,4.7
+2026,7,LAND ROVER,RANGE ROVER VELAR,model,diesel_hybrid_excl_plugin,38,388,7.8
+2026,7,LAND ROVER,RANGE ROVER VELAR,model,plugin_hybrid,4,120,4.1
+2026,7,LAND ROVER,RANGE ROVER VELAR,model,petrol_plugin_hybrid,4,120,4.1
+2026,7,LAND ROVER,RANGE ROVER VELAR,model,awd,46,542,6.2
+2026,7,LAND ROVER,SONSTIGE,model,total,1,1,0
+2026,7,LAND ROVER,SONSTIGE,model,hybrid_incl_plugin,1,1,0
+2026,7,LAND ROVER,SONSTIGE,model,petrol_hybrid_incl_plugin,1,1,0
+2026,7,LAND ROVER,SONSTIGE,model,plugin_hybrid,1,1,0
+2026,7,LAND ROVER,SONSTIGE,model,petrol_plugin_hybrid,1,1,0
+2026,7,LAND ROVER,SONSTIGE,model,awd,1,1,0
+2026,7,LAND ROVER,,brand_total,total,1154,8808,0.5
+2026,7,LAND ROVER,,brand_total,diesel,,4,0
+2026,7,LAND ROVER,,brand_total,hybrid_incl_plugin,1126,8603,1.2
+2026,7,LAND ROVER,,brand_total,petrol_hybrid_incl_plugin,516,3648,0.6
+2026,7,LAND ROVER,,brand_total,diesel_hybrid_incl_plugin,610,4955,4.7
+2026,7,LAND ROVER,,brand_total,hybrid_excl_plugin,712,5671,1.1
+2026,7,LAND ROVER,,brand_total,petrol_hybrid_excl_plugin,102,716,0.2
+2026,7,LAND ROVER,,brand_total,diesel_hybrid_excl_plugin,610,4955,5.3
+2026,7,LAND ROVER,,brand_total,plugin_hybrid,414,2932,1.5
+2026,7,LAND ROVER,,brand_total,petrol_plugin_hybrid,414,2932,1.6
+2026,7,LAND ROVER,,brand_total,awd,1145,8759,2
+2026,7,LEAPMOTOR,B05,model,total,96,99,0.9
+2026,7,LEAPMOTOR,B05,model,bev,96,99,1
+2026,7,LEAPMOTOR,B10,model,total,474,2426,21.8
+2026,7,LEAPMOTOR,B10,model,hybrid_incl_plugin,59,122,16.8
+2026,7,LEAPMOTOR,B10,model,petrol_hybrid_incl_plugin,59,122,16.8
+2026,7,LEAPMOTOR,B10,model,plugin_hybrid,59,122,16.8
+2026,7,LEAPMOTOR,B10,model,petrol_plugin_hybrid,59,122,16.8
+2026,7,LEAPMOTOR,B10,model,bev,415,2303,22.1
+2026,7,LEAPMOTOR,C10,model,total,631,2372,21.3
+2026,7,LEAPMOTOR,C10,model,hybrid_incl_plugin,64,604,83.2
+2026,7,LEAPMOTOR,C10,model,petrol_hybrid_incl_plugin,64,604,83.2
+2026,7,LEAPMOTOR,C10,model,plugin_hybrid,64,604,83.2
+2026,7,LEAPMOTOR,C10,model,petrol_plugin_hybrid,64,604,83.2
+2026,7,LEAPMOTOR,C10,model,bev,567,1768,17
+2026,7,LEAPMOTOR,C10,model,awd,127,458,100
+2026,7,LEAPMOTOR,T03,model,total,1535,6241,56
+2026,7,LEAPMOTOR,T03,model,bev,1535,6241,59.9
+2026,7,LEAPMOTOR,,brand_total,total,2736,11138,0.6
+2026,7,LEAPMOTOR,,brand_total,hybrid_incl_plugin,123,726,0.1
+2026,7,LEAPMOTOR,,brand_total,petrol_hybrid_incl_plugin,123,726,0.1
+2026,7,LEAPMOTOR,,brand_total,plugin_hybrid,123,726,0.4
+2026,7,LEAPMOTOR,,brand_total,petrol_plugin_hybrid,123,726,0.4
+2026,7,LEAPMOTOR,,brand_total,bev,2613,10411,2.3
+2026,7,LEAPMOTOR,,brand_total,awd,127,458,0.1
+2026,7,LEXUS,ES,model,total,1,70,3.4
+2026,7,LEXUS,ES,model,hybrid_incl_plugin,1,70,3.8
+2026,7,LEXUS,ES,model,petrol_hybrid_incl_plugin,1,70,3.8
+2026,7,LEXUS,ES,model,hybrid_excl_plugin,1,70,5.6
+2026,7,LEXUS,ES,model,petrol_hybrid_excl_plugin,1,70,5.6
+2026,7,LEXUS,ES,model,awd,,1,0.1
+2026,7,LEXUS,LBX,model,total,83,672,33
+2026,7,LEXUS,LBX,model,hybrid_incl_plugin,83,672,36
+2026,7,LEXUS,LBX,model,petrol_hybrid_incl_plugin,83,672,36
+2026,7,LEXUS,LBX,model,hybrid_excl_plugin,83,672,53.9
+2026,7,LEXUS,LBX,model,petrol_hybrid_excl_plugin,83,672,53.9
+2026,7,LEXUS,LBX,model,awd,,4,0.4
+2026,7,LEXUS,LM,model,total,4,33,1.6
+2026,7,LEXUS,LM,model,hybrid_incl_plugin,4,33,1.8
+2026,7,LEXUS,LM,model,petrol_hybrid_incl_plugin,4,33,1.8
+2026,7,LEXUS,LM,model,hybrid_excl_plugin,4,33,2.6
+2026,7,LEXUS,LM,model,petrol_hybrid_excl_plugin,4,33,2.6
+2026,7,LEXUS,LM,model,awd,4,33,3.5
+2026,7,LEXUS,NX,model,total,93,544,26.7
+2026,7,LEXUS,NX,model,hybrid_incl_plugin,93,544,29.2
+2026,7,LEXUS,NX,model,petrol_hybrid_incl_plugin,93,544,29.2
+2026,7,LEXUS,NX,model,hybrid_excl_plugin,23,188,15.1
+2026,7,LEXUS,NX,model,petrol_hybrid_excl_plugin,23,188,15.1
+2026,7,LEXUS,NX,model,plugin_hybrid,70,356,57.4
+2026,7,LEXUS,NX,model,petrol_plugin_hybrid,70,356,57.4
+2026,7,LEXUS,NX,model,awd,83,433,46.4
+2026,7,LEXUS,RX,model,total,34,346,17
+2026,7,LEXUS,RX,model,hybrid_incl_plugin,34,346,18.5
+2026,7,LEXUS,RX,model,petrol_hybrid_incl_plugin,34,346,18.5
+2026,7,LEXUS,RX,model,hybrid_excl_plugin,3,82,6.6
+2026,7,LEXUS,RX,model,petrol_hybrid_excl_plugin,3,82,6.6
+2026,7,LEXUS,RX,model,plugin_hybrid,31,264,42.6
+2026,7,LEXUS,RX,model,petrol_plugin_hybrid,31,264,42.6
+2026,7,LEXUS,RX,model,awd,34,346,37.1
+2026,7,LEXUS,RZ,model,total,24,172,8.4
+2026,7,LEXUS,RZ,model,bev,24,172,100
+2026,7,LEXUS,RZ,model,awd,14,102,10.9
+2026,7,LEXUS,UX,model,total,21,201,9.9
+2026,7,LEXUS,UX,model,hybrid_incl_plugin,21,201,10.8
+2026,7,LEXUS,UX,model,petrol_hybrid_incl_plugin,21,201,10.8
+2026,7,LEXUS,UX,model,hybrid_excl_plugin,21,201,16.1
+2026,7,LEXUS,UX,model,petrol_hybrid_excl_plugin,21,201,16.1
+2026,7,LEXUS,UX,model,awd,,14,1.5
+2026,7,LEXUS,,brand_total,total,260,2038,0.1
+2026,7,LEXUS,,brand_total,hybrid_incl_plugin,236,1866,0.3
+2026,7,LEXUS,,brand_total,petrol_hybrid_incl_plugin,236,1866,0.3
+2026,7,LEXUS,,brand_total,hybrid_excl_plugin,135,1246,0.2
+2026,7,LEXUS,,brand_total,petrol_hybrid_excl_plugin,135,1246,0.3
+2026,7,LEXUS,,brand_total,plugin_hybrid,101,620,0.3
+2026,7,LEXUS,,brand_total,petrol_plugin_hybrid,101,620,0.3
+2026,7,LEXUS,,brand_total,bev,24,172,0
+2026,7,LEXUS,,brand_total,awd,135,933,0.2
+2026,7,LOTUS,ELETRE,model,total,22,71,36.2
+2026,7,LOTUS,ELETRE,model,bev,22,71,62.8
+2026,7,LOTUS,ELETRE,model,awd,22,71,59.2
+2026,7,LOTUS,EMEYA,model,total,11,42,21.4
+2026,7,LOTUS,EMEYA,model,bev,11,42,37.2
+2026,7,LOTUS,EMEYA,model,awd,11,42,35
+2026,7,LOTUS,EMIRA,model,total,,7,3.6
+2026,7,LOTUS,SONSTIGE,model,total,19,76,38.8
+2026,7,LOTUS,SONSTIGE,model,hybrid_incl_plugin,4,7,100
+2026,7,LOTUS,SONSTIGE,model,petrol_hybrid_incl_plugin,4,7,100
+2026,7,LOTUS,SONSTIGE,model,plugin_hybrid,4,7,100
+2026,7,LOTUS,SONSTIGE,model,petrol_plugin_hybrid,4,7,100
+2026,7,LOTUS,SONSTIGE,model,awd,4,7,5.8
+2026,7,LOTUS,,brand_total,total,52,196,0
+2026,7,LOTUS,,brand_total,hybrid_incl_plugin,4,7,0
+2026,7,LOTUS,,brand_total,petrol_hybrid_incl_plugin,4,7,0
+2026,7,LOTUS,,brand_total,plugin_hybrid,4,7,0
+2026,7,LOTUS,,brand_total,petrol_plugin_hybrid,4,7,0
+2026,7,LOTUS,,brand_total,bev,33,113,0
+2026,7,LOTUS,,brand_total,awd,37,120,0
+2026,7,LUCID,AIR,model,total,2,40,35.1
+2026,7,LUCID,AIR,model,bev,2,40,35.1
+2026,7,LUCID,AIR,model,awd,2,31,29.5
+2026,7,LUCID,GRAVITY,model,total,4,74,64.9
+2026,7,LUCID,GRAVITY,model,bev,4,74,64.9
+2026,7,LUCID,GRAVITY,model,awd,4,74,70.5
+2026,7,LUCID,,brand_total,total,6,114,0
+2026,7,LUCID,,brand_total,bev,6,114,0
+2026,7,LUCID,,brand_total,awd,6,105,0
+2026,7,LYNK & CO,01,model,total,23,213,30.6
+2026,7,LYNK & CO,01,model,hybrid_incl_plugin,23,213,35.1
+2026,7,LYNK & CO,01,model,petrol_hybrid_incl_plugin,23,213,35.1
+2026,7,LYNK & CO,01,model,plugin_hybrid,23,213,35.1
+2026,7,LYNK & CO,01,model,petrol_plugin_hybrid,23,213,35.1
+2026,7,LYNK & CO,02,model,total,24,91,13.1
+2026,7,LYNK & CO,02,model,bev,24,91,100
+2026,7,LYNK & CO,08,model,total,63,393,56.4
+2026,7,LYNK & CO,08,model,hybrid_incl_plugin,63,393,64.9
+2026,7,LYNK & CO,08,model,petrol_hybrid_incl_plugin,63,393,64.9
+2026,7,LYNK & CO,08,model,plugin_hybrid,63,393,64.9
+2026,7,LYNK & CO,08,model,petrol_plugin_hybrid,63,393,64.9
+2026,7,LYNK & CO,,brand_total,total,110,697,0
+2026,7,LYNK & CO,,brand_total,hybrid_incl_plugin,86,606,0.1
+2026,7,LYNK & CO,,brand_total,petrol_hybrid_incl_plugin,86,606,0.1
+2026,7,LYNK & CO,,brand_total,plugin_hybrid,86,606,0.3
+2026,7,LYNK & CO,,brand_total,petrol_plugin_hybrid,86,606,0.3
+2026,7,LYNK & CO,,brand_total,bev,24,91,0
+2026,7,MAN,TGE,model,total,153,775,94.4
+2026,7,MAN,TGE,model,diesel,153,775,94.4
+2026,7,MAN,TGE,model,awd,31,191,93.6
+2026,7,MAN,TGL,model,total,,11,1.3
+2026,7,MAN,TGL,model,diesel,,11,1.3
+2026,7,MAN,TGL,model,awd,,1,0.5
+2026,7,MAN,TGM,model,total,3,21,2.6
+2026,7,MAN,TGM,model,diesel,3,21,2.6
+2026,7,MAN,TGM,model,awd,1,6,2.9
+2026,7,MAN,TGS,model,total,,8,1
+2026,7,MAN,TGS,model,diesel,,8,1
+2026,7,MAN,TGS,model,awd,,4,2
+2026,7,MAN,TGX,model,total,,2,0.2
+2026,7,MAN,TGX,model,diesel,,2,0.2
+2026,7,MAN,SONSTIGE,model,total,1,4,0.5
+2026,7,MAN,SONSTIGE,model,diesel,1,4,0.5
+2026,7,MAN,SONSTIGE,model,awd,1,2,1
+2026,7,MAN,,brand_total,total,157,821,0
+2026,7,MAN,,brand_total,diesel,157,821,0.4
+2026,7,MAN,,brand_total,awd,33,204,0
+2026,7,MASERATI,GHIBLI,model,total,,2,0.8
+2026,7,MASERATI,GRANTURISMO,model,total,2,40,15.3
+2026,7,MASERATI,GRANTURISMO,model,bev,,3,37.5
+2026,7,MASERATI,GRANTURISMO,model,awd,2,40,16.3
+2026,7,MASERATI,GRANTURISMO,model,cabriolet,2,29,93.5
+2026,7,MASERATI,GRECALE,model,total,13,198,75.9
+2026,7,MASERATI,GRECALE,model,hybrid_incl_plugin,9,125,97.7
+2026,7,MASERATI,GRECALE,model,petrol_hybrid_incl_plugin,9,125,97.7
+2026,7,MASERATI,GRECALE,model,hybrid_excl_plugin,9,125,97.7
+2026,7,MASERATI,GRECALE,model,petrol_hybrid_excl_plugin,9,125,97.7
+2026,7,MASERATI,GRECALE,model,bev,1,5,62.5
+2026,7,MASERATI,GRECALE,model,awd,13,198,80.8
+2026,7,MASERATI,LEVANTE,model,total,,4,1.5
+2026,7,MASERATI,LEVANTE,model,hybrid_incl_plugin,,3,2.3
+2026,7,MASERATI,LEVANTE,model,petrol_hybrid_incl_plugin,,3,2.3
+2026,7,MASERATI,LEVANTE,model,hybrid_excl_plugin,,3,2.3
+2026,7,MASERATI,LEVANTE,model,petrol_hybrid_excl_plugin,,3,2.3
+2026,7,MASERATI,LEVANTE,model,awd,,4,1.6
+2026,7,MASERATI,QUATTROPORTE,model,total,,2,0.8
+2026,7,MASERATI,QUATTROPORTE,model,diesel,,1,100
+2026,7,MASERATI,QUATTROPORTE,model,awd,,1,0.4
+2026,7,MASERATI,SONSTIGE,model,total,3,15,5.7
+2026,7,MASERATI,SONSTIGE,model,awd,1,2,0.8
+2026,7,MASERATI,SONSTIGE,model,cabriolet,,2,6.5
+2026,7,MASERATI,,brand_total,total,18,261,0
+2026,7,MASERATI,,brand_total,diesel,,1,0
+2026,7,MASERATI,,brand_total,hybrid_incl_plugin,9,128,0
+2026,7,MASERATI,,brand_total,petrol_hybrid_incl_plugin,9,128,0
+2026,7,MASERATI,,brand_total,hybrid_excl_plugin,9,128,0
+2026,7,MASERATI,,brand_total,petrol_hybrid_excl_plugin,9,128,0
+2026,7,MASERATI,,brand_total,bev,1,8,0
+2026,7,MASERATI,,brand_total,awd,16,245,0.1
+2026,7,MASERATI,,brand_total,cabriolet,2,31,0.1
+2026,7,MAXUS,DELIVER 7,model,total,,1,8.3
+2026,7,MAXUS,DELIVER 7,model,bev,,1,8.3
+2026,7,MAXUS,DELIVER 7,model,awd,,1,100
+2026,7,MAXUS,SONSTIGE,model,total,1,11,91.7
+2026,7,MAXUS,SONSTIGE,model,bev,1,11,91.7
+2026,7,MAXUS,,brand_total,total,1,12,0
+2026,7,MAXUS,,brand_total,bev,1,12,0
+2026,7,MAXUS,,brand_total,awd,,1,0
+2026,7,MAZDA,2,model,total,260,1958,7.2
+2026,7,MAZDA,2,model,hybrid_incl_plugin,260,1958,8.2
+2026,7,MAZDA,2,model,petrol_hybrid_incl_plugin,260,1958,9.2
+2026,7,MAZDA,2,model,hybrid_excl_plugin,260,1958,9.3
+2026,7,MAZDA,2,model,petrol_hybrid_excl_plugin,260,1958,10.6
+2026,7,MAZDA,3,model,total,261,3936,14.4
+2026,7,MAZDA,3,model,hybrid_incl_plugin,261,3936,16.5
+2026,7,MAZDA,3,model,petrol_hybrid_incl_plugin,261,3936,18.5
+2026,7,MAZDA,3,model,hybrid_excl_plugin,261,3936,18.7
+2026,7,MAZDA,3,model,petrol_hybrid_excl_plugin,261,3936,21.3
+2026,7,MAZDA,3,model,awd,2,43,0.7
+2026,7,MAZDA,6,model,total,219,2527,9.3
+2026,7,MAZDA,6,model,diesel,,1,33.3
+2026,7,MAZDA,6,model,bev,219,2526,98.9
+2026,7,MAZDA,CX-30,model,total,572,8456,31
+2026,7,MAZDA,CX-30,model,hybrid_incl_plugin,572,8455,35.5
+2026,7,MAZDA,CX-30,model,petrol_hybrid_incl_plugin,572,8455,39.6
+2026,7,MAZDA,CX-30,model,hybrid_excl_plugin,572,8455,40.2
+2026,7,MAZDA,CX-30,model,petrol_hybrid_excl_plugin,572,8455,45.7
+2026,7,MAZDA,CX-30,model,awd,15,288,4.5
+2026,7,MAZDA,CX-5,model,total,849,4168,15.3
+2026,7,MAZDA,CX-5,model,hybrid_incl_plugin,848,4166,17.5
+2026,7,MAZDA,CX-5,model,petrol_hybrid_incl_plugin,848,4166,19.5
+2026,7,MAZDA,CX-5,model,hybrid_excl_plugin,848,4166,19.8
+2026,7,MAZDA,CX-5,model,petrol_hybrid_excl_plugin,848,4166,22.5
+2026,7,MAZDA,CX-5,model,awd,215,881,13.7
+2026,7,MAZDA,CX-6,model,total,15,28,0.1
+2026,7,MAZDA,CX-6,model,bev,15,28,1.1
+2026,7,MAZDA,CX-60,model,total,460,3966,14.5
+2026,7,MAZDA,CX-60,model,hybrid_incl_plugin,460,3965,16.6
+2026,7,MAZDA,CX-60,model,petrol_hybrid_incl_plugin,220,2089,9.8
+2026,7,MAZDA,CX-60,model,diesel_hybrid_incl_plugin,240,1876,75
+2026,7,MAZDA,CX-60,model,hybrid_excl_plugin,240,1876,8.9
+2026,7,MAZDA,CX-60,model,diesel_hybrid_excl_plugin,240,1876,75
+2026,7,MAZDA,CX-60,model,plugin_hybrid,220,2089,74.3
+2026,7,MAZDA,CX-60,model,petrol_plugin_hybrid,220,2089,74.3
+2026,7,MAZDA,CX-60,model,awd,450,3873,60.4
+2026,7,MAZDA,CX-80,model,total,127,1327,4.9
+2026,7,MAZDA,CX-80,model,diesel,,2,66.7
+2026,7,MAZDA,CX-80,model,hybrid_incl_plugin,127,1325,5.6
+2026,7,MAZDA,CX-80,model,petrol_hybrid_incl_plugin,62,700,3.3
+2026,7,MAZDA,CX-80,model,diesel_hybrid_incl_plugin,65,625,25
+2026,7,MAZDA,CX-80,model,hybrid_excl_plugin,65,625,3
+2026,7,MAZDA,CX-80,model,diesel_hybrid_excl_plugin,65,625,25
+2026,7,MAZDA,CX-80,model,plugin_hybrid,62,700,24.9
+2026,7,MAZDA,CX-80,model,petrol_plugin_hybrid,62,700,24.9
+2026,7,MAZDA,CX-80,model,awd,127,1327,20.7
+2026,7,MAZDA,MX-30,model,total,,22,0.1
+2026,7,MAZDA,MX-30,model,hybrid_incl_plugin,,22,0.1
+2026,7,MAZDA,MX-30,model,petrol_hybrid_incl_plugin,,22,0.1
+2026,7,MAZDA,MX-30,model,plugin_hybrid,,22,0.8
+2026,7,MAZDA,MX-30,model,petrol_plugin_hybrid,,22,0.8
+2026,7,MAZDA,MX-5,model,total,78,888,3.3
+2026,7,MAZDA,MX-5,model,cabriolet,78,887,100
+2026,7,MAZDA,,brand_total,total,2841,27276,1.6
+2026,7,MAZDA,,brand_total,diesel,,3,0
+2026,7,MAZDA,,brand_total,hybrid_incl_plugin,2528,23827,3.4
+2026,7,MAZDA,,brand_total,petrol_hybrid_incl_plugin,2223,21326,3.6
+2026,7,MAZDA,,brand_total,diesel_hybrid_incl_plugin,305,2501,2.4
+2026,7,MAZDA,,brand_total,hybrid_excl_plugin,2246,21016,4.2
+2026,7,MAZDA,,brand_total,petrol_hybrid_excl_plugin,1941,18515,4.6
+2026,7,MAZDA,,brand_total,diesel_hybrid_excl_plugin,305,2501,2.7
+2026,7,MAZDA,,brand_total,plugin_hybrid,282,2811,1.4
+2026,7,MAZDA,,brand_total,petrol_plugin_hybrid,282,2811,1.5
+2026,7,MAZDA,,brand_total,bev,234,2554,0.6
+2026,7,MAZDA,,brand_total,awd,809,6412,1.5
+2026,7,MAZDA,,brand_total,cabriolet,78,887,3.9
+2026,7,MERCEDES,A-KLASSE,model,total,1054,6328,4.1
+2026,7,MERCEDES,A-KLASSE,model,diesel,183,975,3.7
+2026,7,MERCEDES,A-KLASSE,model,hybrid_incl_plugin,851,5257,5.7
+2026,7,MERCEDES,A-KLASSE,model,petrol_hybrid_incl_plugin,851,5257,10.2
+2026,7,MERCEDES,A-KLASSE,model,hybrid_excl_plugin,562,4109,5.9
+2026,7,MERCEDES,A-KLASSE,model,petrol_hybrid_excl_plugin,562,4109,10.2
+2026,7,MERCEDES,A-KLASSE,model,plugin_hybrid,289,1148,5
+2026,7,MERCEDES,A-KLASSE,model,petrol_plugin_hybrid,289,1148,10.1
+2026,7,MERCEDES,A-KLASSE,model,awd,116,437,0.6
+2026,7,MERCEDES,ACTROS,model,total,3,16,0
+2026,7,MERCEDES,ACTROS,model,diesel,2,15,0.1
+2026,7,MERCEDES,ACTROS,model,bev,1,1,0
+2026,7,MERCEDES,AMG GT,model,total,125,585,0.4
+2026,7,MERCEDES,AMG GT,model,hybrid_incl_plugin,47,185,0.2
+2026,7,MERCEDES,AMG GT,model,petrol_hybrid_incl_plugin,47,185,0.4
+2026,7,MERCEDES,AMG GT,model,hybrid_excl_plugin,27,122,0.2
+2026,7,MERCEDES,AMG GT,model,petrol_hybrid_excl_plugin,27,122,0.3
+2026,7,MERCEDES,AMG GT,model,plugin_hybrid,20,63,0.3
+2026,7,MERCEDES,AMG GT,model,petrol_plugin_hybrid,20,63,0.6
+2026,7,MERCEDES,AMG GT,model,awd,103,494,0.7
+2026,7,MERCEDES,AMG GT,model,cabriolet,,1,0
+2026,7,MERCEDES,AROCS,model,total,1,10,0
+2026,7,MERCEDES,AROCS,model,diesel,1,10,0
+2026,7,MERCEDES,AROCS,model,awd,1,6,0
+2026,7,MERCEDES,ATEGO,model,total,,4,0
+2026,7,MERCEDES,ATEGO,model,diesel,,4,0
+2026,7,MERCEDES,ATEGO,model,awd,,3,0
+2026,7,MERCEDES,B-KLASSE,model,total,146,2329,1.5
+2026,7,MERCEDES,B-KLASSE,model,diesel,32,363,1.4
+2026,7,MERCEDES,B-KLASSE,model,hybrid_incl_plugin,114,1966,2.1
+2026,7,MERCEDES,B-KLASSE,model,petrol_hybrid_incl_plugin,114,1966,3.8
+2026,7,MERCEDES,B-KLASSE,model,hybrid_excl_plugin,111,1918,2.8
+2026,7,MERCEDES,B-KLASSE,model,petrol_hybrid_excl_plugin,111,1918,4.8
+2026,7,MERCEDES,B-KLASSE,model,plugin_hybrid,3,48,0.2
+2026,7,MERCEDES,B-KLASSE,model,petrol_plugin_hybrid,3,48,0.4
+2026,7,MERCEDES,B-KLASSE,model,awd,5,99,0.1
+2026,7,MERCEDES,C-KLASSE,model,total,1934,12829,8.4
+2026,7,MERCEDES,C-KLASSE,model,hybrid_incl_plugin,1934,12828,13.9
+2026,7,MERCEDES,C-KLASSE,model,petrol_hybrid_incl_plugin,880,5718,11.1
+2026,7,MERCEDES,C-KLASSE,model,diesel_hybrid_incl_plugin,1054,7110,17.6
+2026,7,MERCEDES,C-KLASSE,model,hybrid_excl_plugin,1560,10660,15.4
+2026,7,MERCEDES,C-KLASSE,model,petrol_hybrid_excl_plugin,696,4637,11.5
+2026,7,MERCEDES,C-KLASSE,model,diesel_hybrid_excl_plugin,864,6023,20.8
+2026,7,MERCEDES,C-KLASSE,model,plugin_hybrid,374,2168,9.5
+2026,7,MERCEDES,C-KLASSE,model,petrol_plugin_hybrid,184,1081,9.5
+2026,7,MERCEDES,C-KLASSE,model,diesel_plugin_hybrid,190,1087,9.6
+2026,7,MERCEDES,C-KLASSE,model,awd,226,1633,2.3
+2026,7,MERCEDES,CITAN,model,total,276,3423,2.2
+2026,7,MERCEDES,CITAN,model,diesel,86,1051,4
+2026,7,MERCEDES,CITAN,model,bev,107,1153,3.6
+2026,7,MERCEDES,CL-KLASSE,model,total,1,1,0
+2026,7,MERCEDES,CLA-KLASSE,model,total,3704,20587,13.5
+2026,7,MERCEDES,CLA-KLASSE,model,diesel,33,698,2.7
+2026,7,MERCEDES,CLA-KLASSE,model,hybrid_incl_plugin,1157,6323,6.9
+2026,7,MERCEDES,CLA-KLASSE,model,petrol_hybrid_incl_plugin,1157,6323,12.2
+2026,7,MERCEDES,CLA-KLASSE,model,hybrid_excl_plugin,1156,6258,9
+2026,7,MERCEDES,CLA-KLASSE,model,petrol_hybrid_excl_plugin,1156,6258,15.6
+2026,7,MERCEDES,CLA-KLASSE,model,plugin_hybrid,1,65,0.3
+2026,7,MERCEDES,CLA-KLASSE,model,petrol_plugin_hybrid,1,65,0.6
+2026,7,MERCEDES,CLA-KLASSE,model,bev,2514,13546,42
+2026,7,MERCEDES,CLA-KLASSE,model,awd,877,4470,6.4
+2026,7,MERCEDES,CLE,model,total,709,5618,3.7
+2026,7,MERCEDES,CLE,model,hybrid_incl_plugin,709,5618,6.1
+2026,7,MERCEDES,CLE,model,petrol_hybrid_incl_plugin,604,4729,9.2
+2026,7,MERCEDES,CLE,model,diesel_hybrid_incl_plugin,105,889,2.2
+2026,7,MERCEDES,CLE,model,hybrid_excl_plugin,628,5026,7.3
+2026,7,MERCEDES,CLE,model,petrol_hybrid_excl_plugin,523,4137,10.3
+2026,7,MERCEDES,CLE,model,diesel_hybrid_excl_plugin,105,889,3.1
+2026,7,MERCEDES,CLE,model,plugin_hybrid,81,592,2.6
+2026,7,MERCEDES,CLE,model,petrol_plugin_hybrid,81,592,5.2
+2026,7,MERCEDES,CLE,model,awd,314,2269,3.3
+2026,7,MERCEDES,CLE,model,cabriolet,384,3286,86.9
+2026,7,MERCEDES,CLK,model,total,,1,0
+2026,7,MERCEDES,CLK,model,diesel,,1,0
+2026,7,MERCEDES,E-KLASSE,model,total,3471,17359,11.4
+2026,7,MERCEDES,E-KLASSE,model,diesel,,1,0
+2026,7,MERCEDES,E-KLASSE,model,hybrid_incl_plugin,3220,15661,17
+2026,7,MERCEDES,E-KLASSE,model,petrol_hybrid_incl_plugin,1225,5673,11
+2026,7,MERCEDES,E-KLASSE,model,diesel_hybrid_incl_plugin,1995,9988,24.8
+2026,7,MERCEDES,E-KLASSE,model,hybrid_excl_plugin,1999,9510,13.7
+2026,7,MERCEDES,E-KLASSE,model,petrol_hybrid_excl_plugin,598,2605,6.5
+2026,7,MERCEDES,E-KLASSE,model,diesel_hybrid_excl_plugin,1401,6905,23.8
+2026,7,MERCEDES,E-KLASSE,model,plugin_hybrid,1221,6151,27
+2026,7,MERCEDES,E-KLASSE,model,petrol_plugin_hybrid,627,3068,26.9
+2026,7,MERCEDES,E-KLASSE,model,diesel_plugin_hybrid,594,3083,27.2
+2026,7,MERCEDES,E-KLASSE,model,bev,251,1697,5.3
+2026,7,MERCEDES,E-KLASSE,model,awd,1259,6511,9.3
+2026,7,MERCEDES,G-KLASSE,model,total,539,3733,2.4
+2026,7,MERCEDES,G-KLASSE,model,hybrid_incl_plugin,467,3415,3.7
+2026,7,MERCEDES,G-KLASSE,model,petrol_hybrid_incl_plugin,245,2032,3.9
+2026,7,MERCEDES,G-KLASSE,model,diesel_hybrid_incl_plugin,222,1383,3.4
+2026,7,MERCEDES,G-KLASSE,model,hybrid_excl_plugin,467,3415,4.9
+2026,7,MERCEDES,G-KLASSE,model,petrol_hybrid_excl_plugin,245,2032,5.1
+2026,7,MERCEDES,G-KLASSE,model,diesel_hybrid_excl_plugin,222,1383,4.8
+2026,7,MERCEDES,G-KLASSE,model,bev,71,313,1
+2026,7,MERCEDES,G-KLASSE,model,awd,539,3733,5.3
+2026,7,MERCEDES,"GL-KLASSE, GLS",model,total,247,1160,0.8
+2026,7,MERCEDES,"GL-KLASSE, GLS",model,diesel,,1,0
+2026,7,MERCEDES,"GL-KLASSE, GLS",model,hybrid_incl_plugin,247,1159,1.3
+2026,7,MERCEDES,"GL-KLASSE, GLS",model,petrol_hybrid_incl_plugin,80,390,0.8
+2026,7,MERCEDES,"GL-KLASSE, GLS",model,diesel_hybrid_incl_plugin,167,769,1.9
+2026,7,MERCEDES,"GL-KLASSE, GLS",model,hybrid_excl_plugin,247,1159,1.7
+2026,7,MERCEDES,"GL-KLASSE, GLS",model,petrol_hybrid_excl_plugin,80,390,1
+2026,7,MERCEDES,"GL-KLASSE, GLS",model,diesel_hybrid_excl_plugin,167,769,2.6
+2026,7,MERCEDES,"GL-KLASSE, GLS",model,awd,247,1160,1.7
+2026,7,MERCEDES,GLA,model,total,1647,11783,7.7
+2026,7,MERCEDES,GLA,model,diesel,299,1623,6.2
+2026,7,MERCEDES,GLA,model,hybrid_incl_plugin,1062,5712,6.2
+2026,7,MERCEDES,GLA,model,petrol_hybrid_incl_plugin,1062,5712,11.1
+2026,7,MERCEDES,GLA,model,hybrid_excl_plugin,909,4902,7.1
+2026,7,MERCEDES,GLA,model,petrol_hybrid_excl_plugin,909,4902,12.2
+2026,7,MERCEDES,GLA,model,plugin_hybrid,153,810,3.6
+2026,7,MERCEDES,GLA,model,petrol_plugin_hybrid,153,810,7.1
+2026,7,MERCEDES,GLA,model,bev,282,4421,13.7
+2026,7,MERCEDES,GLA,model,awd,383,2414,3.5
+2026,7,MERCEDES,GLB,model,total,1765,9711,6.4
+2026,7,MERCEDES,GLB,model,diesel,102,1994,7.6
+2026,7,MERCEDES,GLB,model,hybrid_incl_plugin,545,2397,2.6
+2026,7,MERCEDES,GLB,model,petrol_hybrid_incl_plugin,545,2397,4.6
+2026,7,MERCEDES,GLB,model,hybrid_excl_plugin,545,2397,3.5
+2026,7,MERCEDES,GLB,model,petrol_hybrid_excl_plugin,545,2397,6
+2026,7,MERCEDES,GLB,model,bev,1118,5320,16.5
+2026,7,MERCEDES,GLB,model,awd,598,3146,4.5
+2026,7,MERCEDES,"GLK, GLC",model,total,5371,26740,17.5
+2026,7,MERCEDES,"GLK, GLC",model,hybrid_incl_plugin,3899,22763,24.7
+2026,7,MERCEDES,"GLK, GLC",model,petrol_hybrid_incl_plugin,1487,7783,15.1
+2026,7,MERCEDES,"GLK, GLC",model,diesel_hybrid_incl_plugin,2412,14980,37.1
+2026,7,MERCEDES,"GLK, GLC",model,hybrid_excl_plugin,2620,14980,21.6
+2026,7,MERCEDES,"GLK, GLC",model,petrol_hybrid_excl_plugin,945,5011,12.5
+2026,7,MERCEDES,"GLK, GLC",model,diesel_hybrid_excl_plugin,1675,9969,34.3
+2026,7,MERCEDES,"GLK, GLC",model,plugin_hybrid,1279,7783,34.2
+2026,7,MERCEDES,"GLK, GLC",model,petrol_plugin_hybrid,542,2772,24.3
+2026,7,MERCEDES,"GLK, GLC",model,diesel_plugin_hybrid,737,5011,44.2
+2026,7,MERCEDES,"GLK, GLC",model,bev,1472,3974,12.3
+2026,7,MERCEDES,"GLK, GLC",model,awd,5359,26703,38.3
+2026,7,MERCEDES,"ML-KLASSE, GLE",model,total,955,6921,4.5
+2026,7,MERCEDES,"ML-KLASSE, GLE",model,hybrid_incl_plugin,955,6921,7.5
+2026,7,MERCEDES,"ML-KLASSE, GLE",model,petrol_hybrid_incl_plugin,297,2502,4.8
+2026,7,MERCEDES,"ML-KLASSE, GLE",model,diesel_hybrid_incl_plugin,658,4419,11
+2026,7,MERCEDES,"ML-KLASSE, GLE",model,hybrid_excl_plugin,411,3211,4.6
+2026,7,MERCEDES,"ML-KLASSE, GLE",model,petrol_hybrid_excl_plugin,108,940,2.3
+2026,7,MERCEDES,"ML-KLASSE, GLE",model,diesel_hybrid_excl_plugin,303,2271,7.8
+2026,7,MERCEDES,"ML-KLASSE, GLE",model,plugin_hybrid,544,3710,16.3
+2026,7,MERCEDES,"ML-KLASSE, GLE",model,petrol_plugin_hybrid,189,1562,13.7
+2026,7,MERCEDES,"ML-KLASSE, GLE",model,diesel_plugin_hybrid,355,2148,19
+2026,7,MERCEDES,"ML-KLASSE, GLE",model,awd,955,6921,9.9
+2026,7,MERCEDES,S-KLASSE,model,total,474,1997,1.3
+2026,7,MERCEDES,S-KLASSE,model,hybrid_incl_plugin,424,1526,1.7
+2026,7,MERCEDES,S-KLASSE,model,petrol_hybrid_incl_plugin,216,712,1.4
+2026,7,MERCEDES,S-KLASSE,model,diesel_hybrid_incl_plugin,208,814,2
+2026,7,MERCEDES,S-KLASSE,model,hybrid_excl_plugin,381,1356,2
+2026,7,MERCEDES,S-KLASSE,model,petrol_hybrid_excl_plugin,173,542,1.3
+2026,7,MERCEDES,S-KLASSE,model,diesel_hybrid_excl_plugin,208,814,2.8
+2026,7,MERCEDES,S-KLASSE,model,plugin_hybrid,43,170,0.7
+2026,7,MERCEDES,S-KLASSE,model,petrol_plugin_hybrid,43,170,1.5
+2026,7,MERCEDES,S-KLASSE,model,bev,47,417,1.3
+2026,7,MERCEDES,S-KLASSE,model,awd,454,1814,2.6
+2026,7,MERCEDES,SL,model,total,42,480,0.3
+2026,7,MERCEDES,SL,model,hybrid_incl_plugin,18,155,0.2
+2026,7,MERCEDES,SL,model,petrol_hybrid_incl_plugin,18,155,0.3
+2026,7,MERCEDES,SL,model,hybrid_excl_plugin,16,121,0.2
+2026,7,MERCEDES,SL,model,petrol_hybrid_excl_plugin,16,121,0.3
+2026,7,MERCEDES,SL,model,plugin_hybrid,2,34,0.1
+2026,7,MERCEDES,SL,model,petrol_plugin_hybrid,2,34,0.3
+2026,7,MERCEDES,SL,model,awd,34,395,0.6
+2026,7,MERCEDES,SL,model,cabriolet,42,480,12.7
+2026,7,MERCEDES,SPRINTER,model,total,894,5917,3.9
+2026,7,MERCEDES,SPRINTER,model,diesel,892,5893,22.5
+2026,7,MERCEDES,SPRINTER,model,bev,1,14,0
+2026,7,MERCEDES,SPRINTER,model,awd,258,1556,2.2
+2026,7,MERCEDES,UNIMOG,model,total,1,4,0
+2026,7,MERCEDES,UNIMOG,model,diesel,1,4,0
+2026,7,MERCEDES,UNIMOG,model,awd,1,4,0
+2026,7,MERCEDES,V-KLASSE,model,total,2328,10960,7.2
+2026,7,MERCEDES,V-KLASSE,model,diesel,2169,9835,37.6
+2026,7,MERCEDES,V-KLASSE,model,hybrid_incl_plugin,18,97,0.1
+2026,7,MERCEDES,V-KLASSE,model,petrol_hybrid_incl_plugin,18,97,0.2
+2026,7,MERCEDES,V-KLASSE,model,hybrid_excl_plugin,18,97,0.1
+2026,7,MERCEDES,V-KLASSE,model,petrol_hybrid_excl_plugin,18,97,0.2
+2026,7,MERCEDES,V-KLASSE,model,bev,141,1026,3.2
+2026,7,MERCEDES,V-KLASSE,model,awd,1148,5130,7.4
+2026,7,MERCEDES,VITO,model,total,901,4006,2.6
+2026,7,MERCEDES,VITO,model,diesel,847,3714,14.2
+2026,7,MERCEDES,VITO,model,hybrid_incl_plugin,,5,0
+2026,7,MERCEDES,VITO,model,petrol_hybrid_incl_plugin,,5,0
+2026,7,MERCEDES,VITO,model,hybrid_excl_plugin,,5,0
+2026,7,MERCEDES,VITO,model,petrol_hybrid_excl_plugin,,5,0
+2026,7,MERCEDES,VITO,model,bev,54,286,0.9
+2026,7,MERCEDES,VITO,model,awd,153,835,1.2
+2026,7,MERCEDES,VL,model,total,29,53,0
+2026,7,MERCEDES,VL,model,bev,29,53,0.2
+2026,7,MERCEDES,VL,model,awd,13,22,0
+2026,7,MERCEDES,SONSTIGE,model,total,7,29,0
+2026,7,MERCEDES,SONSTIGE,model,diesel,,6,0
+2026,7,MERCEDES,SONSTIGE,model,hybrid_incl_plugin,4,10,0
+2026,7,MERCEDES,SONSTIGE,model,petrol_hybrid_incl_plugin,3,9,0
+2026,7,MERCEDES,SONSTIGE,model,diesel_hybrid_incl_plugin,1,1,0
+2026,7,MERCEDES,SONSTIGE,model,hybrid_excl_plugin,3,4,0
+2026,7,MERCEDES,SONSTIGE,model,petrol_hybrid_excl_plugin,2,3,0
+2026,7,MERCEDES,SONSTIGE,model,diesel_hybrid_excl_plugin,1,1,0
+2026,7,MERCEDES,SONSTIGE,model,plugin_hybrid,1,6,0
+2026,7,MERCEDES,SONSTIGE,model,petrol_plugin_hybrid,1,6,0.1
+2026,7,MERCEDES,SONSTIGE,model,awd,7,23,0
+2026,7,MERCEDES,SONSTIGE,model,cabriolet,3,13,0.3
+2026,7,MERCEDES,,brand_total,total,26624,152584,8.7
+2026,7,MERCEDES,,brand_total,diesel,4647,26188,11.6
+2026,7,MERCEDES,,brand_total,hybrid_incl_plugin,15671,91998,13.2
+2026,7,MERCEDES,,brand_total,petrol_hybrid_incl_plugin,8849,51645,8.8
+2026,7,MERCEDES,,brand_total,diesel_hybrid_incl_plugin,6822,40353,38.4
+2026,7,MERCEDES,,brand_total,hybrid_excl_plugin,11660,69250,13.8
+2026,7,MERCEDES,,brand_total,petrol_hybrid_excl_plugin,6714,40226,9.9
+2026,7,MERCEDES,,brand_total,diesel_hybrid_excl_plugin,4946,29024,31
+2026,7,MERCEDES,,brand_total,plugin_hybrid,4011,22748,11.7
+2026,7,MERCEDES,,brand_total,petrol_plugin_hybrid,2135,11419,6.2
+2026,7,MERCEDES,,brand_total,diesel_plugin_hybrid,1876,11329,100
+2026,7,MERCEDES,,brand_total,bev,6088,32221,7.2
+2026,7,MERCEDES,,brand_total,awd,13050,69778,16.3
+2026,7,MERCEDES,,brand_total,cabriolet,429,3780,16.5
+2026,7,MG ROEWE,3,model,total,312,4273,21.5
+2026,7,MG ROEWE,3,model,hybrid_incl_plugin,256,3421,27.1
+2026,7,MG ROEWE,3,model,petrol_hybrid_incl_plugin,256,3421,27.1
+2026,7,MG ROEWE,3,model,hybrid_excl_plugin,256,3421,35.3
+2026,7,MG ROEWE,3,model,petrol_hybrid_excl_plugin,256,3421,35.3
+2026,7,MG ROEWE,4,model,total,1212,2755,13.9
+2026,7,MG ROEWE,4,model,bev,1212,2755,50.5
+2026,7,MG ROEWE,4,model,awd,,2,0.5
+2026,7,MG ROEWE,5,model,total,,1,0
+2026,7,MG ROEWE,5,model,bev,,1,0
+2026,7,MG ROEWE,CYBERSTER,model,total,29,245,1.2
+2026,7,MG ROEWE,CYBERSTER,model,bev,29,245,4.5
+2026,7,MG ROEWE,CYBERSTER,model,awd,21,178,42.8
+2026,7,MG ROEWE,CYBERSTER,model,cabriolet,29,245,100
+2026,7,MG ROEWE,IM5,model,total,5,9,0
+2026,7,MG ROEWE,IM5,model,bev,5,9,0.2
+2026,7,MG ROEWE,IM5,model,awd,3,5,1.2
+2026,7,MG ROEWE,IM6,model,total,,24,0.1
+2026,7,MG ROEWE,IM6,model,bev,,24,0.4
+2026,7,MG ROEWE,IM6,model,awd,,14,3.4
+2026,7,MG ROEWE,RX6,model,total,843,3831,19.3
+2026,7,MG ROEWE,RX6,model,hybrid_incl_plugin,843,3821,30.2
+2026,7,MG ROEWE,RX6,model,petrol_hybrid_incl_plugin,843,3821,30.2
+2026,7,MG ROEWE,RX6,model,hybrid_excl_plugin,193,1230,12.7
+2026,7,MG ROEWE,RX6,model,petrol_hybrid_excl_plugin,193,1230,12.7
+2026,7,MG ROEWE,RX6,model,plugin_hybrid,650,2591,87.7
+2026,7,MG ROEWE,RX6,model,petrol_plugin_hybrid,650,2591,87.7
+2026,7,MG ROEWE,S5,model,total,371,1776,8.9
+2026,7,MG ROEWE,S5,model,bev,371,1776,32.6
+2026,7,MG ROEWE,S6,model,total,96,634,3.2
+2026,7,MG ROEWE,S6,model,bev,96,634,11.6
+2026,7,MG ROEWE,S6,model,awd,14,217,52.2
+2026,7,MG ROEWE,S9,model,total,180,362,1.8
+2026,7,MG ROEWE,S9,model,hybrid_incl_plugin,180,362,2.9
+2026,7,MG ROEWE,S9,model,petrol_hybrid_incl_plugin,180,362,2.9
+2026,7,MG ROEWE,S9,model,plugin_hybrid,180,362,12.3
+2026,7,MG ROEWE,S9,model,petrol_plugin_hybrid,180,362,12.3
+2026,7,MG ROEWE,ZS,model,total,650,5931,29.9
+2026,7,MG ROEWE,ZS,model,hybrid_incl_plugin,637,5036,39.8
+2026,7,MG ROEWE,ZS,model,petrol_hybrid_incl_plugin,637,5036,39.8
+2026,7,MG ROEWE,ZS,model,hybrid_excl_plugin,637,5036,52
+2026,7,MG ROEWE,ZS,model,petrol_hybrid_excl_plugin,637,5036,52
+2026,7,MG ROEWE,SONSTIGE,model,total,,9,0
+2026,7,MG ROEWE,SONSTIGE,model,bev,,9,0.2
+2026,7,MG ROEWE,,brand_total,total,3698,19850,1.1
+2026,7,MG ROEWE,,brand_total,hybrid_incl_plugin,1916,12640,1.8
+2026,7,MG ROEWE,,brand_total,petrol_hybrid_incl_plugin,1916,12640,2.1
+2026,7,MG ROEWE,,brand_total,hybrid_excl_plugin,1086,9687,1.9
+2026,7,MG ROEWE,,brand_total,petrol_hybrid_excl_plugin,1086,9687,2.4
+2026,7,MG ROEWE,,brand_total,plugin_hybrid,830,2953,1.5
+2026,7,MG ROEWE,,brand_total,petrol_plugin_hybrid,830,2953,1.6
+2026,7,MG ROEWE,,brand_total,bev,1713,5453,1.2
+2026,7,MG ROEWE,,brand_total,awd,38,416,0.1
+2026,7,MG ROEWE,,brand_total,cabriolet,29,245,1.1
+2026,7,MINI,MINI,model,total,4675,25846,100
+2026,7,MINI,MINI,model,diesel,,4,100
+2026,7,MINI,MINI,model,hybrid_incl_plugin,391,2209,100
+2026,7,MINI,MINI,model,petrol_hybrid_incl_plugin,355,1899,100
+2026,7,MINI,MINI,model,diesel_hybrid_incl_plugin,36,310,100
+2026,7,MINI,MINI,model,hybrid_excl_plugin,391,2209,100
+2026,7,MINI,MINI,model,petrol_hybrid_excl_plugin,355,1899,100
+2026,7,MINI,MINI,model,diesel_hybrid_excl_plugin,36,310,100
+2026,7,MINI,MINI,model,bev,2204,10954,100
+2026,7,MINI,MINI,model,awd,469,2309,100
+2026,7,MINI,MINI,model,cabriolet,856,5136,100
+2026,7,MINI,,brand_total,total,4675,25846,1.5
+2026,7,MINI,,brand_total,diesel,,4,0
+2026,7,MINI,,brand_total,hybrid_incl_plugin,391,2209,0.3
+2026,7,MINI,,brand_total,petrol_hybrid_incl_plugin,355,1899,0.3
+2026,7,MINI,,brand_total,diesel_hybrid_incl_plugin,36,310,0.3
+2026,7,MINI,,brand_total,hybrid_excl_plugin,391,2209,0.4
+2026,7,MINI,,brand_total,petrol_hybrid_excl_plugin,355,1899,0.5
+2026,7,MINI,,brand_total,diesel_hybrid_excl_plugin,36,310,0.3
+2026,7,MINI,,brand_total,bev,2204,10954,2.5
+2026,7,MINI,,brand_total,awd,469,2309,0.5
+2026,7,MINI,,brand_total,cabriolet,856,5136,22.4
+2026,7,MITSUBISHI,ASX,model,total,151,2288,29.7
+2026,7,MITSUBISHI,ASX,model,hybrid_incl_plugin,105,1446,25.2
+2026,7,MITSUBISHI,ASX,model,petrol_hybrid_incl_plugin,105,1446,25.2
+2026,7,MITSUBISHI,ASX,model,hybrid_excl_plugin,105,1446,41.9
+2026,7,MITSUBISHI,ASX,model,petrol_hybrid_excl_plugin,105,1446,41.9
+2026,7,MITSUBISHI,COLT,model,total,18,303,3.9
+2026,7,MITSUBISHI,COLT,model,hybrid_incl_plugin,6,101,1.8
+2026,7,MITSUBISHI,COLT,model,petrol_hybrid_incl_plugin,6,101,1.8
+2026,7,MITSUBISHI,COLT,model,hybrid_excl_plugin,6,101,2.9
+2026,7,MITSUBISHI,COLT,model,petrol_hybrid_excl_plugin,6,101,2.9
+2026,7,MITSUBISHI,ECLIPSE CROSS,model,total,84,912,11.9
+2026,7,MITSUBISHI,ECLIPSE CROSS,model,bev,84,912,100
+2026,7,MITSUBISHI,GRANDIS,model,total,89,1906,24.8
+2026,7,MITSUBISHI,GRANDIS,model,hybrid_incl_plugin,89,1906,33.3
+2026,7,MITSUBISHI,GRANDIS,model,petrol_hybrid_incl_plugin,89,1906,33.3
+2026,7,MITSUBISHI,GRANDIS,model,hybrid_excl_plugin,89,1906,55.2
+2026,7,MITSUBISHI,GRANDIS,model,petrol_hybrid_excl_plugin,89,1906,55.2
+2026,7,MITSUBISHI,"MIRAGE, SPACE STAR",model,total,,1,0
+2026,7,MITSUBISHI,OUTLANDER,model,total,441,2277,29.6
+2026,7,MITSUBISHI,OUTLANDER,model,hybrid_incl_plugin,441,2277,39.7
+2026,7,MITSUBISHI,OUTLANDER,model,petrol_hybrid_incl_plugin,441,2277,39.7
+2026,7,MITSUBISHI,OUTLANDER,model,hybrid_excl_plugin,1,1,0
+2026,7,MITSUBISHI,OUTLANDER,model,petrol_hybrid_excl_plugin,1,1,0
+2026,7,MITSUBISHI,OUTLANDER,model,plugin_hybrid,440,2276,99.9
+2026,7,MITSUBISHI,OUTLANDER,model,petrol_plugin_hybrid,440,2276,99.9
+2026,7,MITSUBISHI,OUTLANDER,model,awd,441,2277,99.9
+2026,7,MITSUBISHI,SONSTIGE,model,total,,8,0.1
+2026,7,MITSUBISHI,SONSTIGE,model,diesel,,6,100
+2026,7,MITSUBISHI,SONSTIGE,model,hybrid_incl_plugin,,2,0
+2026,7,MITSUBISHI,SONSTIGE,model,petrol_hybrid_incl_plugin,,2,0
+2026,7,MITSUBISHI,SONSTIGE,model,plugin_hybrid,,2,0.1
+2026,7,MITSUBISHI,SONSTIGE,model,petrol_plugin_hybrid,,2,0.1
+2026,7,MITSUBISHI,SONSTIGE,model,awd,,3,0.1
+2026,7,MITSUBISHI,,brand_total,total,783,7695,0.4
+2026,7,MITSUBISHI,,brand_total,diesel,,6,0
+2026,7,MITSUBISHI,,brand_total,hybrid_incl_plugin,641,5732,0.8
+2026,7,MITSUBISHI,,brand_total,petrol_hybrid_incl_plugin,641,5732,1
+2026,7,MITSUBISHI,,brand_total,hybrid_excl_plugin,201,3454,0.7
+2026,7,MITSUBISHI,,brand_total,petrol_hybrid_excl_plugin,201,3454,0.9
+2026,7,MITSUBISHI,,brand_total,plugin_hybrid,440,2278,1.2
+2026,7,MITSUBISHI,,brand_total,petrol_plugin_hybrid,440,2278,1.2
+2026,7,MITSUBISHI,,brand_total,bev,84,912,0.2
+2026,7,MITSUBISHI,,brand_total,awd,441,2280,0.5
+2026,7,MORGAN,SONSTIGE,model,total,2,49,100
+2026,7,MORGAN,SONSTIGE,model,cabriolet,2,48,100
+2026,7,MORGAN,,brand_total,total,2,49,0
+2026,7,MORGAN,,brand_total,cabriolet,2,48,0.2
+2026,7,NIO,EL6,model,total,2,5,27.8
+2026,7,NIO,EL6,model,bev,2,5,27.8
+2026,7,NIO,EL6,model,awd,2,5,38.5
+2026,7,NIO,ES8,model,total,,2,11.1
+2026,7,NIO,ES8,model,bev,,2,11.1
+2026,7,NIO,ES8,model,awd,,2,15.4
+2026,7,NIO,ET5,model,total,1,7,38.9
+2026,7,NIO,ET5,model,bev,1,7,38.9
+2026,7,NIO,ET5,model,awd,1,6,46.2
+2026,7,NIO,FIREFLY,model,total,,4,22.2
+2026,7,NIO,FIREFLY,model,bev,,4,22.2
+2026,7,NIO,,brand_total,total,3,18,0
+2026,7,NIO,,brand_total,bev,3,18,0
+2026,7,NIO,,brand_total,awd,3,13,0
+2026,7,NISSAN,ARIYA,model,total,11,181,0.9
+2026,7,NISSAN,ARIYA,model,bev,11,181,5.8
+2026,7,NISSAN,ARIYA,model,awd,1,24,2.1
+2026,7,NISSAN,INTERSTAR,model,total,1,8,0
+2026,7,NISSAN,INTERSTAR,model,diesel,,6,0.5
+2026,7,NISSAN,INTERSTAR,model,bev,1,2,0.1
+2026,7,NISSAN,JUKE,model,total,354,2320,12.1
+2026,7,NISSAN,JUKE,model,hybrid_incl_plugin,121,1021,8.3
+2026,7,NISSAN,JUKE,model,petrol_hybrid_incl_plugin,121,1021,8.3
+2026,7,NISSAN,JUKE,model,hybrid_excl_plugin,121,1021,8.3
+2026,7,NISSAN,JUKE,model,petrol_hybrid_excl_plugin,121,1021,8.3
+2026,7,NISSAN,LEAF,model,total,189,239,1.2
+2026,7,NISSAN,LEAF,model,bev,189,239,7.7
+2026,7,NISSAN,MICRA,model,total,574,2604,13.5
+2026,7,NISSAN,MICRA,model,bev,574,2604,83.6
+2026,7,NISSAN,PRIMASTAR,model,total,117,1287,6.7
+2026,7,NISSAN,PRIMASTAR,model,diesel,117,1286,99.4
+2026,7,NISSAN,PRIMASTAR,model,awd,,1,0.1
+2026,7,NISSAN,QASHQAI,model,total,886,8385,43.6
+2026,7,NISSAN,QASHQAI,model,hybrid_incl_plugin,885,8378,67.9
+2026,7,NISSAN,QASHQAI,model,petrol_hybrid_incl_plugin,885,8378,67.9
+2026,7,NISSAN,QASHQAI,model,hybrid_excl_plugin,885,8378,67.9
+2026,7,NISSAN,QASHQAI,model,petrol_hybrid_excl_plugin,885,8378,67.9
+2026,7,NISSAN,QASHQAI,model,awd,15,214,19
+2026,7,NISSAN,TOWNSTAR,model,total,222,1261,6.6
+2026,7,NISSAN,TOWNSTAR,model,bev,4,88,2.8
+2026,7,NISSAN,X-TRAIL,model,total,133,2932,15.2
+2026,7,NISSAN,X-TRAIL,model,hybrid_incl_plugin,133,2932,23.8
+2026,7,NISSAN,X-TRAIL,model,petrol_hybrid_incl_plugin,133,2932,23.8
+2026,7,NISSAN,X-TRAIL,model,hybrid_excl_plugin,133,2932,23.8
+2026,7,NISSAN,X-TRAIL,model,petrol_hybrid_excl_plugin,133,2932,23.8
+2026,7,NISSAN,X-TRAIL,model,awd,48,881,78.2
+2026,7,NISSAN,SONSTIGE,model,total,5,17,0.1
+2026,7,NISSAN,SONSTIGE,model,diesel,,2,0.2
+2026,7,NISSAN,SONSTIGE,model,awd,4,6,0.5
+2026,7,NISSAN,,brand_total,total,2492,19234,1.1
+2026,7,NISSAN,,brand_total,diesel,117,1294,0.6
+2026,7,NISSAN,,brand_total,hybrid_incl_plugin,1139,12331,1.8
+2026,7,NISSAN,,brand_total,petrol_hybrid_incl_plugin,1139,12331,2.1
+2026,7,NISSAN,,brand_total,hybrid_excl_plugin,1139,12331,2.5
+2026,7,NISSAN,,brand_total,petrol_hybrid_excl_plugin,1139,12331,3
+2026,7,NISSAN,,brand_total,bev,779,3114,0.7
+2026,7,NISSAN,,brand_total,awd,68,1126,0.3
+2026,7,OMODA,5,model,total,21,63,74.1
+2026,7,OMODA,5,model,hybrid_incl_plugin,17,48,68.6
+2026,7,OMODA,5,model,petrol_hybrid_incl_plugin,17,48,68.6
+2026,7,OMODA,5,model,hybrid_excl_plugin,17,48,100
+2026,7,OMODA,5,model,petrol_hybrid_excl_plugin,17,48,100
+2026,7,OMODA,5,model,bev,4,15,100
+2026,7,OMODA,9,model,total,16,22,25.9
+2026,7,OMODA,9,model,hybrid_incl_plugin,16,22,31.4
+2026,7,OMODA,9,model,petrol_hybrid_incl_plugin,16,22,31.4
+2026,7,OMODA,9,model,plugin_hybrid,16,22,100
+2026,7,OMODA,9,model,petrol_plugin_hybrid,16,22,100
+2026,7,OMODA,9,model,awd,16,22,100
+2026,7,OMODA,,brand_total,total,37,85,0
+2026,7,OMODA,,brand_total,hybrid_incl_plugin,33,70,0
+2026,7,OMODA,,brand_total,petrol_hybrid_incl_plugin,33,70,0
+2026,7,OMODA,,brand_total,hybrid_excl_plugin,17,48,0
+2026,7,OMODA,,brand_total,petrol_hybrid_excl_plugin,17,48,0
+2026,7,OMODA,,brand_total,plugin_hybrid,16,22,0
+2026,7,OMODA,,brand_total,petrol_plugin_hybrid,16,22,0
+2026,7,OMODA,,brand_total,bev,4,15,0
+2026,7,OMODA,,brand_total,awd,16,22,0
+2026,7,OPEL,ASTRA,model,total,2049,15240,18.5
+2026,7,OPEL,ASTRA,model,diesel,929,5930,58.7
+2026,7,OPEL,ASTRA,model,hybrid_incl_plugin,725,6663,21
+2026,7,OPEL,ASTRA,model,petrol_hybrid_incl_plugin,725,6663,21
+2026,7,OPEL,ASTRA,model,hybrid_excl_plugin,628,6072,20.3
+2026,7,OPEL,ASTRA,model,petrol_hybrid_excl_plugin,628,6072,20.3
+2026,7,OPEL,ASTRA,model,plugin_hybrid,97,591,33.9
+2026,7,OPEL,ASTRA,model,petrol_plugin_hybrid,97,591,33.9
+2026,7,OPEL,ASTRA,model,bev,319,1560,9.8
+2026,7,OPEL,COMBO,model,total,283,1055,1.3
+2026,7,OPEL,COMBO,model,diesel,250,837,8.3
+2026,7,OPEL,COMBO,model,bev,32,216,1.4
+2026,7,OPEL,COMBO,model,awd,1,1,0.2
+2026,7,OPEL,CORSA,model,total,4077,28862,35.1
+2026,7,OPEL,CORSA,model,hybrid_incl_plugin,1942,6865,21.7
+2026,7,OPEL,CORSA,model,petrol_hybrid_incl_plugin,1942,6865,21.7
+2026,7,OPEL,CORSA,model,hybrid_excl_plugin,1942,6865,22.9
+2026,7,OPEL,CORSA,model,petrol_hybrid_excl_plugin,1942,6865,22.9
+2026,7,OPEL,CORSA,model,bev,735,4754,29.9
+2026,7,OPEL,FRONTERA,model,total,1511,8184,9.9
+2026,7,OPEL,FRONTERA,model,hybrid_incl_plugin,984,5673,17.9
+2026,7,OPEL,FRONTERA,model,petrol_hybrid_incl_plugin,984,5673,17.9
+2026,7,OPEL,FRONTERA,model,hybrid_excl_plugin,984,5673,18.9
+2026,7,OPEL,FRONTERA,model,petrol_hybrid_excl_plugin,984,5673,18.9
+2026,7,OPEL,FRONTERA,model,bev,527,2510,15.8
+2026,7,OPEL,GRANDLAND X,model,total,1768,13881,16.9
+2026,7,OPEL,GRANDLAND X,model,hybrid_incl_plugin,1114,8545,27
+2026,7,OPEL,GRANDLAND X,model,petrol_hybrid_incl_plugin,1114,8545,27
+2026,7,OPEL,GRANDLAND X,model,hybrid_excl_plugin,1008,7393,24.7
+2026,7,OPEL,GRANDLAND X,model,petrol_hybrid_excl_plugin,1008,7393,24.7
+2026,7,OPEL,GRANDLAND X,model,plugin_hybrid,106,1152,66.1
+2026,7,OPEL,GRANDLAND X,model,petrol_plugin_hybrid,106,1152,66.1
+2026,7,OPEL,GRANDLAND X,model,bev,638,5274,33.2
+2026,7,OPEL,GRANDLAND X,model,awd,58,574,99.5
+2026,7,OPEL,INSIGNIA,model,total,,1,0
+2026,7,OPEL,INSIGNIA,model,diesel,,1,0
+2026,7,OPEL,MOKKA,model,total,1822,11616,14.1
+2026,7,OPEL,MOKKA,model,hybrid_incl_plugin,949,3949,12.5
+2026,7,OPEL,MOKKA,model,petrol_hybrid_incl_plugin,949,3949,12.5
+2026,7,OPEL,MOKKA,model,hybrid_excl_plugin,949,3949,13.2
+2026,7,OPEL,MOKKA,model,petrol_hybrid_excl_plugin,949,3949,13.2
+2026,7,OPEL,MOKKA,model,bev,143,1408,8.9
+2026,7,OPEL,MOVANO,model,total,14,143,0.2
+2026,7,OPEL,MOVANO,model,diesel,13,142,1.4
+2026,7,OPEL,MOVANO,model,awd,1,1,0.2
+2026,7,OPEL,VIVARO,model,total,1,5,0
+2026,7,OPEL,VIVARO,model,diesel,1,5,0
+2026,7,OPEL,ZAFIRA LIFE,model,total,394,3335,4.1
+2026,7,OPEL,ZAFIRA LIFE,model,diesel,371,3181,31.5
+2026,7,OPEL,ZAFIRA LIFE,model,bev,23,154,1
+2026,7,OPEL,ZAFIRA LIFE,model,awd,,1,0.2
+2026,7,OPEL,SONSTIGE,model,total,1,1,0
+2026,7,OPEL,SONSTIGE,model,bev,1,1,0
+2026,7,OPEL,,brand_total,total,11920,82323,4.7
+2026,7,OPEL,,brand_total,diesel,1564,10096,4.5
+2026,7,OPEL,,brand_total,hybrid_incl_plugin,5714,31695,4.5
+2026,7,OPEL,,brand_total,petrol_hybrid_incl_plugin,5714,31695,5.4
+2026,7,OPEL,,brand_total,hybrid_excl_plugin,5511,29952,6
+2026,7,OPEL,,brand_total,petrol_hybrid_excl_plugin,5511,29952,7.4
+2026,7,OPEL,,brand_total,plugin_hybrid,203,1743,0.9
+2026,7,OPEL,,brand_total,petrol_plugin_hybrid,203,1743,1
+2026,7,OPEL,,brand_total,bev,2418,15877,3.6
+2026,7,OPEL,,brand_total,awd,60,577,0.1
+2026,7,PEUGEOT,2008,model,total,1332,8243,22.5
+2026,7,PEUGEOT,2008,model,hybrid_incl_plugin,818,4576,22.5
+2026,7,PEUGEOT,2008,model,petrol_hybrid_incl_plugin,818,4576,22.5
+2026,7,PEUGEOT,2008,model,hybrid_excl_plugin,818,4576,24.6
+2026,7,PEUGEOT,2008,model,petrol_hybrid_excl_plugin,818,4576,24.6
+2026,7,PEUGEOT,2008,model,bev,357,2775,35
+2026,7,PEUGEOT,208,model,total,942,7227,19.7
+2026,7,PEUGEOT,208,model,hybrid_incl_plugin,310,2975,14.6
+2026,7,PEUGEOT,208,model,petrol_hybrid_incl_plugin,310,2975,14.6
+2026,7,PEUGEOT,208,model,hybrid_excl_plugin,310,2975,16
+2026,7,PEUGEOT,208,model,petrol_hybrid_excl_plugin,310,2975,16
+2026,7,PEUGEOT,208,model,bev,412,2250,28.4
+2026,7,PEUGEOT,3008,model,total,1338,8114,22.1
+2026,7,PEUGEOT,3008,model,hybrid_incl_plugin,1147,6834,33.6
+2026,7,PEUGEOT,3008,model,petrol_hybrid_incl_plugin,1147,6834,33.6
+2026,7,PEUGEOT,3008,model,hybrid_excl_plugin,1089,6211,33.3
+2026,7,PEUGEOT,3008,model,petrol_hybrid_excl_plugin,1089,6211,33.3
+2026,7,PEUGEOT,3008,model,plugin_hybrid,58,623,36.9
+2026,7,PEUGEOT,3008,model,petrol_plugin_hybrid,58,623,36.9
+2026,7,PEUGEOT,3008,model,bev,191,1280,16.2
+2026,7,PEUGEOT,3008,model,awd,16,92,57.1
+2026,7,PEUGEOT,308,model,total,539,3980,10.8
+2026,7,PEUGEOT,308,model,diesel,254,1471,26.6
+2026,7,PEUGEOT,308,model,hybrid_incl_plugin,254,2225,11
+2026,7,PEUGEOT,308,model,petrol_hybrid_incl_plugin,254,2225,11
+2026,7,PEUGEOT,308,model,hybrid_excl_plugin,242,2115,11.4
+2026,7,PEUGEOT,308,model,petrol_hybrid_excl_plugin,242,2115,11.4
+2026,7,PEUGEOT,308,model,plugin_hybrid,12,110,6.5
+2026,7,PEUGEOT,308,model,petrol_plugin_hybrid,12,110,6.5
+2026,7,PEUGEOT,308,model,bev,31,284,3.6
+2026,7,PEUGEOT,408,model,total,79,1008,2.7
+2026,7,PEUGEOT,408,model,hybrid_incl_plugin,73,849,4.2
+2026,7,PEUGEOT,408,model,petrol_hybrid_incl_plugin,73,849,4.2
+2026,7,PEUGEOT,408,model,hybrid_excl_plugin,52,670,3.6
+2026,7,PEUGEOT,408,model,petrol_hybrid_excl_plugin,52,670,3.6
+2026,7,PEUGEOT,408,model,plugin_hybrid,21,179,10.6
+2026,7,PEUGEOT,408,model,petrol_plugin_hybrid,21,179,10.6
+2026,7,PEUGEOT,408,model,bev,6,159,2
+2026,7,PEUGEOT,5008,model,total,541,3730,10.2
+2026,7,PEUGEOT,5008,model,diesel,1,1,0
+2026,7,PEUGEOT,5008,model,hybrid_incl_plugin,335,2854,14
+2026,7,PEUGEOT,5008,model,petrol_hybrid_incl_plugin,335,2854,14
+2026,7,PEUGEOT,5008,model,hybrid_excl_plugin,257,2082,11.2
+2026,7,PEUGEOT,5008,model,petrol_hybrid_excl_plugin,257,2082,11.2
+2026,7,PEUGEOT,5008,model,plugin_hybrid,78,772,45.8
+2026,7,PEUGEOT,5008,model,petrol_plugin_hybrid,78,772,45.8
+2026,7,PEUGEOT,5008,model,bev,205,875,11
+2026,7,PEUGEOT,5008,model,awd,11,64,39.8
+2026,7,PEUGEOT,508,model,total,,3,0
+2026,7,PEUGEOT,508,model,hybrid_incl_plugin,,3,0
+2026,7,PEUGEOT,508,model,petrol_hybrid_incl_plugin,,3,0
+2026,7,PEUGEOT,508,model,plugin_hybrid,,3,0.2
+2026,7,PEUGEOT,508,model,petrol_plugin_hybrid,,3,0.2
+2026,7,PEUGEOT,508,model,awd,,2,1.2
+2026,7,PEUGEOT,BOXER,model,total,167,1313,3.6
+2026,7,PEUGEOT,BOXER,model,diesel,163,1300,23.5
+2026,7,PEUGEOT,BOXER,model,awd,1,3,1.9
+2026,7,PEUGEOT,EXPERT,model,total,410,2619,7.1
+2026,7,PEUGEOT,EXPERT,model,diesel,398,2551,46.1
+2026,7,PEUGEOT,EXPERT,model,bev,12,68,0.9
+2026,7,PEUGEOT,J5,model,total,,1,0
+2026,7,PEUGEOT,J5,model,diesel,,1,0
+2026,7,PEUGEOT,RIFTER,model,total,116,461,1.3
+2026,7,PEUGEOT,RIFTER,model,diesel,68,206,3.7
+2026,7,PEUGEOT,RIFTER,model,bev,36,234,3
+2026,7,PEUGEOT,,brand_total,total,5464,36699,2.1
+2026,7,PEUGEOT,,brand_total,diesel,884,5530,2.5
+2026,7,PEUGEOT,,brand_total,hybrid_incl_plugin,2937,20316,2.9
+2026,7,PEUGEOT,,brand_total,petrol_hybrid_incl_plugin,2937,20316,3.5
+2026,7,PEUGEOT,,brand_total,hybrid_excl_plugin,2768,18629,3.7
+2026,7,PEUGEOT,,brand_total,petrol_hybrid_excl_plugin,2768,18629,4.6
+2026,7,PEUGEOT,,brand_total,plugin_hybrid,169,1687,0.9
+2026,7,PEUGEOT,,brand_total,petrol_plugin_hybrid,169,1687,0.9
+2026,7,PEUGEOT,,brand_total,bev,1250,7925,1.8
+2026,7,PEUGEOT,,brand_total,awd,28,161,0
+2026,7,POLESTAR,2,model,total,257,842,27.4
+2026,7,POLESTAR,2,model,bev,257,842,27.4
+2026,7,POLESTAR,2,model,awd,196,362,24.8
+2026,7,POLESTAR,3,model,total,2,170,5.5
+2026,7,POLESTAR,3,model,bev,2,170,5.5
+2026,7,POLESTAR,3,model,awd,1,131,9
+2026,7,POLESTAR,4,model,total,382,2058,67
+2026,7,POLESTAR,4,model,bev,382,2058,67
+2026,7,POLESTAR,4,model,awd,176,964,66.2
+2026,7,POLESTAR,,brand_total,total,641,3070,0.2
+2026,7,POLESTAR,,brand_total,bev,641,3070,0.7
+2026,7,POLESTAR,,brand_total,awd,373,1457,0.3
+2026,7,PORSCHE,911,model,total,981,6606,36.1
+2026,7,PORSCHE,911,model,hybrid_incl_plugin,585,3530,50.7
+2026,7,PORSCHE,911,model,petrol_hybrid_incl_plugin,585,3530,50.7
+2026,7,PORSCHE,911,model,hybrid_excl_plugin,585,3530,99.9
+2026,7,PORSCHE,911,model,petrol_hybrid_excl_plugin,585,3530,99.9
+2026,7,PORSCHE,911,model,awd,518,3060,22.8
+2026,7,PORSCHE,911,model,cabriolet,528,3473,96.1
+2026,7,PORSCHE,BOXSTER,model,total,,1,0
+2026,7,PORSCHE,BOXSTER,model,cabriolet,,1,0
+2026,7,PORSCHE,CAYENNE,model,total,733,5420,29.6
+2026,7,PORSCHE,CAYENNE,model,hybrid_incl_plugin,316,2590,37.2
+2026,7,PORSCHE,CAYENNE,model,petrol_hybrid_incl_plugin,316,2590,37.2
+2026,7,PORSCHE,CAYENNE,model,plugin_hybrid,316,2590,75.5
+2026,7,PORSCHE,CAYENNE,model,petrol_plugin_hybrid,316,2590,75.5
+2026,7,PORSCHE,CAYENNE,model,bev,197,1231,20
+2026,7,PORSCHE,CAYENNE,model,awd,733,5420,40.5
+2026,7,PORSCHE,CAYMAN,model,total,5,61,0.3
+2026,7,PORSCHE,MACAN,model,total,644,3518,19.2
+2026,7,PORSCHE,MACAN,model,bev,644,3518,57.1
+2026,7,PORSCHE,MACAN,model,awd,503,2804,20.9
+2026,7,PORSCHE,PANAMERA,model,total,119,1095,6
+2026,7,PORSCHE,PANAMERA,model,hybrid_incl_plugin,86,813,11.7
+2026,7,PORSCHE,PANAMERA,model,petrol_hybrid_incl_plugin,86,813,11.7
+2026,7,PORSCHE,PANAMERA,model,plugin_hybrid,86,813,23.7
+2026,7,PORSCHE,PANAMERA,model,petrol_plugin_hybrid,86,813,23.7
+2026,7,PORSCHE,PANAMERA,model,awd,115,1067,8
+2026,7,PORSCHE,TAYCAN,model,total,198,1391,7.6
+2026,7,PORSCHE,TAYCAN,model,bev,198,1391,22.6
+2026,7,PORSCHE,TAYCAN,model,awd,131,985,7.4
+2026,7,PORSCHE,SONSTIGE,model,total,30,219,1.2
+2026,7,PORSCHE,SONSTIGE,model,hybrid_incl_plugin,2,33,0.5
+2026,7,PORSCHE,SONSTIGE,model,petrol_hybrid_incl_plugin,2,33,0.5
+2026,7,PORSCHE,SONSTIGE,model,hybrid_excl_plugin,,5,0.1
+2026,7,PORSCHE,SONSTIGE,model,petrol_hybrid_excl_plugin,,5,0.1
+2026,7,PORSCHE,SONSTIGE,model,plugin_hybrid,2,28,0.8
+2026,7,PORSCHE,SONSTIGE,model,petrol_plugin_hybrid,2,28,0.8
+2026,7,PORSCHE,SONSTIGE,model,bev,7,24,0.4
+2026,7,PORSCHE,SONSTIGE,model,awd,3,60,0.4
+2026,7,PORSCHE,SONSTIGE,model,cabriolet,19,140,3.9
+2026,7,PORSCHE,,brand_total,total,2710,18311,1
+2026,7,PORSCHE,,brand_total,hybrid_incl_plugin,989,6966,1
+2026,7,PORSCHE,,brand_total,petrol_hybrid_incl_plugin,989,6966,1.2
+2026,7,PORSCHE,,brand_total,hybrid_excl_plugin,585,3535,0.7
+2026,7,PORSCHE,,brand_total,petrol_hybrid_excl_plugin,585,3535,0.9
+2026,7,PORSCHE,,brand_total,plugin_hybrid,404,3431,1.8
+2026,7,PORSCHE,,brand_total,petrol_plugin_hybrid,404,3431,1.9
+2026,7,PORSCHE,,brand_total,bev,1046,6164,1.4
+2026,7,PORSCHE,,brand_total,awd,2003,13396,3.1
+2026,7,PORSCHE,,brand_total,cabriolet,547,3614,15.8
+2026,7,RENAULT,ARKANA,model,total,36,220,0.6
+2026,7,RENAULT,ARKANA,model,hybrid_incl_plugin,36,220,1.2
+2026,7,RENAULT,ARKANA,model,petrol_hybrid_incl_plugin,36,220,1.2
+2026,7,RENAULT,ARKANA,model,hybrid_excl_plugin,36,220,1.3
+2026,7,RENAULT,ARKANA,model,petrol_hybrid_excl_plugin,36,220,1.3
+2026,7,RENAULT,AUSTRAL,model,total,613,5370,13.4
+2026,7,RENAULT,AUSTRAL,model,hybrid_incl_plugin,613,5370,29.8
+2026,7,RENAULT,AUSTRAL,model,petrol_hybrid_incl_plugin,613,5370,29.8
+2026,7,RENAULT,AUSTRAL,model,hybrid_excl_plugin,613,5370,31
+2026,7,RENAULT,AUSTRAL,model,petrol_hybrid_excl_plugin,613,5370,31
+2026,7,RENAULT,CAPTUR,model,total,348,3935,9.8
+2026,7,RENAULT,CAPTUR,model,hybrid_incl_plugin,241,2919,16.2
+2026,7,RENAULT,CAPTUR,model,petrol_hybrid_incl_plugin,241,2919,16.2
+2026,7,RENAULT,CAPTUR,model,hybrid_excl_plugin,241,2919,16.8
+2026,7,RENAULT,CAPTUR,model,petrol_hybrid_excl_plugin,241,2919,16.8
+2026,7,RENAULT,CLIO,model,total,1012,6637,16.6
+2026,7,RENAULT,CLIO,model,hybrid_incl_plugin,577,3743,20.8
+2026,7,RENAULT,CLIO,model,petrol_hybrid_incl_plugin,577,3743,20.8
+2026,7,RENAULT,CLIO,model,hybrid_excl_plugin,577,3743,21.6
+2026,7,RENAULT,CLIO,model,petrol_hybrid_excl_plugin,577,3743,21.6
+2026,7,RENAULT,ESPACE,model,total,161,1312,3.3
+2026,7,RENAULT,ESPACE,model,hybrid_incl_plugin,161,1312,7.3
+2026,7,RENAULT,ESPACE,model,petrol_hybrid_incl_plugin,161,1312,7.3
+2026,7,RENAULT,ESPACE,model,hybrid_excl_plugin,161,1312,7.6
+2026,7,RENAULT,ESPACE,model,petrol_hybrid_excl_plugin,161,1312,7.6
+2026,7,RENAULT,KANGOO,model,total,321,2057,5.1
+2026,7,RENAULT,KANGOO,model,diesel,61,482,22
+2026,7,RENAULT,KANGOO,model,bev,28,133,0.9
+2026,7,RENAULT,MASTER,model,total,122,693,1.7
+2026,7,RENAULT,MASTER,model,diesel,119,683,31.2
+2026,7,RENAULT,MASTER,model,bev,,1,0
+2026,7,RENAULT,MASTER,model,awd,,5,0.7
+2026,7,RENAULT,MEGANE,model,total,65,690,1.7
+2026,7,RENAULT,MEGANE,model,bev,65,686,4.8
+2026,7,RENAULT,R4,model,total,571,2952,7.4
+2026,7,RENAULT,R4,model,bev,571,2952,20.5
+2026,7,RENAULT,R5,model,total,1066,5637,14.1
+2026,7,RENAULT,R5,model,bev,1066,5637,39.1
+2026,7,RENAULT,RAFALE,model,total,151,1297,3.2
+2026,7,RENAULT,RAFALE,model,hybrid_incl_plugin,151,1297,7.2
+2026,7,RENAULT,RAFALE,model,petrol_hybrid_incl_plugin,151,1297,7.2
+2026,7,RENAULT,RAFALE,model,hybrid_excl_plugin,71,628,3.6
+2026,7,RENAULT,RAFALE,model,petrol_hybrid_excl_plugin,71,628,3.6
+2026,7,RENAULT,RAFALE,model,plugin_hybrid,80,669,100
+2026,7,RENAULT,RAFALE,model,petrol_plugin_hybrid,80,669,100
+2026,7,RENAULT,RAFALE,model,awd,80,669,99.1
+2026,7,RENAULT,SCENIC,model,total,450,2128,5.3
+2026,7,RENAULT,SCENIC,model,bev,450,2128,14.8
+2026,7,RENAULT,SYMBIOZ,model,total,335,3152,7.9
+2026,7,RENAULT,SYMBIOZ,model,hybrid_incl_plugin,335,3152,17.5
+2026,7,RENAULT,SYMBIOZ,model,petrol_hybrid_incl_plugin,335,3152,17.5
+2026,7,RENAULT,SYMBIOZ,model,hybrid_excl_plugin,335,3152,18.2
+2026,7,RENAULT,SYMBIOZ,model,petrol_hybrid_excl_plugin,335,3152,18.2
+2026,7,RENAULT,TRAFIC,model,total,161,1045,2.6
+2026,7,RENAULT,TRAFIC,model,diesel,151,1022,46.6
+2026,7,RENAULT,TRAFIC,model,bev,,1,0
+2026,7,RENAULT,TRAFIC,model,awd,,1,0.1
+2026,7,RENAULT,TWINGO,model,total,1295,2870,7.2
+2026,7,RENAULT,TWINGO,model,bev,1295,2870,19.9
+2026,7,RENAULT,SONSTIGE,model,total,1,4,0
+2026,7,RENAULT,SONSTIGE,model,diesel,1,4,0.2
+2026,7,RENAULT,,brand_total,total,6708,39999,2.3
+2026,7,RENAULT,,brand_total,diesel,332,2191,1
+2026,7,RENAULT,,brand_total,hybrid_incl_plugin,2114,18013,2.6
+2026,7,RENAULT,,brand_total,petrol_hybrid_incl_plugin,2114,18013,3.1
+2026,7,RENAULT,,brand_total,hybrid_excl_plugin,2034,17344,3.5
+2026,7,RENAULT,,brand_total,petrol_hybrid_excl_plugin,2034,17344,4.3
+2026,7,RENAULT,,brand_total,plugin_hybrid,80,669,0.3
+2026,7,RENAULT,,brand_total,petrol_plugin_hybrid,80,669,0.4
+2026,7,RENAULT,,brand_total,bev,3475,14408,3.2
+2026,7,RENAULT,,brand_total,awd,80,675,0.2
+2026,7,ROLLS ROYCE,CULLINAN,model,total,,1,0.6
+2026,7,ROLLS ROYCE,CULLINAN,model,awd,,1,0.6
+2026,7,ROLLS ROYCE,SPECTRE,model,total,2,31,17.9
+2026,7,ROLLS ROYCE,SPECTRE,model,bev,2,31,100
+2026,7,ROLLS ROYCE,SPECTRE,model,awd,2,31,19.4
+2026,7,ROLLS ROYCE,SONSTIGE,model,total,20,141,81.5
+2026,7,ROLLS ROYCE,SONSTIGE,model,awd,17,128,80
+2026,7,ROLLS ROYCE,,brand_total,total,22,173,0
+2026,7,ROLLS ROYCE,,brand_total,bev,2,31,0
+2026,7,ROLLS ROYCE,,brand_total,awd,19,160,0
+2026,7,SEAT,ARONA,model,total,1260,8993,9.7
+2026,7,SEAT,ATECA,model,total,810,12073,13
+2026,7,SEAT,ATECA,model,diesel,71,1342,26.1
+2026,7,SEAT,ATECA,model,awd,212,2693,17.9
+2026,7,SEAT,BORN,model,total,1978,10593,11.4
+2026,7,SEAT,BORN,model,bev,1978,10593,49.3
+2026,7,SEAT,FORMENTOR,model,total,1855,11715,12.6
+2026,7,SEAT,FORMENTOR,model,diesel,197,851,16.6
+2026,7,SEAT,FORMENTOR,model,hybrid_incl_plugin,868,6432,28.6
+2026,7,SEAT,FORMENTOR,model,petrol_hybrid_incl_plugin,868,6432,28.6
+2026,7,SEAT,FORMENTOR,model,hybrid_excl_plugin,389,2170,23.6
+2026,7,SEAT,FORMENTOR,model,petrol_hybrid_excl_plugin,389,2170,23.6
+2026,7,SEAT,FORMENTOR,model,plugin_hybrid,479,4262,32
+2026,7,SEAT,FORMENTOR,model,petrol_plugin_hybrid,479,4262,32
+2026,7,SEAT,FORMENTOR,model,awd,687,3462,23
+2026,7,SEAT,IBIZA,model,total,1888,11222,12.1
+2026,7,SEAT,LEON,model,total,2695,18494,19.9
+2026,7,SEAT,LEON,model,diesel,448,2947,57.3
+2026,7,SEAT,LEON,model,hybrid_incl_plugin,1415,10317,45.9
+2026,7,SEAT,LEON,model,petrol_hybrid_incl_plugin,1415,10317,45.9
+2026,7,SEAT,LEON,model,hybrid_excl_plugin,692,4923,53.6
+2026,7,SEAT,LEON,model,petrol_hybrid_excl_plugin,692,4923,53.6
+2026,7,SEAT,LEON,model,plugin_hybrid,723,5394,40.5
+2026,7,SEAT,LEON,model,petrol_plugin_hybrid,723,5394,40.5
+2026,7,SEAT,LEON,model,awd,540,3143,20.9
+2026,7,SEAT,RAVAL,model,total,1028,1654,1.8
+2026,7,SEAT,RAVAL,model,bev,1028,1654,7.7
+2026,7,SEAT,TAVASCAN,model,total,1059,9227,9.9
+2026,7,SEAT,TAVASCAN,model,bev,1059,9227,42.9
+2026,7,SEAT,TAVASCAN,model,awd,236,2450,16.3
+2026,7,SEAT,TERRAMAR,model,total,1383,9056,9.7
+2026,7,SEAT,TERRAMAR,model,hybrid_incl_plugin,895,5737,25.5
+2026,7,SEAT,TERRAMAR,model,petrol_hybrid_incl_plugin,895,5737,25.5
+2026,7,SEAT,TERRAMAR,model,hybrid_excl_plugin,413,2085,22.7
+2026,7,SEAT,TERRAMAR,model,petrol_hybrid_excl_plugin,413,2085,22.7
+2026,7,SEAT,TERRAMAR,model,plugin_hybrid,482,3652,27.4
+2026,7,SEAT,TERRAMAR,model,petrol_plugin_hybrid,482,3652,27.4
+2026,7,SEAT,TERRAMAR,model,awd,488,3319,22
+2026,7,SEAT,SONSTIGE,model,total,2,25,0
+2026,7,SEAT,SONSTIGE,model,hybrid_incl_plugin,1,1,0
+2026,7,SEAT,SONSTIGE,model,petrol_hybrid_incl_plugin,1,1,0
+2026,7,SEAT,SONSTIGE,model,plugin_hybrid,1,1,0
+2026,7,SEAT,SONSTIGE,model,petrol_plugin_hybrid,1,1,0
+2026,7,SEAT,SONSTIGE,model,bev,1,24,0.1
+2026,7,SEAT,,brand_total,total,13958,93052,5.3
+2026,7,SEAT,,brand_total,diesel,716,5140,2.3
+2026,7,SEAT,,brand_total,hybrid_incl_plugin,3179,22487,3.2
+2026,7,SEAT,,brand_total,petrol_hybrid_incl_plugin,3179,22487,3.8
+2026,7,SEAT,,brand_total,hybrid_excl_plugin,1494,9178,1.8
+2026,7,SEAT,,brand_total,petrol_hybrid_excl_plugin,1494,9178,2.3
+2026,7,SEAT,,brand_total,plugin_hybrid,1685,13309,6.8
+2026,7,SEAT,,brand_total,petrol_plugin_hybrid,1685,13309,7.3
+2026,7,SEAT,,brand_total,bev,4066,21498,4.8
+2026,7,SEAT,,brand_total,awd,2163,15067,3.5
+2026,7,SKODA,ELROQ,model,total,3541,23680,15.6
+2026,7,SKODA,ELROQ,model,bev,3541,23679,55
+2026,7,SKODA,ELROQ,model,awd,1009,4328,13.9
+2026,7,SKODA,ENYAQ,model,total,2868,19353,12.8
+2026,7,SKODA,ENYAQ,model,hybrid_incl_plugin,,1,0
+2026,7,SKODA,ENYAQ,model,petrol_hybrid_incl_plugin,,1,0
+2026,7,SKODA,ENYAQ,model,hybrid_excl_plugin,,1,0
+2026,7,SKODA,ENYAQ,model,petrol_hybrid_excl_plugin,,1,0
+2026,7,SKODA,ENYAQ,model,bev,2868,19352,44.9
+2026,7,SKODA,ENYAQ,model,awd,1094,7095,22.8
+2026,7,SKODA,EPIQ,model,total,17,19,0
+2026,7,SKODA,EPIQ,model,bev,17,19,0
+2026,7,SKODA,FABIA,model,total,1736,13825,9.1
+2026,7,SKODA,KAMIQ,model,total,1609,12605,8.3
+2026,7,SKODA,KAROQ,model,total,3460,17961,11.9
+2026,7,SKODA,KAROQ,model,diesel,871,4038,11.6
+2026,7,SKODA,KAROQ,model,awd,1020,5644,18.1
+2026,7,SKODA,KODIAQ,model,total,3279,19614,12.9
+2026,7,SKODA,KODIAQ,model,diesel,1375,8813,25.4
+2026,7,SKODA,KODIAQ,model,hybrid_incl_plugin,1334,6784,40.5
+2026,7,SKODA,KODIAQ,model,petrol_hybrid_incl_plugin,1333,6781,40.5
+2026,7,SKODA,KODIAQ,model,diesel_hybrid_incl_plugin,1,3,60
+2026,7,SKODA,KODIAQ,model,hybrid_excl_plugin,187,1091,16.6
+2026,7,SKODA,KODIAQ,model,petrol_hybrid_excl_plugin,186,1088,16.5
+2026,7,SKODA,KODIAQ,model,diesel_hybrid_excl_plugin,1,3,60
+2026,7,SKODA,KODIAQ,model,plugin_hybrid,1147,5693,56.1
+2026,7,SKODA,KODIAQ,model,petrol_plugin_hybrid,1147,5693,56.1
+2026,7,SKODA,KODIAQ,model,awd,1412,9428,30.3
+2026,7,SKODA,OCTAVIA,model,total,4606,29000,19.1
+2026,7,SKODA,OCTAVIA,model,diesel,2639,16090,46.3
+2026,7,SKODA,OCTAVIA,model,hybrid_incl_plugin,767,4665,27.9
+2026,7,SKODA,OCTAVIA,model,petrol_hybrid_incl_plugin,767,4665,27.9
+2026,7,SKODA,OCTAVIA,model,hybrid_excl_plugin,767,4665,70.9
+2026,7,SKODA,OCTAVIA,model,petrol_hybrid_excl_plugin,767,4665,70.9
+2026,7,SKODA,OCTAVIA,model,awd,233,1423,4.6
+2026,7,SKODA,PEAQ,model,total,4,4,0
+2026,7,SKODA,PEAQ,model,bev,4,4,0
+2026,7,SKODA,PEAQ,model,awd,2,2,0
+2026,7,SKODA,SCALA,model,total,458,3358,2.2
+2026,7,SKODA,SUPERB,model,total,1753,12094,8
+2026,7,SKODA,SUPERB,model,diesel,728,5808,16.7
+2026,7,SKODA,SUPERB,model,hybrid_incl_plugin,888,5288,31.6
+2026,7,SKODA,SUPERB,model,petrol_hybrid_incl_plugin,888,5286,31.6
+2026,7,SKODA,SUPERB,model,diesel_hybrid_incl_plugin,,2,40
+2026,7,SKODA,SUPERB,model,hybrid_excl_plugin,102,826,12.5
+2026,7,SKODA,SUPERB,model,petrol_hybrid_excl_plugin,102,824,12.5
+2026,7,SKODA,SUPERB,model,diesel_hybrid_excl_plugin,,2,40
+2026,7,SKODA,SUPERB,model,plugin_hybrid,786,4462,43.9
+2026,7,SKODA,SUPERB,model,petrol_plugin_hybrid,786,4462,43.9
+2026,7,SKODA,SUPERB,model,awd,397,3228,10.4
+2026,7,SKODA,SONSTIGE,model,total,,36,0
+2026,7,SKODA,SONSTIGE,model,hybrid_incl_plugin,,2,0
+2026,7,SKODA,SONSTIGE,model,petrol_hybrid_incl_plugin,,2,0
+2026,7,SKODA,SONSTIGE,model,plugin_hybrid,,2,0
+2026,7,SKODA,SONSTIGE,model,petrol_plugin_hybrid,,2,0
+2026,7,SKODA,SONSTIGE,model,bev,,30,0.1
+2026,7,SKODA,SONSTIGE,model,awd,,3,0
+2026,7,SKODA,,brand_total,total,23331,151549,8.6
+2026,7,SKODA,,brand_total,diesel,5613,34749,15.5
+2026,7,SKODA,,brand_total,hybrid_incl_plugin,2989,16740,2.4
+2026,7,SKODA,,brand_total,petrol_hybrid_incl_plugin,2988,16735,2.8
+2026,7,SKODA,,brand_total,diesel_hybrid_incl_plugin,1,5,0
+2026,7,SKODA,,brand_total,hybrid_excl_plugin,1056,6583,1.3
+2026,7,SKODA,,brand_total,petrol_hybrid_excl_plugin,1055,6578,1.6
+2026,7,SKODA,,brand_total,diesel_hybrid_excl_plugin,1,5,0
+2026,7,SKODA,,brand_total,plugin_hybrid,1933,10157,5.2
+2026,7,SKODA,,brand_total,petrol_plugin_hybrid,1933,10157,5.5
+2026,7,SKODA,,brand_total,bev,6430,43084,9.6
+2026,7,SKODA,,brand_total,awd,5167,31151,7.3
+2026,7,SMART,1,model,total,207,1453,28.7
+2026,7,SMART,1,model,bev,207,1453,28.7
+2026,7,SMART,1,model,awd,30,247,11.2
+2026,7,SMART,3,model,total,148,765,15.1
+2026,7,SMART,3,model,bev,148,765,15.1
+2026,7,SMART,3,model,awd,23,215,9.8
+2026,7,SMART,5,model,total,496,2850,56.2
+2026,7,SMART,5,model,bev,496,2850,56.2
+2026,7,SMART,5,model,awd,382,1739,79
+2026,7,SMART,FORTWO,model,total,,1,0
+2026,7,SMART,FORTWO,model,bev,,1,0
+2026,7,SMART,,brand_total,total,851,5069,0.3
+2026,7,SMART,,brand_total,bev,851,5069,1.1
+2026,7,SMART,,brand_total,awd,435,2201,0.5
+2026,7,SUBARU,CROSSTREK,model,total,113,549,25.2
+2026,7,SUBARU,CROSSTREK,model,hybrid_incl_plugin,113,549,39.7
+2026,7,SUBARU,CROSSTREK,model,petrol_hybrid_incl_plugin,113,549,39.7
+2026,7,SUBARU,CROSSTREK,model,hybrid_excl_plugin,113,549,39.7
+2026,7,SUBARU,CROSSTREK,model,petrol_hybrid_excl_plugin,113,549,39.7
+2026,7,SUBARU,CROSSTREK,model,awd,113,549,26.1
+2026,7,SUBARU,FORESTER,model,total,148,798,36.6
+2026,7,SUBARU,FORESTER,model,hybrid_incl_plugin,148,797,57.6
+2026,7,SUBARU,FORESTER,model,petrol_hybrid_incl_plugin,148,797,57.6
+2026,7,SUBARU,FORESTER,model,hybrid_excl_plugin,148,797,57.6
+2026,7,SUBARU,FORESTER,model,petrol_hybrid_excl_plugin,148,797,57.6
+2026,7,SUBARU,FORESTER,model,awd,148,798,37.9
+2026,7,SUBARU,IMPREZA,model,total,7,37,1.7
+2026,7,SUBARU,IMPREZA,model,hybrid_incl_plugin,7,37,2.7
+2026,7,SUBARU,IMPREZA,model,petrol_hybrid_incl_plugin,7,37,2.7
+2026,7,SUBARU,IMPREZA,model,hybrid_excl_plugin,7,37,2.7
+2026,7,SUBARU,IMPREZA,model,petrol_hybrid_excl_plugin,7,37,2.7
+2026,7,SUBARU,IMPREZA,model,awd,7,37,1.8
+2026,7,SUBARU,OUTBACK,model,total,52,380,17.4
+2026,7,SUBARU,OUTBACK,model,bev,10,16,3.7
+2026,7,SUBARU,OUTBACK,model,awd,52,380,18.1
+2026,7,SUBARU,SOLTERRA,model,total,38,177,8.1
+2026,7,SUBARU,SOLTERRA,model,bev,38,177,40.9
+2026,7,SUBARU,SOLTERRA,model,awd,38,177,8.4
+2026,7,SUBARU,UNCHARTED,model,total,62,239,11
+2026,7,SUBARU,UNCHARTED,model,bev,62,239,55.2
+2026,7,SUBARU,UNCHARTED,model,awd,44,163,7.7
+2026,7,SUBARU,SONSTIGE,model,total,,1,0
+2026,7,SUBARU,SONSTIGE,model,bev,,1,0.2
+2026,7,SUBARU,SONSTIGE,model,awd,,1,0
+2026,7,SUBARU,,brand_total,total,420,2181,0.1
+2026,7,SUBARU,,brand_total,hybrid_incl_plugin,268,1383,0.2
+2026,7,SUBARU,,brand_total,petrol_hybrid_incl_plugin,268,1383,0.2
+2026,7,SUBARU,,brand_total,hybrid_excl_plugin,268,1383,0.3
+2026,7,SUBARU,,brand_total,petrol_hybrid_excl_plugin,268,1383,0.3
+2026,7,SUBARU,,brand_total,bev,110,433,0.1
+2026,7,SUBARU,,brand_total,awd,402,2105,0.5
+2026,7,SUZUKI,ACROSS,model,total,4,53,0.4
+2026,7,SUZUKI,ACROSS,model,hybrid_incl_plugin,4,53,0.4
+2026,7,SUZUKI,ACROSS,model,petrol_hybrid_incl_plugin,4,53,0.4
+2026,7,SUZUKI,ACROSS,model,plugin_hybrid,4,53,98.1
+2026,7,SUZUKI,ACROSS,model,petrol_plugin_hybrid,4,53,98.1
+2026,7,SUZUKI,ACROSS,model,awd,4,53,1.5
+2026,7,SUZUKI,JIMNY,model,total,,39,0.3
+2026,7,SUZUKI,JIMNY,model,awd,,39,1.1
+2026,7,SUZUKI,S-CROSS,model,total,126,824,6.4
+2026,7,SUZUKI,S-CROSS,model,hybrid_incl_plugin,126,824,7
+2026,7,SUZUKI,S-CROSS,model,petrol_hybrid_incl_plugin,126,824,7
+2026,7,SUZUKI,S-CROSS,model,hybrid_excl_plugin,126,824,7
+2026,7,SUZUKI,S-CROSS,model,petrol_hybrid_excl_plugin,126,824,7
+2026,7,SUZUKI,S-CROSS,model,awd,83,478,13.4
+2026,7,SUZUKI,SWACE,model,total,22,367,2.8
+2026,7,SUZUKI,SWACE,model,hybrid_incl_plugin,22,367,3.1
+2026,7,SUZUKI,SWACE,model,petrol_hybrid_incl_plugin,22,367,3.1
+2026,7,SUZUKI,SWACE,model,hybrid_excl_plugin,22,367,3.1
+2026,7,SUZUKI,SWACE,model,petrol_hybrid_excl_plugin,22,367,3.1
+2026,7,SUZUKI,SWIFT,model,total,731,7162,55.3
+2026,7,SUZUKI,SWIFT,model,hybrid_incl_plugin,731,7162,60.5
+2026,7,SUZUKI,SWIFT,model,petrol_hybrid_incl_plugin,731,7162,60.5
+2026,7,SUZUKI,SWIFT,model,hybrid_excl_plugin,731,7162,60.8
+2026,7,SUZUKI,SWIFT,model,petrol_hybrid_excl_plugin,731,7162,60.8
+2026,7,SUZUKI,SWIFT,model,awd,74,687,19.3
+2026,7,SUZUKI,VITARA,model,total,595,4279,33.1
+2026,7,SUZUKI,VITARA,model,hybrid_incl_plugin,441,3432,29
+2026,7,SUZUKI,VITARA,model,petrol_hybrid_incl_plugin,441,3432,29
+2026,7,SUZUKI,VITARA,model,hybrid_excl_plugin,441,3432,29.1
+2026,7,SUZUKI,VITARA,model,petrol_hybrid_excl_plugin,441,3432,29.1
+2026,7,SUZUKI,VITARA,model,bev,154,846,99.9
+2026,7,SUZUKI,VITARA,model,awd,284,2087,58.7
+2026,7,SUZUKI,SONSTIGE,model,total,26,216,1.7
+2026,7,SUZUKI,SONSTIGE,model,hybrid_incl_plugin,2,2,0
+2026,7,SUZUKI,SONSTIGE,model,petrol_hybrid_incl_plugin,2,2,0
+2026,7,SUZUKI,SONSTIGE,model,hybrid_excl_plugin,1,1,0
+2026,7,SUZUKI,SONSTIGE,model,petrol_hybrid_excl_plugin,1,1,0
+2026,7,SUZUKI,SONSTIGE,model,plugin_hybrid,1,1,1.9
+2026,7,SUZUKI,SONSTIGE,model,petrol_plugin_hybrid,1,1,1.9
+2026,7,SUZUKI,SONSTIGE,model,bev,1,1,0.1
+2026,7,SUZUKI,SONSTIGE,model,awd,24,214,6
+2026,7,SUZUKI,,brand_total,total,1504,12940,0.7
+2026,7,SUZUKI,,brand_total,hybrid_incl_plugin,1326,11840,1.7
+2026,7,SUZUKI,,brand_total,petrol_hybrid_incl_plugin,1326,11840,2
+2026,7,SUZUKI,,brand_total,hybrid_excl_plugin,1321,11786,2.3
+2026,7,SUZUKI,,brand_total,petrol_hybrid_excl_plugin,1321,11786,2.9
+2026,7,SUZUKI,,brand_total,plugin_hybrid,5,54,0
+2026,7,SUZUKI,,brand_total,petrol_plugin_hybrid,5,54,0
+2026,7,SUZUKI,,brand_total,bev,155,847,0.2
+2026,7,SUZUKI,,brand_total,awd,469,3558,0.8
+2026,7,TESLA,MODEL 3,model,total,56,8952,30.6
+2026,7,TESLA,MODEL 3,model,bev,56,8952,30.6
+2026,7,TESLA,MODEL 3,model,awd,23,2623,30.3
+2026,7,TESLA,MODEL S,model,total,7,162,0.6
+2026,7,TESLA,MODEL S,model,bev,7,162,0.6
+2026,7,TESLA,MODEL S,model,awd,7,162,1.9
+2026,7,TESLA,MODEL X,model,total,5,107,0.4
+2026,7,TESLA,MODEL X,model,bev,5,107,0.4
+2026,7,TESLA,MODEL X,model,awd,5,107,1.2
+2026,7,TESLA,MODEL Y,model,total,299,20000,68.4
+2026,7,TESLA,MODEL Y,model,bev,299,20000,68.4
+2026,7,TESLA,MODEL Y,model,awd,103,5766,66.6
+2026,7,TESLA,SONSTIGE,model,total,,3,0
+2026,7,TESLA,SONSTIGE,model,bev,,3,0
+2026,7,TESLA,,brand_total,total,367,29224,1.7
+2026,7,TESLA,,brand_total,bev,367,29224,6.5
+2026,7,TESLA,,brand_total,awd,138,8658,2
+2026,7,TOGG,T10F,model,total,6,41,17.6
+2026,7,TOGG,T10F,model,bev,6,41,17.6
+2026,7,TOGG,T10F,model,awd,1,11,8.9
+2026,7,TOGG,T10X,model,total,30,192,82.4
+2026,7,TOGG,T10X,model,bev,30,192,82.4
+2026,7,TOGG,T10X,model,awd,18,113,91.1
+2026,7,TOGG,,brand_total,total,36,233,0
+2026,7,TOGG,,brand_total,bev,36,233,0.1
+2026,7,TOGG,,brand_total,awd,19,124,0
+2026,7,TOYOTA,AYGO,model,total,1205,8175,21.4
+2026,7,TOYOTA,AYGO,model,hybrid_incl_plugin,1132,6321,21.9
+2026,7,TOYOTA,AYGO,model,petrol_hybrid_incl_plugin,1132,6321,22.2
+2026,7,TOYOTA,AYGO,model,hybrid_excl_plugin,1131,6320,23.1
+2026,7,TOYOTA,AYGO,model,petrol_hybrid_excl_plugin,1131,6320,23.5
+2026,7,TOYOTA,AYGO,model,plugin_hybrid,1,1,0.1
+2026,7,TOYOTA,AYGO,model,petrol_plugin_hybrid,1,1,0.1
+2026,7,TOYOTA,BZ4,model,total,514,2553,6.7
+2026,7,TOYOTA,BZ4,model,bev,514,2553,52.2
+2026,7,TOYOTA,BZ4,model,awd,124,794,30.4
+2026,7,TOYOTA,C-HR,model,total,731,4115,10.8
+2026,7,TOYOTA,C-HR,model,hybrid_incl_plugin,441,2699,9.3
+2026,7,TOYOTA,C-HR,model,petrol_hybrid_incl_plugin,441,2699,9.5
+2026,7,TOYOTA,C-HR,model,hybrid_excl_plugin,227,1591,5.8
+2026,7,TOYOTA,C-HR,model,petrol_hybrid_excl_plugin,227,1591,5.9
+2026,7,TOYOTA,C-HR,model,plugin_hybrid,214,1108,70
+2026,7,TOYOTA,C-HR,model,petrol_plugin_hybrid,214,1108,70
+2026,7,TOYOTA,C-HR,model,bev,290,1416,29
+2026,7,TOYOTA,C-HR,model,awd,74,400,15.3
+2026,7,TOYOTA,CAMRY,model,total,1,1,0
+2026,7,TOYOTA,COROLLA,model,total,915,6496,17
+2026,7,TOYOTA,COROLLA,model,hybrid_incl_plugin,913,6459,22.3
+2026,7,TOYOTA,COROLLA,model,petrol_hybrid_incl_plugin,913,6459,22.6
+2026,7,TOYOTA,COROLLA,model,hybrid_excl_plugin,913,6459,23.6
+2026,7,TOYOTA,COROLLA,model,petrol_hybrid_excl_plugin,913,6459,24
+2026,7,TOYOTA,COROLLA,model,awd,22,171,6.5
+2026,7,TOYOTA,LANDCRUISER,model,total,53,408,1.1
+2026,7,TOYOTA,LANDCRUISER,model,diesel,2,8,0.5
+2026,7,TOYOTA,LANDCRUISER,model,hybrid_incl_plugin,46,377,1.3
+2026,7,TOYOTA,LANDCRUISER,model,petrol_hybrid_incl_plugin,1,3,0
+2026,7,TOYOTA,LANDCRUISER,model,diesel_hybrid_incl_plugin,45,374,100
+2026,7,TOYOTA,LANDCRUISER,model,hybrid_excl_plugin,46,377,1.4
+2026,7,TOYOTA,LANDCRUISER,model,petrol_hybrid_excl_plugin,1,3,0
+2026,7,TOYOTA,LANDCRUISER,model,diesel_hybrid_excl_plugin,45,374,100
+2026,7,TOYOTA,LANDCRUISER,model,awd,53,408,15.6
+2026,7,TOYOTA,MIRAI,model,total,,4,0
+2026,7,TOYOTA,PRIUS,model,total,7,74,0.2
+2026,7,TOYOTA,PRIUS,model,hybrid_incl_plugin,7,74,0.3
+2026,7,TOYOTA,PRIUS,model,petrol_hybrid_incl_plugin,7,74,0.3
+2026,7,TOYOTA,PRIUS,model,plugin_hybrid,7,74,4.7
+2026,7,TOYOTA,PRIUS,model,petrol_plugin_hybrid,7,74,4.7
+2026,7,TOYOTA,PROACE,model,total,522,2449,6.4
+2026,7,TOYOTA,PROACE,model,diesel,374,1722,99.5
+2026,7,TOYOTA,PROACE,model,bev,27,109,2.2
+2026,7,TOYOTA,RAV 4,model,total,257,843,2.2
+2026,7,TOYOTA,RAV 4,model,hybrid_incl_plugin,257,843,2.9
+2026,7,TOYOTA,RAV 4,model,petrol_hybrid_incl_plugin,257,843,3
+2026,7,TOYOTA,RAV 4,model,hybrid_excl_plugin,124,444,1.6
+2026,7,TOYOTA,RAV 4,model,petrol_hybrid_excl_plugin,124,444,1.6
+2026,7,TOYOTA,RAV 4,model,plugin_hybrid,133,399,25.2
+2026,7,TOYOTA,RAV 4,model,petrol_plugin_hybrid,133,399,25.2
+2026,7,TOYOTA,RAV 4,model,awd,153,541,20.7
+2026,7,TOYOTA,SUPRA,model,total,3,57,0.1
+2026,7,TOYOTA,URBAN CRUISER,model,total,146,809,2.1
+2026,7,TOYOTA,URBAN CRUISER,model,bev,146,809,16.6
+2026,7,TOYOTA,URBAN CRUISER,model,awd,,14,0.5
+2026,7,TOYOTA,YARIS,model,total,1697,12265,32.1
+2026,7,TOYOTA,YARIS,model,hybrid_incl_plugin,1668,12124,41.9
+2026,7,TOYOTA,YARIS,model,petrol_hybrid_incl_plugin,1668,12124,42.5
+2026,7,TOYOTA,YARIS,model,hybrid_excl_plugin,1668,12124,44.4
+2026,7,TOYOTA,YARIS,model,petrol_hybrid_excl_plugin,1668,12124,45
+2026,7,TOYOTA,YARIS,model,awd,41,278,10.6
+2026,7,TOYOTA,SONSTIGE,model,total,3,11,0
+2026,7,TOYOTA,SONSTIGE,model,hybrid_incl_plugin,2,9,0
+2026,7,TOYOTA,SONSTIGE,model,petrol_hybrid_incl_plugin,2,9,0
+2026,7,TOYOTA,SONSTIGE,model,hybrid_excl_plugin,2,9,0
+2026,7,TOYOTA,SONSTIGE,model,petrol_hybrid_excl_plugin,2,9,0
+2026,7,TOYOTA,SONSTIGE,model,awd,2,8,0.3
+2026,7,TOYOTA,,brand_total,total,6054,38260,2.2
+2026,7,TOYOTA,,brand_total,diesel,376,1730,0.8
+2026,7,TOYOTA,,brand_total,hybrid_incl_plugin,4466,28906,4.1
+2026,7,TOYOTA,,brand_total,petrol_hybrid_incl_plugin,4421,28532,4.8
+2026,7,TOYOTA,,brand_total,diesel_hybrid_incl_plugin,45,374,0.4
+2026,7,TOYOTA,,brand_total,hybrid_excl_plugin,4111,27324,5.4
+2026,7,TOYOTA,,brand_total,petrol_hybrid_excl_plugin,4066,26950,6.6
+2026,7,TOYOTA,,brand_total,diesel_hybrid_excl_plugin,45,374,0.4
+2026,7,TOYOTA,,brand_total,plugin_hybrid,355,1582,0.8
+2026,7,TOYOTA,,brand_total,petrol_plugin_hybrid,355,1582,0.9
+2026,7,TOYOTA,,brand_total,bev,977,4887,1.1
+2026,7,TOYOTA,,brand_total,awd,469,2614,0.6
+2026,7,VINFAST,VF 6,model,total,3,97,69.8
+2026,7,VINFAST,VF 6,model,bev,3,97,69.8
+2026,7,VINFAST,VF 8,model,total,2,42,30.2
+2026,7,VINFAST,VF 8,model,bev,2,42,30.2
+2026,7,VINFAST,VF 8,model,awd,2,42,100
+2026,7,VINFAST,,brand_total,total,5,139,0
+2026,7,VINFAST,,brand_total,bev,5,139,0
+2026,7,VINFAST,,brand_total,awd,2,42,0
+2026,7,VOLVO,60,model,total,236,1797,5.8
+2026,7,VOLVO,60,model,hybrid_incl_plugin,236,1797,7.7
+2026,7,VOLVO,60,model,petrol_hybrid_incl_plugin,236,1797,7.7
+2026,7,VOLVO,60,model,hybrid_excl_plugin,105,798,8
+2026,7,VOLVO,60,model,petrol_hybrid_excl_plugin,105,798,8
+2026,7,VOLVO,60,model,plugin_hybrid,131,999,7.6
+2026,7,VOLVO,60,model,petrol_plugin_hybrid,131,999,7.6
+2026,7,VOLVO,60,model,awd,131,999,5
+2026,7,VOLVO,90,model,total,1,87,0.3
+2026,7,VOLVO,90,model,hybrid_incl_plugin,1,14,0.1
+2026,7,VOLVO,90,model,petrol_hybrid_incl_plugin,1,14,0.1
+2026,7,VOLVO,90,model,plugin_hybrid,1,14,0.1
+2026,7,VOLVO,90,model,petrol_plugin_hybrid,1,14,0.1
+2026,7,VOLVO,90,model,bev,,73,1
+2026,7,VOLVO,90,model,awd,1,14,0.1
+2026,7,VOLVO,C40,model,total,25,201,0.7
+2026,7,VOLVO,C40,model,bev,25,201,2.7
+2026,7,VOLVO,C40,model,awd,9,85,0.4
+2026,7,VOLVO,ES90,model,total,158,557,1.8
+2026,7,VOLVO,ES90,model,bev,158,557,7.3
+2026,7,VOLVO,ES90,model,awd,75,110,0.6
+2026,7,VOLVO,EX30,model,total,798,3439,11.2
+2026,7,VOLVO,EX30,model,bev,798,3439,45.4
+2026,7,VOLVO,EX30,model,awd,123,549,2.8
+2026,7,VOLVO,EX90,model,total,251,1388,4.5
+2026,7,VOLVO,EX90,model,bev,251,1388,18.3
+2026,7,VOLVO,EX90,model,awd,234,1257,6.3
+2026,7,VOLVO,FH,model,total,1,3,0
+2026,7,VOLVO,FH,model,diesel,1,3,100
+2026,7,VOLVO,XC40,model,total,936,6935,22.5
+2026,7,VOLVO,XC40,model,hybrid_incl_plugin,622,5131,22.1
+2026,7,VOLVO,XC40,model,petrol_hybrid_incl_plugin,622,5131,22.1
+2026,7,VOLVO,XC40,model,hybrid_excl_plugin,622,5131,51.3
+2026,7,VOLVO,XC40,model,petrol_hybrid_excl_plugin,622,5131,51.3
+2026,7,VOLVO,XC40,model,bev,314,1802,23.8
+2026,7,VOLVO,XC40,model,awd,94,462,2.3
+2026,7,VOLVO,XC60,model,total,1405,11923,38.7
+2026,7,VOLVO,XC60,model,hybrid_incl_plugin,1302,11801,50.8
+2026,7,VOLVO,XC60,model,petrol_hybrid_incl_plugin,1302,11801,50.8
+2026,7,VOLVO,XC60,model,hybrid_excl_plugin,580,3717,37.2
+2026,7,VOLVO,XC60,model,petrol_hybrid_excl_plugin,580,3717,37.2
+2026,7,VOLVO,XC60,model,plugin_hybrid,722,8084,61.2
+2026,7,VOLVO,XC60,model,petrol_plugin_hybrid,722,8084,61.2
+2026,7,VOLVO,XC60,model,bev,103,122,1.6
+2026,7,VOLVO,XC60,model,awd,1405,11923,60
+2026,7,VOLVO,XC90,model,total,706,4465,14.5
+2026,7,VOLVO,XC90,model,hybrid_incl_plugin,706,4465,19.2
+2026,7,VOLVO,XC90,model,petrol_hybrid_incl_plugin,706,4465,19.2
+2026,7,VOLVO,XC90,model,hybrid_excl_plugin,60,348,3.5
+2026,7,VOLVO,XC90,model,petrol_hybrid_excl_plugin,60,348,3.5
+2026,7,VOLVO,XC90,model,plugin_hybrid,646,4117,31.2
+2026,7,VOLVO,XC90,model,petrol_plugin_hybrid,646,4117,31.2
+2026,7,VOLVO,XC90,model,awd,706,4465,22.5
+2026,7,VOLVO,,brand_total,total,4517,30795,1.8
+2026,7,VOLVO,,brand_total,diesel,1,3,0
+2026,7,VOLVO,,brand_total,hybrid_incl_plugin,2867,23208,3.3
+2026,7,VOLVO,,brand_total,petrol_hybrid_incl_plugin,2867,23208,3.9
+2026,7,VOLVO,,brand_total,hybrid_excl_plugin,1367,9994,2
+2026,7,VOLVO,,brand_total,petrol_hybrid_excl_plugin,1367,9994,2.5
+2026,7,VOLVO,,brand_total,plugin_hybrid,1500,13214,6.8
+2026,7,VOLVO,,brand_total,petrol_plugin_hybrid,1500,13214,7.2
+2026,7,VOLVO,,brand_total,bev,1649,7582,1.7
+2026,7,VOLVO,,brand_total,awd,2778,19864,4.6
+2026,7,VW,ARTEON,model,total,,77,0
+2026,7,VW,ARTEON,model,awd,,57,0.1
+2026,7,VW,CADDY,model,total,1385,11071,3.4
+2026,7,VW,CADDY,model,diesel,611,5603,7.7
+2026,7,VW,CADDY,model,hybrid_incl_plugin,353,1828,1.8
+2026,7,VW,CADDY,model,petrol_hybrid_incl_plugin,346,1794,1.8
+2026,7,VW,CADDY,model,diesel_hybrid_incl_plugin,7,34,15.8
+2026,7,VW,CADDY,model,hybrid_excl_plugin,7,34,0.1
+2026,7,VW,CADDY,model,diesel_hybrid_excl_plugin,7,34,15.8
+2026,7,VW,CADDY,model,plugin_hybrid,346,1794,5.6
+2026,7,VW,CADDY,model,petrol_plugin_hybrid,346,1794,5.6
+2026,7,VW,CADDY,model,awd,66,720,1.8
+2026,7,VW,CRAFTER,model,total,233,1830,0.6
+2026,7,VW,CRAFTER,model,diesel,233,1829,2.5
+2026,7,VW,CRAFTER,model,hybrid_incl_plugin,,1,0
+2026,7,VW,CRAFTER,model,diesel_hybrid_incl_plugin,,1,0.5
+2026,7,VW,CRAFTER,model,hybrid_excl_plugin,,1,0
+2026,7,VW,CRAFTER,model,diesel_hybrid_excl_plugin,,1,0.5
+2026,7,VW,CRAFTER,model,awd,61,428,1
+2026,7,VW,GOLF,model,total,9001,53626,16.7
+2026,7,VW,GOLF,model,diesel,2197,12668,17.5
+2026,7,VW,GOLF,model,hybrid_incl_plugin,3712,20903,21.1
+2026,7,VW,GOLF,model,petrol_hybrid_incl_plugin,3712,20903,21.2
+2026,7,VW,GOLF,model,hybrid_excl_plugin,3368,17538,26.2
+2026,7,VW,GOLF,model,petrol_hybrid_excl_plugin,3368,17538,26.3
+2026,7,VW,GOLF,model,plugin_hybrid,344,3365,10.6
+2026,7,VW,GOLF,model,petrol_plugin_hybrid,344,3365,10.6
+2026,7,VW,GOLF,model,awd,451,3790,9.3
+2026,7,VW,ID. BUZZ,model,total,1042,6296,2
+2026,7,VW,ID. BUZZ,model,bev,1042,6296,10.6
+2026,7,VW,ID. BUZZ,model,awd,255,1530,3.7
+2026,7,VW,ID.3,model,total,2220,20460,6.4
+2026,7,VW,ID.3,model,bev,2220,20460,34.3
+2026,7,VW,"ID.4, ID.5",model,total,3241,13600,4.2
+2026,7,VW,"ID.4, ID.5",model,bev,3241,13600,22.8
+2026,7,VW,"ID.4, ID.5",model,awd,813,3348,8.2
+2026,7,VW,ID.7,model,total,3247,17905,5.6
+2026,7,VW,ID.7,model,bev,3247,17905,30.1
+2026,7,VW,ID.7,model,awd,916,5320,13
+2026,7,VW,PASSAT,model,total,3172,23058,7.2
+2026,7,VW,PASSAT,model,diesel,1711,13318,18.4
+2026,7,VW,PASSAT,model,hybrid_incl_plugin,1416,9369,9.5
+2026,7,VW,PASSAT,model,petrol_hybrid_incl_plugin,1409,9334,9.5
+2026,7,VW,PASSAT,model,diesel_hybrid_incl_plugin,7,35,16.3
+2026,7,VW,PASSAT,model,hybrid_excl_plugin,577,3634,5.4
+2026,7,VW,PASSAT,model,petrol_hybrid_excl_plugin,570,3599,5.4
+2026,7,VW,PASSAT,model,diesel_hybrid_excl_plugin,7,35,16.3
+2026,7,VW,PASSAT,model,plugin_hybrid,839,5735,18
+2026,7,VW,PASSAT,model,petrol_plugin_hybrid,839,5735,18
+2026,7,VW,PASSAT,model,awd,273,2688,6.6
+2026,7,VW,POLO,model,total,2838,16633,5.2
+2026,7,VW,POLO,model,hybrid_incl_plugin,4,8,0
+2026,7,VW,POLO,model,petrol_hybrid_incl_plugin,4,8,0
+2026,7,VW,POLO,model,hybrid_excl_plugin,4,8,0
+2026,7,VW,POLO,model,petrol_hybrid_excl_plugin,4,8,0
+2026,7,VW,POLO,model,bev,219,236,0.4
+2026,7,VW,T-CROSS,model,total,2712,19827,6.2
+2026,7,VW,T-CROSS,model,hybrid_incl_plugin,1,8,0
+2026,7,VW,T-CROSS,model,petrol_hybrid_incl_plugin,1,8,0
+2026,7,VW,T-CROSS,model,hybrid_excl_plugin,1,8,0
+2026,7,VW,T-CROSS,model,petrol_hybrid_excl_plugin,1,8,0
+2026,7,VW,T-ROC,model,total,6126,38568,12
+2026,7,VW,T-ROC,model,diesel,5,291,0.4
+2026,7,VW,T-ROC,model,hybrid_incl_plugin,5717,31620,32
+2026,7,VW,T-ROC,model,petrol_hybrid_incl_plugin,5717,31620,32
+2026,7,VW,T-ROC,model,hybrid_excl_plugin,5717,31620,47.2
+2026,7,VW,T-ROC,model,petrol_hybrid_excl_plugin,5717,31620,47.3
+2026,7,VW,T-ROC,model,awd,5,212,0.5
+2026,7,VW,T-ROC,model,cabriolet,384,4327,100
+2026,7,VW,TAIGO,model,total,2169,12235,3.8
+2026,7,VW,TAIGO,model,diesel,,3,0
+2026,7,VW,TAIGO,model,hybrid_incl_plugin,,7,0
+2026,7,VW,TAIGO,model,petrol_hybrid_incl_plugin,,7,0
+2026,7,VW,TAIGO,model,hybrid_excl_plugin,,7,0
+2026,7,VW,TAIGO,model,petrol_hybrid_excl_plugin,,7,0
+2026,7,VW,TAIGO,model,awd,,3,0
+2026,7,VW,TAYRON,model,total,2335,18820,5.8
+2026,7,VW,TAYRON,model,diesel,914,7441,10.3
+2026,7,VW,TAYRON,model,hybrid_incl_plugin,1141,9513,9.6
+2026,7,VW,TAYRON,model,petrol_hybrid_incl_plugin,1134,9481,9.6
+2026,7,VW,TAYRON,model,diesel_hybrid_incl_plugin,7,32,14.9
+2026,7,VW,TAYRON,model,hybrid_excl_plugin,308,3058,4.6
+2026,7,VW,TAYRON,model,petrol_hybrid_excl_plugin,301,3026,4.5
+2026,7,VW,TAYRON,model,diesel_hybrid_excl_plugin,7,32,14.9
+2026,7,VW,TAYRON,model,plugin_hybrid,833,6455,20.2
+2026,7,VW,TAYRON,model,petrol_plugin_hybrid,833,6455,20.2
+2026,7,VW,TAYRON,model,awd,827,6076,14.9
+2026,7,VW,TIGUAN,model,total,4899,34141,10.6
+2026,7,VW,TIGUAN,model,diesel,1367,11894,16.4
+2026,7,VW,TIGUAN,model,hybrid_incl_plugin,3088,19315,19.5
+2026,7,VW,TIGUAN,model,petrol_hybrid_incl_plugin,3086,19280,19.5
+2026,7,VW,TIGUAN,model,diesel_hybrid_incl_plugin,2,35,16.3
+2026,7,VW,TIGUAN,model,hybrid_excl_plugin,1709,11012,16.4
+2026,7,VW,TIGUAN,model,petrol_hybrid_excl_plugin,1707,10977,16.4
+2026,7,VW,TIGUAN,model,diesel_hybrid_excl_plugin,2,35,16.3
+2026,7,VW,TIGUAN,model,plugin_hybrid,1379,8303,26
+2026,7,VW,TIGUAN,model,petrol_plugin_hybrid,1379,8303,26
+2026,7,VW,TIGUAN,model,awd,954,7047,17.2
+2026,7,VW,TOUAREG,model,total,126,3299,1
+2026,7,VW,TOUAREG,model,diesel,118,2952,4.1
+2026,7,VW,TOUAREG,model,hybrid_incl_plugin,4,258,0.3
+2026,7,VW,TOUAREG,model,petrol_hybrid_incl_plugin,4,258,0.3
+2026,7,VW,TOUAREG,model,plugin_hybrid,4,258,0.8
+2026,7,VW,TOUAREG,model,petrol_plugin_hybrid,4,258,0.8
+2026,7,VW,TOUAREG,model,awd,126,3299,8.1
+2026,7,VW,TOURAN,model,total,507,8734,2.7
+2026,7,VW,TOURAN,model,diesel,199,3169,4.4
+2026,7,VW,TRANSPORTER,model,total,2720,21255,6.6
+2026,7,VW,TRANSPORTER,model,diesel,1635,13287,18.3
+2026,7,VW,TRANSPORTER,model,hybrid_incl_plugin,878,6043,6.1
+2026,7,VW,TRANSPORTER,model,petrol_hybrid_incl_plugin,849,5973,6.1
+2026,7,VW,TRANSPORTER,model,diesel_hybrid_incl_plugin,29,70,32.6
+2026,7,VW,TRANSPORTER,model,hybrid_excl_plugin,29,70,0.1
+2026,7,VW,TRANSPORTER,model,diesel_hybrid_excl_plugin,29,70,32.6
+2026,7,VW,TRANSPORTER,model,plugin_hybrid,849,5973,18.7
+2026,7,VW,TRANSPORTER,model,petrol_plugin_hybrid,849,5973,18.7
+2026,7,VW,TRANSPORTER,model,bev,90,825,1.4
+2026,7,VW,TRANSPORTER,model,awd,881,6319,15.5
+2026,7,VW,UP,model,total,,4,0
+2026,7,VW,UP,model,bev,,1,0
+2026,7,VW,SONSTIGE,model,total,30,311,0.1
+2026,7,VW,SONSTIGE,model,diesel,1,1,0
+2026,7,VW,SONSTIGE,model,hybrid_incl_plugin,8,18,0
+2026,7,VW,SONSTIGE,model,petrol_hybrid_incl_plugin,2,10,0
+2026,7,VW,SONSTIGE,model,diesel_hybrid_incl_plugin,6,8,3.7
+2026,7,VW,SONSTIGE,model,hybrid_excl_plugin,6,15,0
+2026,7,VW,SONSTIGE,model,petrol_hybrid_excl_plugin,,7,0
+2026,7,VW,SONSTIGE,model,diesel_hybrid_excl_plugin,6,8,3.7
+2026,7,VW,SONSTIGE,model,plugin_hybrid,2,3,0
+2026,7,VW,SONSTIGE,model,petrol_plugin_hybrid,2,3,0
+2026,7,VW,SONSTIGE,model,bev,19,250,0.4
+2026,7,VW,SONSTIGE,model,awd,3,30,0.1
+2026,7,VW,,brand_total,total,48003,321750,18.4
+2026,7,VW,,brand_total,diesel,8991,72456,32.2
+2026,7,VW,,brand_total,hybrid_incl_plugin,16322,98891,14.2
+2026,7,VW,,brand_total,petrol_hybrid_incl_plugin,16264,98676,16.8
+2026,7,VW,,brand_total,diesel_hybrid_incl_plugin,58,215,0.2
+2026,7,VW,,brand_total,hybrid_excl_plugin,11726,67005,13.3
+2026,7,VW,,brand_total,petrol_hybrid_excl_plugin,11668,66790,16.5
+2026,7,VW,,brand_total,diesel_hybrid_excl_plugin,58,215,0.2
+2026,7,VW,,brand_total,plugin_hybrid,4596,31886,16.4
+2026,7,VW,,brand_total,petrol_plugin_hybrid,4596,31886,17.4
+2026,7,VW,,brand_total,bev,10078,59573,13.3
+2026,7,VW,,brand_total,awd,5631,40867,9.5
+2026,7,VW,,brand_total,cabriolet,384,4327,18.9
+2026,7,XPENG,G6,model,total,666,2505,54.3
+2026,7,XPENG,G6,model,bev,666,2505,54.3
+2026,7,XPENG,G6,model,awd,242,1352,49.1
+2026,7,XPENG,G9,model,total,399,1712,37.1
+2026,7,XPENG,G9,model,bev,399,1712,37.1
+2026,7,XPENG,G9,model,awd,310,1310,47.6
+2026,7,XPENG,P7,model,total,153,318,6.9
+2026,7,XPENG,P7,model,bev,153,318,6.9
+2026,7,XPENG,P7,model,awd,40,48,1.7
+2026,7,XPENG,X9,model,total,35,70,1.5
+2026,7,XPENG,X9,model,bev,35,70,1.5
+2026,7,XPENG,X9,model,awd,20,41,1.5
+2026,7,XPENG,SONSTIGE,model,total,,5,0.1
+2026,7,XPENG,SONSTIGE,model,bev,,5,0.1
+2026,7,XPENG,SONSTIGE,model,awd,,2,0.1
+2026,7,XPENG,,brand_total,total,1253,4610,0.3
+2026,7,XPENG,,brand_total,bev,1253,4610,1
+2026,7,XPENG,,brand_total,awd,612,2753,0.6
+2026,7,ZEEKR,001,model,total,,11,3.4
+2026,7,ZEEKR,001,model,bev,,11,3.4
+2026,7,ZEEKR,001,model,awd,,7,2.7
+2026,7,ZEEKR,7GT,model,total,34,64,19.8
+2026,7,ZEEKR,7GT,model,bev,34,64,19.8
+2026,7,ZEEKR,7GT,model,awd,29,59,22.8
+2026,7,ZEEKR,7X,model,total,96,225,69.7
+2026,7,ZEEKR,7X,model,bev,96,225,69.7
+2026,7,ZEEKR,7X,model,awd,64,178,68.7
+2026,7,ZEEKR,X,model,total,3,23,7.1
+2026,7,ZEEKR,X,model,bev,3,23,7.1
+2026,7,ZEEKR,X,model,awd,2,15,5.8
+2026,7,ZEEKR,,brand_total,total,133,323,0
+2026,7,ZEEKR,,brand_total,bev,133,323,0.1
+2026,7,ZEEKR,,brand_total,awd,95,259,0.1
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,total,1368,7443,0.4
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,diesel,316,1360,0.6
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,hybrid_incl_plugin,204,1461,0.2
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,petrol_hybrid_incl_plugin,190,1346,0.2
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,diesel_hybrid_incl_plugin,10,109,0.1
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,hybrid_excl_plugin,110,1021,0.2
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,petrol_hybrid_excl_plugin,96,909,0.2
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,diesel_hybrid_excl_plugin,10,108,0.1
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,plugin_hybrid,94,440,0.2
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,petrol_plugin_hybrid,94,437,0.2
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,diesel_plugin_hybrid,,1,0
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,bev,341,1700,0.4
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,awd,919,4592,1.1
+2026,7,SONSTIGE ZUSAMMEN,,aggregate,cabriolet,40,200,0.9
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,total,268068,1752461,100
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,diesel,31703,224860,100
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,hybrid_incl_plugin,105284,696710,100
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,petrol_hybrid_incl_plugin,88372,588475,100
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,diesel_hybrid_incl_plugin,16278,105052,100
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,hybrid_excl_plugin,74675,502308,100
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,petrol_hybrid_excl_plugin,59639,405408,100
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,diesel_hybrid_excl_plugin,14402,93721,100
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,plugin_hybrid,30609,194402,100
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,petrol_plugin_hybrid,28733,183067,100
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,diesel_plugin_hybrid,1876,11331,100
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,bev,78609,446615,100
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,awd,67344,428229,100
+2026,7,NEUZULASSUNGEN INSGESAMT,,aggregate,cabriolet,2756,22885,100
