@@ -216,11 +216,13 @@
   .sm-foot b { color:var(--ink-2); font-weight:600; }
   .mini-bars { display:flex; flex-direction:column; gap:8px; }
   .mini-bars .row { display:grid; grid-template-columns:116px 1fr 80px; align-items:center; gap:10px; }
-  @media (max-width:560px){ .mini-bars .row { grid-template-columns:96px 1fr 66px; } }
+  .mini-bars.with-yoy .row { grid-template-columns:116px 1fr 80px 60px; }
+  @media (max-width:560px){ .mini-bars .row { grid-template-columns:96px 1fr 66px; } .mini-bars.with-yoy .row { grid-template-columns:96px 1fr 66px 52px; } }
   .mini-bars .lab { font-size:12.5px; color:var(--ink-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .mini-bars .trk { position:relative; height:19px; background:var(--grid); border-radius:4px; overflow:hidden; }
   .mini-bars .fil { height:100%; border-radius:4px; }
   .mini-bars .val { font-size:12px; text-align:right; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .mini-bars .yo { font-size:11.5px; text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
   .gd-head { font-size:15px; letter-spacing:.03em; text-transform:uppercase; color:var(--muted); margin:44px 0 6px; font-weight:600; }
   .cdetail { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px 22px; margin-top:20px; }
   .cdetail h3 { font-size:16px; margin:0 0 2px; display:flex; align-items:center; gap:8px; }
@@ -13641,6 +13643,8 @@
       }
     ],
     "total": 7865858,
+    "latest_period": "Jul 2026",
+    "latest_total": 268068,
     "brand_totals": [
       {
         "brand": "VW",
@@ -14237,6 +14241,8 @@
       }
     ],
     "total": 3677071,
+    "latest_period": "Jul 2026",
+    "latest_total": 27760,
     "brand_totals": [
       {
         "brand": "KIA",
@@ -15266,51 +15272,63 @@
       "top_brands": [
         {
           "brand": "KIA",
-          "total": 2979
+          "total": 2979,
+          "yoy": -18.9
         },
         {
           "brand": "TOYOTA",
-          "total": 2159
+          "total": 2159,
+          "yoy": -18.9
         },
         {
           "brand": "VW",
-          "total": 2079
+          "total": 2079,
+          "yoy": -34.6
         },
         {
           "brand": "SKODA",
-          "total": 1784
+          "total": 1784,
+          "yoy": -20.0
         },
         {
           "brand": "RENAULT",
-          "total": 1462
+          "total": 1462,
+          "yoy": 3.9
         },
         {
           "brand": "VOLVO",
-          "total": 1454
+          "total": 1454,
+          "yoy": 1.4
         },
         {
           "brand": "HYUNDAI",
-          "total": 1430
+          "total": 1430,
+          "yoy": -2.2
         },
         {
           "brand": "BMW",
-          "total": 1298
+          "total": 1298,
+          "yoy": -35.2
         },
         {
           "brand": "AUDI",
-          "total": 1231
+          "total": 1231,
+          "yoy": -19.9
         },
         {
           "brand": "MERCEDES",
-          "total": 1141
+          "total": 1141,
+          "yoy": -12.4
         },
         {
           "brand": "FORD",
-          "total": 1107
+          "total": 1107,
+          "yoy": -26.0
         },
         {
           "brand": "PEUGEOT",
-          "total": 913
+          "total": 913,
+          "yoy": -24.9
         }
       ],
       "top_models": [
@@ -16158,6 +16176,8 @@
       }
     ],
     "total": 648947,
+    "latest_period": "Jul 2026",
+    "latest_total": 5915,
     "brand_totals": [
       {
         "brand": "TOYOTA",
@@ -16593,51 +16613,63 @@
       "top_brands": [
         {
           "brand": "TOYOTA",
-          "total": 1385
+          "total": 1385,
+          "yoy": 51.4
         },
         {
           "brand": "VW",
-          "total": 668
+          "total": 668,
+          "yoy": 13.0
         },
         {
           "brand": "BMW",
-          "total": 474
+          "total": 474,
+          "yoy": 60.7
         },
         {
           "brand": "VOLVO",
-          "total": 428
+          "total": 428,
+          "yoy": -11.8
         },
         {
           "brand": "SKODA",
-          "total": 394
+          "total": 394,
+          "yoy": -46.6
         },
         {
           "brand": "KIA",
-          "total": 365
+          "total": 365,
+          "yoy": -12.5
         },
         {
           "brand": "MERCEDES",
-          "total": 347
+          "total": 347,
+          "yoy": 75.3
         },
         {
           "brand": "AUDI",
-          "total": 292
+          "total": 292,
+          "yoy": 44.6
         },
         {
           "brand": "FORD",
-          "total": 176
+          "total": 176,
+          "yoy": -27.3
         },
         {
           "brand": "CUPRA",
-          "total": 143
+          "total": 143,
+          "yoy": 248.8
         },
         {
           "brand": "TESLA",
-          "total": 125
+          "total": 125,
+          "yoy": 17.9
         },
         {
           "brand": "BYD",
-          "total": 113
+          "total": 113,
+          "yoy": 253.1
         }
       ],
       "top_models": [
@@ -17622,6 +17654,8 @@
       }
     ],
     "total": 3057461,
+    "latest_period": "Jun 2026",
+    "latest_total": 129231,
     "brand_totals": [
       {
         "brand": "TOYOTA",
@@ -19149,51 +19183,63 @@
       "top_brands": [
         {
           "brand": "TOYOTA",
-          "total": 9660
+          "total": 9660,
+          "yoy": 6.5
         },
         {
           "brand": "VW",
-          "total": 9230
+          "total": 9230,
+          "yoy": -0.6
         },
         {
           "brand": "SEAT",
-          "total": 7927
+          "total": 7927,
+          "yoy": 21.4
         },
         {
           "brand": "DACIA",
-          "total": 7493
+          "total": 7493,
+          "yoy": 3.5
         },
         {
           "brand": "RENAULT",
-          "total": 6696
+          "total": 6696,
+          "yoy": -31.2
         },
         {
           "brand": "KIA",
-          "total": 6626
+          "total": 6626,
+          "yoy": 22.2
         },
         {
           "brand": "PEUGEOT",
-          "total": 6459
+          "total": 6459,
+          "yoy": -0.5
         },
         {
           "brand": "BMW",
-          "total": 5748
+          "total": 5748,
+          "yoy": 25.6
         },
         {
           "brand": "HYUNDAI",
-          "total": 5374
+          "total": 5374,
+          "yoy": -12.2
         },
         {
           "brand": "MG",
-          "total": 4925
+          "total": 4925,
+          "yoy": 36.6
         },
         {
           "brand": "BYD",
-          "total": 4871
+          "total": 4871,
+          "yoy": 102.5
         },
         {
           "brand": "AUDI",
-          "total": 4589
+          "total": 4589,
+          "yoy": 27.2
         }
       ],
       "top_models": [
@@ -19820,6 +19866,8 @@
       }
     ],
     "total": 1975402,
+    "latest_period": "Jul 2026",
+    "latest_total": 25823,
     "brand_totals": [
       {
         "brand": "VW",
@@ -20232,51 +20280,63 @@
       "top_brands": [
         {
           "brand": "SKODA",
-          "total": 3100
+          "total": 3100,
+          "yoy": 5.4
         },
         {
           "brand": "VW",
-          "total": 2811
+          "total": 2811,
+          "yoy": -22.7
         },
         {
           "brand": "BMW",
-          "total": 1917
+          "total": 1917,
+          "yoy": -2.0
         },
         {
           "brand": "SEAT",
-          "total": 1626
+          "total": 1626,
+          "yoy": 28.8
         },
         {
           "brand": "AUDI",
-          "total": 1412
+          "total": 1412,
+          "yoy": 18.2
         },
         {
           "brand": "MERCEDES",
-          "total": 1399
+          "total": 1399,
+          "yoy": 21.5
         },
         {
           "brand": "TOYOTA",
-          "total": 1313
+          "total": 1313,
+          "yoy": 28.7
         },
         {
           "brand": "BYD",
-          "total": 1095
+          "total": 1095,
+          "yoy": 83.1
         },
         {
           "brand": "CUPRA",
-          "total": 1013
+          "total": 1013,
+          "yoy": 1.8
         },
         {
           "brand": "DACIA",
-          "total": 955
+          "total": 955,
+          "yoy": -38.7
         },
         {
           "brand": "OPEL",
-          "total": 899
+          "total": 899,
+          "yoy": 11.4
         },
         {
           "brand": "PEUGEOT",
-          "total": 852
+          "total": 852,
+          "yoy": -11.6
         }
       ],
       "top_models": [],
@@ -21048,6 +21108,8 @@
       }
     ],
     "total": 13342279,
+    "latest_period": "Jul 2026",
+    "latest_total": 127789,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 1,
@@ -21258,6 +21320,8 @@
       }
     ],
     "total": 2289921,
+    "latest_period": "Jul 2026",
+    "latest_total": 19687,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 1,
@@ -21709,6 +21773,8 @@
       }
     ],
     "total": 13662368,
+    "latest_period": "Q1 2026",
+    "latest_total": 617894,
     "brand_totals": [
       {
         "brand": "VW",
@@ -22805,51 +22871,63 @@
       "top_brands": [
         {
           "brand": "VW",
-          "total": 48153
+          "total": 48153,
+          "yoy": -9.7
         },
         {
           "brand": "BMW",
-          "total": 33994
+          "total": 33994,
+          "yoy": -4.0
         },
         {
           "brand": "KIA",
-          "total": 33559
+          "total": 33559,
+          "yoy": -1.3
         },
         {
           "brand": "FORD",
-          "total": 32122
+          "total": 32122,
+          "yoy": -6.0
         },
         {
           "brand": "AUDI",
-          "total": 30775
+          "total": 30775,
+          "yoy": 10.6
         },
         {
           "brand": "TOYOTA",
-          "total": 29617
+          "total": 29617,
+          "yoy": 1.5
         },
         {
           "brand": "MERCEDES",
-          "total": 28913
+          "total": 28913,
+          "yoy": 5.2
         },
         {
           "brand": "OPEL",
-          "total": 27449
+          "total": 27449,
+          "yoy": 1.2
         },
         {
           "brand": "PEUGEOT",
-          "total": 24722
+          "total": 24722,
+          "yoy": -11.1
         },
         {
           "brand": "NISSAN",
-          "total": 24172
+          "total": 24172,
+          "yoy": -12.7
         },
         {
           "brand": "SKODA",
-          "total": 24053
+          "total": 24053,
+          "yoy": 8.2
         },
         {
           "brand": "MG",
-          "total": 23516
+          "total": 23516,
+          "yoy": -3.0
         }
       ],
       "top_models": [
@@ -23810,6 +23888,8 @@
       }
     ],
     "total": 234744,
+    "latest_period": "Apr 2026",
+    "latest_total": 37802,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -23930,6 +24010,8 @@
       }
     ],
     "total": 23071,
+    "latest_period": "Apr 2026",
+    "latest_total": 4742,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -24050,6 +24132,8 @@
       }
     ],
     "total": 32038,
+    "latest_period": "Apr 2026",
+    "latest_total": 8658,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -24170,6 +24254,8 @@
       }
     ],
     "total": 8121,
+    "latest_period": "Apr 2026",
+    "latest_total": 1185,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -24278,6 +24364,8 @@
       }
     ],
     "total": 120236,
+    "latest_period": "Apr 2026",
+    "latest_total": 22397,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -24398,6 +24486,8 @@
       }
     ],
     "total": 81129,
+    "latest_period": "Apr 2026",
+    "latest_total": 16754,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -24518,6 +24608,8 @@
       }
     ],
     "total": 6371,
+    "latest_period": "Apr 2026",
+    "latest_total": 1914,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -24631,6 +24723,8 @@
       }
     ],
     "total": 68008,
+    "latest_period": "Apr 2026",
+    "latest_total": 14275,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -24751,6 +24845,8 @@
       }
     ],
     "total": 69363,
+    "latest_period": "Apr 2026",
+    "latest_total": 11832,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -24871,6 +24967,8 @@
       }
     ],
     "total": 129723,
+    "latest_period": "Apr 2026",
+    "latest_total": 10090,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -24979,6 +25077,8 @@
       }
     ],
     "total": 928364,
+    "latest_period": "Apr 2026",
+    "latest_total": 155145,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -25099,6 +25199,8 @@
       }
     ],
     "total": 9770,
+    "latest_period": "Apr 2026",
+    "latest_total": 1909,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -25212,6 +25314,8 @@
       }
     ],
     "total": 18505,
+    "latest_period": "Apr 2026",
+    "latest_total": 4692,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -25332,6 +25436,8 @@
       }
     ],
     "total": 25206,
+    "latest_period": "Apr 2026",
+    "latest_total": 4922,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -25445,6 +25551,8 @@
       }
     ],
     "total": 2700,
+    "latest_period": "Apr 2026",
+    "latest_total": 592,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -25558,6 +25666,8 @@
       }
     ],
     "total": 293744,
+    "latest_period": "Apr 2026",
+    "latest_total": 51824,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -25678,6 +25788,8 @@
       }
     ],
     "total": 122604,
+    "latest_period": "Apr 2026",
+    "latest_total": 21592,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -25798,6 +25910,8 @@
       }
     ],
     "total": 60967,
+    "latest_period": "Apr 2026",
+    "latest_total": 10205,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -25906,6 +26020,8 @@
       }
     ],
     "total": 40359,
+    "latest_period": "Apr 2026",
+    "latest_total": 6957,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -26026,6 +26142,8 @@
       }
     ],
     "total": 31173,
+    "latest_period": "Apr 2026",
+    "latest_total": 7398,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -26146,6 +26264,8 @@
       }
     ],
     "total": 5745,
+    "latest_period": "Apr 2026",
+    "latest_total": 1033,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -26259,6 +26379,8 @@
       }
     ],
     "total": 58771,
+    "latest_period": "Apr 2026",
+    "latest_total": 11103,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -26367,6 +26489,8 @@
       }
     ],
     "total": 105672,
+    "latest_period": "Apr 2026",
+    "latest_total": 18618,
     "brand_totals": [],
     "origin_totals": [],
     "tier": 2,
@@ -26861,16 +26985,17 @@
     if (logo) return '<span class="cd-mark"><img src="' + logo + '" alt=""></span>';
     return '<span class="cd-mark" style="background:' + css("--s1") + '"><span>' + (brand[0] || "?") + '</span></span>';
   }
-  function cdBarRows(items, base) {
+  function cdBarRows(items, base, withYoy) {
     var max = items.length ? items[0].total : 1;
     return items.map(function (it) {
       var w = 100 * it.total / max, share = base ? (100 * it.total / base) : 0;
       var lab = it.mark
         ? '<div class="lab withmark">' + logoMark(it.mark) + '<span style="overflow:hidden;text-overflow:ellipsis">' + it.label + '</span></div>'
         : '<div class="lab">' + it.label + '</div>';
+      var yo = withYoy ? '<div class="yo">' + yoyBadge(it.yoy) + '</div>' : '';
       return '<div class="row">' + lab +
         '<div class="trk"><div class="fil" style="width:' + w + '%;background:' + it.color + '"></div></div>' +
-        '<div class="val">' + share.toFixed(1) + '%&nbsp;·&nbsp;' + fmt(it.total) + '</div></div>';
+        '<div class="val">' + share.toFixed(1) + '%&nbsp;·&nbsp;' + fmt(it.total) + '</div>' + yo + '</div>';
     }).join("");
   }
   function ptBar(pt) {
@@ -26901,8 +27026,12 @@
   }
   function cdKpis(c) {
     var last = c.quarters[c.quarters.length - 1];
+    // Lead with the freshest published period (latest month for monthly
+    // sources, latest quarter for the UK), not the latest complete quarter.
+    var lp = c.latest_period || (last ? last.label : "Latest");
+    var lt = c.latest_period ? c.latest_total : (last ? last.total : 0);
     var chips = [
-      { l: (last ? last.label : "Latest") + " regs", v: fmt(last ? last.total : 0) },
+      { l: lp + " regs", v: fmt(lt || 0) },
       { l: (c.ytd_year || "") + " YTD", v: fmt(c.ytd || 0) }
     ];
     if (c.powertrain && c.powertrain.has) {
@@ -27019,15 +27148,19 @@
     var per = ' <span style="text-transform:none;font-weight:400;color:var(--muted)">— ' + L.period +
       ' · ' + fmt(L.total) + ' regs</span>';
     var bItems = (L.top_brands || []).slice(0, 8).map(function (r) {
-      return { label: r.brand, mark: r.brand, total: r.total, color: css("--s1") };
+      return { label: r.brand, mark: r.brand, total: r.total, color: css("--s1"), yoy: r.yoy };
     });
     var mItems = (L.top_models || []).slice(0, 8).map(function (m) {
       return { label: m.model + ' <span style="color:var(--muted);font-size:11px">' + m.brand + '</span>',
                mark: m.brand, total: m.total, color: ctyColor(c.code) };
     });
+    var hasYoy = bItems.some(function (b) { return b.yoy != null; });
+    var yoyHint = hasYoy ? ' <span style="text-transform:none;font-weight:400;color:var(--muted)">— ▲▼ vs ' +
+      (isQ ? "same quarter" : "same month") + " last year</span>" : "";
     var ptHtml = (L.powertrain && L.powertrain.has)
       ? ptBar({ has: true, shares: L.powertrain.shares, period: L.period }) : "";
-    var brandsCol = '<div><h4>Top brands</h4><div class="mini-bars">' + cdBarRows(bItems, L.total) + '</div></div>';
+    var brandsCol = '<div><h4>Top brands' + yoyHint + '</h4><div class="mini-bars' + (hasYoy ? " with-yoy" : "") +
+      '">' + cdBarRows(bItems, L.total, hasYoy) + '</div></div>';
     var modelsCol = mItems.length
       ? '<div><h4>Top models</h4><div class="mini-bars">' + cdBarRows(mItems, L.total) + '</div></div>' : '';
     var grid = modelsCol

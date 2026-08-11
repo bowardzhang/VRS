@@ -429,6 +429,11 @@ def _assemble(code, name, flag, source, source_url, *,
         "window": f"{quarters[0]['label']} – {quarters[-1]['label']}" if quarters else "",
         "quarters": quarters,
         "total": sum(quarter_total[(y, q)] for (y, q) in qs),
+        # Freshest single period for the headline KPI. Defaults to the latest
+        # complete quarter; monthly sources override this with the latest month
+        # in _from_monthly so the card leads with the newest data, not a quarter.
+        "latest_period": quarters[-1]["label"] if quarters else "",
+        "latest_total": quarters[-1]["total"] if quarters else 0,
         "brand_totals": brand_totals,
         "origin_totals": origin_totals,
     }
@@ -438,17 +443,26 @@ def _from_monthly(rows, code, name, flag, source, source_url, with_brands: bool)
     """rows: iterable of (year, month, brand|None, count)."""
     q_total: dict[tuple[int, int], int] = defaultdict(int)
     q_months: dict[tuple[int, int], set] = defaultdict(set)
+    month_total: dict[tuple[int, int], int] = defaultdict(int)
     brand_window: dict[str, int] = defaultdict(int)
     for y, m, brand, cnt in rows:
         q = (y, _q(m))
         q_total[q] += cnt
         q_months[q].add(m)
+        month_total[(y, m)] += cnt
         if with_brands and brand and _in_brand_window_month(y, m):
             brand_window[canonical(brand)] += cnt
     q_complete = {q: len(q_months[q]) == 3 for q in q_total}
-    return _assemble(code, name, flag, source, source_url,
+    core = _assemble(code, name, flag, source, source_url,
                      quarter_total=q_total, quarter_complete=q_complete,
                      brand_window=(brand_window if with_brands else None))
+    # Monthly sources lead the card with the latest published month (not the
+    # latest complete quarter), so the headline KPI tracks the newest data.
+    if month_total:
+        ly, lm = max(month_total)
+        core["latest_period"] = f"{MONTH_ABBR[lm - 1]} {ly}"
+        core["latest_total"] = month_total[(ly, lm)]
+    return core
 
 
 def germany_core() -> dict:
@@ -554,6 +568,20 @@ def _top_brands(pairs, limit: int = 12) -> list[dict]:
             for b, t in sorted(agg.items(), key=lambda kv: -kv[1])[:limit]]
 
 
+def _attach_brand_yoy(top_brands: list[dict], prev_pairs) -> None:
+    """Attach year-over-year % change to each brand vs the same period a year
+    earlier. ``prev_pairs`` is (brand_raw, count) for the year-ago period; a
+    brand absent (or zero) a year ago gets yoy=None (rendered as no badge)."""
+    prev: dict[str, int] = defaultdict(int)
+    for b, c in prev_pairs:
+        cb = canonical(b)
+        if cb != "OTHER":
+            prev[cb] += c
+    for tb in top_brands:
+        p = prev.get(tb["brand"], 0)
+        tb["yoy"] = round((tb["total"] - p) / p * 100, 1) if p else None
+
+
 def _latest_models(code: str, y: int, p: int) -> list[dict]:
     """Top models for the latest period (month for NL/FI/ES, quarter for UK)."""
     if code == "NL" and NL_MODELS_LATEST.exists():
@@ -626,10 +654,14 @@ def latest_for(code: str) -> dict | None:
         y, m = max((int(r["year"]), int(r["month"])) for r in rows)
         brands = [(r["brand"].strip(), int(r["count"])) for r in rows
                   if (int(r["year"]), int(r["month"])) == (y, m)]
+        prev = [(r["brand"].strip(), int(r["count"])) for r in rows
+                if (int(r["year"]), int(r["month"])) == (y - 1, m)]
+        top_brands = _top_brands(brands)
+        _attach_brand_yoy(top_brands, prev)
         return {
             "period": f"{MONTH_ABBR[m - 1]} {y}",
             "total": sum(c for _, c in brands),
-            "top_brands": _top_brands(brands),
+            "top_brands": top_brands,
             "top_models": _latest_models(code, y, m),
             "powertrain": _latest_powertrain(code, "month", y, m),
         }
@@ -640,10 +672,14 @@ def latest_for(code: str) -> dict | None:
         y, q = max((int(r["year"]), int(r["quarter"])) for r in rows)
         brands = [(r["brand"].strip(), int(r["count"])) for r in rows
                   if (int(r["year"]), int(r["quarter"])) == (y, q)]
+        prev = [(r["brand"].strip(), int(r["count"])) for r in rows
+                if (int(r["year"]), int(r["quarter"])) == (y - 1, q)]
+        top_brands = _top_brands(brands)
+        _attach_brand_yoy(top_brands, prev)
         return {
             "period": f"Q{q} {y}",
             "total": sum(c for _, c in brands),
-            "top_brands": _top_brands(brands),
+            "top_brands": top_brands,
             "top_models": _latest_models("UK", y, q),
             "powertrain": _latest_powertrain("UK", "quarter", y, q),
         }
