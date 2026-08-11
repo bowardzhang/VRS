@@ -7,10 +7,12 @@ on:
     paths:
       - "docs/**"
       - ".github/workflows/pages.yml"
-  # Redeploy after the data-update workflow commits new data (a push made with
-  # GITHUB_TOKEN does not itself trigger the "push" event above).
+  # Redeploy after the daily data-update workflow commits new data (a push made
+  # with GITHUB_TOKEN does not itself trigger the "push" event above). The name
+  # here MUST match update-data.yml's `name:` exactly, or the redeploy never
+  # fires and the live site keeps serving the previously deployed HTML.
   workflow_run:
-    workflows: ["Update registration data"]
+    workflows: ["Daily data update + notify"]
     types: [completed]
   # Allow manual runs from the Actions tab.
   workflow_dispatch:
