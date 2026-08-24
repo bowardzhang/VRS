@@ -661,10 +661,10 @@
       {
         "q": "2026-Q2",
         "label": "Q2 2026",
-        "total": 96421
+        "total": 96423
       }
     ],
-    "total": 3677399,
+    "total": 3677401,
     "latest_period": "Jul 2026",
     "latest_total": 27954,
     "brand_totals": [
@@ -718,7 +718,7 @@
       },
       {
         "brand": "FORD",
-        "total": 46905
+        "total": 46907
       },
       {
         "brand": "OPEL",
@@ -1536,7 +1536,7 @@
       },
       {
         "origin": "USA",
-        "total": 117898
+        "total": 117900
       },
       {
         "origin": "Sweden",
@@ -1617,7 +1617,7 @@
       {
         "brand": "FORD",
         "model": "KUGA",
-        "total": 17272
+        "total": 17273
       },
       {
         "brand": "HYUNDAI",
@@ -1627,7 +1627,7 @@
       {
         "brand": "PEUGEOT",
         "model": "208",
-        "total": 16678
+        "total": 16677
       },
       {
         "brand": "VW",
@@ -1642,7 +1642,7 @@
       {
         "brand": "VOLVO",
         "model": "XC60",
-        "total": 15068
+        "total": 15069
       }
     ],
     "powertrain": {
@@ -1669,7 +1669,7 @@
         },
         {
           "body": "MPV",
-          "total": 143773,
+          "total": 143775,
           "pct": 26.6
         },
         {
@@ -2113,7 +2113,7 @@
             55494,
             74487,
             52273,
-            55964
+            55966
           ]
         }
       ]
@@ -2324,7 +2324,7 @@
             7861,
             11259,
             6342,
-            7602
+            7604
           ]
         },
         {
@@ -2434,7 +2434,7 @@
         }
       ]
     },
-    "ytd": 181996,
+    "ytd": 181998,
     "ytd_year": 2026
   },
   {
