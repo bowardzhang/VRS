@@ -1,250 +1,217 @@
+<div align="center">
+
 # VRS — Vehicle Registration Statistics
 
-Downloads, analyses, and publishes monthly new-vehicle registration data for
-major European countries as a static website.
+**European new-car registration data pipeline & open analytics**
 
-Countries currently covered:
+[![GitHub Pages](https://img.shields.io/badge/hosted%20on-GitHub%20Pages-222?logo=github&logoColor=fff)](https://bowardzhang.github.io/VRS/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Data refresh](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbowardzhang%2FVRS%2Frefs%2Fheads%2Fmain%2Fdocs%2Fdata%2Fgermany.json&query=%24.latest.year&label=latest%20DE%20data&color=1890ff&cacheSeconds=3600)](https://bowardzhang.github.io/VRS/)
+[![Last pipeline run](https://img.shields.io/github/workflow/status/bowardzhang/VRS/Update%20registration%20data?label=pipeline&logo=githubactions&logoColor=fff)](https://github.com/bowardzhang/VRS/actions/workflows/update-data.yml)
+[![Countries](https://img.shields.io/badge/countries-7-38bdf8?logo=openstreetmap&logoColor=fff)](https://bowardzhang.github.io/VRS/)
+[![Repo size](https://img.shields.io/github/repo-size/bowardzhang/VRS?color=blueviolet)]()
 
-- **🇩🇪 Germany** — official
-  [Kraftfahrt-Bundesamt (KBA)](https://www.kba.de/DE/Statistik/Produktkatalog/produkte/Fahrzeuge/fz10/fz10_gentab.html)
-  table **FZ 10.1** — *Neuzulassungen von Personenkraftwagen nach Marken und
-  Modellreihen* (new passenger-car registrations by brand and model series).
-- **🇳🇱 Netherlands** — [RDW](https://opendata.rdw.nl/) (Rijksdienst voor het
-  Wegverkeer) open data, the national vehicle register, via its Socrata API
-  (dataset `m9d7-ebf2`). New registrations are proxied by *first admission this
-  month* of a passenger car.
-- **🇫🇮 Finland** — [Traficom](https://tieto.traficom.fi/en) / Statistics
-  Finland *first registrations of passenger cars* by make, via the Traficom
-  PxWeb open-data API (no key required).
-- **🇫🇷 France** — [INSEE](https://www.insee.fr/fr/statistiques/serie/010756763)
-  BDM series 010756763, national monthly totals (SDMX). Brand/model detail is not
-  openly published (processed commercially by AAA Data). Powertrain **is** open,
-  but only **annually** — the SDES "part VP neuves par source d'énergie" dataset
-  on data.gouv.fr — so France shows a national totals trend plus an annual
-  powertrain mix.
-- **🇬🇧 United Kingdom** — UK Department for Transport table
-  [VEH0160](https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files)
-  (cars registered for the first time, by make). DfT publishes *quarterly*.
-- **🇪🇸 Spain** — [DGT](https://www.dgt.es/menusecundario/dgt-en-cifras/) monthly
-  registration **microdata** (one fixed-width file per month, MATRABA layout).
-  New passenger cars (`COD_TIPO=40`, `IND_NUEVO_USADO=N`) are aggregated to brand,
-  model and fuel; the raw ~155 MB file is never stored. DGT's fuel code doesn't
-  separate hybrids, so Spain's powertrain buckets are Petrol / Diesel / BEV /
-  Other.
+**English** · [中文文档](#chinese)
 
-The site aggregates any selected subset of countries — a **🌍 country picker**
-in the top-right (multi-select, defaults to all, saved in a cookie) drives an
-*Europe overview*. Because national sources differ in cadence and detail, the
-overview uses the common denominator: a **quarterly** per-country historical
-trend (each country over its own multi-year history — monthly sources are rolled
-up to complete quarters, the UK is natively quarterly) plus **top-brand /
-manufacturer-origin** bars aggregated over a common recent window across the
-brand-capable countries (France is totals only). Selecting a country also shows a
-**per-country breakdown** card — headline KPIs (latest quarter, year-to-date,
-BEV / diesel share), a **powertrain mix**, and top brands + top model series with
-brand logos (NL via the RDW `handelsbenaming`, FI via the Traficom by-model and
-driving-power tables, UK via the DfT `GenModel` / `Fuel` columns). Where a source
-doesn't publish a field (e.g. NL powertrain, France brand/model), the card says
-so; France's powertrain is shown but labelled *annual* (its only open cadence). Country-specific deep dives (German KBA body segments, the supplier
-installation-rate pages) are shown when that country is in scope.
+</div>
 
-## Pipeline
+---
+
+VRS downloads, parses and publishes **monthly new-vehicle registration statistics** across major European markets — Germany, France, Spain, Netherlands, Finland, Austria, Sweden — as a self-contained static website. It also **estimates per-component supplier installation rates** (cockpit SoC, ADAS SoC, front radar, power semiconductor, LiDAR) by joining registration counts with a hand-curated model-to-platform mapping.
+
+## Live site
+
+**https://bowardzhang.github.io/VRS/** — a single `index.html` with all data baked in. No backend, no fetch, no external assets. Dark/light mode, interactive tooltips, country picker.
+
+## Coverage
+
+| Country | Source | Frequency | Detail level | Open data? |
+|---------|--------|:---------:|--------------|:----------:|
+| DE Germany | [KBA FZ 10.1](https://www.kba.de/DE/Statistik/Produktkatalog/produkte/Fahrzeuge/fz10/fz10_gentab.html) | monthly | brand, model, drivetrain | Y |
+| ES Spain | [DGT](https://www.dgt.es/menusecundario/dgt-en-cifras/) MATRABA microdata | monthly | brand, model, fuel | Y |
+| FR France | [INSEE BDM](https://www.insee.fr/fr/statistiques/serie/010756763) | monthly | national total only | Y |
+| NL Netherlands | [RDW](https://opendata.rdw.nl/) Socrata API | monthly | brand, model, body | Y |
+| FI Finland | [Traficom](https://tieto.traficom.fi/en) PxWeb | monthly | brand, model, powertrain | Y |
+| AT Austria | Statistics Austria | monthly | brand | Y |
+| SE Sweden | [SCB](https://www.scb.se/) | monthly | total, powertrain | Y |
+| GB United Kingdom | [DfT VEH0160](https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files) | quarterly | brand, model, fuel | Y |
+
+> **Note**: Italy is not yet covered (no open monthly brand-level feed). The UK is quarterly and lags by one quarter — Q2 2026 was still pending at publication time.
+
+## Features
+
+### Homepage (`docs/index.html`)
+
+- **Latest month KPIs** — registrations, YTD, BEV/diesel share, YoY change
+- **Brand ranking** — top brands with YoY comparison and brand logos
+- **Model ranking** — top model series, split by drivetrain
+- **Powertrain mix** — BEV/PHEV/HEV/petrol/diesel pie + YoY change
+- **Trends over time** — multi-year line charts:
+  - Brand trends (top marques over time)
+  - Manufacturer origin trends (Germany, China, USA, Japan, Korea, ...)
+  - Powertrain trends (BEV, PHEV, HEV, petrol, diesel)
+  - Body-segment trends (SUV, sedan & hatch, MPV, sports)
+- **Country picker** — multi-select, saved in a cookie, powers a Europe overview
+
+### Deep-dive pages
+
+| Page | Content |
+|------|---------|
+| `docs/analysis-china.html` | Chinese-origin brand penetration, monthly registrations, top models |
+| `docs/analysis-ev.html` | BEV/PHEV/HEV trends, top models by category |
+| `docs/analysis-soc.html` | Cockpit SoC installation-rate share by supplier |
+| `docs/analysis-adas.html` | ADAS / perception SoC supplier share |
+| `docs/analysis-radar.html` | Front-radar Tier-1 market share |
+| `docs/analysis-power.html` | EV inverter power semiconductor (BEV-weighted) |
+| `docs/analysis-lidar.html` | LiDAR fitment penetration & supplier split |
+| `docs/analysis-q2-2026.html` | Q2 2026 quarterly snapshot — brands, models, origin, powertrain, suppliers |
+
+### Quarterly analysis report
+
+`docs/analysis-q2-2026-linkedin.md` generates an in-depth LinkedIn-ready analysis report each quarter. The latest edition covers:
+
+- BEV share acceleration (DE 18.4% to 26.6%, FI 34.5% to 48.6%)
+- Chinese OEM breakthrough: **7.2% pooled share**, +85.6% YoY, BYD alone >36k units
+- Supplier installation-rate shifts: Qualcomm +1.7pp, STMicro (SiC) 3% to 9%, Infineon 96% to 90%
+- SUV surpassing sedans in Germany (46.4% vs 42.3%)
+
+## Data pipeline
+
+### Architecture
 
 ```
-KBA .xlsx  ──download──►  data/Germany/fz10_YYYY_MM.xlsx
-                              │
-                              ├─ parse ─►  data/Germany/processed/germany_registrations.csv   (tidy, all drivetrains)
-                              │            docs/data/germany.json                              (site summary)
-                              │
-                              └─ build ─►  docs/index.html                                     (self-contained static page)
+KBA .xlsx ---download--> data/Germany/fz10_YYYY_MM.xlsx
+                             |
+                             +- parse -> data/Germany/processed/germany_registrations.csv
+                             |            docs/data/germany.json
+                             |
+                             +- build -> docs/index.html
 ```
 
-Three small, dependency-light scripts, each runnable on its own:
+### Scripts
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/download_germany.py` | Fetch the monthly FZ 10.1 workbooks from KBA into `data/Germany/`. |
-| `scripts/parse_germany.py`    | Parse every workbook into a tidy CSV + a compact JSON summary. |
-| `scripts/download_netherlands.py` | Fetch monthly new passenger-car counts by brand from the RDW Socrata API into `data/Netherlands/`. |
-| `scripts/download_finland.py` | Fetch monthly first-registration counts by make from the Traficom PxWeb API into `data/Finland/`. |
-| `scripts/download_france.py` | Fetch monthly national registration totals from the INSEE BDM (SDMX) into `data/France/`. |
-| `scripts/download_uk.py` | Fetch quarterly first-registration counts by make from DfT VEH0160 into `data/UnitedKingdom/`. |
-| `scripts/download_spain.py` | Fetch DGT monthly microdata ZIPs and aggregate new passenger cars to brand/model/fuel into `data/Spain/` (incremental). |
-| `scripts/parse_suppliers.py`  | Join `data/vehicle_specs.csv` to the counts and add a per-component supplier installation-rate (`suppliers.dimensions`) block to the JSON. |
-| `scripts/build_supplier_pages.py` | Generate one self-contained secondary page per component (`analysis-soc/adas/radar/power/lidar.html`) from a shared template. |
-| `scripts/build_countries.py`  | Assemble a uniform multi-country core (`docs/data/countries.json`) that powers the country picker + Europe overview. |
-| `scripts/build_site.py`       | Bake the JSON into `docs/*.html` so the pages are fully self-contained. |
+| `scripts/download_germany.py` | Fetch KBA FZ 10.1 workbooks |
+| `scripts/parse_germany.py` | Parse workbooks into tidy CSV + JSON |
+| `scripts/parse_segments.py` | Parse KBA FZ 11 body-segment trends |
+| `scripts/download_netherlands.py` | Fetch RDW brand/model data |
+| `scripts/download_finland.py` | Fetch Traficom brand/powertrain data |
+| `scripts/download_france.py` | Fetch INSEE monthly totals |
+| `scripts/download_spain.py` | Download & aggregate DGT microdata |
+| `scripts/download_uk.py` | Fetch DfT quarterly data |
+| `scripts/download_austria.py` | Fetch Austria monthly brand data |
+| `scripts/download_sweden.py` | Fetch SCB totals + powertrain |
+| `scripts/parse_suppliers.py` | Join vehicle_specs.csv into supplier install rates |
+| `scripts/parse_suppliers_geo.py` | Cross-country supplier comparison (DE/ES/FI/NL/UK) |
+| `scripts/build_supplier_pages.py` | Generate per-component HTML pages |
+| `scripts/build_countries.py` | Assemble multi-country country picker JSON |
+| `scripts/build_europe.py` | Assemble Europe overview JSON |
+| `scripts/build_q2_report.py` | Generate Q2 vertical analysis (HTML + JSON) |
+| `scripts/gen_report_md.py` | Generate Markdown report for LinkedIn |
+| `scripts/build_site.py` | Bake all JSON into self-contained HTML pages |
+| `scripts/supplier_normalize.py` | Model-name normalisation utilities |
 
-### Historical powertrain series
-
-`data/Germany/kba_monthly_powertrain.csv` holds a longer monthly series of new
-registrations by drivetrain (BEV, diesel, plug-in hybrid and petrol),
-**January 2021 – June 2026**. These are the official KBA FZ 10 figures — the
-`source_url` column points at each month's workbook — assembled from the
-open-source [`hboisgibault/ev-tracker`](https://github.com/hboisgibault/ev-tracker)
-project, which parses the same KBA workbooks, while a direct KBA download is
-unavailable in this environment (see the network note below). The June 2026
-values were cross-checked against the locally held `fz10_2026_06.xlsx` and match
-exactly.
-
-`parse_germany.py` merges this series into the site so the *powertrain-mix-over-
-time* chart spans several years; any month that also has a full FZ 10.1 workbook
-locally uses the richer workbook figures (and keeps its brand / model detail).
-As full workbooks are downloaded, they automatically take precedence over the
-supplementary rows.
-
-## Usage
+### Quick start
 
 ```bash
+git clone https://github.com/bowardzhang/VRS.git
+cd VRS
 pip install -r requirements.txt
 
-# 1. Download data (see the network note below)
-python scripts/download_germany.py --from 2025-01 --to 2026-06   # a range
-python scripts/download_germany.py --month 2026-06               # one month
-python scripts/download_germany.py --to 2026-06 --last 12        # last 12 months
-
-# 2. Parse the workbooks -> CSV + JSON
+# Download latest data
+python scripts/download_germany.py --last 3
+python scripts/download_germany.py --month 2026-06
+# Parse
 python scripts/parse_germany.py
-python scripts/parse_segments.py       # body-segment trends (FZ 11)
-python scripts/parse_suppliers.py      # per-component supplier installation rate
-python scripts/build_supplier_pages.py # generate the per-component secondary pages
+python scripts/parse_segments.py
+python scripts/parse_suppliers.py
+python scripts/build_supplier_pages.py
 
-# 1b. Other countries (open data — no API key required)
-python scripts/download_netherlands.py # RDW (or --last N for trailing months)
-python scripts/download_finland.py      # Traficom / Statistics Finland
-python scripts/download_france.py       # INSEE national monthly totals
-python scripts/download_uk.py           # DfT VEH0160 quarterly by make
-python scripts/build_countries.py       # assemble the multi-country core
+# Other countries (no API key needed)
+python scripts/download_netherlands.py --last 3
+python scripts/download_finland.py --last 3
 
-# 3. Rebuild the static pages
+# Build multi-country core
+python scripts/build_countries.py
+python scripts/build_europe.py
+
+# Build the Q2 report
+python scripts/build_q2_report.py
+
+# Build static site
 python scripts/build_site.py
 ```
 
-## The website
+### GitHub Actions automation
 
-`docs/index.html` is a **self-contained** static page (data baked in — no fetch,
-no external assets, light/dark aware, interactive tooltips).
-
-**Latest month** — headline registrations (month + year-to-date), BEV/diesel
-share, top brands and top model series (ranked bar charts), and powertrain
-penetration.
-
-**Trends over time** — interactive multi-year charts (crosshair + tooltip),
-built from every month of detail available:
-
-- **by brand** — monthly registrations for the largest brands (multi-line);
-- **by manufacturer origin** — monthly registrations grouped by the marque's
-  country of origin (Germany, China, USA, Japan, South Korea, France, Czechia,
-  Spain, …), shown as a stacked area;
-- **by powertrain** — one line per drivetrain (petrol, diesel, BEV, plug-in
-  hybrid, hybrid);
-- **by body segment** — one line per body shape (sedan & hatch, SUV, MPV & van,
-  sports, other), from KBA table **FZ 11 (Segmente)** parsed by
-  `scripts/parse_segments.py` (KBA size/segment classes grouped into shapes).
-
-The latest-month brand and model charts also show **year-over-year** change vs
-the same month a year earlier, each brand/model marked with its logo (open-source
-brand icons where available, a colored monogram otherwise). The page defaults to
-the light theme. The latest-month powertrain split is shown as a **pie** of the
-five mutually-exclusive drivetrains with per-slice year-over-year change.
-
-### Deep-dive sub-pages
-
-Two chart titles on the homepage link to secondary analysis pages:
-
-- **`docs/analysis-china.html`** (from the *manufacturer-origin* chart) drills
-  into **Chinese-origin marques**: monthly registrations, market-share trend,
-  per-brand trends, and the top Chinese brands and model series. Data: the
-  `china` block from `build_origin_analysis()`.
-- **`docs/analysis-ev.html`** (from the *powertrain* chart) drills into
-  **electrified drivetrains** — BEV, hybrid and plug-in hybrid: per-category
-  count and market-share trends, and the top model series in each category.
-  Data: the `ev` block from `build_ev_analysis()`.
-- **Supplier statistics** (the *供应商统计* tile section on the homepage) links to
-  one secondary page per automotive electronic component, each estimating that
-  component's **supplier installation rate (“上装率”)** by weighting a per-model
-  configuration estimate with the KBA registration counts:
-  - **`docs/analysis-soc.html`** — cockpit domain-controller (“车机”) SoC;
-  - **`docs/analysis-adas.html`** — ADAS / front-camera perception SoC;
-  - **`docs/analysis-radar.html`** — front-radar Tier-1;
-  - **`docs/analysis-power.html`** — EV traction-inverter power semiconductor
-    (weighted by BEV registrations);
-  - **`docs/analysis-lidar.html`** — LiDAR fitment & supplier.
-
-  Each page shows the supplier share, a mix-over-time (or penetration) chart,
-  and — per major supplier — the **top-selling model series that use it**. Data:
-  the `suppliers.dimensions` block written by `scripts/parse_suppliers.py`;
-  pages generated by `scripts/build_supplier_pages.py`.
-
-### Supplier installation-rate estimate
-
-KBA reports *how many* of each model were registered but nothing about their
-electronics. `scripts/parse_suppliers.py` joins the registration counts to a
-hand-authored, editable estimate in **`data/vehicle_specs.csv`** that maps each
-model to the suppliers of its **current-generation platform / brand software
-stack** across several components:
-
-- **Cockpit SoC** — e.g. VW MQB → Renesas *MIB3*, VW MEB → Samsung *Exynos Auto*,
-  Mercedes *MBUX* → NVIDIA, BMW *iDrive 8/9* + Mini → Qualcomm, Tesla → AMD.
-- **ADAS / perception SoC** — Mobileye dominates Europe; NVIDIA (Mercedes,
-  Volvo EX90), Tesla (own FSD), Denso (Toyota).
-- **EV inverter power semiconductor** (weighted by BEV registrations) — Infineon,
-  STMicro (Tesla SiC), BYD (own).
-- **Front-radar Tier-1** — Continental, Bosch, Valeo, HL Klemove, Denso.
-- **LiDAR** — Valeo (Mercedes Drive Pilot), Luminar (Volvo EX90); effectively
-  absent from standard configs, so penetration stays near zero.
-
-Silicon is set by the platform, not the individual trim, so this platform-level
-mapping is the tractable approach; each row carries a `confidence` and short
-note, and any unmapped model is reported as *Unclassified* (≈92 % of
-registrations are classified). **Cockpit SoC / LiDAR are the best-sourced; ADAS,
-power-semi and radar are lower-confidence OEM/platform-relationship estimates.**
-The parser emits, per component, the supplier share, a monthly series, and the
-top-selling models for each supplier. **Figures for the electronics are
-estimates; corrections to `data/vehicle_specs.csv` are welcome.** Run it after
-`parse_germany.py`, then `build_supplier_pages.py`, then `build_site.py`.
-
-Both add their block to `germany.json`, show logos + year-over-year change, and
-are baked self-contained by `build_site.py` (which injects `germany.json` +
-`data/brand_logos.json` into every page in its `PAGES` list), so the sub-pages
-update on the same monthly schedule as the homepage.
-
-Brand- and origin-level charts span the months backed by a full workbook; the
-powertrain chart also uses the supplementary series, so it reaches back to 2021.
-
-Serve it with GitHub Pages (Pages source `/docs`, or the included Actions
-workflow) or open the file directly. Rebuild after adding new months with steps
-2–3 above.
-
-## Automated updates (GitHub Actions)
-
-Two workflows keep the published site current with no manual work:
+Two workflows run autonomously:
 
 | Workflow | Trigger | What it does |
 |----------|---------|--------------|
-| `.github/workflows/update-data.yml` | Monthly (cron, 8th at 06:00 UTC) + manual | Downloads the latest KBA workbooks **and RDW (Netherlands) data**, re-parses, rebuilds the site, and commits `data/Germany` + `data/Netherlands` + `docs`. |
-| `.github/workflows/pages.yml`       | On `docs/**` push, after a data update, or manual | Publishes `docs/` to GitHub Pages. |
+| `update-data.yml` | Monthly (8th, 06:00 UTC) + manual | Downloads latest KBA/RDW data, re-parses, rebuilds site, commits |
+| `pages.yml` | On `docs/**` push | Publishes to GitHub Pages |
 
-GitHub's runners have open internet access, so they can reach `www.kba.de`
-directly (unlike a locked-down local/sandbox environment). The downloader finds
-each month's real `.xlsx` link from its KBA landing page, so it is not affected
-by the unpredictable `?__blob=publicationFile&v=N` version parameter.
+## Supplier installation-rate estimate
 
-**Initial 3-year backfill:** run the *Update registration data* workflow
-manually (Actions tab → Run workflow) with **months = `36`**. The monthly
-schedule then fetches the trailing three months each run (skipping files already
-present) so newly published and late-revised months are picked up automatically.
+KBA reports *how many* of each model were registered but nothing about their electronics. `scripts/parse_suppliers.py` joins the registration counts to a hand-authored mapping in **`data/vehicle_specs.csv`** that estimates the supplier for each model's platform across:
 
-## Network note (KBA host)
+- **Cockpit SoC** — Renesas (VW MQB), Qualcomm (BMW iDrive, Mini), NVIDIA (Mercedes MBUX), AMD (Tesla), Samsung (VW MEB)
+- **ADAS / perception SoC** — Mobileye (~75% share), NVIDIA (Mercedes, Volvo), Denso (Toyota), Tesla FSD
+- **Front-radar Tier-1** — Continental (~53%), Bosch, Valeo, HL Klemove, Denso
+- **EV inverter power semi** (BEV-weighted) — Infineon (~90%), STMicro (Tesla SiC), BYD
+- **LiDAR** — Valeo (Mercedes Drive Pilot), Luminar (Volvo EX90); <0.2% penetration
 
-KBA serves the workbooks from `www.kba.de`. In sandboxed/CI environments with an
-egress allow-list, that host must be permitted or the download fails with an
-HTTP 403 at the proxy. Allow-list changes generally take effect only in a
-**newly started** session/environment, not one already running. GitHub Actions
-runners are not subject to this restriction (see *Automated updates* above).
+Coverage: **~83%** of registrations mapped; the rest report as *Unclassified*. The mapping is editable — corrections welcome via PR to `data/vehicle_specs.csv`.
 
-## Data source & licence
+> These are **estimates**. Cockpit SoC and LiDAR are the best-sourced; ADAS, power-semi and radar are lower-confidence OEM / platform-relationship estimates.
 
-Data © Kraftfahrt-Bundesamt, Flensburg. Table FZ 10.1. This repository
-redistributes the published figures for analysis; refer to the KBA site for
-terms of use.
+## Data licence
+
+Registration data (c) respective national authorities (KBA, DGT, INSEE, RDW, Traficom, SCB, DfT). This repository redistributes the published figures for analysis; refer to each source site for terms of use. Code is MIT-licensed.
+
+---
+
+<div align="center">
+
+## <a name="chinese"></a>中文说明
+
+**VRS — 欧洲车辆注册统计**
+
+自动下载并分析欧洲多国月度乘用车注册数据，生成自助式数据看板，并提供季度深度分析报告。
+
+### 支持的市场
+
+| 国家 | 数据来源 | 更新频率 | 内容粒度 |
+|------|----------|:--------:|----------|
+| DE 德国 | KBA FZ 10.1 | 月度 | 品牌、车型、动力 |
+| ES 西班牙 | DGT MATRABA | 月度 | 品牌、车型、燃料 |
+| FR 法国 | INSEE BDM | 月度 | 总量 |
+| NL 荷兰 | RDW | 月度 | 品牌、车型、车身 |
+| FI 芬兰 | Traficom | 月度 | 品牌、车型、动力 |
+| AT 奥地利 | 统计局 | 月度 | 品牌 |
+| SE 瑞典 | SCB | 月度 | 总量、动力 |
+
+### 核心功能
+
+- 多国总量总览 — 季度、品牌、来源国维度
+- 时序趋势 — 品牌、动力类型、车身形态、来源国的多年度走势
+- 电动化渗透深度 — BEV / PHEV / HEV 份额变化
+- 中国品牌追踪 — BYD、MG、LEAPMOTOR 等在欧洲的注册量
+- 供应商穿透分析 — 座舱域控芯片、智驾芯片、前向雷达、功率半导体的供应商上装率估算
+
+### 最新季度洞察（2026 Q2）
+
+| 指标 | 数据 |
+|------|------|
+| 德国 BEV 份额 | 26.6%（同比 +8.2pp）|
+| 中国品牌合计份额 | 7.2%（同比 +3.1pp，+85.6%）|
+| BYD Q2 注册量 | 36,718 辆（+154.9%）|
+| 座舱 SoC — Qualcomm 份额 | 22.7%（+1.7pp）|
+| 逆变器功率芯片 — STMicro（SiC）| 9.3%（+6.0pp）|
+
+### 数据源授权
+
+注册数据 (c) 各国主管机关（KBA、DGT、INSEE、RDW、Traficom、SCB、DfT）。本仓库仅作分析用途发布。代码采用 MIT 许可。
+
+</div>
