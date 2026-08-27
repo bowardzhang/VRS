@@ -7,8 +7,9 @@
 [![GitHub Pages](https://img.shields.io/badge/hosted%20on-GitHub%20Pages-222?logo=github&logoColor=fff)](https://bowardzhang.github.io/VRS/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Data refresh](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbowardzhang%2FVRS%2Frefs%2Fheads%2Fmain%2Fdocs%2Fdata%2Fgermany.json&query=%24.latest.year&label=latest%20DE%20data&color=1890ff&cacheSeconds=3600)](https://bowardzhang.github.io/VRS/)
-[![Last pipeline run](https://img.shields.io/github/workflow/status/bowardzhang/VRS/Update%20registration%20data?label=pipeline&logo=githubactions&logoColor=fff)](https://github.com/bowardzhang/VRS/actions/workflows/update-data.yml)
-[![Countries](https://img.shields.io/badge/countries-7-38bdf8?logo=openstreetmap&logoColor=fff)](https://bowardzhang.github.io/VRS/)
+[![Last pipeline run](https://img.shields.io/github/actions/workflow/status/bowardzhang/VRS/update-data.yml?label=pipeline&logo=githubactions&logoColor=fff)](https://github.com/bowardzhang/VRS/actions/workflows/update-data.yml)
+[![National feeds](https://img.shields.io/badge/national%20feeds-8-38bdf8?logo=openstreetmap&logoColor=fff)](https://bowardzhang.github.io/VRS/)
+[![All Europe](https://img.shields.io/badge/all%20Europe-via%20ACEA-0ea5e9)](https://bowardzhang.github.io/VRS/)
 [![Repo size](https://img.shields.io/github/repo-size/bowardzhang/VRS?color=blueviolet)]()
 
 **English** · [中文文档](#chinese)
@@ -17,13 +18,20 @@
 
 ---
 
-VRS downloads, parses and publishes **monthly new-vehicle registration statistics** across major European markets — Germany, France, Spain, Netherlands, Finland, Austria, Sweden — as a self-contained static website. It also **estimates per-component supplier installation rates** (cockpit SoC, ADAS SoC, front radar, power semiconductor, LiDAR) by joining registration counts with a hand-curated model-to-platform mapping.
+VRS downloads, parses and publishes **new-vehicle registration statistics** across Europe as a self-contained static website, in two tiers:
+
+- **Tier 1 — national feeds** with full brand / model / powertrain detail: Germany, France, Spain, Netherlands, Finland, Austria, Sweden (monthly) and the UK (quarterly).
+- **Tier 2 — pan-European** country totals + powertrain for every other European market, from the ACEA monthly workbook (via PZPM), plus the euro-area aggregate (ACEA via the ECB Data Portal).
+
+It also **estimates per-component supplier installation rates** (cockpit SoC, ADAS SoC, front radar, power semiconductor, LiDAR) by joining registration counts with a hand-curated model-to-platform mapping.
 
 ## Live site
 
 **https://bowardzhang.github.io/VRS/** — a single `index.html` with all data baked in. No backend, no fetch, no external assets. Dark/light mode, interactive tooltips, country picker.
 
 ## Coverage
+
+### Tier 1 — national feeds (brand / model detail)
 
 | Country | Source | Frequency | Detail level | Open data? |
 |---------|--------|:---------:|--------------|:----------:|
@@ -36,7 +44,18 @@ VRS downloads, parses and publishes **monthly new-vehicle registration statistic
 | SE Sweden | [SCB](https://www.scb.se/) | monthly | total, powertrain | Y |
 | GB United Kingdom | [DfT VEH0160](https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files) | quarterly | brand, model, fuel | Y |
 
-> **Note**: Italy is not yet covered (no open monthly brand-level feed). The UK is quarterly and lags by one quarter — Q2 2026 was still pending at publication time.
+> **Note**: the UK is quarterly at source and lags the monthly markets by up to a quarter; it joins the cross-country views automatically once DfT publishes the quarter.
+
+### Tier 2 — pan-European (total + powertrain)
+
+Markets without an open national brand feed are filled from ACEA, at country-total + powertrain level (© ACEA — credited as the source wherever shown):
+
+| Source | Coverage | Frequency | Detail level |
+|--------|----------|:---------:|--------------|
+| [ACEA via PZPM](https://www.pzpm.org.pl/en/Europe/EUROPE-Registrations-of-vehicles/PASSENGER-CARS) | 23 European markets incl. Italy, Belgium, Poland, Norway, Switzerland… | monthly | country total + powertrain |
+| [ACEA via ECB Data Portal](https://data.ecb.europa.eu/) | euro-area aggregate | monthly | total only |
+
+Italy, for example, is covered here (total + powertrain) even though it has no open monthly brand-level feed.
 
 ## Features
 
@@ -68,12 +87,13 @@ VRS downloads, parses and publishes **monthly new-vehicle registration statistic
 
 ### Quarterly analysis report
 
-`docs/analysis-q2-2026-linkedin.md` generates an in-depth LinkedIn-ready analysis report each quarter. The latest edition covers:
+[`docs/analysis-q2-2026-linkedin.md`](docs/analysis-q2-2026-linkedin.md) is a curated, LinkedIn-ready deep-dive published each quarter, with every figure drawn from the same pipeline as the interactive [Q2 page](https://bowardzhang.github.io/VRS/analysis-q2-2026.html) (`scripts/build_q2_report.py`). It covers:
 
-- BEV share acceleration (DE 18.4% to 26.6%, FI 34.5% to 48.6%)
-- Chinese OEM breakthrough: **7.2% pooled share**, +85.6% YoY, BYD alone >36k units
-- Supplier installation-rate shifts: Qualcomm +1.7pp, STMicro (SiC) 3% to 9%, Infineon 96% to 90%
-- SUV surpassing sedans in Germany (46.4% vs 42.3%)
+- **Market overview** — Q2 volume + YoY per country and pooled
+- **Electrification** — BEV / PHEV / HEV share shifts per market (share, pp change, volume YoY)
+- **Brands & origin** — top-15 brands and Chinese-OEM penetration (per-brand and per-market detail)
+- **Top models** and **body type** (SUV vs sedan/hatch, each country in its native taxonomy)
+- **Supplier penetration** — installation-rate shifts for cockpit SoC, ADAS SoC, front radar, EV power semi and LiDAR
 
 ## Data pipeline
 
@@ -102,13 +122,18 @@ KBA .xlsx ---download--> data/Germany/fz10_YYYY_MM.xlsx
 | `scripts/download_uk.py` | Fetch DfT quarterly data |
 | `scripts/download_austria.py` | Fetch Austria monthly brand data |
 | `scripts/download_sweden.py` | Fetch SCB totals + powertrain |
+| `scripts/download_pzpm_acea.py` | Fetch the ACEA all-Europe workbook (via PZPM) — Tier 2 |
+| `scripts/download_ecb_eu.py` | Fetch the euro-area aggregate (ACEA via ECB) |
+| `scripts/download_poland.py` | CEPIK reference only — conflates new + used, not wired in |
+| `scripts/check_updates.py` | Detect per-country data advances; build the email report |
+| `scripts/eu_brands.py` | Cross-register brand canonicalisation + country of origin |
 | `scripts/parse_suppliers.py` | Join vehicle_specs.csv into supplier install rates |
 | `scripts/parse_suppliers_geo.py` | Cross-country supplier comparison (DE/ES/FI/NL/UK) |
 | `scripts/build_supplier_pages.py` | Generate per-component HTML pages |
 | `scripts/build_countries.py` | Assemble multi-country country picker JSON |
 | `scripts/build_europe.py` | Assemble Europe overview JSON |
-| `scripts/build_q2_report.py` | Generate Q2 vertical analysis (HTML + JSON) |
-| `scripts/gen_report_md.py` | Generate Markdown report for LinkedIn |
+| `scripts/build_q2_report.py` | Generate Q2 cross-country analysis (HTML + JSON) |
+| `scripts/q2_report_template.py` | HTML template for the Q2 report |
 | `scripts/build_site.py` | Bake all JSON into self-contained HTML pages |
 | `scripts/supplier_normalize.py` | Model-name normalisation utilities |
 
@@ -145,12 +170,13 @@ python scripts/build_site.py
 
 ### GitHub Actions automation
 
-Two workflows run autonomously:
+Three workflows run autonomously:
 
 | Workflow | Trigger | What it does |
 |----------|---------|--------------|
-| `update-data.yml` | Monthly (8th, 06:00 UTC) + manual | Downloads latest KBA/RDW data, re-parses, rebuilds site, commits |
-| `pages.yml` | On `docs/**` push | Publishes to GitHub Pages |
+| `update-data.yml` | Daily 06:00 UTC + manual | Downloads every source, re-parses, rebuilds the site, emails when a country advances to a new period, commits |
+| `pages.yml` | After a data update + on `docs/**` push | Publishes to GitHub Pages |
+| `email-report.yml` | Manual | Sends an on-demand per-country coverage / totals email |
 
 ## Supplier installation-rate estimate
 
@@ -191,6 +217,8 @@ Registration data (c) respective national authorities (KBA, DGT, INSEE, RDW, Tra
 | FI 芬兰 | Traficom | 月度 | 品牌、车型、动力 |
 | AT 奥地利 | 统计局 | 月度 | 品牌 |
 | SE 瑞典 | SCB | 月度 | 总量、动力 |
+| GB 英国 | DfT VEH0160 | 季度 | 品牌、车型、燃料 |
+| 🇪🇺 其余欧洲各国 | ACEA（经 PZPM / ECB） | 月度 | 国家总量 + 动力 |
 
 ### 核心功能
 
@@ -204,7 +232,7 @@ Registration data (c) respective national authorities (KBA, DGT, INSEE, RDW, Tra
 
 | 指标 | 数据 |
 |------|------|
-| 德国 BEV 份额 | 26.6%（同比 +8.2pp）|
+| 德国 BEV 份额 | 26.5%（同比 +8.1pp）|
 | 中国品牌合计份额 | 7.2%（同比 +3.1pp，+85.6%）|
 | BYD Q2 注册量 | 36,718 辆（+154.9%）|
 | 座舱 SoC — Qualcomm 份额 | 22.7%（+1.7pp）|
