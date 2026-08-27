@@ -173,7 +173,7 @@ def _strip_brand(model_upper, brand):
 
 
 def model_counts_pooled(period):
-    """DE+ES+FI+NL pooled by canonical brand + normalised model (best-effort)."""
+    """DE+ES+FI+NL (+UK once published) pooled by canonical brand + model."""
     out = defaultdict(int)
     disp = {}
     def add(brand_raw, model_raw, cnt):
@@ -196,10 +196,14 @@ def model_counts_pooled(period):
     for r in _rows(DATA / "Netherlands" / "rdw_models_monthly.csv"):
         if _in(period, r["year"], r["month"]):
             add(r["brand"], r["model"], int(r["count"] or 0))
-    yq, qq = _period_q(period)
-    for r in _rows(DATA / "UnitedKingdom" / "uk_models_quarterly.csv"):
-        if int(r["year"]) == yq and int(r["quarter"]) == qq:
-            add(r["brand"], r["model"], int(r["count"] or 0))
+    # The UK is quarterly and lags: including it only for the *prior* period
+    # would inflate the base and push every pooled model YoY negative, so it
+    # joins the pool only once the current quarter is published as well.
+    if uk_available():
+        yq, qq = _period_q(period)
+        for r in _rows(DATA / "UnitedKingdom" / "uk_models_quarterly.csv"):
+            if int(r["year"]) == yq and int(r["quarter"]) == qq:
+                add(r["brand"], r["model"], int(r["count"] or 0))
     return {disp[k]: v for k, v in out.items()}
 
 
