@@ -213,11 +213,18 @@ def powertrain_counts(country, period):
     """bucket -> count for one country over a period. Buckets vary by feed."""
     out = defaultdict(int)
     if country == "Germany":
-        MAP = {"bev": "BEV", "plugin_hybrid": "PHEV", "petrol": "Petrol", "diesel": "Diesel"}
-        for r in _rows(DATA / "Germany" / "kba_monthly_powertrain.csv"):
-            if _in(period, r["year"], r["month"]):
+        # Use germany.json's monthly grand totals, which carry the complete
+        # split (BEV+PHEV+HEV+Petrol+Diesel == total). The supplementary
+        # kba_monthly_powertrain.csv omits full hybrids (HEV), which would drop
+        # ~28% of the market from the denominator and inflate every share.
+        MAP = {"bev": "BEV", "plugin_hybrid": "PHEV", "hybrid": "HEV",
+               "petrol": "Petrol", "diesel": "Diesel"}
+        site = json.loads((REPO_ROOT / "docs" / "data" / "germany.json")
+                          .read_text(encoding="utf-8"))
+        for m in site.get("months", []):
+            if _in(period, m["year"], m["month"]):
                 for col, bucket in MAP.items():
-                    out[bucket] += int(r[col] or 0)
+                    out[bucket] += int(m.get(col) or 0)
     elif country == "UnitedKingdom":
         y, q = _period_q(period)
         for r in _rows(DATA / "UnitedKingdom" / "uk_powertrain.csv"):
