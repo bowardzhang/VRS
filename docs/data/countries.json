@@ -1572,7 +1572,7 @@
       {
         "brand": "TESLA",
         "model": "MODEL Y",
-        "total": 40750
+        "total": 40749
       },
       {
         "brand": "KIA",
@@ -1597,12 +1597,12 @@
       {
         "brand": "TESLA",
         "model": "MODEL 3",
-        "total": 21401
+        "total": 21400
       },
       {
         "brand": "VOLVO",
         "model": "EX30",
-        "total": 18686
+        "total": 18685
       },
       {
         "brand": "TOYOTA",
@@ -1642,7 +1642,7 @@
       {
         "brand": "KIA",
         "model": "EV3",
-        "total": 15173
+        "total": 15174
       }
     ],
     "powertrain": {
