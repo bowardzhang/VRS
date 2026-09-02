@@ -14,9 +14,12 @@ on:
         required: false
         default: "3"
 
-# Needed to commit the refreshed data/site back to the repository.
+# Needed to commit the refreshed data/site back to the repository and to
+# publish docs/ to GitHub Pages (OIDC for Pages deployment).
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: update-data
@@ -25,6 +28,9 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -149,3 +155,22 @@ jobs:
             git commit -m "chore(data): daily registration data refresh"
             git push
           fi
+
+      # Deploy the freshly built docs/ to GitHub Pages in the SAME workflow.
+      # (Previously a separate pages.yml listened for a workflow_run of this
+      # job, but that trigger never fired in practice, so the live site went
+      # stale while main carried newer baked data. Deploying here guarantees
+      # the site is always republished whenever data is refreshed.)
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
