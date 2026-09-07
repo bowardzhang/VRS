@@ -6,7 +6,7 @@
       "label": "Germany",
       "flag": "🇩🇪",
       "source": "KBA FZ 10.1",
-      "total": 8322754
+      "total": 8534235
     },
     {
       "key": "UnitedKingdom",
@@ -41,7 +41,7 @@
       "label": "Europe (5)",
       "flag": "🇪🇺",
       "source": "pooled",
-      "total": 18601931
+      "total": 18813412
     }
   ],
   "dimensions": [
@@ -53,53 +53,53 @@
       "blurb": "In-vehicle infotainment / cockpit domain-controller compute.",
       "by_country": {
         "Germany": {
-          "base_total": 8322754,
-          "classified": 7648091,
-          "coverage_pct": 91.9,
+          "base_total": 8534235,
+          "classified": 7831158,
+          "coverage_pct": 91.8,
           "share": [
             {
               "brand": "Renesas",
-              "total": 2590718,
-              "share_classified": 33.87
+              "total": 2643349,
+              "share_classified": 33.75
             },
             {
               "brand": "Qualcomm",
-              "total": 1486329,
-              "share_classified": 19.43
+              "total": 1529117,
+              "share_classified": 19.53
             },
             {
               "brand": "Undisclosed",
-              "total": 1464773,
-              "share_classified": 19.15
+              "total": 1498553,
+              "share_classified": 19.14
             },
             {
               "brand": "Samsung",
-              "total": 919597,
-              "share_classified": 12.02
+              "total": 944543,
+              "share_classified": 12.06
             },
             {
               "brand": "NVIDIA",
-              "total": 614726,
-              "share_classified": 8.04
+              "total": 630915,
+              "share_classified": 8.06
             },
             {
               "brand": "None",
-              "total": 253115,
-              "share_classified": 3.31
+              "total": 257323,
+              "share_classified": 3.29
             },
             {
               "brand": "MediaTek",
-              "total": 206327,
+              "total": 211491,
               "share_classified": 2.7
             },
             {
               "brand": "AMD",
-              "total": 100954,
-              "share_classified": 1.32
+              "total": 103985,
+              "share_classified": 1.33
             },
             {
               "brand": "NXP",
-              "total": 11552,
+              "total": 11882,
               "share_classified": 0.15
             }
           ]
@@ -308,53 +308,53 @@
           ]
         },
         "Europe": {
-          "base_total": 18601931,
-          "classified": 15355353,
-          "coverage_pct": 82.5,
+          "base_total": 18813412,
+          "classified": 15538420,
+          "coverage_pct": 82.6,
           "share": [
             {
               "brand": "Renesas",
-              "total": 5013230,
-              "share_classified": 32.65
+              "total": 5065861,
+              "share_classified": 32.6
             },
             {
               "brand": "Qualcomm",
-              "total": 3413758,
-              "share_classified": 22.23
+              "total": 3456546,
+              "share_classified": 22.25
             },
             {
               "brand": "Undisclosed",
-              "total": 3105877,
-              "share_classified": 20.23
+              "total": 3139657,
+              "share_classified": 20.21
             },
             {
               "brand": "Samsung",
-              "total": 1409752,
-              "share_classified": 9.18
+              "total": 1434698,
+              "share_classified": 9.23
             },
             {
               "brand": "NVIDIA",
-              "total": 822857,
-              "share_classified": 5.36
+              "total": 839046,
+              "share_classified": 5.4
             },
             {
               "brand": "None",
-              "total": 702707,
-              "share_classified": 4.58
+              "total": 706915,
+              "share_classified": 4.55
             },
             {
               "brand": "MediaTek",
-              "total": 485720,
+              "total": 490884,
               "share_classified": 3.16
             },
             {
               "brand": "AMD",
-              "total": 351788,
-              "share_classified": 2.29
+              "total": 354819,
+              "share_classified": 2.28
             },
             {
               "brand": "NXP",
-              "total": 49664,
+              "total": 49994,
               "share_classified": 0.32
             }
           ]
@@ -369,39 +369,39 @@
       "blurb": "Front-camera / driver-assistance perception processor.",
       "by_country": {
         "Germany": {
-          "base_total": 8322754,
-          "classified": 7648091,
-          "coverage_pct": 91.9,
+          "base_total": 8534235,
+          "classified": 7831158,
+          "coverage_pct": 91.8,
           "share": [
             {
               "brand": "Mobileye",
-              "total": 6073918,
-              "share_classified": 79.42
+              "total": 6214202,
+              "share_classified": 79.35
             },
             {
               "brand": "NVIDIA",
-              "total": 748230,
-              "share_classified": 9.78
+              "total": 768828,
+              "share_classified": 9.82
             },
             {
               "brand": "None",
-              "total": 423781,
-              "share_classified": 5.54
+              "total": 433153,
+              "share_classified": 5.53
             },
             {
               "brand": "Denso",
-              "total": 177770,
+              "total": 181848,
               "share_classified": 2.32
             },
             {
               "brand": "Undisclosed",
-              "total": 123438,
-              "share_classified": 1.61
+              "total": 129142,
+              "share_classified": 1.65
             },
             {
               "brand": "Tesla",
-              "total": 100954,
-              "share_classified": 1.32
+              "total": 103985,
+              "share_classified": 1.33
             }
           ]
         },
@@ -554,39 +554,39 @@
           ]
         },
         "Europe": {
-          "base_total": 18601931,
-          "classified": 15355353,
-          "coverage_pct": 82.5,
+          "base_total": 18813412,
+          "classified": 15538420,
+          "coverage_pct": 82.6,
           "share": [
             {
               "brand": "Mobileye",
-              "total": 11644980,
-              "share_classified": 75.84
+              "total": 11785264,
+              "share_classified": 75.85
             },
             {
               "brand": "None",
-              "total": 1147013,
-              "share_classified": 7.47
+              "total": 1156385,
+              "share_classified": 7.44
             },
             {
               "brand": "NVIDIA",
-              "total": 1027663,
-              "share_classified": 6.69
+              "total": 1048261,
+              "share_classified": 6.75
             },
             {
               "brand": "Denso",
-              "total": 757213,
-              "share_classified": 4.93
+              "total": 761291,
+              "share_classified": 4.9
             },
             {
               "brand": "Undisclosed",
-              "total": 426696,
+              "total": 432400,
               "share_classified": 2.78
             },
             {
               "brand": "Tesla",
-              "total": 351788,
-              "share_classified": 2.29
+              "total": 354819,
+              "share_classified": 2.28
             }
           ]
         }
@@ -600,44 +600,44 @@
       "blurb": "Front radar module supplier (ACC / AEB).",
       "by_country": {
         "Germany": {
-          "base_total": 8322754,
-          "classified": 7648091,
-          "coverage_pct": 91.9,
+          "base_total": 8534235,
+          "classified": 7831158,
+          "coverage_pct": 91.8,
           "share": [
             {
               "brand": "Continental",
-              "total": 4392773,
-              "share_classified": 57.44
+              "total": 4490146,
+              "share_classified": 57.34
             },
             {
               "brand": "Bosch",
-              "total": 1148753,
-              "share_classified": 15.02
+              "total": 1183367,
+              "share_classified": 15.11
             },
             {
               "brand": "Valeo",
-              "total": 875315,
-              "share_classified": 11.44
+              "total": 896973,
+              "share_classified": 11.45
             },
             {
               "brand": "HL Klemove",
-              "total": 423359,
-              "share_classified": 5.54
+              "total": 433454,
+              "share_classified": 5.53
             },
             {
               "brand": "Denso",
-              "total": 336749,
+              "total": 344671,
               "share_classified": 4.4
             },
             {
               "brand": "None",
-              "total": 307281,
-              "share_classified": 4.02
+              "total": 315476,
+              "share_classified": 4.03
             },
             {
               "brand": "Veoneer/Magna",
-              "total": 163861,
-              "share_classified": 2.14
+              "total": 167071,
+              "share_classified": 2.13
             }
           ]
         },
@@ -810,44 +810,44 @@
           ]
         },
         "Europe": {
-          "base_total": 18601931,
-          "classified": 15355353,
-          "coverage_pct": 82.5,
+          "base_total": 18813412,
+          "classified": 15538420,
+          "coverage_pct": 82.6,
           "share": [
             {
               "brand": "Continental",
-              "total": 7664033,
-              "share_classified": 49.91
+              "total": 7761406,
+              "share_classified": 49.95
             },
             {
               "brand": "Bosch",
-              "total": 2166783,
-              "share_classified": 14.11
+              "total": 2201397,
+              "share_classified": 14.17
             },
             {
               "brand": "Valeo",
-              "total": 1721230,
-              "share_classified": 11.21
+              "total": 1742888,
+              "share_classified": 11.22
             },
             {
               "brand": "HL Klemove",
-              "total": 1402412,
-              "share_classified": 9.13
+              "total": 1412507,
+              "share_classified": 9.09
             },
             {
               "brand": "Denso",
-              "total": 1117706,
-              "share_classified": 7.28
+              "total": 1125628,
+              "share_classified": 7.24
             },
             {
               "brand": "None",
-              "total": 837508,
-              "share_classified": 5.45
+              "total": 845703,
+              "share_classified": 5.44
             },
             {
               "brand": "Veoneer/Magna",
-              "total": 445681,
-              "share_classified": 2.9
+              "total": 448891,
+              "share_classified": 2.89
             }
           ]
         }
@@ -861,22 +861,22 @@
       "blurb": "LiDAR fitment (standard-config estimate) and supplier.",
       "by_country": {
         "Germany": {
-          "base_total": 8322754,
-          "classified": 16410,
+          "base_total": 8534235,
+          "classified": 17038,
           "coverage_pct": 0.2,
           "share": [
             {
               "brand": "Valeo",
-              "total": 13466,
-              "share_classified": 82.06
+              "total": 13910,
+              "share_classified": 81.64
             },
             {
               "brand": "Luminar",
-              "total": 2944,
-              "share_classified": 17.94
+              "total": 3128,
+              "share_classified": 18.36
             }
           ],
-          "penetration_pct": 0.197
+          "penetration_pct": 0.2
         },
         "UnitedKingdom": {
           "base_total": 5551488,
@@ -951,22 +951,22 @@
           "penetration_pct": 0.13
         },
         "Europe": {
-          "base_total": 18601931,
-          "classified": 21948,
+          "base_total": 18813412,
+          "classified": 22576,
           "coverage_pct": 0.1,
           "share": [
             {
               "brand": "Valeo",
-              "total": 15920,
-              "share_classified": 72.54
+              "total": 16364,
+              "share_classified": 72.48
             },
             {
               "brand": "Luminar",
-              "total": 6028,
-              "share_classified": 27.46
+              "total": 6212,
+              "share_classified": 27.52
             }
           ],
-          "penetration_pct": 0.118
+          "penetration_pct": 0.12
         }
       }
     }
