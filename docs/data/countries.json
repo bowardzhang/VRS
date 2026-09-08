@@ -661,40 +661,40 @@
       {
         "q": "2026-Q2",
         "label": "Q2 2026",
-        "total": 96603
+        "total": 96639
       }
     ],
-    "total": 3677581,
+    "total": 3677617,
     "latest_period": "Aug 2026",
-    "latest_total": 26399,
+    "latest_total": 26420,
     "brand_totals": [
       {
         "brand": "KIA",
-        "total": 108595
+        "total": 108596
       },
       {
         "brand": "VW",
-        "total": 105664
+        "total": 105668
       },
       {
         "brand": "TOYOTA",
-        "total": 101534
+        "total": 101576
       },
       {
         "brand": "VOLVO",
-        "total": 78528
+        "total": 78544
       },
       {
         "brand": "BMW",
-        "total": 76823
+        "total": 76825
       },
       {
         "brand": "SKODA",
-        "total": 73119
+        "total": 73120
       },
       {
         "brand": "RENAULT",
-        "total": 71205
+        "total": 71206
       },
       {
         "brand": "TESLA",
@@ -706,19 +706,19 @@
       },
       {
         "brand": "AUDI",
-        "total": 56031
+        "total": 56039
       },
       {
         "brand": "PEUGEOT",
-        "total": 53223
+        "total": 53224
       },
       {
         "brand": "MERCEDES",
-        "total": 50417
+        "total": 50418
       },
       {
         "brand": "FORD",
-        "total": 47937
+        "total": 47943
       },
       {
         "brand": "OPEL",
@@ -734,11 +734,11 @@
       },
       {
         "brand": "MAZDA",
-        "total": 20811
+        "total": 20812
       },
       {
         "brand": "CITROEN",
-        "total": 20646
+        "total": 20647
       },
       {
         "brand": "MINI",
@@ -754,11 +754,11 @@
       },
       {
         "brand": "CUPRA",
-        "total": 15783
+        "total": 15789
       },
       {
         "brand": "BYD",
-        "total": 14878
+        "total": 14885
       },
       {
         "brand": "MG",
@@ -766,7 +766,7 @@
       },
       {
         "brand": "LAND ROVER",
-        "total": 11314
+        "total": 11317
       },
       {
         "brand": "MITSUBISHI",
@@ -782,11 +782,11 @@
       },
       {
         "brand": "JEEP",
-        "total": 9281
+        "total": 9282
       },
       {
         "brand": "LYNK & CO",
-        "total": 8496
+        "total": 8498
       },
       {
         "brand": "POLESTAR",
@@ -802,7 +802,7 @@
       },
       {
         "brand": "XPENG",
-        "total": 3879
+        "total": 3880
       },
       {
         "brand": "ZEEKR",
@@ -878,7 +878,7 @@
       },
       {
         "brand": "BENTLEY",
-        "total": 496
+        "total": 497
       },
       {
         "brand": "BURSTNER GMBH",
@@ -901,12 +901,12 @@
         "total": 349
       },
       {
-        "brand": "DS AUTOMOBILES",
-        "total": 342
+        "brand": "GEELY",
+        "total": 343
       },
       {
-        "brand": "GEELY",
-        "total": 308
+        "brand": "DS AUTOMOBILES",
+        "total": 342
       },
       {
         "brand": "LOTUS",
@@ -1237,6 +1237,10 @@
         "total": 5
       },
       {
+        "brand": "LI AUTO",
+        "total": 5
+      },
+      {
         "brand": "KARMA",
         "total": 4
       },
@@ -1381,10 +1385,6 @@
         "total": 2
       },
       {
-        "brand": "LI AUTO",
-        "total": 2
-      },
-      {
         "brand": "MOBILVETTA",
         "total": 1
       },
@@ -1524,43 +1524,43 @@
     "origin_totals": [
       {
         "origin": "Germany",
-        "total": 335584
+        "total": 335599
       },
       {
         "origin": "Japan",
-        "total": 186439
+        "total": 186482
       },
       {
         "origin": "France",
-        "total": 169352
+        "total": 169355
       },
       {
         "origin": "South Korea",
-        "total": 165320
+        "total": 165321
       },
       {
         "origin": "USA",
-        "total": 120189
+        "total": 120196
       },
       {
         "origin": "Sweden",
-        "total": 85317
+        "total": 85333
       },
       {
         "origin": "Czechia",
-        "total": 73119
+        "total": 73120
       },
       {
         "origin": "China",
-        "total": 53327
+        "total": 53372
       },
       {
         "origin": "Spain",
-        "total": 33658
+        "total": 33664
       },
       {
         "origin": "United Kingdom",
-        "total": 30737
+        "total": 30741
       },
       {
         "origin": "Italy",
@@ -1568,7 +1568,7 @@
       },
       {
         "origin": "Other",
-        "total": 10782
+        "total": 10785
       }
     ],
     "tier": 1,
@@ -1576,77 +1576,77 @@
       {
         "brand": "TESLA",
         "model": "MODEL Y",
-        "total": 40922
+        "total": 41140
       },
       {
         "brand": "KIA",
         "model": "PICANTO",
-        "total": 25322
+        "total": 25365
       },
       {
         "brand": "TOYOTA",
         "model": "YARIS CROSS",
-        "total": 24576
+        "total": 24743
       },
       {
         "brand": "TOYOTA",
         "model": "AYGO X",
-        "total": 24344
+        "total": 24437
       },
       {
         "brand": "KIA",
         "model": "NIRO",
-        "total": 23361
+        "total": 23389
       },
       {
         "brand": "TESLA",
         "model": "MODEL 3",
-        "total": 21411
+        "total": 21442
       },
       {
         "brand": "VOLVO",
         "model": "EX30",
-        "total": 18738
+        "total": 18798
       },
       {
         "brand": "TOYOTA",
         "model": "YARIS",
-        "total": 17740
+        "total": 17765
       },
       {
         "brand": "HYUNDAI",
         "model": "KONA",
-        "total": 17570
+        "total": 17641
       },
       {
         "brand": "FORD",
         "model": "KUGA",
-        "total": 17462
+        "total": 17504
       },
       {
         "brand": "VW",
         "model": "POLO",
-        "total": 17416
+        "total": 17450
       },
       {
         "brand": "PEUGEOT",
         "model": "208",
-        "total": 16840
+        "total": 16849
       },
       {
         "brand": "VW",
         "model": "TIGUAN",
-        "total": 15551
+        "total": 15612
       },
       {
         "brand": "TOYOTA",
         "model": "COROLLA",
-        "total": 15356
+        "total": 15374
       },
       {
         "brand": "KIA",
         "model": "EV3",
-        "total": 15268
+        "total": 15341
       }
     ],
     "powertrain": {
@@ -1658,22 +1658,22 @@
       "shares": [
         {
           "body": "Hatchback",
-          "total": 183143,
+          "total": 183200,
           "pct": 32.2
         },
         {
           "body": "Estate",
-          "total": 200722,
+          "total": 200755,
           "pct": 35.3
         },
         {
           "body": "Sedan",
-          "total": 22761,
+          "total": 22763,
           "pct": 4.0
         },
         {
           "body": "MPV",
-          "total": 152233,
+          "total": 152281,
           "pct": 26.8
         },
         {
@@ -1683,12 +1683,12 @@
         },
         {
           "body": "Convertible",
-          "total": 1745,
+          "total": 1746,
           "pct": 0.3
         },
         {
           "body": "Other",
-          "total": 6566,
+          "total": 6569,
           "pct": 1.2
         }
       ],
@@ -1696,7 +1696,7 @@
     },
     "latest": {
       "period": "Aug 2026",
-      "total": 26399,
+      "total": 26420,
       "top_brands": [
         {
           "brand": "KIA",
@@ -1705,17 +1705,17 @@
         },
         {
           "brand": "TOYOTA",
-          "total": 2208,
-          "yoy": -4.0
+          "total": 2214,
+          "yoy": -3.7
         },
         {
           "brand": "BMW",
-          "total": 1852,
-          "yoy": 3.7
+          "total": 1853,
+          "yoy": 3.8
         },
         {
           "brand": "VW",
-          "total": 1545,
+          "total": 1546,
           "yoy": -40.1
         },
         {
@@ -1735,8 +1735,8 @@
         },
         {
           "brand": "MERCEDES",
-          "total": 1167,
-          "yoy": 3.8
+          "total": 1168,
+          "yoy": 3.9
         },
         {
           "brand": "TESLA",
@@ -1745,13 +1745,13 @@
         },
         {
           "brand": "FORD",
-          "total": 1022,
-          "yoy": -20.8
+          "total": 1024,
+          "yoy": -20.7
         },
         {
           "brand": "AUDI",
-          "total": 938,
-          "yoy": -24.6
+          "total": 940,
+          "yoy": -24.4
         },
         {
           "brand": "PEUGEOT",
@@ -1763,7 +1763,7 @@
         {
           "brand": "TOYOTA",
           "model": "AYGO X",
-          "total": 664
+          "total": 670
         },
         {
           "brand": "HYUNDAI",
@@ -1772,12 +1772,12 @@
         },
         {
           "brand": "KIA",
-          "model": "EV2",
+          "model": "EV3",
           "total": 565
         },
         {
           "brand": "KIA",
-          "model": "EV3",
+          "model": "EV2",
           "total": 565
         },
         {
@@ -1811,14 +1811,14 @@
           "total": 389
         },
         {
+          "brand": "FORD",
+          "model": "KUGA",
+          "total": 375
+        },
+        {
           "brand": "CUPRA",
           "model": "RAVAL 155KW",
           "total": 374
-        },
-        {
-          "brand": "FORD",
-          "model": "KUGA",
-          "total": 373
         },
         {
           "brand": "PEUGEOT",
@@ -1907,7 +1907,7 @@
             8930,
             12531,
             6139,
-            6701
+            6703
           ]
         },
         {
@@ -1977,7 +1977,7 @@
             9248,
             9478,
             7414,
-            9307
+            9308
           ]
         },
         {
@@ -2012,7 +2012,7 @@
             5893,
             5906,
             5209,
-            5931
+            5932
           ]
         },
         {
@@ -2047,7 +2047,7 @@
             6277,
             8490,
             4783,
-            6740
+            6741
           ]
         },
         {
@@ -2082,7 +2082,7 @@
             3444,
             4171,
             3845,
-            3299
+            3300
           ]
         },
         {
@@ -2117,7 +2117,7 @@
             55494,
             74487,
             52273,
-            56095
+            56125
           ]
         }
       ]
@@ -2188,7 +2188,7 @@
             26029,
             32611,
             21876,
-            23617
+            23624
           ]
         },
         {
@@ -2223,7 +2223,7 @@
             12843,
             14134,
             12163,
-            13716
+            13717
           ]
         },
         {
@@ -2258,7 +2258,7 @@
             13265,
             17480,
             12077,
-            13576
+            13579
           ]
         },
         {
@@ -2293,7 +2293,7 @@
             14083,
             14366,
             11593,
-            13233
+            13234
           ]
         },
         {
@@ -2328,7 +2328,7 @@
             7861,
             11259,
             6342,
-            7609
+            7612
           ]
         },
         {
@@ -2363,7 +2363,7 @@
             4829,
             8524,
             4206,
-            6162
+            6166
           ]
         },
         {
@@ -2433,12 +2433,12 @@
             11609,
             13745,
             12625,
-            13891
+            13908
           ]
         }
       ]
     },
-    "ytd": 182178,
+    "ytd": 182214,
     "ytd_year": 2026
   },
   {
