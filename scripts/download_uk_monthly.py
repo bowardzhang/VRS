@@ -25,8 +25,6 @@ OUT_PT = OUT_DIR / "uk_monthly_powertrain.csv"
 PAGE = "https://www.gov.uk/government/statistics/developing-faster-indicators-of-transport-activity"
 MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 MONTHS = {m.lower(): i for i, m in enumerate(MONTH_NAMES, 1)}
-# VEH9902 is principally a ZEV/non-ZEV faster indicator.  Keep labels specific:
-# never match the bare word "other", which also occurs in notes/headings.
 FUEL = {
     "battery electric": "BEV", "zero emission": "BEV",
     "plug-in hybrid electric (petrol)": "PHEV", "plug-in hybrid electric (diesel)": "PHEV",
@@ -41,16 +39,27 @@ MAX_PLAUSIBLE = 600_000
 
 
 def _text(cell) -> str:
-    # odf.teletype extracts actual text nodes; str(node) can serialize XML and
-    # was the source of false matches in the first parser.
-    return " ".join(teletype.extractText(p) for p in cell.getElementsByType(P)).strip()
+    text = " ".join(teletype.extractText(p) for p in cell.getElementsByType(P)).strip()
+    if text:
+        return text
+    # LibreOffice often stores dates/numbers as typed ODF attributes even when
+    # the display text is absent/minimal.  Keeping these makes the parser
+    # independent of the exact VEH9902 formatting.
+    for attr in ("datevalue", "value", "stringvalue"):
+        try:
+            value = cell.getAttribute(attr)
+        except Exception:
+            value = None
+        if value not in (None, ""):
+            return str(value)
+    return ""
 
 
 def _cells(row) -> list[str]:
     out = []
     for c in row.getElementsByType(TableCell):
         repeat = int(c.getAttribute("numbercolumnsrepeated") or 1)
-        out.extend([_text(c)] * min(repeat, 50))
+        out.extend([_text(c)] * min(repeat, 100))
     return out
 
 
@@ -77,61 +86,85 @@ def _period_matches(text: str, year: int, month: int) -> bool:
     name = MONTH_NAMES[month - 1]
     patterns = [
         rf"\b{name}\s+{year}\b", rf"\b{name[:3]}\s+{year}\b",
-        rf"\b{year}[-/ ]0?{month}\b", rf"\b0?{month}[-/ ]{year}\b",
+        rf"\b{year}[-/ ]0?{month}(?:\b|[-/]\d{{1,2}})", rf"\b0?{month}[-/ ]{year}\b",
         rf"\b{year}\s+{name}\b", rf"\b{year}\s+{name[:3]}\b",
     ]
     return any(re.search(p, text, re.I) for p in patterns)
 
 
-def _numeric_cells(vals: list[str]) -> list[int]:
-    nums = []
-    for v in vals:
-        s = v.strip().replace(",", "").replace(" ", "")
-        if re.fullmatch(r"\d+(?:\.0+)?", s):
-            n = int(float(s))
-            if not (2000 <= n <= 2100):
-                nums.append(n)
-    return nums
+def _num(value: str) -> int | None:
+    s = value.strip().replace(",", "").replace(" ", "")
+    if re.fullmatch(r"\d+(?:\.0+)?", s):
+        return int(float(s))
+    return None
+
+
+def _fuel_label(text: str) -> str | None:
+    low = text.lower()
+    for raw in sorted(FUEL, key=len, reverse=True):
+        if raw in low:
+            return FUEL[raw]
+    return None
 
 
 def parse_ods(blob: bytes, year: int, month: int):
     doc = load(BytesIO(blob))
-    rows: list[list[str]] = []
+    tables: list[list[list[str]]] = []
     for table in doc.spreadsheet.getElementsByType(Table):
+        rows = []
         for row in table.getElementsByType(TableRow):
             vals = _cells(row)
             if any(v.strip() for v in vals):
                 rows.append(vals)
-
-    # VEH9902 files contain historical months.  The previous implementation
-    # summed every Cars row in the workbook, producing a bogus 10.3m headline.
-    # Restrict extraction to rows/cells belonging to the release month.
-    month_rows = [r for r in rows if _period_matches(" | ".join(r), year, month)]
-    if not month_rows:
-        raise RuntimeError(f"VEH9902 contains no rows identifiable as {year}-{month:02d}")
+        if rows:
+            tables.append(rows)
 
     agg: dict[str, int] = defaultdict(int)
-    for vals in month_rows:
-        joined = " | ".join(v.strip().lower() for v in vals)
-        if not re.search(r"\bcars?\b", joined) or "light goods" in joined or "lgv" in joined:
+    debug = []
+    for rows in tables:
+        width = max(map(len, rows))
+        # VEH9902 is a time-series table: months are columns, not rows.  Find
+        # the release-month column by combining the first header rows vertically
+        # so split headers such as "2026" / "August" are also recognised.
+        target_cols = []
+        for col in range(width):
+            header = " | ".join(r[col] for r in rows[:20] if col < len(r) and r[col])
+            if _period_matches(header, year, month):
+                target_cols.append(col)
+        if not target_cols:
             continue
-        fuel = None
-        for raw in sorted(FUEL, key=len, reverse=True):
-            if raw in joined:
-                fuel = FUEL[raw]
-                break
-        if not fuel:
-            continue
-        nums = _numeric_cells(vals)
-        # A monthly passenger-car count is the plausible count, not percentages,
-        # years, YTD totals or notes.  If ambiguous, fail rather than publish junk.
-        plausible = [n for n in nums if 100 <= n <= MAX_PLAUSIBLE]
-        if len(plausible) == 1:
-            agg[fuel] += plausible[0]
+        debug.append(target_cols)
+
+        in_cars = False
+        for vals in rows:
+            label = " | ".join(vals[: min(target_cols)] if min(target_cols) > 0 else vals).strip()
+            low = label.lower()
+            # Body type is commonly a merged/grouped label followed by fuel rows.
+            if re.search(r"\bcars?\b", low) and "light goods" not in low and "lgv" not in low:
+                in_cars = True
+            if "light goods" in low or re.search(r"\blgv", low):
+                in_cars = False
+            fuel = _fuel_label(label)
+            if not in_cars or not fuel:
+                continue
+            values = []
+            for col in target_cols:
+                if col < len(vals):
+                    n = _num(vals[col])
+                    if n is not None and 0 <= n <= MAX_PLAUSIBLE:
+                        values.append(n)
+            # There should be one value for the release month. Duplicate header
+            # matches are tolerated only when they resolve to the same number.
+            values = list(dict.fromkeys(values))
+            if len(values) == 1:
+                agg[fuel] += values[0]
 
     total = sum(agg.values())
     if not agg or not MIN_PLAUSIBLE <= total <= MAX_PLAUSIBLE:
-        raise RuntimeError(f"VEH9902 parse failed plausibility check: fuels={dict(agg)}, total={total:,}")
+        raise RuntimeError(
+            f"VEH9902 parse failed plausibility check: fuels={dict(agg)}, "
+            f"total={total:,}, target_cols={debug}"
+        )
     return year, month, dict(agg)
 
 
@@ -150,7 +183,6 @@ def main() -> int:
     year, month, fuel = parse_ods(r.content, year, month)
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    # Remove any stale rows for this month before writing the newly validated set.
     pt = {(int(r["year"]), int(r["month"]), r["fuel"]): int(r["count"])
           for r in _read_existing(OUT_PT)
           if (int(r["year"]), int(r["month"])) != (year, month)}
