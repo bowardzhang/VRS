@@ -1,12 +1,10 @@
 name: Daily data update + notify
 
 on:
-  # Daily at 06:00 UTC. Sources publish on their own cadence (KBA monthly, RDW
-  # continuously, DfT quarterly …); this checks every day and only emails when a
-  # country actually advances to a new month/quarter.
+  # Daily at 06:00 UTC. Sources publish on their own cadence; this checks every
+  # day and only emails when a country/feed actually advances.
   schedule:
     - cron: "0 6 * * *"
-  # Manual runs: use a large "months" value (e.g. 36) for the initial backfill.
   workflow_dispatch:
     inputs:
       months:
@@ -14,8 +12,6 @@ on:
         required: false
         default: "3"
 
-# Needed to commit the refreshed data/site back to the repository and to
-# publish docs/ to GitHub Pages (OIDC for Pages deployment).
 permissions:
   contents: write
   pages: write
@@ -47,73 +43,50 @@ jobs:
         run: python scripts/check_updates.py --write /tmp/before-periods.json
 
       - name: Download latest KBA workbooks
-        # Scheduled runs fetch the trailing 3 months (skipping ones already on
-        # disk); manual runs can pass a larger window for a backfill.
-        # --allow-missing keeps the job green when a month is not yet published.
-        # FZ 10 = brands/models/powertrain, FZ 11 = body segments.
         run: |
           MONTHS="${{ github.event.inputs.months || '3' }}"
           python scripts/download_germany.py --table fz10 --last "$MONTHS" --allow-missing
           python scripts/download_germany.py --table fz11 --last "$MONTHS" --allow-missing
 
       - name: Download latest Netherlands (RDW) registrations
-        # RDW open data (Socrata) has open internet access from the runner.
-        # Re-fetch the trailing months to pick up late revisions.
         run: |
           MONTHS="${{ github.event.inputs.months || '3' }}"
           python scripts/download_netherlands.py --last "$MONTHS"
 
       - name: Download latest Finland (Traficom) registrations
-        # Traficom / Statistics Finland PxWeb open data. A single query returns
-        # the whole current year; re-run refreshes recent months.
         run: python scripts/download_finland.py
 
-      - name: Download latest France (INSEE) + UK (DfT) registrations
-        # France: INSEE BDM national monthly totals. UK: DfT VEH0160 quarterly
-        # by make. Both open, no key. --allow-missing not needed (full re-fetch).
+      - name: Download latest France + UK registrations
+        # UK is deliberately dual-source:
+        #   VEH9902 = monthly provisional total/powertrain (fast indicator)
+        #   VEH0160 = quarterly official make/model/powertrain detail
+        # Both are checked every day and stored separately; monthly never
+        # overwrites the quarterly official series.
         run: |
           python scripts/download_france.py
+          python scripts/download_uk_monthly.py
           python scripts/download_uk.py
 
       - name: Download latest Spain (DGT microdata) registrations
-        # DGT monthly microdata ZIPs (fixed-width). Incremental: only new months
-        # are fetched + the trailing month re-fetched for revisions.
         run: python scripts/download_spain.py --refresh-last 1
 
-      - name: Download latest Sweden (SCB) + Austria (Statistik Austria) registrations
-        # Sweden: SCB PxWeb national monthly totals + fuel split. Austria:
-        # Statistik Austria OGD make-level monthly cube. Both open, no key,
-        # full re-fetch each run.
+      - name: Download latest Sweden + Austria registrations
         run: |
           python scripts/download_sweden.py
           python scripts/download_austria.py
 
       - name: Download euro-area total (ACEA via ECB Data Portal)
-        # ECB dataset CAR, euro-area aggregate of new passenger-car registrations
-        # (ACEA figures, reusable with attribution). Aggregate only — no
-        # per-country / powertrain / manufacturer detail.
         run: python scripts/download_ecb_eu.py
 
       - name: Download ACEA per-market registrations (via PZPM)
-        # ACEA's monthly workbook (all European markets × powertrain), hosted as
-        # .xlsx by PZPM. Fills every market without its own national feed (tier 2:
-        # total + powertrain). © ACEA — credited as the source on the site.
         run: python scripts/download_pzpm_acea.py
 
-      # Poland (CEPIK) is intentionally not wired in: the open register exposes
-      # every first-in-country registration — new sales *and* used imports,
-      # which dominate the Polish market — with no clean new-only filter or
-      # server-side aggregation, so it can't yield a comparable new-registration
-      # series. scripts/download_poland.py is kept for reference only.
-
       - name: Parse raw period data
-        # Rebuilds the German per-model CSV + body segments from the workbooks so
-        # the update check below sees Germany's true latest month.
         run: |
           python scripts/parse_germany.py
           python scripts/parse_segments.py
 
-      - name: Detect per-country updates
+      - name: Detect per-country/feed updates
         id: detect
         run: python scripts/check_updates.py --compare /tmp/before-periods.json
 
@@ -127,7 +100,7 @@ jobs:
           python scripts/build_europe.py
           python scripts/build_site.py
 
-      - name: Email notification (only when a country advanced)
+      - name: Email notification (only when a country/feed advanced)
         if: steps.detect.outputs.updated == 'true'
         uses: dawidd6/action-send-mail@v3
         with:
@@ -138,9 +111,7 @@ jobs:
           password: ${{ secrets.GMAIL_PASSWORD }}
           from: VRS Watch <bowardzhang@gmail.com>
           to: bowardzhang@gmail.com
-          subject: "VRS: ${{ steps.detect.outputs.count }} country data update(s)"
-          # Same per-country table template as the on-demand report; the detect
-          # step bakes the "new data published for …" note into report_html.
+          subject: "VRS: ${{ steps.detect.outputs.count }} data update(s)"
           html_body: ${{ steps.detect.outputs.report_html }}
           body: ${{ steps.detect.outputs.report_text }}
 
@@ -156,11 +127,6 @@ jobs:
             git push
           fi
 
-      # Deploy the freshly built docs/ to GitHub Pages in the SAME workflow.
-      # (Previously a separate pages.yml listened for a workflow_run of this
-      # job, but that trigger never fired in practice, so the live site went
-      # stale while main carried newer baked data. Deploying here guarantees
-      # the site is always republished whenever data is refreshed.)
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
