@@ -7,7 +7,7 @@ on:
     - cron: "0 6 * * *"
   # Also run when this workflow is deliberately changed. This gives us a safe
   # way to force an immediate rebuild without creating a push loop from the
-  # data/docs commit made by the job itself.
+  # data/docs commit made by the job itself. Trigger refreshed 2026-09-17.
   push:
     branches: [main]
     paths:
@@ -37,68 +37,52 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
       - name: Install dependencies
         run: pip install -r requirements.txt
-
       - name: Snapshot committed latest periods (before download)
         run: python scripts/check_updates_dual.py --write /tmp/before-periods.json
-
       - name: Download latest KBA workbooks
         run: |
           MONTHS="${{ github.event.inputs.months || '3' }}"
           python scripts/download_germany.py --table fz10 --last "$MONTHS" --allow-missing
           python scripts/download_germany.py --table fz11 --last "$MONTHS" --allow-missing
-
       - name: Download latest Netherlands (RDW) registrations
         run: |
           MONTHS="${{ github.event.inputs.months || '3' }}"
           python scripts/download_netherlands.py --last "$MONTHS"
-
       - name: Download latest Finland (Traficom) registrations
         run: python scripts/download_finland.py
-
       - name: Download latest France + UK registrations
         # UK is deliberately dual-source:
         #   VEH9902 = monthly provisional total/powertrain (fast indicator)
-        #   VEH0160 = quarterly official make/model/powertrain detail
+        #   VEH0160_UK = quarterly official UK make/model/powertrain detail
         # A monthly-format/parser problem must never block the authoritative
-        # quarterly refresh or the site rebuild/deploy. The monthly script has
-        # its own plausibility checks, so failure means "omit monthly", not
-        # "publish an unvalidated value".
+        # quarterly refresh or the site rebuild/deploy.
         run: |
           python scripts/download_france.py
           python scripts/download_uk_monthly.py || echo "::warning::UK monthly provisional feed unavailable/invalid; continuing with quarterly official data"
           python scripts/download_uk.py
-
       - name: Download latest Spain (DGT microdata) registrations
         run: python scripts/download_spain.py --refresh-last 1
-
       - name: Download latest Sweden + Austria registrations
         run: |
           python scripts/download_sweden.py
           python scripts/download_austria.py
-
       - name: Download euro-area total (ACEA via ECB Data Portal)
         run: python scripts/download_ecb_eu.py
-
       - name: Download ACEA per-market registrations (via PZPM)
         run: python scripts/download_pzpm_acea.py
-
       - name: Parse raw period data
         run: |
           python scripts/parse_germany.py
           python scripts/parse_segments.py
-
       - name: Detect per-country/feed updates
         id: detect
         run: python scripts/check_updates_dual.py --compare /tmp/before-periods.json
-
       - name: Rebuild site
         run: |
           python scripts/parse_suppliers.py
@@ -109,7 +93,6 @@ jobs:
           python scripts/build_q2_report.py
           python scripts/build_europe.py
           python scripts/build_site.py
-
       - name: Email notification (only when a country/feed advanced)
         if: steps.detect.outputs.updated == 'true'
         uses: dawidd6/action-send-mail@v3
@@ -124,7 +107,6 @@ jobs:
           subject: "VRS: ${{ steps.detect.outputs.count }} data update(s)"
           html_body: ${{ steps.detect.outputs.report_html }}
           body: ${{ steps.detect.outputs.report_text }}
-
       - name: Commit updated data and site
         run: |
           git config user.name  "github-actions[bot]"
@@ -136,17 +118,14 @@ jobs:
             git commit -m "chore(data): daily registration data refresh"
             git push
           fi
-
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
