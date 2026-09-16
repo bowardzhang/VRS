@@ -40,7 +40,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Snapshot committed latest periods (before download)
-        run: python scripts/check_updates.py --write /tmp/before-periods.json
+        run: python scripts/check_updates_dual.py --write /tmp/before-periods.json
 
       - name: Download latest KBA workbooks
         run: |
@@ -88,7 +88,7 @@ jobs:
 
       - name: Detect per-country/feed updates
         id: detect
-        run: python scripts/check_updates.py --compare /tmp/before-periods.json
+        run: python scripts/check_updates_dual.py --compare /tmp/before-periods.json
 
       - name: Rebuild site
         run: |
