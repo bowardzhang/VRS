@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""Overlay the UK monthly provisional feed onto countries.json.
-
-The common country builder intentionally keeps the historical UK series,
-brands and models on DfT VEH0160 (quarterly official).  This small post-build
-step adds DfT VEH9902 (monthly provisional) as the UK headline/latest-month
-feed without mixing the two periods.
-"""
+"""Overlay the UK monthly provisional feed onto countries.json."""
 from __future__ import annotations
 
 import csv
@@ -21,6 +15,10 @@ MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", 
 ORDER = ["BEV", "PHEV", "Hybrid", "Petrol", "Diesel", "Other"]
 MONTHLY_URL = "https://www.gov.uk/government/statistics/developing-faster-indicators-of-transport-activity"
 QUARTERLY_URL = "https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files"
+# A UK passenger-car month is normally ~80k-400k.  Keep a deliberately wide
+# guardrail so a changed ODS layout can never publish a multi-million row sum.
+MIN_PLAUSIBLE = 20_000
+MAX_PLAUSIBLE = 600_000
 
 
 def latest_month() -> tuple[int, int, int] | None:
@@ -30,7 +28,11 @@ def latest_month() -> tuple[int, int, int] | None:
     if not rows:
         return None
     row = max(rows, key=lambda r: (int(r["year"]), int(r["month"])))
-    return int(row["year"]), int(row["month"]), int(row["total"])
+    total = int(row["total"])
+    if not MIN_PLAUSIBLE <= total <= MAX_PLAUSIBLE:
+        print(f"[uk-dual] rejecting implausible monthly total {total:,}; keeping quarterly headline")
+        return None
+    return int(row["year"]), int(row["month"]), total
 
 
 def monthly_powertrain(y: int, m: int) -> dict:
@@ -42,22 +44,19 @@ def monthly_powertrain(y: int, m: int) -> dict:
             if (int(r["year"]), int(r["month"])) == (y, m):
                 agg[r["fuel"]] += int(r["count"])
     total = sum(agg.values())
-    if not total:
+    if not total or not MIN_PLAUSIBLE <= total <= MAX_PLAUSIBLE:
         return {"has": False, "shares": []}
     fuels = ORDER + [f for f in agg if f not in ORDER]
-    return {
-        "has": True,
-        "shares": [
-            {"fuel": f, "total": agg[f], "pct": round(100 * agg[f] / total, 1)}
-            for f in fuels if agg.get(f)
-        ],
-    }
+    return {"has": True, "shares": [
+        {"fuel": f, "total": agg[f], "pct": round(100 * agg[f] / total, 1)}
+        for f in fuels if agg.get(f)
+    ]}
 
 
 def main() -> int:
     latest = latest_month()
     if latest is None:
-        print("[uk-dual] no monthly feed yet; keeping quarterly-only UK presentation")
+        print("[uk-dual] no valid monthly feed; keeping quarterly-only UK presentation")
         return 0
     y, m, total = latest
     countries = json.loads(COUNTRIES.read_text(encoding="utf-8"))
@@ -65,7 +64,6 @@ def main() -> int:
     if uk is None:
         raise RuntimeError("UK core missing from countries.json")
 
-    # Preserve the detailed quarterly snapshot produced by build_countries.py.
     quarterly = uk.get("latest") or {}
     quarterly_period = quarterly.get("period", uk.get("latest_period"))
     quarterly_total = quarterly.get("total", uk.get("latest_total"))
@@ -75,21 +73,10 @@ def main() -> int:
         quarterly["source"] = "DfT VEH0160"
 
     label = f"{MONTHS[m - 1]} {y}"
-    monthly = {
-        "period": label,
-        "year": y,
-        "month": m,
-        "total": total,
-        "status": "provisional",
-        "granularity": "monthly",
-        "source": "DfT VEH9902",
-        "source_url": MONTHLY_URL,
-        "powertrain": monthly_powertrain(y, m),
-    }
-
-    # Headline becomes the freshest monthly provisional passenger-car figure.
-    # Historical quarters, brand/model rankings and detailed `latest` remain
-    # VEH0160 official-quarter data so periods are never silently mixed.
+    monthly = {"period": label, "year": y, "month": m, "total": total,
+               "status": "provisional", "granularity": "monthly",
+               "source": "DfT VEH9902", "source_url": MONTHLY_URL,
+               "powertrain": monthly_powertrain(y, m)}
     uk["latest_period"] = label
     uk["latest_total"] = total
     uk["latest_status"] = "provisional"
