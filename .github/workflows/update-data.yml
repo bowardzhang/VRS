@@ -67,11 +67,13 @@ jobs:
         # UK is deliberately dual-source:
         #   VEH9902 = monthly provisional total/powertrain (fast indicator)
         #   VEH0160 = quarterly official make/model/powertrain detail
-        # Both are checked every day and stored separately; monthly never
-        # overwrites the quarterly official series.
+        # A monthly-format/parser problem must never block the authoritative
+        # quarterly refresh or the site rebuild/deploy. The monthly script has
+        # its own plausibility checks, so failure means "omit monthly", not
+        # "publish an unvalidated value".
         run: |
           python scripts/download_france.py
-          python scripts/download_uk_monthly.py
+          python scripts/download_uk_monthly.py || echo "::warning::UK monthly provisional feed unavailable/invalid; continuing with quarterly official data"
           python scripts/download_uk.py
 
       - name: Download latest Spain (DGT microdata) registrations
