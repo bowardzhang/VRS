@@ -15671,13 +15671,13 @@
           "total": 389
         },
         {
-          "brand": "FORD",
-          "model": "KUGA",
+          "brand": "CUPRA",
+          "model": "RAVAL 155KW",
           "total": 375
         },
         {
-          "brand": "CUPRA",
-          "model": "RAVAL 155KW",
+          "brand": "FORD",
+          "model": "KUGA",
           "total": 375
         },
         {
@@ -21943,8 +21943,8 @@
     "code": "UK",
     "name": "United Kingdom",
     "flag": "🇬🇧",
-    "source": "UK Dept. for Transport, table VEH0160 (quarterly)",
-    "source_url": "https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files",
+    "source": "UK DfT VEH9902 (monthly provisional) + VEH0160 (quarterly official detail)",
+    "source_url": "https://www.gov.uk/government/statistics/developing-faster-indicators-of-transport-activity",
     "granularity": "quarterly",
     "has_brands": true,
     "brand_window_label": "since Sep 2023",
@@ -22097,8 +22097,8 @@
       }
     ],
     "total": 13981135,
-    "latest_period": "Q1 2026",
-    "latest_total": 631451,
+    "latest_period": "Aug 2026",
+    "latest_total": 95487,
     "brand_totals": [
       {
         "brand": "VW",
@@ -23377,7 +23377,10 @@
             "pct": 0.0
           }
         ]
-      }
+      },
+      "status": "official",
+      "granularity": "quarterly",
+      "source": "DfT VEH0160"
     },
     "brand_trends": {
       "labels": [
@@ -24199,7 +24202,39 @@
       ]
     },
     "ytd": 631451,
-    "ytd_year": 2026
+    "ytd_year": 2026,
+    "latest_status": "provisional",
+    "latest_granularity": "monthly",
+    "monthly_latest": {
+      "period": "Aug 2026",
+      "year": 2026,
+      "month": 8,
+      "total": 95487,
+      "status": "provisional",
+      "granularity": "monthly",
+      "source": "DfT VEH9902",
+      "source_url": "https://www.gov.uk/government/statistics/developing-faster-indicators-of-transport-activity",
+      "powertrain": {
+        "has": true,
+        "shares": [
+          {
+            "fuel": "Non-ZEV",
+            "total": 67415,
+            "pct": 70.6
+          },
+          {
+            "fuel": "ZEV",
+            "total": 28072,
+            "pct": 29.4
+          }
+        ]
+      }
+    },
+    "quarterly_latest_period": "Q1 2026",
+    "quarterly_latest_total": 631451,
+    "dual_source": true,
+    "monthly_source_url": "https://www.gov.uk/government/statistics/developing-faster-indicators-of-transport-activity",
+    "quarterly_source_url": "https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files"
   },
   {
     "code": "BE",
