@@ -7,7 +7,7 @@ on:
     - cron: "0 6 * * *"
   # Also run when this workflow is deliberately changed. This gives us a safe
   # way to force an immediate rebuild without creating a push loop from the
-  # data/docs commit made by the job itself. Trigger refreshed 2026-09-17.
+  # data/docs commit made by the job itself. UK parser validation 2026-09-17b.
   push:
     branches: [main]
     paths:
