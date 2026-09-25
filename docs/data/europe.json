@@ -3,21 +3,13 @@
   "source": "ACEA, via ECB Data Portal (dataset CAR)",
   "source_url": "https://data.ecb.europa.eu/data/datasets/CAR",
   "note": "Official euro-area total of new passenger-car registrations. ACEA figures redistributed by the ECB; a euro-area aggregate only — no per-country, powertrain or manufacturer detail.",
-  "latest_period": "Jun 2026",
-  "latest": 979505,
-  "yoy": 12.7,
-  "ytd": 5070514,
+  "latest_period": "Aug 2026",
+  "latest": 586185,
+  "yoy": 4.7,
+  "ytd": 6464711,
   "ytd_year": 2026,
-  "ytd_yoy": 5.6,
+  "ytd_yoy": 5.2,
   "series": [
-    {
-      "label": "Jul 2022",
-      "value": 641529
-    },
-    {
-      "label": "Aug 2022",
-      "value": 544050
-    },
     {
       "label": "Sep 2022",
       "value": 680732
@@ -156,11 +148,11 @@
     },
     {
       "label": "Jul 2025",
-      "value": 784347
+      "value": 784039
     },
     {
       "label": "Aug 2025",
-      "value": 560109
+      "value": 559890
     },
     {
       "label": "Sep 2025",
@@ -201,6 +193,14 @@
     {
       "label": "Jun 2026",
       "value": 979505
+    },
+    {
+      "label": "Jul 2026",
+      "value": 808012
+    },
+    {
+      "label": "Aug 2026",
+      "value": 586185
     }
   ]
 }
