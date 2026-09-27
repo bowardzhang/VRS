@@ -661,12 +661,12 @@
       {
         "q": "2026-Q2",
         "label": "Q2 2026",
-        "total": 96816
+        "total": 96819
       }
     ],
-    "total": 3677794,
+    "total": 3677797,
     "latest_period": "Aug 2026",
-    "latest_total": 26602,
+    "latest_total": 26607,
     "brand_totals": [
       {
         "brand": "KIA",
@@ -678,7 +678,7 @@
       },
       {
         "brand": "TOYOTA",
-        "total": 101591
+        "total": 101594
       },
       {
         "brand": "VOLVO",
@@ -706,7 +706,7 @@
       },
       {
         "brand": "AUDI",
-        "total": 56103
+        "total": 56104
       },
       {
         "brand": "PEUGEOT",
@@ -718,7 +718,7 @@
       },
       {
         "brand": "FORD",
-        "total": 47966
+        "total": 47967
       },
       {
         "brand": "OPEL",
@@ -758,7 +758,7 @@
       },
       {
         "brand": "BYD",
-        "total": 14976
+        "total": 14994
       },
       {
         "brand": "MG",
@@ -766,7 +766,7 @@
       },
       {
         "brand": "LAND ROVER",
-        "total": 11351
+        "total": 11353
       },
       {
         "brand": "MITSUBISHI",
@@ -854,7 +854,7 @@
       },
       {
         "brand": "NIO",
-        "total": 701
+        "total": 702
       },
       {
         "brand": "SUBARU",
@@ -886,7 +886,7 @@
       },
       {
         "brand": "GEELY",
-        "total": 414
+        "total": 427
       },
       {
         "brand": "FERRARI",
@@ -1524,11 +1524,11 @@
     "origin_totals": [
       {
         "origin": "Germany",
-        "total": 335735
+        "total": 335736
       },
       {
         "origin": "Japan",
-        "total": 186508
+        "total": 186511
       },
       {
         "origin": "France",
@@ -1540,7 +1540,7 @@
       },
       {
         "origin": "USA",
-        "total": 120221
+        "total": 120222
       },
       {
         "origin": "Sweden",
@@ -1552,7 +1552,7 @@
       },
       {
         "origin": "China",
-        "total": 53588
+        "total": 53620
       },
       {
         "origin": "Spain",
@@ -1560,7 +1560,7 @@
       },
       {
         "origin": "United Kingdom",
-        "total": 30775
+        "total": 30777
       },
       {
         "origin": "Italy",
@@ -1576,77 +1576,77 @@
       {
         "brand": "TESLA",
         "model": "MODEL Y",
-        "total": 42465
+        "total": 42554
       },
       {
         "brand": "KIA",
         "model": "PICANTO",
-        "total": 25767
+        "total": 25775
       },
       {
         "brand": "TOYOTA",
         "model": "YARIS CROSS",
-        "total": 25368
+        "total": 25400
       },
       {
         "brand": "TOYOTA",
         "model": "AYGO X",
-        "total": 24841
+        "total": 24892
       },
       {
         "brand": "KIA",
         "model": "NIRO",
-        "total": 23553
+        "total": 23560
       },
       {
         "brand": "TESLA",
         "model": "MODEL 3",
-        "total": 22427
+        "total": 22448
       },
       {
         "brand": "VOLVO",
         "model": "EX30",
-        "total": 19104
+        "total": 19110
       },
       {
         "brand": "HYUNDAI",
         "model": "KONA",
-        "total": 17973
+        "total": 17980
       },
       {
         "brand": "TOYOTA",
         "model": "YARIS",
-        "total": 17956
+        "total": 17972
       },
       {
         "brand": "FORD",
         "model": "KUGA",
-        "total": 17781
+        "total": 17793
       },
       {
         "brand": "VW",
         "model": "POLO",
-        "total": 17592
+        "total": 17595
       },
       {
         "brand": "PEUGEOT",
         "model": "208",
-        "total": 16986
+        "total": 16995
       },
       {
         "brand": "VW",
         "model": "TIGUAN",
-        "total": 15890
+        "total": 15902
       },
       {
         "brand": "KIA",
         "model": "EV3",
-        "total": 15692
+        "total": 15698
       },
       {
         "brand": "TOYOTA",
         "model": "COROLLA",
-        "total": 15529
+        "total": 15542
       }
     ],
     "powertrain": {
@@ -1658,12 +1658,12 @@
       "shares": [
         {
           "body": "Hatchback",
-          "total": 183351,
+          "total": 183365,
           "pct": 32.2
         },
         {
           "body": "Estate",
-          "total": 200973,
+          "total": 200977,
           "pct": 35.3
         },
         {
@@ -1673,7 +1673,7 @@
         },
         {
           "body": "MPV",
-          "total": 152480,
+          "total": 152501,
           "pct": 26.8
         },
         {
@@ -1696,7 +1696,7 @@
     },
     "latest": {
       "period": "Aug 2026",
-      "total": 26602,
+      "total": 26607,
       "top_brands": [
         {
           "brand": "KIA",
@@ -1705,8 +1705,8 @@
         },
         {
           "brand": "TOYOTA",
-          "total": 2223,
-          "yoy": -3.3
+          "total": 2225,
+          "yoy": -3.2
         },
         {
           "brand": "BMW",
@@ -1772,12 +1772,12 @@
         },
         {
           "brand": "KIA",
-          "model": "EV3",
+          "model": "EV2",
           "total": 565
         },
         {
           "brand": "KIA",
-          "model": "EV2",
+          "model": "EV3",
           "total": 565
         },
         {
@@ -1942,7 +1942,7 @@
             7896,
             7927,
             5912,
-            8530
+            8531
           ]
         },
         {
@@ -2117,7 +2117,7 @@
             55494,
             74487,
             52273,
-            56265
+            56267
           ]
         }
       ]
@@ -2188,7 +2188,7 @@
             26029,
             32611,
             21876,
-            23666
+            23667
           ]
         },
         {
@@ -2223,7 +2223,7 @@
             12843,
             14134,
             12163,
-            13719
+            13720
           ]
         },
         {
@@ -2433,12 +2433,12 @@
             11609,
             13745,
             12625,
-            13976
+            13977
           ]
         }
       ]
     },
-    "ytd": 182391,
+    "ytd": 182394,
     "ytd_year": 2026
   },
   {
