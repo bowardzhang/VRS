@@ -666,7 +666,7 @@
     ],
     "total": 3677797,
     "latest_period": "Aug 2026",
-    "latest_total": 26607,
+    "latest_total": 26608,
     "brand_totals": [
       {
         "brand": "KIA",
@@ -758,7 +758,7 @@
       },
       {
         "brand": "BYD",
-        "total": 14994
+        "total": 14995
       },
       {
         "brand": "MG",
@@ -1014,7 +1014,7 @@
       },
       {
         "brand": "DEEPAL",
-        "total": 84
+        "total": 85
       },
       {
         "brand": "EURA MOBIL",
@@ -1552,7 +1552,7 @@
       },
       {
         "origin": "China",
-        "total": 53620
+        "total": 53622
       },
       {
         "origin": "Spain",
@@ -1576,7 +1576,7 @@
       {
         "brand": "TESLA",
         "model": "MODEL Y",
-        "total": 42554
+        "total": 42553
       },
       {
         "brand": "KIA",
@@ -1586,7 +1586,7 @@
       {
         "brand": "TOYOTA",
         "model": "YARIS CROSS",
-        "total": 25400
+        "total": 25401
       },
       {
         "brand": "TOYOTA",
@@ -1621,7 +1621,7 @@
       {
         "brand": "FORD",
         "model": "KUGA",
-        "total": 17793
+        "total": 17794
       },
       {
         "brand": "VW",
@@ -1663,7 +1663,7 @@
         },
         {
           "body": "Estate",
-          "total": 200977,
+          "total": 200978,
           "pct": 35.3
         },
         {
@@ -1673,7 +1673,7 @@
         },
         {
           "body": "MPV",
-          "total": 152501,
+          "total": 152502,
           "pct": 26.8
         },
         {
@@ -1696,7 +1696,7 @@
     },
     "latest": {
       "period": "Aug 2026",
-      "total": 26607,
+      "total": 26608,
       "top_brands": [
         {
           "brand": "KIA",
