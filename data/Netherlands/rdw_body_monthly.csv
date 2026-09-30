@@ -97,14 +97,14 @@ year,month,body,count
 2026,5,Other,372
 2026,5,Convertible,104
 2026,5,Coupé,58
-2026,6,Estate,13550
-2026,6,Hatchback,12451
-2026,6,MPV,11584
+2026,6,Estate,13551
+2026,6,Hatchback,12450
+2026,6,MPV,11587
 2026,6,Sedan,1569
 2026,6,Other,390
 2026,6,Convertible,117
 2026,6,Coupé,80
-2026,7,Estate,10001
+2026,7,Estate,10004
 2026,7,Hatchback,8907
 2026,7,MPV,8432
 2026,7,Sedan,622
@@ -117,4 +117,4 @@ year,month,body,count
 2026,8,Sedan,1149
 2026,8,Other,230
 2026,8,Convertible,76
-2026,8,Coupé,55
+2026,8,Coupé,56
