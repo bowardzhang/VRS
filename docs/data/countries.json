@@ -666,20 +666,20 @@
       {
         "q": "2026-Q3",
         "label": "Q3 2026",
-        "total": 82961
+        "total": 83011
       }
     ],
-    "total": 3760761,
+    "total": 3760811,
     "latest_period": "Sep 2026",
     "latest_total": 27882,
     "brand_totals": [
       {
         "brand": "KIA",
-        "total": 111254
+        "total": 111256
       },
       {
         "brand": "VW",
-        "total": 107092
+        "total": 107100
       },
       {
         "brand": "TOYOTA",
@@ -687,15 +687,15 @@
       },
       {
         "brand": "VOLVO",
-        "total": 79903
+        "total": 79904
       },
       {
         "brand": "BMW",
-        "total": 78500
+        "total": 78501
       },
       {
         "brand": "SKODA",
-        "total": 74969
+        "total": 74971
       },
       {
         "brand": "RENAULT",
@@ -711,7 +711,7 @@
       },
       {
         "brand": "AUDI",
-        "total": 56975
+        "total": 56983
       },
       {
         "brand": "PEUGEOT",
@@ -723,11 +723,11 @@
       },
       {
         "brand": "FORD",
-        "total": 48678
+        "total": 48682
       },
       {
         "brand": "OPEL",
-        "total": 35354
+        "total": 35356
       },
       {
         "brand": "SUZUKI",
@@ -759,11 +759,11 @@
       },
       {
         "brand": "CUPRA",
-        "total": 16203
+        "total": 16204
       },
       {
         "brand": "BYD",
-        "total": 15894
+        "total": 15908
       },
       {
         "brand": "MG",
@@ -771,7 +771,7 @@
       },
       {
         "brand": "LAND ROVER",
-        "total": 11465
+        "total": 11468
       },
       {
         "brand": "MITSUBISHI",
@@ -783,11 +783,11 @@
       },
       {
         "brand": "PORSCHE",
-        "total": 9572
+        "total": 9571
       },
       {
         "brand": "JEEP",
-        "total": 9486
+        "total": 9487
       },
       {
         "brand": "LYNK & CO",
@@ -871,7 +871,7 @@
       },
       {
         "brand": "GEELY",
-        "total": 555
+        "total": 558
       },
       {
         "brand": "WEINSBERG",
@@ -1099,7 +1099,7 @@
       },
       {
         "brand": "MORELO",
-        "total": 30
+        "total": 31
       },
       {
         "brand": "MORGAN",
@@ -1529,7 +1529,7 @@
     "origin_totals": [
       {
         "origin": "Germany",
-        "total": 341333
+        "total": 341351
       },
       {
         "origin": "Japan",
@@ -1541,31 +1541,31 @@
       },
       {
         "origin": "South Korea",
-        "total": 169183
+        "total": 169185
       },
       {
         "origin": "USA",
-        "total": 123991
+        "total": 123996
       },
       {
         "origin": "Sweden",
-        "total": 86850
+        "total": 86851
       },
       {
         "origin": "Czechia",
-        "total": 74969
+        "total": 74971
       },
       {
         "origin": "China",
-        "total": 56279
+        "total": 56296
       },
       {
         "origin": "Spain",
-        "total": 34315
+        "total": 34316
       },
       {
         "origin": "United Kingdom",
-        "total": 31262
+        "total": 31265
       },
       {
         "origin": "Italy",
@@ -1573,7 +1573,7 @@
       },
       {
         "origin": "Other",
-        "total": 10918
+        "total": 10919
       }
     ],
     "tier": 1,
@@ -1581,77 +1581,77 @@
       {
         "brand": "TESLA",
         "model": "MODEL Y",
-        "total": 42649
+        "total": 42960
       },
       {
         "brand": "KIA",
         "model": "PICANTO",
-        "total": 25798
+        "total": 25918
       },
       {
         "brand": "TOYOTA",
         "model": "YARIS CROSS",
-        "total": 25425
+        "total": 25596
       },
       {
         "brand": "TOYOTA",
         "model": "AYGO X",
-        "total": 24948
+        "total": 25178
       },
       {
         "brand": "KIA",
         "model": "NIRO",
-        "total": 23565
+        "total": 23598
       },
       {
         "brand": "TESLA",
         "model": "MODEL 3",
-        "total": 22460
+        "total": 22513
       },
       {
         "brand": "VOLVO",
         "model": "EX30",
-        "total": 19135
-      },
-      {
-        "brand": "HYUNDAI",
-        "model": "KONA",
-        "total": 18058
+        "total": 19228
       },
       {
         "brand": "TOYOTA",
         "model": "YARIS",
-        "total": 18002
+        "total": 18334
+      },
+      {
+        "brand": "HYUNDAI",
+        "model": "KONA",
+        "total": 18150
       },
       {
         "brand": "FORD",
         "model": "KUGA",
-        "total": 17803
+        "total": 17942
       },
       {
         "brand": "VW",
         "model": "POLO",
-        "total": 17605
+        "total": 17722
       },
       {
         "brand": "PEUGEOT",
         "model": "208",
-        "total": 17053
+        "total": 17122
       },
       {
         "brand": "VW",
         "model": "TIGUAN",
-        "total": 15911
+        "total": 16024
       },
       {
         "brand": "KIA",
         "model": "EV3",
-        "total": 15748
+        "total": 15875
       },
       {
         "brand": "TOYOTA",
         "model": "COROLLA",
-        "total": 15551
+        "total": 15627
       }
     ],
     "powertrain": {
@@ -1663,12 +1663,12 @@
       "shares": [
         {
           "body": "Hatchback",
-          "total": 191709,
+          "total": 191717,
           "pct": 32.1
         },
         {
           "body": "Estate",
-          "total": 209710,
+          "total": 209722,
           "pct": 35.1
         },
         {
@@ -1678,7 +1678,7 @@
         },
         {
           "body": "MPV",
-          "total": 161414,
+          "total": 161440,
           "pct": 27.0
         },
         {
@@ -1693,7 +1693,7 @@
         },
         {
           "body": "Other",
-          "total": 6744,
+          "total": 6748,
           "pct": 1.1
         }
       ],
@@ -1768,77 +1768,77 @@
         {
           "brand": "TESLA",
           "model": "MODEL Y",
-          "total": 1809
+          "total": 2082
         },
         {
           "brand": "TESLA",
           "model": "MODEL 3",
-          "total": 1043
+          "total": 1088
         },
         {
           "brand": "TOYOTA",
           "model": "YARIS CROSS",
-          "total": 668
+          "total": 771
         },
         {
           "brand": "TOYOTA",
           "model": "AYGO X",
-          "total": 547
-        },
-        {
-          "brand": "KIA",
-          "model": "EV3",
-          "total": 501
+          "total": 740
         },
         {
           "brand": "KIA",
           "model": "EV2",
-          "total": 499
-        },
-        {
-          "brand": "KIA",
-          "model": "PICANTO",
-          "total": 494
-        },
-        {
-          "brand": "HYUNDAI",
-          "model": "KONA",
-          "total": 476
-        },
-        {
-          "brand": "SKODA",
-          "model": "ELROQ 85",
-          "total": 431
+          "total": 602
         },
         {
           "brand": "RENAULT",
           "model": "5 E-TECH ELECTRIC",
-          "total": 423
+          "total": 593
         },
         {
-          "brand": "VOLVO",
-          "model": "EX30",
-          "total": 416
+          "brand": "KIA",
+          "model": "EV3",
+          "total": 589
+        },
+        {
+          "brand": "KIA",
+          "model": "PICANTO",
+          "total": 568
         },
         {
           "brand": "TOYOTA",
-          "model": "C-HR",
-          "total": 411
+          "model": "YARIS",
+          "total": 538
+        },
+        {
+          "brand": "SKODA",
+          "model": "ELROQ 85",
+          "total": 537
+        },
+        {
+          "brand": "HYUNDAI",
+          "model": "KONA",
+          "total": 536
         },
         {
           "brand": "RENAULT",
           "model": "CLIO",
-          "total": 398
+          "total": 518
+        },
+        {
+          "brand": "TOYOTA",
+          "model": "C-HR",
+          "total": 492
         },
         {
           "brand": "VOLVO",
           "model": "EX40",
-          "total": 398
+          "total": 470
         },
         {
           "brand": "SKODA",
           "model": "ELROQ 60",
-          "total": 379
+          "total": 465
         }
       ],
       "powertrain": {
@@ -1914,7 +1914,7 @@
             12531,
             6139,
             6720,
-            5082
+            5090
           ]
         },
         {
@@ -1950,7 +1950,7 @@
             9478,
             7414,
             9310,
-            8478
+            8480
           ]
         },
         {
@@ -2022,7 +2022,7 @@
             5906,
             5209,
             5933,
-            4829
+            4830
           ]
         },
         {
@@ -2130,7 +2130,7 @@
             74487,
             52273,
             56269,
-            50249
+            50288
           ]
         }
       ]
@@ -2203,7 +2203,7 @@
             32611,
             21876,
             23668,
-            19067
+            19085
           ]
         },
         {
@@ -2311,7 +2311,7 @@
             14366,
             11593,
             13240,
-            12568
+            12570
           ]
         },
         {
@@ -2347,7 +2347,7 @@
             11259,
             6342,
             7620,
-            7830
+            7835
           ]
         },
         {
@@ -2383,7 +2383,7 @@
             8524,
             4206,
             6197,
-            4079
+            4080
           ]
         },
         {
@@ -2419,7 +2419,7 @@
             10871,
             4693,
             4800,
-            5021
+            5023
           ]
         },
         {
@@ -2455,12 +2455,12 @@
             13745,
             12625,
             13977,
-            13168
+            13190
           ]
         }
       ]
     },
-    "ytd": 265358,
+    "ytd": 265408,
     "ytd_year": 2026
   },
   {
