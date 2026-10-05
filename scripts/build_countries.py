@@ -462,6 +462,15 @@ def _from_monthly(rows, code, name, flag, source, source_url, with_brands: bool)
         ly, lm = max(month_total)
         core["latest_period"] = f"{MONTH_ABBR[lm - 1]} {ly}"
         core["latest_total"] = month_total[(ly, lm)]
+        months = sorted(month_total)
+        core["monthly_trends"] = {
+            "labels": [f"{MONTH_ABBR[m - 1]} {y}" for y, m in months],
+            "series": [{"name": "Registrations",
+                        "values": [month_total[(y, m)] for y, m in months]}],
+            "status": "official",
+            "granularity": "monthly",
+            "source": source,
+        }
     return core
 
 
