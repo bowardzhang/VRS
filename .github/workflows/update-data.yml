@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: "0 6 * * *"
   # Workflow edits intentionally trigger an immediate validation run without
-  # looping on the data/docs commit produced by the job. UK monthly history validation 2026-09-17d.
+  # looping on the data/docs commit produced by the job. Sweden monthly trend validation 2026-10-05.
   push:
     branches: [main]
     paths:
