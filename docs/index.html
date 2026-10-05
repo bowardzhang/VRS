@@ -27810,7 +27810,15 @@
     if (c.powertrain_trends) blocks += chartCell("By powertrain", "tp_" + c.code, "lp_" + c.code);
     if (!blocks && !c.monthly_trends) return "";
     var quarterly = blocks ? '<h4 style="margin-top:6px">Historical trends <span style="text-transform:none;font-weight:400;color:var(--muted)">— official quarterly</span></h4><div class="cd-trends">' + blocks + '</div>' : '';
-    var monthly = c.monthly_trends ? '<h4 style="margin-top:22px">Monthly registrations <span style="text-transform:none;font-weight:400;color:var(--muted)">— provisional · DfT VEH9902</span></h4><div class="cd-trends">' + chartCell("Cars registered", "tm_" + c.code, "lm_" + c.code) + '</div>' : '';
+    var monthly = "";
+    if (c.monthly_trends) {
+      var mt = c.monthly_trends;
+      var mtMeta = (mt.status === "provisional" ? "provisional" : "official") +
+        (mt.source ? " · " + mt.source : "");
+      monthly = '<h4 style="margin-top:22px">Monthly registrations <span style="text-transform:none;font-weight:400;color:var(--muted)">— ' +
+        mtMeta + '</span></h4><div class="cd-trends">' +
+        chartCell("Cars registered", "tm_" + c.code, "lm_" + c.code) + '</div>';
+    }
     return quarterly + monthly;
   }
   function drawAllTrends(cs) {
