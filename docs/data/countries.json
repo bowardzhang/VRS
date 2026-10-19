@@ -1878,12 +1878,12 @@
       {
         "brand": "TESLA",
         "model": "MODEL Y",
-        "total": 43000
+        "total": 42999
       },
       {
         "brand": "KIA",
         "model": "PICANTO",
-        "total": 26249
+        "total": 26248
       },
       {
         "brand": "TOYOTA",
@@ -1908,7 +1908,7 @@
       {
         "brand": "VOLVO",
         "model": "EX30",
-        "total": 19425
+        "total": 19424
       },
       {
         "brand": "TOYOTA",
@@ -2103,13 +2103,13 @@
           "total": 568
         },
         {
-          "brand": "SKODA",
-          "model": "ELROQ 85",
+          "brand": "TOYOTA",
+          "model": "YARIS",
           "total": 538
         },
         {
-          "brand": "TOYOTA",
-          "model": "YARIS",
+          "brand": "SKODA",
+          "model": "ELROQ 85",
           "total": 538
         },
         {
