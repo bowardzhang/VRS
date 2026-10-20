@@ -34,14 +34,14 @@
       "label": "Netherlands",
       "flag": "🇳🇱",
       "source": "RDW",
-      "total": 1347936
+      "total": 1349286
     },
     {
       "key": "Europe",
       "label": "Europe (5)",
       "flag": "🇪🇺",
       "source": "pooled",
-      "total": 19969921
+      "total": 19971271
     }
   ],
   "dimensions": [
@@ -256,105 +256,105 @@
           ]
         },
         "Netherlands": {
-          "base_total": 1347936,
-          "classified": 1008032,
+          "base_total": 1349286,
+          "classified": 1008847,
           "coverage_pct": 74.8,
           "share": [
             {
               "brand": "Renesas",
-              "total": 260726,
+              "total": 260914,
               "share_classified": 25.86
             },
             {
               "brand": "Qualcomm",
-              "total": 257202,
+              "total": 257413,
               "share_classified": 25.52
             },
             {
               "brand": "Undisclosed",
-              "total": 179029,
+              "total": 179163,
               "share_classified": 17.76
             },
             {
               "brand": "Samsung",
-              "total": 101805,
-              "share_classified": 10.1
+              "total": 101981,
+              "share_classified": 10.11
             },
             {
               "brand": "None",
-              "total": 98159,
+              "total": 98227,
               "share_classified": 9.74
             },
             {
               "brand": "AMD",
-              "total": 65574,
-              "share_classified": 6.51
+              "total": 65578,
+              "share_classified": 6.5
             },
             {
               "brand": "MediaTek",
-              "total": 23093,
+              "total": 23107,
               "share_classified": 2.29
             },
             {
               "brand": "NVIDIA",
-              "total": 19740,
+              "total": 19757,
               "share_classified": 1.96
             },
             {
               "brand": "NXP",
-              "total": 2704,
+              "total": 2707,
               "share_classified": 0.27
             }
           ]
         },
         "Europe": {
-          "base_total": 19969921,
-          "classified": 16372033,
+          "base_total": 19971271,
+          "classified": 16372848,
           "coverage_pct": 82.0,
           "share": [
             {
               "brand": "Renesas",
-              "total": 5312569,
+              "total": 5312757,
               "share_classified": 32.45
             },
             {
               "brand": "Qualcomm",
-              "total": 3648692,
+              "total": 3648903,
               "share_classified": 22.29
             },
             {
               "brand": "Undisclosed",
-              "total": 3315803,
+              "total": 3315937,
               "share_classified": 20.25
             },
             {
               "brand": "Samsung",
-              "total": 1517670,
+              "total": 1517846,
               "share_classified": 9.27
             },
             {
               "brand": "NVIDIA",
-              "total": 872280,
+              "total": 872297,
               "share_classified": 5.33
             },
             {
               "brand": "None",
-              "total": 741684,
+              "total": 741752,
               "share_classified": 4.53
             },
             {
               "brand": "MediaTek",
-              "total": 516002,
+              "total": 516016,
               "share_classified": 3.15
             },
             {
               "brand": "AMD",
-              "total": 392559,
+              "total": 392563,
               "share_classified": 2.4
             },
             {
               "brand": "NXP",
-              "total": 54774,
+              "total": 54777,
               "share_classified": 0.33
             }
           ]
@@ -517,75 +517,75 @@
           ]
         },
         "Netherlands": {
-          "base_total": 1347936,
-          "classified": 1008032,
+          "base_total": 1349286,
+          "classified": 1008847,
           "coverage_pct": 74.8,
           "share": [
             {
               "brand": "Mobileye",
-              "total": 702356,
+              "total": 702985,
               "share_classified": 69.68
             },
             {
               "brand": "None",
-              "total": 118802,
-              "share_classified": 11.79
+              "total": 118884,
+              "share_classified": 11.78
             },
             {
               "brand": "Denso",
-              "total": 76261,
-              "share_classified": 7.57
+              "total": 76315,
+              "share_classified": 7.56
             },
             {
               "brand": "Tesla",
-              "total": 65574,
-              "share_classified": 6.51
+              "total": 65578,
+              "share_classified": 6.5
             },
             {
               "brand": "NVIDIA",
-              "total": 30123,
+              "total": 30157,
               "share_classified": 2.99
             },
             {
               "brand": "Undisclosed",
-              "total": 14916,
+              "total": 14928,
               "share_classified": 1.48
             }
           ]
         },
         "Europe": {
-          "base_total": 19969921,
-          "classified": 16372033,
+          "base_total": 19971271,
+          "classified": 16372848,
           "coverage_pct": 82.0,
           "share": [
             {
               "brand": "Mobileye",
-              "total": 12403654,
+              "total": 12404283,
               "share_classified": 75.76
             },
             {
               "brand": "None",
-              "total": 1215838,
+              "total": 1215920,
               "share_classified": 7.43
             },
             {
               "brand": "NVIDIA",
-              "total": 1094467,
+              "total": 1094501,
               "share_classified": 6.68
             },
             {
               "brand": "Denso",
-              "total": 805447,
+              "total": 805501,
               "share_classified": 4.92
             },
             {
               "brand": "Undisclosed",
-              "total": 460068,
+              "total": 460080,
               "share_classified": 2.81
             },
             {
               "brand": "Tesla",
-              "total": 392559,
+              "total": 392563,
               "share_classified": 2.4
             }
           ]
@@ -768,85 +768,85 @@
           ]
         },
         "Netherlands": {
-          "base_total": 1347936,
-          "classified": 1008032,
+          "base_total": 1349286,
+          "classified": 1008847,
           "coverage_pct": 74.8,
           "share": [
             {
               "brand": "Continental",
-              "total": 382127,
-              "share_classified": 37.91
+              "total": 382555,
+              "share_classified": 37.92
             },
             {
               "brand": "HL Klemove",
-              "total": 152904,
-              "share_classified": 15.17
+              "total": 152978,
+              "share_classified": 15.16
             },
             {
               "brand": "Denso",
-              "total": 112955,
-              "share_classified": 11.21
+              "total": 113036,
+              "share_classified": 11.2
             },
             {
               "brand": "Valeo",
-              "total": 112701,
+              "total": 112777,
               "share_classified": 11.18
             },
             {
               "brand": "Bosch",
-              "total": 91033,
+              "total": 91133,
               "share_classified": 9.03
             },
             {
               "brand": "None",
-              "total": 88667,
-              "share_classified": 8.8
+              "total": 88685,
+              "share_classified": 8.79
             },
             {
               "brand": "Veoneer/Magna",
-              "total": 67645,
+              "total": 67683,
               "share_classified": 6.71
             }
           ]
         },
         "Europe": {
-          "base_total": 19969921,
-          "classified": 16372033,
+          "base_total": 19971271,
+          "classified": 16372848,
           "coverage_pct": 82.0,
           "share": [
             {
               "brand": "Continental",
-              "total": 8139716,
+              "total": 8140144,
               "share_classified": 49.72
             },
             {
               "brand": "Bosch",
-              "total": 2321815,
+              "total": 2321915,
               "share_classified": 14.18
             },
             {
               "brand": "Valeo",
-              "total": 1847619,
+              "total": 1847695,
               "share_classified": 11.29
             },
             {
               "brand": "HL Klemove",
-              "total": 1490821,
+              "total": 1490895,
               "share_classified": 9.11
             },
             {
               "brand": "Denso",
-              "total": 1189189,
+              "total": 1189270,
               "share_classified": 7.26
             },
             {
               "brand": "None",
-              "total": 908561,
+              "total": 908579,
               "share_classified": 5.55
             },
             {
               "brand": "Veoneer/Magna",
-              "total": 474312,
+              "total": 474350,
               "share_classified": 2.9
             }
           ]
@@ -933,37 +933,37 @@
           "penetration_pct": 0.222
         },
         "Netherlands": {
-          "base_total": 1347936,
-          "classified": 1765,
+          "base_total": 1349286,
+          "classified": 1769,
           "coverage_pct": 0.1,
           "share": [
             {
               "brand": "Luminar",
-              "total": 1312,
-              "share_classified": 74.33
+              "total": 1315,
+              "share_classified": 74.34
             },
             {
               "brand": "Valeo",
-              "total": 453,
-              "share_classified": 25.67
+              "total": 454,
+              "share_classified": 25.66
             }
           ],
           "penetration_pct": 0.131
         },
         "Europe": {
-          "base_total": 19969921,
-          "classified": 24175,
+          "base_total": 19971271,
+          "classified": 24179,
           "coverage_pct": 0.1,
           "share": [
             {
               "brand": "Valeo",
-              "total": 17533,
-              "share_classified": 72.53
+              "total": 17534,
+              "share_classified": 72.52
             },
             {
               "brand": "Luminar",
-              "total": 6642,
-              "share_classified": 27.47
+              "total": 6645,
+              "share_classified": 27.48
             }
           ],
           "penetration_pct": 0.121
