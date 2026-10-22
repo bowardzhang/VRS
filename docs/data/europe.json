@@ -3,17 +3,13 @@
   "source": "ACEA, via ECB Data Portal (dataset CAR)",
   "source_url": "https://data.ecb.europa.eu/data/datasets/CAR",
   "note": "Official euro-area total of new passenger-car registrations. ACEA figures redistributed by the ECB; a euro-area aggregate only — no per-country, powertrain or manufacturer detail.",
-  "latest_period": "Aug 2026",
-  "latest": 586185,
-  "yoy": 4.7,
-  "ytd": 6464711,
+  "latest_period": "Sep 2026",
+  "latest": 823351,
+  "yoy": 9.6,
+  "ytd": 7293255,
   "ytd_year": 2026,
-  "ytd_yoy": 5.2,
+  "ytd_yoy": 5.6,
   "series": [
-    {
-      "label": "Sep 2022",
-      "value": 680732
-    },
     {
       "label": "Oct 2022",
       "value": 645444
@@ -108,99 +104,103 @@
     },
     {
       "label": "Sep 2024",
-      "value": 688394
+      "value": 688876
     },
     {
       "label": "Oct 2024",
-      "value": 735452
+      "value": 735938
     },
     {
       "label": "Nov 2024",
-      "value": 737780
+      "value": 738463
     },
     {
       "label": "Dec 2024",
-      "value": 766456
+      "value": 767111
     },
     {
       "label": "Jan 2025",
-      "value": 716441
+      "value": 716844
     },
     {
       "label": "Feb 2025",
-      "value": 736898
+      "value": 737201
     },
     {
       "label": "Mar 2025",
-      "value": 890840
+      "value": 891409
     },
     {
       "label": "Apr 2025",
-      "value": 796286
+      "value": 796928
     },
     {
       "label": "May 2025",
-      "value": 794061
+      "value": 794585
     },
     {
       "label": "Jun 2025",
-      "value": 869260
+      "value": 869768
     },
     {
       "label": "Jul 2025",
-      "value": 784039
+      "value": 784633
     },
     {
       "label": "Aug 2025",
-      "value": 559890
+      "value": 560436
     },
     {
       "label": "Sep 2025",
-      "value": 751155
+      "value": 751565
     },
     {
       "label": "Oct 2025",
-      "value": 776174
+      "value": 776707
     },
     {
       "label": "Nov 2025",
-      "value": 755110
+      "value": 755593
     },
     {
       "label": "Dec 2025",
-      "value": 797729
+      "value": 798280
     },
     {
       "label": "Jan 2026",
-      "value": 695685
+      "value": 696244
     },
     {
       "label": "Feb 2026",
-      "value": 747895
+      "value": 748416
     },
     {
       "label": "Mar 2026",
-      "value": 996552
+      "value": 997132
     },
     {
       "label": "Apr 2026",
-      "value": 834563
+      "value": 835155
     },
     {
       "label": "May 2026",
-      "value": 816314
+      "value": 817114
     },
     {
       "label": "Jun 2026",
-      "value": 979505
+      "value": 980124
     },
     {
       "label": "Jul 2026",
-      "value": 808012
+      "value": 808789
     },
     {
       "label": "Aug 2026",
-      "value": 586185
+      "value": 586930
+    },
+    {
+      "label": "Sep 2026",
+      "value": 823351
     }
   ]
 }

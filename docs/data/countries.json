@@ -1878,77 +1878,77 @@
       {
         "brand": "TESLA",
         "model": "MODEL Y",
-        "total": 43002
+        "total": 43018
       },
       {
         "brand": "KIA",
         "model": "PICANTO",
-        "total": 26275
+        "total": 26322
       },
       {
         "brand": "TOYOTA",
         "model": "YARIS CROSS",
-        "total": 26025
+        "total": 26080
       },
       {
         "brand": "TOYOTA",
         "model": "AYGO X",
-        "total": 25501
+        "total": 25558
       },
       {
         "brand": "KIA",
         "model": "NIRO",
-        "total": 23725
+        "total": 23746
       },
       {
         "brand": "TESLA",
         "model": "MODEL 3",
-        "total": 22576
+        "total": 22579
       },
       {
         "brand": "VOLVO",
         "model": "EX30",
-        "total": 19443
+        "total": 19491
       },
       {
         "brand": "TOYOTA",
         "model": "YARIS",
-        "total": 18460
+        "total": 18502
       },
       {
         "brand": "HYUNDAI",
         "model": "KONA",
-        "total": 18367
+        "total": 18394
       },
       {
         "brand": "FORD",
         "model": "KUGA",
-        "total": 18167
+        "total": 18210
       },
       {
         "brand": "VW",
         "model": "POLO",
-        "total": 17785
+        "total": 17817
       },
       {
         "brand": "PEUGEOT",
         "model": "208",
-        "total": 17248
+        "total": 17289
       },
       {
         "brand": "VW",
         "model": "TIGUAN",
-        "total": 16290
+        "total": 16340
       },
       {
         "brand": "KIA",
         "model": "EV3",
-        "total": 16105
+        "total": 16132
       },
       {
         "brand": "VOLVO",
         "model": "XC60",
-        "total": 15746
+        "total": 15808
       }
     ],
     "powertrain": {
@@ -1960,23 +1960,23 @@
       "shares": [
         {
           "body": "Hatchback",
-          "total": 194764,
+          "total": 194790,
           "pct": 32.2
         },
         {
           "body": "Estate",
-          "total": 212626,
+          "total": 212675,
           "pct": 35.1
         },
         {
           "body": "Sedan",
-          "total": 24809,
+          "total": 24810,
           "pct": 4.1
         },
         {
           "body": "MPV",
-          "total": 163826,
-          "pct": 27.0
+          "total": 163868,
+          "pct": 27.1
         },
         {
           "body": "Coupé",
@@ -1990,7 +1990,7 @@
         },
         {
           "body": "Other",
-          "total": 6781,
+          "total": 6785,
           "pct": 1.1
         }
       ],
@@ -2103,13 +2103,13 @@
           "total": 568
         },
         {
-          "brand": "SKODA",
-          "model": "ELROQ 85",
+          "brand": "TOYOTA",
+          "model": "YARIS",
           "total": 538
         },
         {
-          "brand": "TOYOTA",
-          "model": "YARIS",
+          "brand": "SKODA",
+          "model": "ELROQ 85",
           "total": 538
         },
         {
