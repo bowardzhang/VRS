@@ -759,12 +759,12 @@
       {
         "q": "2026-Q3",
         "label": "Q3 2026",
-        "total": 91971
+        "total": 92015
       }
     ],
-    "total": 3769771,
+    "total": 3769815,
     "latest_period": "Sep 2026",
-    "latest_total": 36378,
+    "latest_total": 36391,
     "brand_totals": [
       {
         "brand": "KIA",
@@ -772,11 +772,11 @@
       },
       {
         "brand": "VW",
-        "total": 107824
+        "total": 107825
       },
       {
         "brand": "TOYOTA",
-        "total": 105022
+        "total": 105023
       },
       {
         "brand": "VOLVO",
@@ -788,7 +788,7 @@
       },
       {
         "brand": "SKODA",
-        "total": 75394
+        "total": 75396
       },
       {
         "brand": "RENAULT",
@@ -800,11 +800,11 @@
       },
       {
         "brand": "HYUNDAI",
-        "total": 57758
+        "total": 57759
       },
       {
         "brand": "AUDI",
-        "total": 57202
+        "total": 57208
       },
       {
         "brand": "PEUGEOT",
@@ -812,19 +812,19 @@
       },
       {
         "brand": "MERCEDES",
-        "total": 51891
+        "total": 51893
       },
       {
         "brand": "FORD",
-        "total": 49032
+        "total": 49034
       },
       {
         "brand": "OPEL",
-        "total": 35627
+        "total": 35628
       },
       {
         "brand": "SUZUKI",
-        "total": 27013
+        "total": 27014
       },
       {
         "brand": "DACIA",
@@ -852,11 +852,11 @@
       },
       {
         "brand": "CUPRA",
-        "total": 16445
+        "total": 16448
       },
       {
         "brand": "BYD",
-        "total": 16397
+        "total": 16415
       },
       {
         "brand": "MG",
@@ -932,7 +932,7 @@
       },
       {
         "brand": "OMODA",
-        "total": 1289
+        "total": 1290
       },
       {
         "brand": "CAPRON",
@@ -960,7 +960,7 @@
       },
       {
         "brand": "GEELY",
-        "total": 648
+        "total": 649
       },
       {
         "brand": "ALPINE",
@@ -1072,7 +1072,7 @@
       },
       {
         "brand": "DEEPAL",
-        "total": 121
+        "total": 123
       },
       {
         "brand": "FAW",
@@ -1080,7 +1080,7 @@
       },
       {
         "brand": "POSSL",
-        "total": 114
+        "total": 115
       },
       {
         "brand": "DFSK",
@@ -1188,7 +1188,7 @@
       },
       {
         "brand": "CADILLAC",
-        "total": 32
+        "total": 33
       },
       {
         "brand": "MORELO",
@@ -1626,11 +1626,11 @@
     "origin_totals": [
       {
         "origin": "Germany",
-        "total": 343721
+        "total": 343731
       },
       {
         "origin": "Japan",
-        "total": 192162
+        "total": 192164
       },
       {
         "origin": "France",
@@ -1638,11 +1638,11 @@
       },
       {
         "origin": "South Korea",
-        "total": 169703
+        "total": 169704
       },
       {
         "origin": "USA",
-        "total": 124760
+        "total": 124763
       },
       {
         "origin": "Sweden",
@@ -1650,15 +1650,15 @@
       },
       {
         "origin": "Czechia",
-        "total": 75394
+        "total": 75396
       },
       {
         "origin": "China",
-        "total": 57482
+        "total": 57504
       },
       {
         "origin": "Spain",
-        "total": 34623
+        "total": 34626
       },
       {
         "origin": "United Kingdom",
@@ -1670,7 +1670,7 @@
       },
       {
         "origin": "Other",
-        "total": 10948
+        "total": 10949
       }
     ],
     "monthly_trends": {
@@ -1863,9 +1863,9 @@
             26489,
             30589,
             39744,
-            28707,
-            26886,
-            36378
+            28716,
+            26908,
+            36391
           ]
         }
       ],
@@ -1878,77 +1878,77 @@
       {
         "brand": "TESLA",
         "model": "MODEL Y",
-        "total": 43020
+        "total": 43041
       },
       {
         "brand": "KIA",
         "model": "PICANTO",
-        "total": 26359
+        "total": 26391
       },
       {
         "brand": "TOYOTA",
         "model": "YARIS CROSS",
-        "total": 26126
+        "total": 26167
       },
       {
         "brand": "TOYOTA",
         "model": "AYGO X",
-        "total": 25579
+        "total": 25619
       },
       {
         "brand": "KIA",
         "model": "NIRO",
-        "total": 23760
+        "total": 23773
       },
       {
         "brand": "TESLA",
         "model": "MODEL 3",
-        "total": 22578
+        "total": 22581
       },
       {
         "brand": "VOLVO",
         "model": "EX30",
-        "total": 19511
+        "total": 19552
       },
       {
         "brand": "TOYOTA",
         "model": "YARIS",
-        "total": 18522
+        "total": 18535
       },
       {
         "brand": "HYUNDAI",
         "model": "KONA",
-        "total": 18413
+        "total": 18431
       },
       {
         "brand": "FORD",
         "model": "KUGA",
-        "total": 18231
+        "total": 18265
       },
       {
         "brand": "VW",
         "model": "POLO",
-        "total": 17820
+        "total": 17832
       },
       {
         "brand": "PEUGEOT",
         "model": "208",
-        "total": 17309
+        "total": 17326
       },
       {
         "brand": "VW",
         "model": "TIGUAN",
-        "total": 16358
+        "total": 16382
       },
       {
         "brand": "KIA",
         "model": "EV3",
-        "total": 16162
+        "total": 16185
       },
       {
         "brand": "VOLVO",
         "model": "XC60",
-        "total": 15819
+        "total": 15830
       }
     ],
     "powertrain": {
@@ -1960,22 +1960,22 @@
       "shares": [
         {
           "body": "Hatchback",
-          "total": 194800,
+          "total": 194805,
           "pct": 32.2
         },
         {
           "body": "Estate",
-          "total": 212697,
+          "total": 212709,
           "pct": 35.1
         },
         {
           "body": "Sedan",
-          "total": 24811,
+          "total": 24812,
           "pct": 4.1
         },
         {
           "body": "MPV",
-          "total": 163906,
+          "total": 163931,
           "pct": 27.1
         },
         {
@@ -1990,7 +1990,7 @@
         },
         {
           "body": "Other",
-          "total": 6785,
+          "total": 6786,
           "pct": 1.1
         }
       ],
@@ -1998,11 +1998,11 @@
     },
     "latest": {
       "period": "Sep 2026",
-      "total": 36378,
+      "total": 36391,
       "top_brands": [
         {
           "brand": "TOYOTA",
-          "total": 3386,
+          "total": 3387,
           "yoy": 15.4
         },
         {
@@ -2027,12 +2027,12 @@
         },
         {
           "brand": "SKODA",
-          "total": 2254,
-          "yoy": -12.2
+          "total": 2255,
+          "yoy": -12.1
         },
         {
           "brand": "VW",
-          "total": 2058,
+          "total": 2059,
           "yoy": -35.1
         },
         {
@@ -2042,8 +2042,8 @@
         },
         {
           "brand": "MERCEDES",
-          "total": 1455,
-          "yoy": -6.6
+          "total": 1456,
+          "yoy": -6.5
         },
         {
           "brand": "BYD",
@@ -2075,7 +2075,7 @@
         {
           "brand": "TOYOTA",
           "model": "YARIS CROSS",
-          "total": 804
+          "total": 805
         },
         {
           "brand": "TOYOTA",
@@ -2103,13 +2103,13 @@
           "total": 568
         },
         {
-          "brand": "TOYOTA",
-          "model": "YARIS",
+          "brand": "SKODA",
+          "model": "ELROQ 85",
           "total": 538
         },
         {
-          "brand": "SKODA",
-          "model": "ELROQ 85",
+          "brand": "TOYOTA",
+          "model": "YARIS",
           "total": 538
         },
         {
@@ -2135,7 +2135,7 @@
         {
           "brand": "SKODA",
           "model": "ELROQ 60",
-          "total": 465
+          "total": 466
         }
       ],
       "powertrain": {
@@ -2211,7 +2211,7 @@
             12531,
             6139,
             6720,
-            5814
+            5815
           ]
         },
         {
@@ -2283,7 +2283,7 @@
             7927,
             5912,
             8531,
-            7892
+            7893
           ]
         },
         {
@@ -2427,7 +2427,7 @@
             74487,
             52273,
             56269,
-            55510
+            55552
           ]
         }
       ]
@@ -2500,7 +2500,7 @@
             32611,
             21876,
             23668,
-            21455
+            21465
           ]
         },
         {
@@ -2536,7 +2536,7 @@
             14134,
             12163,
             13720,
-            12748
+            12750
           ]
         },
         {
@@ -2608,7 +2608,7 @@
             14366,
             11593,
             13240,
-            13088
+            13089
           ]
         },
         {
@@ -2644,7 +2644,7 @@
             11259,
             6342,
             7620,
-            8599
+            8602
           ]
         },
         {
@@ -2716,7 +2716,7 @@
             10871,
             4693,
             4800,
-            5446
+            5448
           ]
         },
         {
@@ -2752,12 +2752,12 @@
             13745,
             12625,
             13977,
-            14883
+            14909
           ]
         }
       ]
     },
-    "ytd": 274368,
+    "ytd": 274412,
     "ytd_year": 2026
   },
   {
