@@ -759,10 +759,10 @@
       {
         "q": "2026-Q3",
         "label": "Q3 2026",
-        "total": 92045
+        "total": 92047
       }
     ],
-    "total": 3769845,
+    "total": 3769847,
     "latest_period": "Sep 2026",
     "latest_total": 36404,
     "brand_totals": [
@@ -816,7 +816,7 @@
       },
       {
         "brand": "FORD",
-        "total": 49036
+        "total": 49037
       },
       {
         "brand": "OPEL",
@@ -852,7 +852,7 @@
       },
       {
         "brand": "CUPRA",
-        "total": 16448
+        "total": 16449
       },
       {
         "brand": "BYD",
@@ -1642,7 +1642,7 @@
       },
       {
         "origin": "USA",
-        "total": 124765
+        "total": 124766
       },
       {
         "origin": "Sweden",
@@ -1658,7 +1658,7 @@
       },
       {
         "origin": "Spain",
-        "total": 34626
+        "total": 34627
       },
       {
         "origin": "United Kingdom",
@@ -1863,7 +1863,7 @@
             26489,
             30589,
             39744,
-            28727,
+            28729,
             26914,
             36404
           ]
@@ -1878,7 +1878,7 @@
       {
         "brand": "TESLA",
         "model": "MODEL Y",
-        "total": 43042
+        "total": 43041
       },
       {
         "brand": "KIA",
@@ -1898,7 +1898,7 @@
       {
         "brand": "KIA",
         "model": "NIRO",
-        "total": 23780
+        "total": 23781
       },
       {
         "brand": "TESLA",
@@ -1918,7 +1918,7 @@
       {
         "brand": "HYUNDAI",
         "model": "KONA",
-        "total": 18442
+        "total": 18443
       },
       {
         "brand": "FORD",
@@ -1928,7 +1928,7 @@
       {
         "brand": "VW",
         "model": "POLO",
-        "total": 17837
+        "total": 17838
       },
       {
         "brand": "PEUGEOT",
@@ -1938,7 +1938,7 @@
       {
         "brand": "VW",
         "model": "TIGUAN",
-        "total": 16398
+        "total": 16399
       },
       {
         "brand": "KIA",
@@ -1948,7 +1948,7 @@
       {
         "brand": "VOLVO",
         "model": "XC60",
-        "total": 15833
+        "total": 15834
       }
     ],
     "powertrain": {
@@ -1965,7 +1965,7 @@
         },
         {
           "body": "Estate",
-          "total": 212717,
+          "total": 212718,
           "pct": 35.1
         },
         {
@@ -1975,7 +1975,7 @@
         },
         {
           "body": "MPV",
-          "total": 163944,
+          "total": 163945,
           "pct": 27.1
         },
         {
@@ -2103,13 +2103,13 @@
           "total": 568
         },
         {
-          "brand": "SKODA",
-          "model": "ELROQ 85",
+          "brand": "TOYOTA",
+          "model": "YARIS",
           "total": 538
         },
         {
-          "brand": "TOYOTA",
-          "model": "YARIS",
+          "brand": "SKODA",
+          "model": "ELROQ 85",
           "total": 538
         },
         {
@@ -2427,7 +2427,7 @@
             74487,
             52273,
             56269,
-            55574
+            55576
           ]
         }
       ]
@@ -2644,7 +2644,7 @@
             11259,
             6342,
             7620,
-            8604
+            8605
           ]
         },
         {
@@ -2752,12 +2752,12 @@
             13745,
             12625,
             13977,
-            14925
+            14926
           ]
         }
       ]
     },
-    "ytd": 274442,
+    "ytd": 274444,
     "ytd_year": 2026
   },
   {
