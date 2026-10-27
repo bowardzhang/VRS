@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: "0 6 * * *"
   # Workflow edits intentionally trigger an immediate validation run without
-  # looping on the data/docs commit produced by the job. Build Q3 report 2026-10-27.
+  # looping on the data/docs commit produced by the job. Build Q3 report 2026-10-27b.
   push:
     branches: [main]
     paths:
