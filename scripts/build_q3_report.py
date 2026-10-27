@@ -485,7 +485,10 @@ def build_payload():
             "codes), each in its own native taxonomy — not pooled. The UK (DfT, "
             "quarterly) joins the brand/model/origin/powertrain/supplier "
             "dimensions automatically once it publishes the quarter; France is "
-            "total-only; Italy not covered."
+            "total-only. Coverage caveat: this is not a complete Europe-wide total. "
+            "The UK official detailed quarterly feed has not yet published Q3, and "
+            "the ACEA/PZPM country workbook currently ends at April 2026; those "
+            "markets are excluded until Q3 data is available."
         ),
     }
 
