@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: "0 6 * * *"
   # Workflow edits intentionally trigger an immediate validation run without
-  # looping on the data/docs commit produced by the job. Sweden monthly trend validation 2026-10-05.
+  # looping on the data/docs commit produced by the job. Build Q3 report 2026-10-27.
   push:
     branches: [main]
     paths:
@@ -83,6 +83,7 @@ jobs:
           python scripts/build_countries.py
           python scripts/apply_uk_dual_source.py
           python scripts/build_q2_report.py
+          python scripts/build_q3_report.py
           python scripts/build_europe.py
           python scripts/build_site.py
       - name: Email notification (only when a country/feed advanced)
